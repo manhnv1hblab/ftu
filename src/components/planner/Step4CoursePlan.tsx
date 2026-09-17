@@ -1,0 +1,393 @@
+'use client';
+
+import React, { useState, useMemo } from 'react';
+import { useStudent } from '../../context/StudentContext';
+import { matchCoursesForUniversity } from '../../engine/matcher';
+import { simulateStudentProgress } from '../../engine/progressSimulator';
+import universitiesData from '../../../data/universities_s27.json';
+import equivalencesData from '../../../data/equivalences_s27.json';
+import courseOfferingsData from '../../../data/course_offerings_2627.json';
+import { PartnerUniversity } from '../../types/university';
+import { CourseEquivalence } from '../../types/equivalence';
+import { CourseOffering } from '../../types/courseOffering';
+import { CourseMatchPair, SelectedStudyPlan } from '../../types/studyPlan';
+
+export const Step4CoursePlan: React.FC = () => {
+  const {
+    profile,
+    selectedUniId,
+    setCurrentStep,
+    setRankedChoice
+  } = useStudent();
+
+  const rawUnis = universitiesData as PartnerUniversity[];
+  const rawEqs = equivalencesData as CourseEquivalence[];
+  const rawOfferings = courseOfferingsData as CourseOffering[];
+
+  const activeUniId = selectedUniId || 'chung-ang-university';
+  const university = rawUnis.find(u => u.id === activeUniId) || rawUnis[0];
+
+  // Match all candidate pairs for this university
+  const candidatePairs = useMemo(() => {
+    const studentRemaining = profile.courses && profile.courses.length > 0
+      ? profile.courses.filter(c => !c.isPassed).map(c => ({
+        code: c.courseCode,
+        name: c.courseName,
+        credits: c.credits,
+        program: c.program
+      }))
+      : (profile.manualCourseCodes || []).map(code => ({
+        code,
+        name: `Học phần ${code}`,
+        credits: 3
+      }));
+
+    return matchCoursesForUniversity(
+      university,
+      studentRemaining,
+      rawEqs,
+      rawOfferings
+    );
+  }, [university, profile, rawEqs, rawOfferings]);
+
+  // Selected transferred pairs (minimum 3)
+  const [selectedPairs, setSelectedPairs] = useState<CourseMatchPair[]>(() => {
+    return candidatePairs.filter(p => p.status === 'APPROVED').slice(0, 4);
+  });
+
+  // Additional host courses to ensure >= 5 courses
+  const [additionalHostCourses, setAdditionalHostCourses] = useState<
+    { hostCourseName: string; hostCourseCode?: string; estimatedCredits?: number; note?: string }[]
+  >([
+    { hostCourseName: 'Language and Culture of Host Country', hostCourseCode: 'LNG101', estimatedCredits: 3 },
+    { hostCourseName: 'Global Leadership & Cross-Cultural Management', hostCourseCode: 'MGT301', estimatedCredits: 3 }
+  ]);
+
+  const [newHostName, setNewHostName] = useState('');
+  const [selectedRank, setSelectedRank] = useState<'nv1' | 'nv2' | 'nv3'>('nv1');
+  const [saveSuccessMsg, setSaveSuccessMsg] = useState<string | null>(null);
+
+  // Toggle selection of a course pair
+  const toggleSelectPair = (pair: CourseMatchPair) => {
+    const exists = selectedPairs.some(p => p.ftuCourseCode === pair.ftuCourseCode);
+    if (exists) {
+      setSelectedPairs(prev => prev.filter(p => p.ftuCourseCode !== pair.ftuCourseCode));
+    } else {
+      setSelectedPairs(prev => [...prev, pair]);
+    }
+  };
+
+  const handleAddHostCourse = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newHostName.trim()) return;
+    setAdditionalHostCourses(prev => [
+      ...prev,
+      { hostCourseName: newHostName.trim(), estimatedCredits: 3 }
+    ]);
+    setNewHostName('');
+  };
+
+  const handleRemoveHostCourse = (idx: number) => {
+    setAdditionalHostCourses(prev => prev.filter((_, i) => i !== idx));
+  };
+
+  // Run progress simulation
+  const simulation = useMemo(() => {
+    return simulateStudentProgress(
+      profile.courses,
+      selectedPairs,
+      rawOfferings,
+      profile.targetGraduationSemester,
+      profile.hasPassedMidtermInternship,
+      []
+    );
+  }, [profile, selectedPairs, rawOfferings]);
+
+  const totalHostCoursesCount = selectedPairs.length + additionalHostCourses.length;
+  const satisfies3Transfers = selectedPairs.length >= 3;
+  const satisfies5HostCourses = totalHostCoursesCount >= 5;
+
+  const handleSaveToPreference = () => {
+    const plan: SelectedStudyPlan = {
+      universityId: university.id,
+      universityName: university.name,
+      transferredCourses: selectedPairs,
+      hostAdditionalCourses: additionalHostCourses,
+      graduationSimulation: {
+        remainingCreditsAfterExchange: simulation.remainingCreditsAfterExchange,
+        remainingMandatoryCourses: simulation.courseScheduleAnalysis.map(c => c.courseCode),
+        thesisEligible: simulation.thesisEligible,
+        hasMidtermInternship: simulation.hasMidtermInternship,
+        canGraduateOnTime: simulation.isLikelyOnTime,
+        riskWarnings: simulation.warnings
+      }
+    };
+
+    setRankedChoice(selectedRank, plan);
+    setSaveSuccessMsg(`Đã lưu phương án vào ${selectedRank.toUpperCase()} thành công!`);
+    setTimeout(() => setSaveSuccessMsg(null), 3000);
+  };
+
+  return (
+    <div className="max-w-5xl mx-auto flex flex-col gap-6 animate-fade-in py-2">
+      {/* 1. Clean Partner Header */}
+      <div className="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-surface-container/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 rounded-2xl bg-surface-container p-2 flex items-center justify-center shrink-0 border border-surface-container">
+            <img
+              alt={university.name}
+              className="w-full h-full object-contain"
+              src={
+                university.logoUrl ||
+                'https://lh3.googleusercontent.com/aida-public/AB6AXuBYrSJJv8tnvnNbbVbSPelMcE9csuxAtzZtahSOi-V4nce5Xd0MwmovlOSLCkgTzL7Xi_d4nHh3LOzSdTOTWUMbHMuvTQXb1ipo3Vocl0jQVnWEdfsLHCvihOPSI-p8jZaA4DJJbd8IBy3zTMKYbqDXfE0SrpXpWuT9YSoxXRBrIjJNEMwQkfFWPaGECffg3NeWj6xESWvAR4P-5waGgGV8M5PKjmwYc0p07uqwbkMl5TnPQmxH8itN'
+              }
+            />
+          </div>
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">
+                {university.region} • {university.flag || '🌏'}
+              </span>
+              <span className="text-xs text-on-surface-variant">
+                {university.city ? `${university.city}, ` : ''}{university.country}
+              </span>
+            </div>
+            <h1 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight mt-0.5">
+              {university.name}
+            </h1>
+          </div>
+        </div>
+
+        <button
+          type="button"
+          onClick={() => setCurrentStep(3)}
+          className="text-xs text-primary font-bold hover:underline flex items-center gap-1 self-start sm:self-auto"
+        >
+          <span className="material-symbols-outlined text-base">sync_alt</span>
+          <span>Chọn trường khác</span>
+        </button>
+      </div>
+
+      {/* 2. S27 Compliance Checklist Bar */}
+      <div className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-surface-container/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
+        <div className={`p-2.5 rounded-xl border flex items-center gap-2.5 ${satisfies3Transfers
+            ? 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
+            : 'bg-amber-50/70 border-amber-200 text-amber-950'
+          }`}>
+          <span className={`material-symbols-outlined text-lg ${satisfies3Transfers ? 'text-emerald-600' : 'text-amber-600'}`}>
+            {satisfies3Transfers ? 'check_circle' : 'warning'}
+          </span>
+          <div>
+            <span className="font-bold block">Quy đổi FTU: {selectedPairs.length}/3 môn</span>
+            <span className="text-[11px] opacity-80">{selectedPairs.length * 3} tín chỉ công nhận</span>
+          </div>
+        </div>
+
+        <div className={`p-2.5 rounded-xl border flex items-center gap-2.5 ${satisfies5HostCourses
+            ? 'bg-emerald-50/70 border-emerald-200 text-emerald-950'
+            : 'bg-amber-50/70 border-amber-200 text-amber-950'
+          }`}>
+          <span className={`material-symbols-outlined text-lg ${satisfies5HostCourses ? 'text-emerald-600' : 'text-amber-600'}`}>
+            {satisfies5HostCourses ? 'check_circle' : 'warning'}
+          </span>
+          <div>
+            <span className="font-bold block">Học tại đối tác: {totalHostCoursesCount}/5 môn</span>
+            <span className="text-[11px] opacity-80">{selectedPairs.length} môn đổi + {additionalHostCourses.length} môn tự do</span>
+          </div>
+        </div>
+
+        <div className="p-2.5 rounded-xl border border-surface-container bg-surface-container-low flex items-center gap-2.5 text-on-surface">
+          <span className="material-symbols-outlined text-lg text-secondary">
+            timeline
+          </span>
+          <div>
+            <span className="font-bold block">Tiến độ tốt nghiệp</span>
+            <span className="text-[11px] text-on-surface-variant">
+              {simulation.isLikelyOnTime ? 'Đúng hạn chuẩn K62' : 'Cần đăng ký bù'}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* 3. Bilateral Course Mapping Section with 3D Scales */}
+      <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-7 shadow-sm border border-surface-container/80 flex flex-col gap-4">
+        <div className="flex items-center justify-between border-b border-surface-container pb-3">
+          <div className="flex items-center gap-3">
+            <div className="relative w-12 h-12 rounded-2xl overflow-hidden shadow-xs shrink-0 border border-primary/20">
+              <img
+                src="/images/3d_scales.jpg"
+                alt="3D Course Scales"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div>
+              <h2 className="text-base font-bold text-on-surface">Phương án đối ứng môn học (FTU ⟷ Đối tác)</h2>
+              <p className="text-xs text-on-surface-variant">Tích chọn các môn bạn muốn đưa vào tờ trình chuyển đổi tín chỉ chính thức.</p>
+            </div>
+          </div>
+          <span className="text-xs text-primary font-bold bg-primary/10 px-3 py-1 rounded-full">
+            Đã chọn {selectedPairs.length} cặp môn
+          </span>
+        </div>
+
+        {candidatePairs.length === 0 ? (
+          <div className="text-center py-8 text-xs text-on-surface-variant">
+            Chưa tìm thấy môn học tương đương tự động. Bạn có thể tra cứu mã môn đối tác trong cẩm nang S27.
+          </div>
+        ) : (
+          <div className="flex flex-col gap-3">
+            {candidatePairs.map((pair) => {
+              const isSelected = selectedPairs.some(p => p.ftuCourseCode === pair.ftuCourseCode);
+
+              return (
+                <div
+                  key={pair.ftuCourseCode}
+                  onClick={() => toggleSelectPair(pair)}
+                  className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col md:flex-row items-start md:items-center justify-between gap-4 ${isSelected
+                      ? 'bg-primary/5 border-primary/40 shadow-xs'
+                      : 'bg-surface-container-low/50 border-surface-container hover:bg-surface-container-low'
+                    }`}
+                >
+                  <div className="flex items-center gap-3 w-full md:w-auto">
+                    <input
+                      type="checkbox"
+                      checked={isSelected}
+                      onChange={() => { }} // handled by div onClick
+                      className="rounded text-primary focus:ring-primary h-4 w-4 shrink-0"
+                    />
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-2">
+                        <span className="font-mono text-xs font-bold text-primary">{pair.ftuCourseCode}</span>
+                        <span className="text-xs font-bold text-on-surface">{pair.ftuCourseName}</span>
+                      </div>
+                      <span className="text-[11px] text-on-surface-variant">
+                        Môn FTU • {pair.ftuCredits} tín chỉ
+                      </span>
+                    </div>
+                  </div>
+
+                  <span className="material-symbols-outlined text-on-surface-variant text-base hidden md:block">
+                    sync_alt
+                  </span>
+
+                  <div className="flex items-center justify-between md:justify-end gap-3 w-full md:w-auto">
+                    <div className="flex flex-col text-left md:text-right">
+                      <div className="flex items-center md:justify-end gap-1.5">
+                        <span className="text-xs font-semibold text-on-surface">{pair.hostCourseName}</span>
+                        {pair.hostCourseCode && (
+                          <span className="font-mono text-[11px] text-on-surface-variant">({pair.hostCourseCode})</span>
+                        )}
+                      </div>
+                      <span className="text-[11px] text-emerald-700 font-medium">
+                        ✓ {pair.approvalYear ? `Đã phê duyệt (${pair.approvalYear})` : 'Tiền lệ FTU đã phê duyệt'} • {pair.hostCredits || 3} Credits
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* 4. Additional Host Courses (To satisfy >= 5 courses rule) */}
+      <div className="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-surface-container/80 flex flex-col gap-4">
+        <div className="flex items-center justify-between border-b border-surface-container pb-3">
+          <div>
+            <h2 className="text-base font-bold text-on-surface">Môn học tự do tại trường đối tác</h2>
+            <p className="text-xs text-on-surface-variant">
+              Theo quy định FTU S27, sinh viên cần đăng ký tối thiểu <strong>5 môn</strong> tại trường đối tác (các môn không quy đổi sẽ tính điểm tích lũy quốc tế).
+            </p>
+          </div>
+          <span className="text-xs font-bold text-secondary">
+            {additionalHostCourses.length} môn thêm
+          </span>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          {additionalHostCourses.map((c, idx) => (
+            <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-surface-container-low border border-surface-container text-xs">
+              <div className="flex items-center gap-2">
+                <span className="material-symbols-outlined text-base text-secondary">menu_book</span>
+                <span className="font-semibold text-on-surface">{c.hostCourseName}</span>
+                {c.hostCourseCode && <span className="font-mono text-on-surface-variant">({c.hostCourseCode})</span>}
+              </div>
+              <button
+                type="button"
+                onClick={() => handleRemoveHostCourse(idx)}
+                className="text-on-surface-variant hover:text-rose-600 transition-colors"
+              >
+                <span className="material-symbols-outlined text-base">close</span>
+              </button>
+            </div>
+          ))}
+        </div>
+
+        {/* Add Host Course Form */}
+        <form onSubmit={handleAddHostCourse} className="flex gap-2 pt-1">
+          <input
+            type="text"
+            value={newHostName}
+            onChange={(e) => setNewHostName(e.target.value)}
+            placeholder="Nhập tên môn tiếng Anh tại trường đối tác (VD: Korean Language & Culture)..."
+            className="flex-1 px-3.5 py-2 rounded-full bg-surface-container-low border border-surface-container text-xs focus:outline-none focus:ring-2 focus:ring-primary text-on-surface"
+          />
+          <button
+            type="submit"
+            className="px-4 py-2 rounded-full bg-secondary text-on-secondary text-xs font-bold hover:opacity-90 transition-all shrink-0"
+          >
+            + Thêm môn
+          </button>
+        </form>
+      </div>
+
+      {/* 5. Floating / Sticky Wishlist Assignment & Next Step */}
+      <div className="bg-surface-container-lowest rounded-3xl p-5 shadow-sm border border-surface-container/80 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-bold text-on-surface">Lưu vào nguyện vọng:</span>
+          <div className="flex items-center gap-1.5 bg-surface-container p-1 rounded-full">
+            {(['nv1', 'nv2', 'nv3'] as const).map((r) => (
+              <button
+                key={r}
+                type="button"
+                onClick={() => setSelectedRank(r)}
+                className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${selectedRank === r
+                    ? 'bg-primary text-white shadow-xs'
+                    : 'text-on-surface-variant hover:text-on-surface'
+                  }`}
+              >
+                {r.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={handleSaveToPreference}
+            className="px-4 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container text-xs font-bold text-on-surface border border-surface-container transition-colors"
+          >
+            Lưu
+          </button>
+        </div>
+
+        {saveSuccessMsg && (
+          <span className="text-xs font-bold text-emerald-700 animate-fade-in">
+            {saveSuccessMsg}
+          </span>
+        )}
+
+        <button
+          type="button"
+          onClick={() => {
+            handleSaveToPreference();
+            setCurrentStep(5);
+          }}
+          className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
+        >
+          <span>Tiếp tục: Bảng so sánh 3 nguyện vọng</span>
+          <span className="material-symbols-outlined text-base">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  );
+};

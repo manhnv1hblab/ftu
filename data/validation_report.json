@@ -1,0 +1,248 @@
+{
+  "summary": {
+    "partnerUniversitiesCount": 116,
+    "totalEquivalenceRows": 4463,
+    "approvedEquivalences": 2094,
+    "pendingEquivalences": 254,
+    "rejectedEquivalences": 2108,
+    "uncertainEquivalences": 7,
+    "courseOfferingsCount": 860,
+    "sampleCurriculumCourses": 75,
+    "countriesWithCost": 18
+  },
+  "dataQualityChecks": {
+    "duplicateUniversityIds": [],
+    "universitiesWithoutEquivalences": [
+      {
+        "id": "university-of-the-bahamas",
+        "name": "University of The Bahamas",
+        "country": "The Bahamas"
+      },
+      {
+        "id": "university-of-south-carolina",
+        "name": "University of South Carolina",
+        "country": "USA"
+      },
+      {
+        "id": "lingnan-university",
+        "name": "Lingnan University",
+        "country": "\"HongKong, China\""
+      },
+      {
+        "id": "beijing-foreign-studies-university-bfsu",
+        "name": "Beijing Foreign Studies University (BFSU)",
+        "country": "China"
+      },
+      {
+        "id": "beijing-international-studies-university-bisu",
+        "name": "Beijing International Studies University (BISU)",
+        "country": "China"
+      },
+      {
+        "id": "guangdong-university-of-foreign-studies-south-china-business-college-scbc",
+        "name": "Guangdong University of Foreign Studies, \nSouth China Business College (SCBC)",
+        "country": "China"
+      },
+      {
+        "id": "guilin-university-of-electronic-technology",
+        "name": "Guilin University of Electronic Technology",
+        "country": "China"
+      },
+      {
+        "id": "hunan-normal-university",
+        "name": "Hunan Normal University",
+        "country": "China"
+      },
+      {
+        "id": "kunming-university-of-science-and-technology",
+        "name": "Kunming University of Science and Technology",
+        "country": "China"
+      },
+      {
+        "id": "karpagam-academy-of-higher-education-kahe",
+        "name": "Karpagam Academy of Higher Education (KAHE)",
+        "country": "India"
+      },
+      {
+        "id": "s-p-jain-institute-of-management-research",
+        "name": "S.P. Jain Institute of Management & Research",
+        "country": "India"
+      },
+      {
+        "id": "aomori-chuo-gakuin-university",
+        "name": "Aomori Chuo Gakuin University",
+        "country": "Japan"
+      },
+      {
+        "id": "fukui-prefectural-university",
+        "name": "Fukui Prefectural University",
+        "country": "Japan"
+      },
+      {
+        "id": "international-university-of-japan",
+        "name": "International University of Japan",
+        "country": "Japan"
+      },
+      {
+        "id": "kanazawa-university",
+        "name": "Kanazawa University",
+        "country": "Japan"
+      },
+      {
+        "id": "kumamoto-university",
+        "name": "Kumamoto University",
+        "country": "Japan"
+      },
+      {
+        "id": "kyorin-university",
+        "name": "Kyorin University",
+        "country": "Japan"
+      },
+      {
+        "id": "meiji-university-school-of-information-and-communication",
+        "name": "Meiji University, School of Information and Communication",
+        "country": "Japan"
+      },
+      {
+        "id": "meiji-university-school-of-political-science-and-economics",
+        "name": "Meiji University, School of Political Science and Economics",
+        "country": "Japan"
+      },
+      {
+        "id": "mukogawa-women-s-university",
+        "name": "Mukogawa Women's University",
+        "country": "Japan"
+      },
+      {
+        "id": "onomichi-city-university",
+        "name": "Onomichi City University",
+        "country": "Japan"
+      },
+      {
+        "id": "rikkyo-university",
+        "name": "Rikkyo University",
+        "country": "Japan"
+      },
+      {
+        "id": "ritsumeikan-university",
+        "name": "Ritsumeikan University",
+        "country": "Japan"
+      },
+      {
+        "id": "seinan-gakuin-university",
+        "name": "Seinan Gakuin University",
+        "country": "Japan"
+      },
+      {
+        "id": "takushoku-university",
+        "name": "Takushoku University",
+        "country": "Japan"
+      },
+      {
+        "id": "wakayama-university",
+        "name": "Wakayama University",
+        "country": "Japan"
+      },
+      {
+        "id": "duksung-women-s-university",
+        "name": "Duksung Women’s University",
+        "country": "Korea"
+      },
+      {
+        "id": "ewha-womans-university",
+        "name": "Ewha Womans University",
+        "country": "Korea"
+      },
+      {
+        "id": "kongju-national-university",
+        "name": "Kongju National University",
+        "country": "Korea"
+      },
+      {
+        "id": "woosong-university",
+        "name": "Woosong University",
+        "country": "Korea"
+      },
+      {
+        "id": "chang-gung-university",
+        "name": "Chang Gung University",
+        "country": "Taiwan"
+      },
+      {
+        "id": "nanhua-university",
+        "name": "Nanhua University",
+        "country": "Taiwan"
+      },
+      {
+        "id": "national-kaohsiung-university-of-science-and-technology",
+        "name": "National Kaohsiung University of Science and Technology",
+        "country": "Taiwan"
+      },
+      {
+        "id": "oulu-university-of-applied-sciences",
+        "name": "Oulu University of Applied Sciences",
+        "country": "Finland"
+      },
+      {
+        "id": "seinajoki-university-of-applied-sciences",
+        "name": "Seinajoki University of Applied Sciences",
+        "country": "Finland"
+      },
+      {
+        "id": "goethe-university-frankfurt-am-main-faculty-of-economics-and-business-administration",
+        "name": "Goethe University Frankfurt am Main, Faculty of Economics and Business Administration",
+        "country": "Germany"
+      },
+      {
+        "id": "hochschule-trier-trier-university-of-applied-sciences",
+        "name": "Hochschule Trier, Trier University of Applied Sciences",
+        "country": "Germany"
+      },
+      {
+        "id": "osnabr-ck-university-of-applied-sciences",
+        "name": "Osnabrück University of Applied Sciences",
+        "country": "Germany"
+      },
+      {
+        "id": "national-research-university-higher-school-of-economics-hse",
+        "name": "National Research University Higher School of Economics (HSE)",
+        "country": "Russia"
+      },
+      {
+        "id": "russian-foreign-trade-academy-rfta",
+        "name": "Russian Foreign Trade Academy (RFTA)",
+        "country": "Russia"
+      },
+      {
+        "id": "russian-presidential-academy-of-national-economy-and-public-administration-russian-federation-ranepa",
+        "name": "Russian Presidential Academy of National Economy and Public Administration, Russian Federation (RANEPA)",
+        "country": "Russia"
+      },
+      {
+        "id": "university-of-las-palmas-de-gran-canaria-ulpgc",
+        "name": "University of Las Palmas de Gran Canaria (ULPGC)",
+        "country": "Spain"
+      },
+      {
+        "id": "university-of-gothenburg-school-of-business-economics-and-law",
+        "name": "University of Gothenburg, School of Business, Economics and Law",
+        "country": "Sweden"
+      },
+      {
+        "id": "s-p-jain-school-of-global-management",
+        "name": "S. P. Jain School of Global Management",
+        "country": "Australia"
+      }
+    ],
+    "swissCostDiscrepancy": {
+      "hasDiscrepancy": true,
+      "details": "Thụy Sĩ vs Thuỵ Sỹ có mức chi phí khác nhau trong tài liệu gốc. Đã gắn cờ requiresVerification."
+    },
+    "sampleCurriculumValidation": {
+      "totalCourses": 75,
+      "passedCourses": 32,
+      "takenButNotPassedCourses": 9,
+      "remainingCourses": 43
+    }
+  }
+}

@@ -1,0 +1,524 @@
+{
+  "Na Uy": {
+    "country": "Na Uy",
+    "livingCost": {
+      "min": 15.0,
+      "max": 20.0,
+      "raw": "Khoảng 15 - 20 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 4.0,
+      "max": 6.0,
+      "raw": "- Chi phí đăng ký trước: 4 triệu VNĐ\n- Khoảng 6 - 8 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 10.0,
+      "max": 12.0,
+      "raw": "Khoảng 10 - 12 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": 4.0,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 3
+    }
+  },
+  "Thuỵ Điển": {
+    "country": "Thuỵ Điển",
+    "livingCost": {
+      "min": 15.0,
+      "max": 20.0,
+      "raw": "Khoảng 15 - 20 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 12.0,
+      "max": 12.0,
+      "raw": "Khoảng 12 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 12.0,
+      "max": 15.0,
+      "raw": "Khoảng 12 - 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 4
+    }
+  },
+  "Thụy Sĩ": {
+    "country": "Thụy Sĩ",
+    "livingCost": {
+      "min": 10.0,
+      "max": 10.0,
+      "raw": "Khoảng 10 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 15.0,
+      "max": 15.0,
+      "raw": "Khoảng 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 15.0,
+      "max": 17.0,
+      "raw": "Khoảng 15 - 17 triệu VNĐ/tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": true,
+    "warningNote": "Dữ liệu nguồn có 2 cột Thụy Sĩ khác nhau. Cần xác nhận với Phòng HTQT về mức chi phí thực tế.",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 5
+    }
+  },
+  "Phần Lan": {
+    "country": "Phần Lan",
+    "livingCost": {
+      "min": 15.0,
+      "max": 20.0,
+      "raw": "Khoảng 15 - 20 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 10.0,
+      "max": 15.0,
+      "raw": "Khoảng 10 đến 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 6
+    }
+  },
+  "Đức": {
+    "country": "Đức",
+    "livingCost": {
+      "min": 15.0,
+      "max": 20.0,
+      "raw": "Khoảng 15 - 20 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 9.0,
+      "max": 12.0,
+      "raw": "Khoảng 9 đến 12 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 12.0,
+      "max": 15.0,
+      "raw": "Khoảng 12 đến 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 7
+    }
+  },
+  "Pháp": {
+    "country": "Pháp",
+    "livingCost": {
+      "min": 12.0,
+      "max": 14.0,
+      "raw": "Khoảng 12 - 14 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 8.0,
+      "max": 10.0,
+      "raw": "Khoảng 8 đến 10 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 14.0,
+      "max": 20.0,
+      "raw": "Khoảng 14 đến 20 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 8
+    }
+  },
+  "Bỉ": {
+    "country": "Bỉ",
+    "livingCost": {
+      "min": 10.0,
+      "max": 13.0,
+      "raw": "Khoảng 10 - 13 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "rentCost": {
+      "min": 12.0,
+      "max": 15.0,
+      "raw": "Khoảng 12 đến 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 9
+    }
+  },
+  "Thuỵ Sỹ": {
+    "country": "Thuỵ Sỹ",
+    "livingCost": {
+      "min": 21.0,
+      "max": 30.0,
+      "raw": "Khoảng 21 - 30 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 12.0,
+      "max": 12.0,
+      "raw": "Khoảng 12 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 23.0,
+      "max": 30.0,
+      "raw": "Khoảng 23 - 30 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": true,
+    "warningNote": "Dữ liệu nguồn có 2 cột Thụy Sĩ khác nhau. Cần xác nhận với Phòng HTQT về mức chi phí thực tế.",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 10
+    }
+  },
+  "Tây Ban Nha": {
+    "country": "Tây Ban Nha",
+    "livingCost": {
+      "min": 15.0,
+      "max": 15.0,
+      "raw": "Khoảng 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "rentCost": {
+      "min": 15.0,
+      "max": 15.0,
+      "raw": "Khoảng 15  triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 11
+    }
+  },
+  "Ý": {
+    "country": "Ý",
+    "livingCost": {
+      "min": 20.0,
+      "max": 23.0,
+      "raw": "Khoảng 20 - 23 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 14.0,
+      "max": 14.0,
+      "raw": "Khoảng 14 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 20.0,
+      "max": 20.0,
+      "raw": "Khoảng 20 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 12
+    }
+  },
+  "Canada": {
+    "country": "Canada",
+    "livingCost": {
+      "min": 20.0,
+      "max": 20.0,
+      "raw": "Khoảng 20 triệu VND/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "rentCost": {
+      "min": 15.0,
+      "max": 20.0,
+      "raw": "Khoảng 15 đến 20 triệu VND/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 13
+    }
+  },
+  "Mỹ": {
+    "country": "Mỹ",
+    "livingCost": {
+      "min": 20.0,
+      "max": 25.0,
+      "raw": "Khoảng 20 - 25 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 28.0,
+      "max": 28.0,
+      "raw": "Khoảng 28 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 14
+    }
+  },
+  "Úc": {
+    "country": "Úc",
+    "livingCost": {
+      "min": 20.0,
+      "max": 25.0,
+      "raw": "Khoảng 20 - 25 triệu VNĐ/tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "rentCost": {
+      "min": 15.0,
+      "max": 20.0,
+      "raw": "Khoảng 15 đến 20 triệu VND/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 15
+    }
+  },
+  "Đài Loan": {
+    "country": "Đài Loan",
+    "livingCost": {
+      "min": 8.0,
+      "max": 10.0,
+      "raw": "Khoảng 8 đến 10 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 14.0,
+      "max": 20.0,
+      "raw": "Khoảng 14 đến 20 triệu VNĐ/ kỳ",
+      "available": true
+    },
+    "rentCost": {
+      "min": null,
+      "max": null,
+      "raw": "x",
+      "available": false
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 16
+    }
+  },
+  "Hàn Quốc": {
+    "country": "Hàn Quốc",
+    "livingCost": {
+      "min": 15.0,
+      "max": 17.0,
+      "raw": "Khoảng 15 - 17 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 20.0,
+      "max": 20.0,
+      "raw": "Khoảng 20 triệu VNĐ/ kỳ",
+      "available": true
+    },
+    "rentCost": {
+      "min": 8.0,
+      "max": 12.0,
+      "raw": "Khoảng 8 đến 12 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 17
+    }
+  },
+  "Nga": {
+    "country": "Nga",
+    "livingCost": {
+      "min": 7.0,
+      "max": 10.0,
+      "raw": "Khoảng 7- 10 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 10.0,
+      "max": 12.0,
+      "raw": "Khoảng 10 - 12 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 8.0,
+      "max": 10.0,
+      "raw": "Khoảng 8 - 10 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 18
+    }
+  },
+  "Nhật Bản": {
+    "country": "Nhật Bản",
+    "livingCost": {
+      "min": 15.0,
+      "max": 15.0,
+      "raw": "Khoảng 15 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 4.0,
+      "max": 9.0,
+      "raw": "Khoảng 4 - 9 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "rentCost": {
+      "min": 5.0,
+      "max": 7.0,
+      "raw": "Khoảng 5 - 7 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 19
+    }
+  },
+  "Trung Quốc": {
+    "country": "Trung Quốc",
+    "livingCost": {
+      "min": 10.0,
+      "max": 10.0,
+      "raw": "Khoảng 10 triệu VNĐ/ tháng",
+      "available": true
+    },
+    "dormitoryCost": {
+      "min": 5.0,
+      "max": 6.0,
+      "raw": "5-6 triệu VNĐ/ tháng, một số trường miễn phí KTX",
+      "available": true
+    },
+    "rentCost": {
+      "min": 7.0,
+      "max": 8.0,
+      "raw": "7-8 triệu VNĐ/tháng",
+      "available": true
+    },
+    "oneTimeDepositFee": null,
+    "requiresVerification": false,
+    "warningNote": "",
+    "source": {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "sheet": "Sheet1",
+      "column": 20
+    }
+  }
+}
