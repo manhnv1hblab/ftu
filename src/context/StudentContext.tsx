@@ -27,17 +27,17 @@ function isValidProfile(value: unknown): value is StudentProfile {
   const courses = profile.courses;
   return typeof profile.cohort === 'string'
     && typeof profile.major === 'string'
-    && ['Tiêu chuẩn', 'CLC', 'CTTT'].includes(profile.program || '')
+    && ['', 'Tiêu chuẩn', 'CLC', 'CTTT'].includes(profile.program || '')
     && typeof profile.exchangeSemester === 'string'
     && typeof profile.targetGraduationSemester === 'string'
     && typeof profile.gpa4 === 'number'
     && typeof profile.gpa10 === 'number'
     && typeof profile.completedSemesters === 'number'
     && typeof profile.accumulatedCredits === 'number'
-    && typeof profile.hasParticipatedSemesterExchange === 'boolean'
-    && typeof profile.isFinalSemester === 'boolean'
-    && typeof profile.hasExemplaryStudentAward === 'boolean'
-    && typeof profile.hasPassedMidtermInternship === 'boolean'
+    && (profile.hasParticipatedSemesterExchange === null || typeof profile.hasParticipatedSemesterExchange === 'boolean')
+    && (profile.isFinalSemester === null || typeof profile.isFinalSemester === 'boolean')
+    && (profile.hasExemplaryStudentAward === null || typeof profile.hasExemplaryStudentAward === 'boolean')
+    && (profile.hasPassedMidtermInternship === null || typeof profile.hasPassedMidtermInternship === 'boolean')
     && !!language
     && typeof language === 'object'
     && typeof language.language === 'string'
@@ -94,19 +94,19 @@ function hasValidChecksum(value: Record<string, unknown>): boolean {
 const defaultProfile: StudentProfile = {
   cohort: '',
   major: '',
-  program: 'Tiêu chuẩn',
+  program: '',
   exchangeSemester: 'Học kỳ II năm học 2026 - 2027 (S27)',
   targetGraduationSemester: '',
   gpa4: 0,
   gpa10: 0,
   completedSemesters: 0,
   accumulatedCredits: 0,
-  hasParticipatedSemesterExchange: false,
-  isFinalSemester: false,
-  hasExemplaryStudentAward: false,
-  hasPassedMidtermInternship: false,
+  hasParticipatedSemesterExchange: null,
+  isFinalSemester: null,
+  hasExemplaryStudentAward: null,
+  hasPassedMidtermInternship: null,
   languageCertificate: {
-    language: 'English',
+    language: '',
     testName: '',
     score: '',
     level: '',

@@ -11,6 +11,7 @@ import { PartnerUniversity } from '../../types/university';
 import { CourseEquivalence } from '../../types/equivalence';
 import { CountryCost } from '../../types/cost';
 import { CourseOffering } from '../../types/courseOffering';
+import { S27_RULES } from '../../config/s27Rules';
 
 export const Step3Matches: React.FC = () => {
   const {
@@ -21,7 +22,10 @@ export const Step3Matches: React.FC = () => {
     setRankedChoice
   } = useStudent();
 
-  const [min3Only, setMin3Only] = useState(true);
+  // Show auditable candidates first. Users can enable the strict S27 eligibility filter
+  // after completing the profile fields in Step 2.
+  const [min3Only, setMin3Only] = useState(false);
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [notification, setNotification] = useState<string | null>(null);
@@ -45,8 +49,13 @@ export const Step3Matches: React.FC = () => {
   // Filter results
   const filteredResults = useMemo(() => {
     return evaluatedResults.filter((res) => {
-      // Threshold >= 3 courses filter
-      if (min3Only && !res.meetsEligibility) return false;
+      // This filter is only about the audited equivalence threshold. It must not
+      // silently apply the complete profile, budget, and verification gates.
+      if (min3Only && res.approvedPairsCount < S27_RULES.transferredCoursesMinimum) return false;
+
+      // Keep the stricter, end-to-end gate explicit and separate from the
+      // course-equivalence threshold above.
+      if (verifiedOnly && !res.meetsEligibility) return false;
 
       // Region filter
       if (selectedRegion !== 'ALL') {
@@ -74,7 +83,7 @@ export const Step3Matches: React.FC = () => {
 
       return true;
     });
-  }, [evaluatedResults, min3Only, selectedRegion, searchQuery]);
+  }, [evaluatedResults, min3Only, verifiedOnly, selectedRegion, searchQuery]);
 
   const handleSelectUniversity = (uniId: string) => {
     setSelectedUniId(uniId);
@@ -110,6 +119,9 @@ export const Step3Matches: React.FC = () => {
     }
   };
 
+  const approvedThresholdCount = evaluatedResults.filter(
+    r => r.approvedPairsCount >= S27_RULES.transferredCoursesMinimum
+  ).length;
   const qualifiedCount = evaluatedResults.filter(r => r.meetsEligibility).length;
 
   return (
@@ -140,7 +152,7 @@ export const Step3Matches: React.FC = () => {
 
         <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 px-3.5 py-2 rounded-2xl border border-emerald-200 self-start sm:self-auto shrink-0 shadow-xs">
           <span className="material-symbols-outlined text-base text-emerald-600">verified</span>
-          <span>{qualifiedCount} trường đủ điều kiện theo dữ liệu đã audit</span>
+          <span>{approvedThresholdCount} trường có ≥{S27_RULES.transferredCoursesMinimum} môn đã duyệt · {qualifiedCount} trường đủ điều kiện đầy đủ</span>
         </div>
       </div>
 
@@ -167,7 +179,7 @@ export const Step3Matches: React.FC = () => {
             />
           </div>
 
-          {/* S27 Rule Quick Toggle */}
+          {/* Audited equivalence threshold */}
           <label className="flex items-center gap-2 text-xs font-bold text-on-surface cursor-pointer select-none bg-primary/5 hover:bg-primary/10 px-3.5 py-1.5 rounded-full border border-primary/20 transition-colors">
             <input
               type="checkbox"
@@ -175,7 +187,18 @@ export const Step3Matches: React.FC = () => {
               onChange={(e) => setMin3Only(e.target.checked)}
               className="rounded text-primary focus:ring-primary h-4 w-4"
             />
-            <span>Quy đổi ≥ 3 môn (Ngưỡng S27)</span>
+            <span>Có ≥{S27_RULES.transferredCoursesMinimum} môn tương đương đã duyệt</span>
+          </label>
+
+          {/* Strict end-to-end eligibility gate */}
+          <label className="flex items-center gap-2 text-xs font-bold text-on-surface cursor-pointer select-none bg-emerald-50 hover:bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200 transition-colors">
+            <input
+              type="checkbox"
+              checked={verifiedOnly}
+              onChange={(e) => setVerifiedOnly(e.target.checked)}
+              className="rounded text-emerald-600 focus:ring-emerald-600 h-4 w-4"
+            />
+            <span>Chỉ hiển thị đủ điều kiện + đã xác minh</span>
           </label>
         </div>
 
@@ -208,11 +231,12 @@ export const Step3Matches: React.FC = () => {
         <div className="bg-surface-container-lowest rounded-3xl p-12 text-center shadow-sm border border-surface-container flex flex-col items-center gap-2">
           <span className="material-symbols-outlined text-4xl text-on-surface-variant/60">travel_explore</span>
           <h3 className="text-base font-bold text-on-surface">Không tìm thấy trường đối tác phù hợp</h3>
-          <p className="text-xs text-on-surface-variant">Hãy thử nới lỏng bộ lọc khu vực hoặc tắt điều kiện ngưỡng ≥ 3 môn.</p>
+          <p className="text-xs text-on-surface-variant">Hãy thử nới lỏng bộ lọc khu vực hoặc tắt một trong các bộ lọc đang bật.</p>
           <button
             type="button"
             onClick={() => {
               setMin3Only(false);
+              setVerifiedOnly(false);
               setSelectedRegion('ALL');
               setSearchQuery('');
             }}
@@ -288,7 +312,6 @@ export const Step3Matches: React.FC = () => {
                   </div>
 
                   <div className="space-y-1 text-[11px] text-on-surface-variant">
-                    <p><strong className="text-on-surface">Ngân sách:</strong> {res.budgetEvaluation.label}</p>
                     {res.recommendationReasons.slice(0, 2).map(reason => <p key={reason}>• {reason}</p>)}
                     <p className="truncate" title={res.sources[0]?.file || 'Chưa có nguồn'}>
                       <strong className="text-on-surface">Nguồn:</strong> {res.sources[0]?.file || 'Chưa có nguồn dữ liệu'}

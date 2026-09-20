@@ -7,7 +7,7 @@ export const ProgressBar: React.FC = () => {
   const { currentStep, setCurrentStep } = useStudent();
 
   const steps = [
-    { num: 1, title: 'Tải lên CTĐT', subtitle: 'File .xlsx / Mã môn' },
+    { num: 1, title: 'Tải bảng điểm / CTĐT', subtitle: 'File .xlsx / Mã môn' },
     { num: 2, title: 'Rà soát hồ sơ', subtitle: 'Tình trạng tích lũy' },
     { num: 3, title: 'Gợi ý trường', subtitle: 'Khớp môn ≥ 3' },
     { num: 4, title: 'Lập phương án', subtitle: '5 môn đối tác / 3 FTU' },

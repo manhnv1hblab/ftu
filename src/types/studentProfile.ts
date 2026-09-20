@@ -3,7 +3,7 @@ import { StudentCourse } from './curriculum';
 export interface StudentProfile {
   cohort: string; // e.g. "K62", "K63", "K64"
   major: string; // e.g. "Kinh tế đối ngoại", "Kinh tế quốc tế"
-  program: 'Tiêu chuẩn' | 'CLC' | 'CTTT';
+  program: 'Tiêu chuẩn' | 'CLC' | 'CTTT' | '';
   exchangeSemester: string; // "Học kỳ II năm học 2026 - 2027 (S27)"
   targetGraduationSemester: string; // e.g. "Học kỳ 2 - 2027-2028"
   
@@ -14,10 +14,10 @@ export interface StudentProfile {
   accumulatedCredits: number; // minimum 35
   
   // Eligibility Flags
-  hasParticipatedSemesterExchange: boolean; // must be false
-  isFinalSemester: boolean; // must be false
-  hasExemplaryStudentAward: boolean; // bonus points for preferences, not for GPA threshold
-  hasPassedMidtermInternship: boolean; // TTGK required for graduation thesis
+  hasParticipatedSemesterExchange: boolean | null; // must be explicitly confirmed false
+  isFinalSemester: boolean | null; // must be explicitly confirmed false
+  hasExemplaryStudentAward: boolean | null; // bonus points for preferences, not for GPA threshold
+  hasPassedMidtermInternship: boolean | null; // TTGK required for graduation thesis
   
   // Language
   languageCertificate: {

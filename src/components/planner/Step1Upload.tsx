@@ -217,7 +217,7 @@ export const Step1Upload: React.FC = () => {
           <span>Học kỳ II Năm học 2026 - 2027 (Kỳ S27)</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
-          Cung cấp Bảng điểm & Chương trình Đào tạo FTU
+          Cung cấp Bảng điểm / Chương trình Đào tạo FTU
         </h1>
         <p className="text-sm text-on-surface-variant max-w-xl mx-auto">
           Hệ thống sẽ đối chiếu các môn học chưa hoàn thành với dữ liệu trường đối tác và môn tương đương đã được audit từ tài liệu S27.
@@ -420,6 +420,7 @@ export const Step1Upload: React.FC = () => {
                 onChange={(e) => updateProfile({ program: e.target.value as any })}
                 className="w-full bg-surface-container-low rounded-xl py-2 px-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-surface-container"
               >
+                <option value="">Chưa xác định</option>
                 <option value="CLC">Kinh tế Đối ngoại (Chất lượng cao)</option>
                 <option value="Tiêu chuẩn">Kinh tế Đối ngoại (Tiêu chuẩn)</option>
                 <option value="CTTT">Chương trình Tiên tiến (CTTT)</option>

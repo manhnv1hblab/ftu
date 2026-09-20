@@ -100,34 +100,42 @@ export function checkProgramEligibility(
   if (!creditsPassed) unmetSummary.push(creditsProvided ? 'Chưa tích lũy đủ 35 tín chỉ' : 'Chưa có dữ liệu tín chỉ tích lũy');
 
   // 5. Chưa từng tham gia trao đổi theo kỳ
-  const noPrevExchange = !profile.hasParticipatedSemesterExchange;
+  const noPrevExchange = profile.hasParticipatedSemesterExchange === false;
+  const prevExchangeKnown = profile.hasParticipatedSemesterExchange !== null;
   criteria.push({
     code: 'NO_PREV_EXCHANGE',
     title: 'Chưa từng trao đổi theo kỳ tại FTU',
     passed: noPrevExchange,
-    status: noPrevExchange ? 'PASSED' : 'FAILED',
-    currentValue: noPrevExchange ? 'Chưa từng tham gia' : 'Đã từng tham gia',
+    status: !prevExchangeKnown ? 'NEEDS_CONFIRMATION' : noPrevExchange ? 'PASSED' : 'FAILED',
+    currentValue: !prevExchangeKnown ? 'Chưa xác minh' : noPrevExchange ? 'Chưa từng tham gia' : 'Đã từng tham gia',
     requiredValue: 'Chưa từng tham gia',
-    detail: noPrevExchange
-      ? 'Hợp lệ: Sinh viên chưa từng đi trao đổi theo kỳ.'
-      : 'Không đủ điều kiện: Sinh viên đã từng tham gia trao đổi theo kỳ của FTU.'
+    detail: !prevExchangeKnown
+      ? 'Cần người dùng xác nhận lịch sử tham gia trao đổi theo kỳ.'
+      : noPrevExchange
+        ? 'Hợp lệ: Sinh viên chưa từng đi trao đổi theo kỳ.'
+        : 'Không đủ điều kiện: Sinh viên đã từng tham gia trao đổi theo kỳ của FTU.'
   });
-  if (!noPrevExchange) unmetSummary.push('Đã từng tham gia trao đổi kỳ trước');
+  if (!prevExchangeKnown) unmetSummary.push('Chưa xác minh lịch sử tham gia trao đổi kỳ trước');
+  else if (!noPrevExchange) unmetSummary.push('Đã từng tham gia trao đổi kỳ trước');
 
   // 6. Không đi vào học kỳ cuối khóa
-  const notFinal = !profile.isFinalSemester;
+  const notFinal = profile.isFinalSemester === false;
+  const finalSemesterKnown = profile.isFinalSemester !== null;
   criteria.push({
     code: 'NOT_FINAL_SEMESTER',
     title: 'Không đi vào học kỳ cuối khóa',
     passed: notFinal,
-    status: notFinal ? 'PASSED' : 'FAILED',
-    currentValue: notFinal ? 'Hợp lệ' : 'Đang ở kỳ cuối',
+    status: !finalSemesterKnown ? 'NEEDS_CONFIRMATION' : notFinal ? 'PASSED' : 'FAILED',
+    currentValue: !finalSemesterKnown ? 'Chưa xác minh' : notFinal ? 'Không phải kỳ cuối' : 'Đang ở kỳ cuối',
     requiredValue: 'Không phải kỳ cuối',
-    detail: notFinal
-      ? 'Hợp lệ: Sinh viên không đi trao đổi vào kỳ tốt nghiệp cuối khóa.'
-      : 'Không đủ điều kiện: Quy chế không cho phép trao đổi vào kỳ cuối khóa.'
+    detail: !finalSemesterKnown
+      ? 'Cần người dùng xác nhận có đang ở học kỳ cuối hay không.'
+      : notFinal
+        ? 'Hợp lệ: Sinh viên không đi trao đổi vào kỳ tốt nghiệp cuối khóa.'
+        : 'Không đủ điều kiện: Quy chế không cho phép trao đổi vào kỳ cuối khóa.'
   });
-  if (!notFinal) unmetSummary.push('Không được đi trao đổi vào kỳ cuối khóa');
+  if (!finalSemesterKnown) unmetSummary.push('Chưa xác minh có phải học kỳ cuối khóa hay không');
+  else if (!notFinal) unmetSummary.push('Không được đi vào học kỳ cuối khóa');
 
   // 7. Còn ít nhất 4 học phần chưa tích lũy (bao gồm học phần tốt nghiệp)
   const hasRemainingCourseData = profile.courses.length > 0 || (profile.manualCourseCodes?.length ?? 0) > 0;

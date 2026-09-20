@@ -82,13 +82,13 @@ export default function PrintPlanPage() {
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-2 gap-x-4 pt-1">
           <div>Khóa: <strong>{profile.cohort}</strong></div>
           <div>Ngành: <strong>{profile.major}</strong></div>
-          <div>Chương trình: <strong>{profile.program}</strong></div>
+          <div>Chương trình: <strong>{profile.program || 'Chưa xác minh'}</strong></div>
           <div>GPA Hệ 4: <strong>{profile.gpa4.toFixed(2)}</strong> (Yêu cầu ≥ 2.80)</div>
           <div>GPA Hệ 10: <strong>{profile.gpa10.toFixed(2)}</strong> (Yêu cầu ≥ 7.50)</div>
           <div>Số TC tích lũy: <strong>{profile.accumulatedCredits} TC</strong></div>
           <div>Ngoại ngữ: <strong>{languageSummary}</strong></div>
-          <div>Thực tập giữa khóa (TTGK): <strong>{profile.hasPassedMidtermInternship ? 'Đã hoàn thành' : 'Chưa'}</strong></div>
-          <div>Sinh viên tiêu biểu: <strong>{profile.hasExemplaryStudentAward ? 'Có giấy khen' : 'Không'}</strong></div>
+          <div>Thực tập giữa khóa (TTGK): <strong>{profile.hasPassedMidtermInternship === null ? 'Chưa xác minh' : profile.hasPassedMidtermInternship ? 'Đã hoàn thành' : 'Chưa hoàn thành'}</strong></div>
+          <div>Sinh viên tiêu biểu: <strong>{profile.hasExemplaryStudentAward === null ? 'Chưa xác minh' : profile.hasExemplaryStudentAward ? 'Có giấy khen' : 'Không có'}</strong></div>
         </div>
       </div>
 

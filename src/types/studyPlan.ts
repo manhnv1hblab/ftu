@@ -58,7 +58,7 @@ export interface SelectedStudyPlan {
     remainingCreditsAfterExchange: number;
     remainingMandatoryCourses: string[];
     thesisEligible: boolean; // remaining credits <= 6 excluding thesis/PE/military
-    hasMidtermInternship: boolean;
+    hasMidtermInternship: boolean | null;
     canGraduateOnTime: boolean;
     riskWarnings: string[];
   };

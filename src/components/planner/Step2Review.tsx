@@ -5,6 +5,7 @@ import { useStudent } from '../../context/StudentContext';
 import { checkProgramEligibility } from '../../engine/eligibility';
 import { calculateElectiveGroups } from '../../engine/electives';
 import { StudentCourse } from '../../types/curriculum';
+import { ProfileDetailsForm } from './ProfileDetailsForm';
 
 export const Step2Review: React.FC = () => {
   const { profile, updateProfile, setCurrentStep } = useStudent();
@@ -135,7 +136,7 @@ export const Step2Review: React.FC = () => {
               <div className="flex items-center gap-2">
                 <h2 className="text-lg sm:text-xl font-extrabold text-on-surface">Hồ sơ sinh viên</h2>
                 <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                  {profile.cohort || 'Chưa nhập khóa'} • {profile.program}
+                  {profile.cohort || 'Chưa nhập khóa'} • {profile.program || 'Chưa xác định chương trình'}
                 </span>
               </div>
               <p className="text-xs text-on-surface-variant mt-0.5">
@@ -242,6 +243,8 @@ export const Step2Review: React.FC = () => {
           </div>
         )}
       </div>
+
+      <ProfileDetailsForm />
 
       {/* 2. Course Table Segmented Controls & Actions */}
       <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-7 shadow-sm border border-surface-container/80 flex flex-col gap-5">
@@ -398,7 +401,7 @@ export const Step2Review: React.FC = () => {
             onClick={() => setCurrentStep(3)}
             className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
           >
-            <span>Tiếp tục: Tìm trường đối tác</span>
+            <span>{eligibility.isEligible ? 'Tiếp tục: Tìm trường đối tác' : 'Tiếp tục khám phá trường (cần xác minh)'}</span>
             <span className="material-symbols-outlined text-base">arrow_forward</span>
           </button>
         </div>

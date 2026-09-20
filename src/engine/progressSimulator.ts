@@ -13,7 +13,7 @@ export interface ProgressSimulationResult {
   // Threshold: Remaining debt <= 6 credits (excluding Thesis, PE/GDTC, Military/GDQP)
   remainingDebtExcludingThesisAndExempt: number;
   thesisEligible: boolean;
-  hasMidtermInternship: boolean;
+  hasMidtermInternship: boolean | null;
   canRegisterThesisImmediately: boolean;
   thesisEligibilityStatus: 'VERIFIED' | 'NEEDS_VERIFICATION';
   
@@ -35,7 +35,7 @@ export function simulateStudentProgress(
   transferredPairs: CourseMatchPair[],
   courseOfferings: CourseOffering[],
   targetGraduationSemester: string,
-  hasMidtermInternship: boolean,
+  hasMidtermInternship: boolean | null,
   failedTransferCourseCodes: string[] = []
 ): ProgressSimulationResult {
   const initialElectiveGroups = calculateElectiveGroups(courses);
@@ -91,13 +91,15 @@ export function simulateStudentProgress(
 
   const remainingDebtExcludingThesisAndExempt = debtCourses.reduce((sum, c) => sum + c.credits, 0);
   const thesisEligible = remainingDebtExcludingThesisAndExempt <= 6;
-  const canRegisterThesisImmediately = thesisEligible && hasMidtermInternship;
+  const canRegisterThesisImmediately = thesisEligible && hasMidtermInternship === true;
 
   // Warnings and course schedule analysis
   const warnings: string[] = [];
   const scheduleAnalysis: ProgressSimulationResult['courseScheduleAnalysis'] = [];
 
-  if (!hasMidtermInternship) {
+  if (hasMidtermInternship === null) {
+    warnings.push('Chưa xác minh trạng thái Thực tập giữa khóa (TTGK). Cần đối chiếu bảng điểm hoặc xác nhận của bộ môn.');
+  } else if (!hasMidtermInternship) {
     warnings.push('Chưa hoàn thành Thực tập giữa khóa (TTGK). Đây là điều kiện bắt buộc trước khi làm Học phần tốt nghiệp.');
   }
 

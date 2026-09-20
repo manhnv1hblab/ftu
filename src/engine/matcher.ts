@@ -184,21 +184,6 @@ export function evaluateAllUniversities(
       reasons.push(`Có ${pendingPairs.length} môn đang trong diện xét duyệt bổ sung.`);
     }
 
-    // Region preference match
-    if (profile.preferredRegions && profile.preferredRegions.includes(uni.region)) {
-      score += 15;
-      reasons.push(`Nằm trong khu vực ưu tiên: ${uni.region}`);
-    }
-
-    // Budget evaluation bonus
-    if (budgetEval.status === 'WITHIN_BUDGET') {
-      score += 20;
-      reasons.push('Chi phí ước tính nằm trong khung ngân sách đăng ký.');
-    } else if (budgetEval.status === 'NEAR_BUDGET') {
-      score += 10;
-      reasons.push('Chi phí ước tính sát mức trần ngân sách.');
-    }
-
     // Exemplary student bonus
     if (profile.hasExemplaryStudentAward) {
       score += 10;
@@ -213,7 +198,10 @@ export function evaluateAllUniversities(
 
     const sources = [uni.source, ...matchedPairs.map(p => allEquivalences.find(eq => eq.id === p.equivalenceId)?.source).filter(Boolean) as NonNullable<CourseEquivalence['source']>[]];
     if (budgetEval.source) sources.push(budgetEval.source);
-    const dataStatus = budgetEval.status === 'NO_DATA' || budgetEval.status === 'NEEDS_VERIFICATION' || uncertainPairs.length > 0
+    // Budget and region are optional exploration metadata, not S27 eligibility
+    // gates. Missing budget input must not hide a university that otherwise has
+    // enough audited equivalences and a complete academic profile.
+    const dataStatus = uncertainPairs.length > 0
       ? 'NEEDS_VERIFICATION'
       : sources.every(source => sourceStatus(source) === 'VERIFIED') ? 'VERIFIED' : 'NEEDS_VERIFICATION';
 
@@ -225,7 +213,6 @@ export function evaluateAllUniversities(
       totalMatchCount: matchedPairs.length,
       meetsEligibility: elig.isEligible
         && approvedPairs.length >= S27_RULES.transferredCoursesMinimum
-        && ['WITHIN_BUDGET', 'NEAR_BUDGET'].includes(budgetEval.status)
         && dataStatus === 'VERIFIED',
       missingRequirements: missingReqs,
       budgetEvaluation: budgetEval,
