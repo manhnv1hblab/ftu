@@ -7,7 +7,7 @@ import { useStudent } from '../../context/StudentContext';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { currentStep, saveDraft, lastSavedAt } = useStudent();
+  const { currentStep, saveDraft, resetAll, lastSavedAt } = useStudent();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [saveAlert, setSaveAlert] = useState<string | null>(null);
 
@@ -17,6 +17,13 @@ export const Navbar: React.FC = () => {
       setSaveAlert('Đã lưu bản nháp học tập thành công!');
       setTimeout(() => setSaveAlert(null), 3000);
     }
+  };
+
+  const handleResetDraft = () => {
+    if (!window.confirm('Xóa toàn bộ hồ sơ, kế hoạch và nguyện vọng đang lưu trên trình duyệt?')) return;
+    resetAll();
+    setSaveAlert('Đã xóa bản nháp trên trình duyệt.');
+    setTimeout(() => setSaveAlert(null), 3000);
   };
 
   const navLinks = [
@@ -114,6 +121,16 @@ export const Navbar: React.FC = () => {
               Đã lưu {new Date(lastSavedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
             </span>
           )}
+
+          <button
+            type="button"
+            onClick={handleResetDraft}
+            title="Xóa toàn bộ dữ liệu bản nháp trên trình duyệt"
+            className="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-rose-200 text-rose-700 font-label-md text-label-md hover:bg-rose-50 transition-all"
+          >
+            <span className="material-symbols-outlined text-base">delete_sweep</span>
+            <span>Xóa draft</span>
+          </button>
 
           <Link
             href="/planner"

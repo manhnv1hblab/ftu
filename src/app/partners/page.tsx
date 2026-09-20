@@ -11,6 +11,7 @@ import { PartnerUniversity } from '../../types/university';
 import { CourseEquivalence } from '../../types/equivalence';
 import { CountryCost } from '../../types/cost';
 import { useStudent } from '../../context/StudentContext';
+import { findCountryCost } from '../../engine/costCalculator';
 
 // Reliable representative campus images for partner regions/countries
 const COUNTRY_CAMPUS_IMAGES: Record<string, string> = {
@@ -357,7 +358,7 @@ export default function PartnersPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
           {filteredUnis.map((uni) => {
             const approvedCount = approvedCounts[uni.id] || 0;
-            const countryCost = rawCosts[uni.country];
+            const countryCost = findCountryCost(uni.country, rawCosts);
 
             // Resolve campus image
             const campusImg =

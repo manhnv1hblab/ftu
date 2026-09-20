@@ -8,6 +8,7 @@ import universitiesData from '../../../data/universities_s27.json';
 import { CountryCost } from '../../types/cost';
 import { PartnerUniversity } from '../../types/university';
 import { S27_RULES } from '../../config/s27Rules';
+import { findCountryCost } from '../../engine/costCalculator';
 
 export const Step5Compare: React.FC = () => {
   const router = useRouter();
@@ -254,7 +255,7 @@ export const Step5Compare: React.FC = () => {
             </span>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               {uniCards.map(({ rank, uni }) => {
-                const cost = rawCosts[uni.country];
+                const cost = findCountryCost(uni.country, rawCosts);
                 const minMonthly = cost?.livingCost?.min;
                 const maxMonthly = cost?.livingCost?.max;
                 const totalMin = minMonthly !== null && minMonthly !== undefined ? Math.round(minMonthly * 5) : null;

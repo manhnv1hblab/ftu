@@ -182,6 +182,27 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setIsHydrated(true);
   }, []);
 
+  // Keep another open planner tab from silently overwriting a newer draft.
+  useEffect(() => {
+    const handleExternalDraftUpdate = (event: StorageEvent) => {
+      if (event.key !== STORAGE_KEY || !event.newValue) return;
+      try {
+        const parsed = JSON.parse(event.newValue);
+        if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return;
+        setProfile(parsed.profile);
+        setRankedChoices(isValidRankedChoices(parsed.rankedChoices) ? parsed.rankedChoices : {});
+        setCurrentPlan(isValidPlan(parsed.currentPlan) ? parsed.currentPlan : null);
+        setCurrentStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
+        setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
+        setLastSavedAt(typeof parsed.updatedAt === 'string' ? parsed.updatedAt : null);
+      } catch (e) {
+        console.warn('Could not synchronize draft from another tab', e);
+      }
+    };
+    window.addEventListener('storage', handleExternalDraftUpdate);
+    return () => window.removeEventListener('storage', handleExternalDraftUpdate);
+  }, []);
+
   useEffect(() => {
     if (!isHydrated) return;
     const timer = window.setTimeout(() => {

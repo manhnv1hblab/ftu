@@ -1,16 +1,10 @@
 import { CountryCost, BudgetEvaluation, BudgetAssessment } from '../types/cost';
 import { sourceStatus } from '../lib/dataIntegrity';
 
-export function evaluateBudget(
+export function findCountryCost(
   countryName: string,
-  userMonthlyBudgetVnd: number,
-  stayMonths: number = 5,
-  housingPreference: 'DORMITORY' | 'RENT' | 'ANY' = 'ANY',
   costsByCountry: Record<string, CountryCost>
-): BudgetEvaluation {
-  // Normalize country name lookup
-  let matchedCost: CountryCost | undefined;
-
+): CountryCost | undefined {
   const normalized = countryName.toLocaleLowerCase('vi-VN').trim();
   const countryAliases: Record<string, string> = {
     korea: 'Hàn Quốc',
@@ -51,6 +45,7 @@ export function evaluateBudget(
     nga: 'Nga'
   };
   const aliasedCountry = countryAliases[normalized];
+  let matchedCost: CountryCost | undefined;
   for (const cName in costsByCountry) {
     if (cName.toLocaleLowerCase('vi-VN').trim() === normalized
       || cName === aliasedCountry
@@ -60,7 +55,6 @@ export function evaluateBudget(
     }
   }
 
-  // Fallback aliases
   if (!matchedCost) {
     if (normalized.includes('korea') || normalized.includes('hàn quốc')) {
       matchedCost = costsByCountry['Hàn Quốc'];
@@ -84,6 +78,18 @@ export function evaluateBudget(
       matchedCost = costsByCountry['Úc'];
     }
   }
+
+  return matchedCost;
+}
+
+export function evaluateBudget(
+  countryName: string,
+  userMonthlyBudgetVnd: number,
+  stayMonths: number = 5,
+  housingPreference: 'DORMITORY' | 'RENT' | 'ANY' = 'ANY',
+  costsByCountry: Record<string, CountryCost>
+): BudgetEvaluation {
+  const matchedCost = findCountryCost(countryName, costsByCountry);
 
   if (!matchedCost) {
     return {

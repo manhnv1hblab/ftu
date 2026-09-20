@@ -12,6 +12,7 @@ import { CourseEquivalence } from '../../../types/equivalence';
 import { CountryCost } from '../../../types/cost';
 import { useStudent } from '../../../context/StudentContext';
 import { S27_RULES } from '../../../config/s27Rules';
+import { findCountryCost } from '../../../engine/costCalculator';
 
 const COUNTRY_CAMPUS_HEROES: Record<string, string> = {
   'Korea': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=85',
@@ -87,7 +88,7 @@ export default function UniversityDetailPage() {
     });
   }, [uniEquivalences, statusFilter, searchTerm]);
 
-  const countryCost = rawCosts[university.country];
+  const countryCost = findCountryCost(university.country, rawCosts);
 
   const heroImg =
     university.imageUrl ||

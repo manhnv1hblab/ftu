@@ -286,6 +286,14 @@ export const Step3Matches: React.FC = () => {
                       <strong className="text-on-surface font-semibold">{uni.languages || 'Chưa có yêu cầu riêng'}</strong>
                     </div>
                   </div>
+
+                  <div className="space-y-1 text-[11px] text-on-surface-variant">
+                    <p><strong className="text-on-surface">Ngân sách:</strong> {res.budgetEvaluation.label}</p>
+                    {res.recommendationReasons.slice(0, 2).map(reason => <p key={reason}>• {reason}</p>)}
+                    <p className="truncate" title={res.sources[0]?.file || 'Chưa có nguồn'}>
+                      <strong className="text-on-surface">Nguồn:</strong> {res.sources[0]?.file || 'Chưa có nguồn dữ liệu'}
+                    </p>
+                  </div>
                 </div>
 
                 {/* Card Footer Actions */}

@@ -263,6 +263,12 @@ export const Step4CoursePlan: React.FC = () => {
           <div className="flex flex-col gap-3">
             {candidatePairs.map((pair) => {
               const isSelected = selectedPairs.some(p => p.ftuCourseCode === pair.ftuCourseCode);
+              const pairStatusLabel = pair.status === 'APPROVED'
+                ? pair.approvalYear ? `Đã phê duyệt (${pair.approvalYear})` : 'Đã phê duyệt theo dữ liệu nguồn'
+                : pair.status === 'PENDING'
+                  ? 'Đang chờ phê duyệt'
+                  : 'Chưa đủ cơ sở xác minh';
+              const pairStatusClass = pair.status === 'APPROVED' ? 'text-emerald-700' : pair.status === 'PENDING' ? 'text-amber-700' : 'text-rose-700';
 
               return (
                 <div
@@ -303,8 +309,8 @@ export const Step4CoursePlan: React.FC = () => {
                           <span className="font-mono text-[11px] text-on-surface-variant">({pair.hostCourseCode})</span>
                         )}
                       </div>
-                      <span className="text-[11px] text-emerald-700 font-medium">
-                        ✓ {pair.approvalYear ? `Đã phê duyệt (${pair.approvalYear})` : 'Trạng thái phê duyệt lấy từ dữ liệu nguồn'} • {pair.hostCredits !== undefined ? `${pair.hostCredits} Credits` : 'Chưa có tín chỉ host'}
+                      <span className={`text-[11px] ${pairStatusClass} font-medium`}>
+                        {pair.status === 'APPROVED' ? '✓' : '•'} {pairStatusLabel} • {pair.hostCredits !== undefined ? `${pair.hostCredits} Credits` : 'Chưa có tín chỉ host'}
                       </span>
                     </div>
                   </div>

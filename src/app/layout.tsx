@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: 'Hệ thống tra cứu trường đối tác, ghép môn quy đổi tín chỉ và lập kế hoạch học tập tối ưu kỳ S27 (HK2 2026-2027) dành cho sinh viên Trường Đại học Ngoại thương.',
   keywords: ['FTU', 'GoGlobal', 'Trao đổi sinh viên', 'S27', 'Ngoại thương', 'Quy đổi tín chỉ', 'Du học trao đổi'],
   authors: [{ name: 'FTU Student Mobility Community' }],
+  icons: { icon: '/images/logo.png' },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3001'),
+  alternates: { canonical: '/' },
 };
 
 export const viewport: Viewport = {

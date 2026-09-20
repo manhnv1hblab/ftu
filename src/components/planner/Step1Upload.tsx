@@ -237,7 +237,7 @@ export const Step1Upload: React.FC = () => {
             }`}
           >
             <span className="material-symbols-outlined text-base">upload_file</span>
-            <span>Tải file Excel / PDF</span>
+            <span>Tải file Excel</span>
           </button>
           <button
             type="button"

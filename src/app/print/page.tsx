@@ -17,7 +17,13 @@ export default function PrintPlanPage() {
   const ranks: ('nv1' | 'nv2' | 'nv3')[] = ['nv1', 'nv2', 'nv3'];
   const activeChoices = ranks
     .map(r => ({ rank: r, plan: rankedChoices[r] }))
-    .filter(item => item.plan !== undefined);
+    .filter(item => item.plan?.status && item.plan.transferredCourses.length > 0);
+  const languageSummary = profile.languageCertificate?.isValid
+    && profile.languageCertificate.testName
+    && profile.languageCertificate.score
+    ? `${profile.languageCertificate.testName} ${profile.languageCertificate.score}`
+    : 'Chưa có dữ liệu / cần xác minh';
+  const generatedAt = new Date().toLocaleString('vi-VN');
 
   return (
     <div className="bg-white min-h-screen text-black p-6 sm:p-10 max-w-4xl mx-auto space-y-8 print:p-0 print:max-w-none">
@@ -65,6 +71,7 @@ export default function PrintPlanPage() {
         <p className="text-[10px] font-semibold text-gray-600 uppercase">
           Bản tư vấn dự thảo — không thay thế phê duyệt chính thức của P.HTQT hoặc Bộ môn
         </p>
+        <p className="text-[10px] text-gray-600">Thời điểm xuất bản nháp: {generatedAt}</p>
       </div>
 
       {/* Student Academic Profile Summary */}
@@ -79,7 +86,7 @@ export default function PrintPlanPage() {
           <div>GPA Hệ 4: <strong>{profile.gpa4.toFixed(2)}</strong> (Yêu cầu ≥ 2.80)</div>
           <div>GPA Hệ 10: <strong>{profile.gpa10.toFixed(2)}</strong> (Yêu cầu ≥ 7.50)</div>
           <div>Số TC tích lũy: <strong>{profile.accumulatedCredits} TC</strong></div>
-          <div>Ngoại ngữ: <strong>{profile.languageCertificate?.testName || 'B2 CEFR'} ({profile.languageCertificate?.score || 'Đạt'})</strong></div>
+          <div>Ngoại ngữ: <strong>{languageSummary}</strong></div>
           <div>Thực tập giữa khóa (TTGK): <strong>{profile.hasPassedMidtermInternship ? 'Đã hoàn thành' : 'Chưa'}</strong></div>
           <div>Sinh viên tiêu biểu: <strong>{profile.hasExemplaryStudentAward ? 'Có giấy khen' : 'Không'}</strong></div>
         </div>
