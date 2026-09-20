@@ -7,7 +7,7 @@ import { useStudent } from '../../context/StudentContext';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { currentStep, saveDraft } = useStudent();
+  const { currentStep, saveDraft, lastSavedAt } = useStudent();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [saveAlert, setSaveAlert] = useState<string | null>(null);
 
@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
           verified_user
         </span>
         <span>
-          Cổng thông tin trao đổi S27 (Học kỳ II năm học 2026 - 2027) • Dữ liệu đối tác & môn quy đổi chính thức từ FTU
+          Cổng thông tin trao đổi S27 (Học kỳ II năm học 2026 - 2027) • Dữ liệu đối tác & môn quy đổi được đối chiếu từ tài liệu S27; kết quả chỉ mang tính tư vấn
         </span>
       </div>
 
@@ -108,6 +108,12 @@ export const Navbar: React.FC = () => {
             <span className="material-symbols-outlined text-base">save</span>
             <span>Lưu nháp</span>
           </button>
+
+          {lastSavedAt && (
+            <span className="hidden xl:inline text-[11px] text-on-surface-variant" title={lastSavedAt}>
+              Đã lưu {new Date(lastSavedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
+            </span>
+          )}
 
           <Link
             href="/planner"

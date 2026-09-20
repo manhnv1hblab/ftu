@@ -4,12 +4,26 @@ import json
 import os
 import re
 import sys
+from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-DOC_DIR = r'c:\Users\ManhNV1\Desktop\ftu - Copy\document'
-DATA_DIR = r'c:\Users\ManhNV1\Desktop\ftu - Copy\data'
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DOC_DIR = PROJECT_ROOT / 'document'
+DATA_DIR = PROJECT_ROOT / 'data'
 os.makedirs(DATA_DIR, exist_ok=True)
+
+REQUIRED_DOCUMENTS = [
+    '[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx',
+    'Danh sách học phần tương đương (với các trường đối tác).xlsx',
+    'Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx',
+    'Copy of Kế hoạch mở môn năm học 2627 theo số lớp - V2.xlsx',
+    'ChuongTrinhDaoTao.xlsx',
+    'Quy trình tham gia CTTD học kỳ II năm học 2026 - 2027.docx'
+]
+missing_documents = [name for name in REQUIRED_DOCUMENTS if not (DOC_DIR / name).is_file() or (DOC_DIR / name).stat().st_size == 0]
+if missing_documents:
+    raise FileNotFoundError(f'Missing or empty source documents: {missing_documents}')
 
 # -------------------------------------------------------------
 # 1. Partner University Name Mapping / Alias Dictionary

@@ -1,9 +1,10 @@
 import sys
 import re
+from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-stitch_dir = r'c:\Users\ManhNV1\Desktop\ftu - Copy\stitch_ftu_exchange_planner'
+stitch_dir = Path(__file__).resolve().parents[1] / 'stitch_ftu_exchange_planner'
 
 targets = [
     ('chi_ti_t_tr_ng_chung_ang_university_cau', 'Chung-Ang Detail'),
@@ -15,7 +16,7 @@ targets = [
 ]
 
 for folder, label in targets:
-    path = f"{stitch_dir}\\{folder}\\code.html"
+    path = stitch_dir / folder / 'code.html'
     try:
         with open(path, encoding='utf-8') as f:
             content = f.read()

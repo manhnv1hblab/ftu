@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useStudent } from '../../context/StudentContext';
 import { matchCoursesForUniversity } from '../../engine/matcher';
 import { simulateStudentProgress } from '../../engine/progressSimulator';
@@ -11,24 +11,26 @@ import { PartnerUniversity } from '../../types/university';
 import { CourseEquivalence } from '../../types/equivalence';
 import { CourseOffering } from '../../types/courseOffering';
 import { CourseMatchPair, SelectedStudyPlan } from '../../types/studyPlan';
+import { S27_RULES } from '../../config/s27Rules';
 
 export const Step4CoursePlan: React.FC = () => {
   const {
     profile,
     selectedUniId,
     setCurrentStep,
-    setRankedChoice
+    setRankedChoice,
+    setCurrentPlan
   } = useStudent();
 
   const rawUnis = universitiesData as PartnerUniversity[];
   const rawEqs = equivalencesData as CourseEquivalence[];
   const rawOfferings = courseOfferingsData as CourseOffering[];
 
-  const activeUniId = selectedUniId || 'chung-ang-university';
-  const university = rawUnis.find(u => u.id === activeUniId) || rawUnis[0];
+  const university = selectedUniId ? rawUnis.find(u => u.id === selectedUniId) : undefined;
 
   // Match all candidate pairs for this university
   const candidatePairs = useMemo(() => {
+    if (!university) return [];
     const studentRemaining = profile.courses && profile.courses.length > 0
       ? profile.courses.filter(c => !c.isPassed).map(c => ({
         code: c.courseCode,
@@ -38,8 +40,8 @@ export const Step4CoursePlan: React.FC = () => {
       }))
       : (profile.manualCourseCodes || []).map(code => ({
         code,
-        name: `Học phần ${code}`,
-        credits: 3
+        name: '',
+        credits: 0
       }));
 
     return matchCoursesForUniversity(
@@ -52,16 +54,17 @@ export const Step4CoursePlan: React.FC = () => {
 
   // Selected transferred pairs (minimum 3)
   const [selectedPairs, setSelectedPairs] = useState<CourseMatchPair[]>(() => {
-    return candidatePairs.filter(p => p.status === 'APPROVED').slice(0, 4);
+    return candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum);
   });
+
+  useEffect(() => {
+    setSelectedPairs(candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum));
+  }, [candidatePairs]);
 
   // Additional host courses to ensure >= 5 courses
   const [additionalHostCourses, setAdditionalHostCourses] = useState<
     { hostCourseName: string; hostCourseCode?: string; estimatedCredits?: number; note?: string }[]
-  >([
-    { hostCourseName: 'Language and Culture of Host Country', hostCourseCode: 'LNG101', estimatedCredits: 3 },
-    { hostCourseName: 'Global Leadership & Cross-Cultural Management', hostCourseCode: 'MGT301', estimatedCredits: 3 }
-  ]);
+  >([]);
 
   const [newHostName, setNewHostName] = useState('');
   const [selectedRank, setSelectedRank] = useState<'nv1' | 'nv2' | 'nv3'>('nv1');
@@ -80,9 +83,16 @@ export const Step4CoursePlan: React.FC = () => {
   const handleAddHostCourse = (e: React.FormEvent) => {
     e.preventDefault();
     if (!newHostName.trim()) return;
+    const normalizedName = newHostName.trim().toLocaleLowerCase('vi-VN');
+    const alreadySelected = selectedPairs.some(pair => pair.hostCourseName.trim().toLocaleLowerCase('vi-VN') === normalizedName)
+      || additionalHostCourses.some(course => course.hostCourseName.trim().toLocaleLowerCase('vi-VN') === normalizedName);
+    if (alreadySelected) {
+      setSaveSuccessMsg('Môn đối tác này đã có trong kế hoạch. Không thể thêm trùng.');
+      return;
+    }
     setAdditionalHostCourses(prev => [
       ...prev,
-      { hostCourseName: newHostName.trim(), estimatedCredits: 3 }
+      { hostCourseName: newHostName.trim(), note: 'Chưa xác minh mã và tín chỉ host từ tài liệu nguồn' }
     ]);
     setNewHostName('');
   };
@@ -104,13 +114,19 @@ export const Step4CoursePlan: React.FC = () => {
   }, [profile, selectedPairs, rawOfferings]);
 
   const totalHostCoursesCount = selectedPairs.length + additionalHostCourses.length;
-  const satisfies3Transfers = selectedPairs.length >= 3;
-  const satisfies5HostCourses = totalHostCoursesCount >= 5;
+  const selectedTransferredCredits = selectedPairs.reduce((sum, pair) => sum + pair.ftuCredits, 0);
+  const satisfies3Transfers = selectedPairs.length >= S27_RULES.transferredCoursesMinimum;
+  const satisfies5HostCourses = totalHostCoursesCount >= S27_RULES.hostCoursesMinimum;
 
   const handleSaveToPreference = () => {
+    if (!university) return;
+    const status = satisfies3Transfers && satisfies5HostCourses && simulation.thesisEligibilityStatus === 'VERIFIED' ? 'VALID' : 'NEEDS_VERIFICATION';
     const plan: SelectedStudyPlan = {
       universityId: university.id,
       universityName: university.name,
+      status,
+      savedAt: new Date().toISOString(),
+      sources: [university.source, ...selectedPairs.map(pair => rawEqs.find(eq => eq.id === pair.equivalenceId)?.source).filter(Boolean) as NonNullable<CourseEquivalence['source']>[]],
       transferredCourses: selectedPairs,
       hostAdditionalCourses: additionalHostCourses,
       graduationSimulation: {
@@ -124,11 +140,21 @@ export const Step4CoursePlan: React.FC = () => {
     };
 
     setRankedChoice(selectedRank, plan);
-    setSaveSuccessMsg(`Đã lưu phương án vào ${selectedRank.toUpperCase()} thành công!`);
+    setCurrentPlan(plan);
+    setSaveSuccessMsg(status === 'VALID'
+      ? `Đã lưu phương án hợp lệ vào ${selectedRank.toUpperCase()} thành công!`
+      : `Đã lưu phương án vào ${selectedRank.toUpperCase()} với trạng thái cần xác minh dữ liệu.`);
     setTimeout(() => setSaveSuccessMsg(null), 3000);
   };
 
   return (
+    !university ? (
+      <div className="max-w-3xl mx-auto bg-surface-container-lowest rounded-3xl p-8 text-center border border-surface-container shadow-sm">
+        <h1 className="text-xl font-bold text-on-surface">Chưa chọn trường đối tác</h1>
+        <p className="text-sm text-on-surface-variant mt-2">Hãy chọn một trường từ danh sách đối tác trước khi xây dựng kế hoạch môn học.</p>
+        <button type="button" onClick={() => setCurrentStep(3)} className="mt-5 px-5 py-2.5 rounded-full bg-primary text-white text-sm font-bold">Quay lại danh sách trường</button>
+      </div>
+    ) : (
     <div className="max-w-5xl mx-auto flex flex-col gap-6 animate-fade-in py-2">
       {/* 1. Clean Partner Header */}
       <div className="bg-surface-container-lowest rounded-3xl p-6 shadow-sm border border-surface-container/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -138,8 +164,7 @@ export const Step4CoursePlan: React.FC = () => {
               alt={university.name}
               className="w-full h-full object-contain"
               src={
-                university.logoUrl ||
-                'https://lh3.googleusercontent.com/aida-public/AB6AXuBYrSJJv8tnvnNbbVbSPelMcE9csuxAtzZtahSOi-V4nce5Xd0MwmovlOSLCkgTzL7Xi_d4nHh3LOzSdTOTWUMbHMuvTQXb1ipo3Vocl0jQVnWEdfsLHCvihOPSI-p8jZaA4DJJbd8IBy3zTMKYbqDXfE0SrpXpWuT9YSoxXRBrIjJNEMwQkfFWPaGECffg3NeWj6xESWvAR4P-5waGgGV8M5PKjmwYc0p07uqwbkMl5TnPQmxH8itN'
+                university.logoUrl || '/images/logo.png'
               }
             />
           </div>
@@ -178,8 +203,8 @@ export const Step4CoursePlan: React.FC = () => {
             {satisfies3Transfers ? 'check_circle' : 'warning'}
           </span>
           <div>
-            <span className="font-bold block">Quy đổi FTU: {selectedPairs.length}/3 môn</span>
-            <span className="text-[11px] opacity-80">{selectedPairs.length * 3} tín chỉ công nhận</span>
+            <span className="font-bold block">Quy đổi FTU: {selectedPairs.length}/{S27_RULES.transferredCoursesMinimum} môn</span>
+            <span className="text-[11px] opacity-80">{selectedTransferredCredits} tín chỉ công nhận</span>
           </div>
         </div>
 
@@ -191,7 +216,7 @@ export const Step4CoursePlan: React.FC = () => {
             {satisfies5HostCourses ? 'check_circle' : 'warning'}
           </span>
           <div>
-            <span className="font-bold block">Học tại đối tác: {totalHostCoursesCount}/5 môn</span>
+            <span className="font-bold block">Học tại đối tác: {totalHostCoursesCount}/{S27_RULES.hostCoursesMinimum} môn</span>
             <span className="text-[11px] opacity-80">{selectedPairs.length} môn đổi + {additionalHostCourses.length} môn tự do</span>
           </div>
         </div>
@@ -203,7 +228,7 @@ export const Step4CoursePlan: React.FC = () => {
           <div>
             <span className="font-bold block">Tiến độ tốt nghiệp</span>
             <span className="text-[11px] text-on-surface-variant">
-              {simulation.isLikelyOnTime ? 'Đúng hạn chuẩn K62' : 'Cần đăng ký bù'}
+              {simulation.isLikelyOnTime ? 'Có khả năng đúng hạn theo mô phỏng' : 'Cần đăng ký bù / xác minh'}
             </span>
           </div>
         </div>
@@ -222,7 +247,7 @@ export const Step4CoursePlan: React.FC = () => {
             </div>
             <div>
               <h2 className="text-base font-bold text-on-surface">Phương án đối ứng môn học (FTU ⟷ Đối tác)</h2>
-              <p className="text-xs text-on-surface-variant">Tích chọn các môn bạn muốn đưa vào tờ trình chuyển đổi tín chỉ chính thức.</p>
+              <p className="text-xs text-on-surface-variant">Tích chọn các môn bạn muốn đưa vào bản kế hoạch dự thảo để xin phê duyệt.</p>
             </div>
           </div>
           <span className="text-xs text-primary font-bold bg-primary/10 px-3 py-1 rounded-full">
@@ -279,7 +304,7 @@ export const Step4CoursePlan: React.FC = () => {
                         )}
                       </div>
                       <span className="text-[11px] text-emerald-700 font-medium">
-                        ✓ {pair.approvalYear ? `Đã phê duyệt (${pair.approvalYear})` : 'Tiền lệ FTU đã phê duyệt'} • {pair.hostCredits || 3} Credits
+                        ✓ {pair.approvalYear ? `Đã phê duyệt (${pair.approvalYear})` : 'Trạng thái phê duyệt lấy từ dữ liệu nguồn'} • {pair.hostCredits !== undefined ? `${pair.hostCredits} Credits` : 'Chưa có tín chỉ host'}
                       </span>
                     </div>
                   </div>
@@ -296,7 +321,7 @@ export const Step4CoursePlan: React.FC = () => {
           <div>
             <h2 className="text-base font-bold text-on-surface">Môn học tự do tại trường đối tác</h2>
             <p className="text-xs text-on-surface-variant">
-              Theo quy định FTU S27, sinh viên cần đăng ký tối thiểu <strong>5 môn</strong> tại trường đối tác (các môn không quy đổi sẽ tính điểm tích lũy quốc tế).
+              Theo tài liệu S27, sinh viên cần đăng ký tối thiểu <strong>5 học phần</strong> tại trường đối tác; các học phần chưa có mapping phải được người dùng bổ sung và xác minh riêng.
             </p>
           </div>
           <span className="text-xs font-bold text-secondary">
@@ -389,5 +414,6 @@ export const Step4CoursePlan: React.FC = () => {
         </button>
       </div>
     </div>
+    )
   );
 };

@@ -1,3 +1,5 @@
+import { DataSourceRef } from './provenance';
+
 export type EquivalenceStatus = 'APPROVED' | 'PENDING' | 'REJECTED' | 'UNCERTAIN';
 
 export interface CourseEquivalence {
@@ -17,9 +19,5 @@ export interface CourseEquivalence {
   approver: string;
   approvalYear: string;
   status: EquivalenceStatus;
-  source: {
-    file: string;
-    sheet: string;
-    row: number;
-  };
+  source: DataSourceRef;
 }

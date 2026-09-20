@@ -17,7 +17,7 @@ export const Step2Review: React.FC = () => {
   // New course state
   const [newCode, setNewCode] = useState('');
   const [newName, setNewName] = useState('');
-  const [newCredits, setNewCredits] = useState(3);
+  const [newCredits, setNewCredits] = useState(0);
   const [newBlock, setNewBlock] = useState('Chuyên ngành bắt buộc');
 
   // S27 Eligibility Evaluation
@@ -38,8 +38,12 @@ export const Step2Review: React.FC = () => {
   const passedCredits = passedCourses.reduce((sum, c) => sum + c.credits, 0);
   const enrolledCredits = enrolledCourses.reduce((sum, c) => sum + c.credits, 0);
   const remainingCredits = remainingCourses.reduce((sum, c) => sum + c.credits, 0);
-  const totalStandardCredits = 132;
-  const completedPercent = Math.min(100, Math.round((passedCredits / totalStandardCredits) * 100));
+  const totalImportedCredits = profile.courses.reduce((sum, course) => sum + course.credits, 0);
+  const completedPercent = totalImportedCredits > 0
+    ? Math.min(100, Math.round((passedCredits / totalImportedCredits) * 100))
+    : 0;
+  const gpaThresholdsDisagree = profile.gpa4 > 0 && profile.gpa10 > 0
+    && (profile.gpa4 >= 2.8) !== (profile.gpa10 >= 7.5);
 
   // Determine active course list
   const currentList = useMemo(() => {
@@ -90,16 +94,19 @@ export const Step2Review: React.FC = () => {
   // Add Course Submit
   const handleAddCourse = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!newCode.trim() || !newName.trim()) return;
+    if (!newCode.trim() || !newName.trim() || newCredits <= 0) return;
+    const normalizedCode = newCode.trim().toUpperCase().replace(/\s+/g, '');
+    if (profile.courses.some(course => course.courseCode.toUpperCase().replace(/\s+/g, '') === normalizedCode)) return;
 
     const newCourse: StudentCourse = {
-      courseCode: newCode.trim().toUpperCase(),
+      courseCode: normalizedCode,
       courseName: newName.trim(),
       credits: newCredits,
       isMandatory: true,
       isTaken: false,
       isPassed: false,
-      electiveGroup: newBlock
+      electiveGroup: newBlock,
+      dataStatus: 'NEEDS_VERIFICATION'
     };
 
     updateProfile({
@@ -126,13 +133,13 @@ export const Step2Review: React.FC = () => {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h2 className="text-lg sm:text-xl font-extrabold text-on-surface">Lê Mai Anh</h2>
+                <h2 className="text-lg sm:text-xl font-extrabold text-on-surface">Hồ sơ sinh viên</h2>
                 <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                  {profile.cohort || 'K62'} • {profile.program}
+                  {profile.cohort || 'Chưa nhập khóa'} • {profile.program}
                 </span>
               </div>
               <p className="text-xs text-on-surface-variant mt-0.5">
-                MSSV: <strong className="text-on-surface">2211110382</strong> • Cơ sở Hà Nội • ĐHKT & KDQT
+                MSSV: <strong className="text-on-surface">Chưa nhập</strong> • Cơ sở/ngành lấy từ hồ sơ người dùng
               </p>
             </div>
           </div>
@@ -146,7 +153,7 @@ export const Step2Review: React.FC = () => {
 
             <div className="bg-surface-container-low px-3.5 py-1.5 rounded-2xl border border-surface-container flex items-center gap-2">
               <span className="text-xs text-on-surface-variant">Ngoại ngữ:</span>
-              <span className="text-sm font-bold text-secondary">IELTS {profile.languageCertificate?.score || '7.5'}</span>
+                <span className="text-sm font-bold text-secondary">{profile.languageCertificate?.testName || 'Chưa nhập'} {profile.languageCertificate?.score || 'Chưa có điểm'}</span>
             </div>
 
             <button
@@ -170,7 +177,7 @@ export const Step2Review: React.FC = () => {
         <div className="pt-4 border-t border-surface-container flex flex-col gap-2">
           <div className="flex justify-between items-center text-xs">
             <span className="font-semibold text-on-surface">
-              Tiến độ tích lũy: <strong>{passedCredits} / {totalStandardCredits} tín chỉ</strong> ({completedPercent}%)
+              Tiến độ danh sách đã nhập: <strong>{passedCredits} / {totalImportedCredits || '—'} tín chỉ</strong> ({completedPercent}%)
             </span>
             <div className="flex items-center gap-3 text-xs text-on-surface-variant">
               <span className="flex items-center gap-1">
@@ -188,15 +195,21 @@ export const Step2Review: React.FC = () => {
             </div>
           </div>
 
+          {gpaThresholdsDisagree && (
+            <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-900">
+              GPA thang 4 và thang 10 đang cho kết quả khác nhau theo ngưỡng S27. Hãy đối chiếu bảng điểm/quy đổi chính thức; hệ thống không tự kết luận tương đương hai thang điểm.
+            </div>
+          )}
+
           <div className="w-full bg-surface-container rounded-full h-2.5 overflow-hidden flex">
             <div
               className="bg-emerald-600 h-full transition-all"
-              style={{ width: `${(passedCredits / totalStandardCredits) * 100}%` }}
+              style={{ width: `${completedPercent}%` }}
               title={`Đã tích lũy: ${passedCredits} TC`}
             />
             <div
               className="bg-amber-400 h-full transition-all"
-              style={{ width: `${(enrolledCredits / totalStandardCredits) * 100}%` }}
+              style={{ width: `${totalImportedCredits > 0 ? Math.min(100, (enrolledCredits / totalImportedCredits) * 100) : 0}%` }}
               title={`Đang học: ${enrolledCredits} TC`}
             />
           </div>
@@ -208,14 +221,14 @@ export const Step2Review: React.FC = () => {
             <div className="flex items-center justify-between font-bold text-on-surface">
               <span>Đánh giá 4 tiêu chí trao đổi S27 (Quy chế FTU)</span>
               <span className={eligibility.isEligible ? 'text-emerald-700' : 'text-amber-700'}>
-                {eligibility.isEligible ? '✓ Hồ sơ hợp lệ 100%' : 'Cần lưu ý tiêu chí'}
+                {eligibility.isEligible ? '✓ Đủ điều kiện theo dữ liệu hiện có' : 'Cần xác minh / bổ sung dữ liệu'}
               </span>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {eligibility.criteria.map((crit) => (
                 <div key={crit.code} className="flex items-center gap-2 p-2 bg-white rounded-xl border border-surface-container/60">
-                  <span className={`material-symbols-outlined text-base ${crit.passed ? 'text-emerald-600' : 'text-rose-600'}`}>
-                    {crit.passed ? 'check_circle' : 'cancel'}
+                  <span className={`material-symbols-outlined text-base ${crit.passed ? 'text-emerald-600' : crit.status === 'NEEDS_CONFIRMATION' ? 'text-amber-600' : 'text-rose-600'}`}>
+                    {crit.passed ? 'check_circle' : crit.status === 'NEEDS_CONFIRMATION' ? 'help' : 'cancel'}
                   </span>
                   <div className="flex flex-col">
                     <span className="font-semibold text-on-surface">{crit.title}</span>
@@ -385,7 +398,7 @@ export const Step2Review: React.FC = () => {
             onClick={() => setCurrentStep(3)}
             className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
           >
-            <span>Tiếp tục: Tìm trường đối tác (116 trường)</span>
+            <span>Tiếp tục: Tìm trường đối tác</span>
             <span className="material-symbols-outlined text-base">arrow_forward</span>
           </button>
         </div>

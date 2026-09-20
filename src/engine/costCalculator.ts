@@ -1,4 +1,5 @@
 import { CountryCost, BudgetEvaluation, BudgetAssessment } from '../types/cost';
+import { sourceStatus } from '../lib/dataIntegrity';
 
 export function evaluateBudget(
   countryName: string,
@@ -10,9 +11,50 @@ export function evaluateBudget(
   // Normalize country name lookup
   let matchedCost: CountryCost | undefined;
 
-  const normalized = countryName.toLowerCase().trim();
+  const normalized = countryName.toLocaleLowerCase('vi-VN').trim();
+  const countryAliases: Record<string, string> = {
+    korea: 'Hàn Quốc',
+    'south korea': 'Hàn Quốc',
+    'hàn quốc': 'Hàn Quốc',
+    japan: 'Nhật Bản',
+    'nhật bản': 'Nhật Bản',
+    taiwan: 'Đài Loan',
+    'đài loan': 'Đài Loan',
+    china: 'Trung Quốc',
+    'trung quốc': 'Trung Quốc',
+    usa: 'Mỹ',
+    'united states': 'Mỹ',
+    mỹ: 'Mỹ',
+    australia: 'Úc',
+    úc: 'Úc',
+    germany: 'Đức',
+    đức: 'Đức',
+    france: 'Pháp',
+    pháp: 'Pháp',
+    finland: 'Phần Lan',
+    'phần lan': 'Phần Lan',
+    sweden: 'Thuỵ Điển',
+    'thuỵ điển': 'Thuỵ Điển',
+    'thụy điển': 'Thuỵ Điển',
+    switzerland: 'Thuỵ Sỹ',
+    'thụy sĩ': 'Thụy Sĩ',
+    'thuỵ sỹ': 'Thuỵ Sỹ',
+    italy: 'Ý',
+    ý: 'Ý',
+    spain: 'Tây Ban Nha',
+    'tây ban nha': 'Tây Ban Nha',
+    belgium: 'Bỉ',
+    bỉ: 'Bỉ',
+    norway: 'Na Uy',
+    'na uy': 'Na Uy',
+    russia: 'Nga',
+    nga: 'Nga'
+  };
+  const aliasedCountry = countryAliases[normalized];
   for (const cName in costsByCountry) {
-    if (cName.toLowerCase().trim() === normalized || normalized.includes(cName.toLowerCase().trim())) {
+    if (cName.toLocaleLowerCase('vi-VN').trim() === normalized
+      || cName === aliasedCountry
+      || normalized.includes(cName.toLocaleLowerCase('vi-VN').trim())) {
       matchedCost = costsByCountry[cName];
       break;
     }
@@ -52,7 +94,36 @@ export function evaluateBudget(
       estimatedTotalMin: 0,
       estimatedTotalMax: 0,
       userMonthlyBudget: userMonthlyBudgetVnd,
-      warning: 'Quốc gia này chưa có trong bảng ước tính chi phí sinh hoạt S27 của FTU.'
+      warning: 'Quốc gia này chưa có dữ liệu chi phí đã audit trong tài liệu S27.',
+      source: undefined
+    };
+  }
+
+  if (!Number.isFinite(userMonthlyBudgetVnd) || userMonthlyBudgetVnd <= 0) {
+    return {
+      status: 'NEEDS_VERIFICATION',
+      label: 'Chưa có ngân sách cá nhân để đối chiếu',
+      estimatedMonthlyMin: 0,
+      estimatedMonthlyMax: 0,
+      estimatedTotalMin: 0,
+      estimatedTotalMax: 0,
+      userMonthlyBudget: userMonthlyBudgetVnd,
+      warning: 'Cần nhập ngân sách theo tháng trước khi kết luận phù hợp ngân sách.',
+      source: matchedCost.source
+    };
+  }
+
+  if (sourceStatus(matchedCost.source) !== 'VERIFIED') {
+    return {
+      status: 'NEEDS_VERIFICATION',
+      label: 'Chi phí cần xác minh từ tài liệu nguồn',
+      estimatedMonthlyMin: 0,
+      estimatedMonthlyMax: 0,
+      estimatedTotalMin: 0,
+      estimatedTotalMax: 0,
+      userMonthlyBudget: userMonthlyBudgetVnd,
+      warning: 'Dữ liệu chi phí hiện chưa được xác nhận từ file tài liệu nguồn tương ứng.',
+      source: matchedCost.source
     };
   }
 
@@ -60,27 +131,58 @@ export function evaluateBudget(
   const isSwiss = matchedCost.requiresVerification;
 
   // Calculate monthly living + housing
-  const livingMin = matchedCost.livingCost.min || 10;
-  const livingMax = matchedCost.livingCost.max || 15;
+  const livingMin = matchedCost.livingCost.min;
+  const livingMax = matchedCost.livingCost.max;
+
+  if (livingMin === null || livingMax === null || matchedCost.livingCost.available === false) {
+    return {
+      status: matchedCost.requiresVerification ? 'NEEDS_VERIFICATION' : 'NO_DATA',
+      label: matchedCost.requiresVerification ? 'Cần xác minh chi phí' : 'Chưa đủ dữ liệu chi phí',
+      estimatedMonthlyMin: 0,
+      estimatedMonthlyMax: 0,
+      estimatedTotalMin: 0,
+      estimatedTotalMax: 0,
+      userMonthlyBudget: userMonthlyBudgetVnd,
+      warning: matchedCost.warningNote || 'Tài liệu nguồn chưa cung cấp đủ chi phí sinh hoạt.',
+      source: matchedCost.source
+    };
+  }
 
   let housingMin = 0;
   let housingMax = 0;
 
   if (housingPreference === 'DORMITORY' && matchedCost.dormitoryCost.available !== false) {
-    housingMin = matchedCost.dormitoryCost.min || 8;
-    housingMax = matchedCost.dormitoryCost.max || 12;
+    if (matchedCost.dormitoryCost.min === null || matchedCost.dormitoryCost.max === null) {
+      return {
+        status: 'NO_DATA', label: 'Chưa đủ dữ liệu KTX', estimatedMonthlyMin: 0, estimatedMonthlyMax: 0,
+        estimatedTotalMin: 0, estimatedTotalMax: 0, userMonthlyBudget: userMonthlyBudgetVnd,
+        warning: 'Tài liệu nguồn chưa có đủ chi phí KTX cho lựa chọn này.', source: matchedCost.source
+      };
+    }
+    housingMin = matchedCost.dormitoryCost.min;
+    housingMax = matchedCost.dormitoryCost.max;
   } else if (housingPreference === 'RENT' && matchedCost.rentCost.available !== false) {
-    housingMin = matchedCost.rentCost.min || 12;
-    housingMax = matchedCost.rentCost.max || 18;
+    if (matchedCost.rentCost.min === null || matchedCost.rentCost.max === null) {
+      return {
+        status: 'NO_DATA', label: 'Chưa đủ dữ liệu thuê ngoài', estimatedMonthlyMin: 0, estimatedMonthlyMax: 0,
+        estimatedTotalMin: 0, estimatedTotalMax: 0, userMonthlyBudget: userMonthlyBudgetVnd,
+        warning: 'Tài liệu nguồn chưa có đủ chi phí thuê ngoài cho lựa chọn này.', source: matchedCost.source
+      };
+    }
+    housingMin = matchedCost.rentCost.min;
+    housingMax = matchedCost.rentCost.max;
   } else {
-    // ANY: take lowest available min and highest available max
-    const dMin = matchedCost.dormitoryCost.min ?? 8;
-    const rMin = matchedCost.rentCost.min ?? dMin;
-    housingMin = Math.min(dMin, rMin);
-
-    const dMax = matchedCost.dormitoryCost.max ?? 12;
-    const rMax = matchedCost.rentCost.max ?? dMax;
-    housingMax = Math.max(dMax, rMax);
+    const mins = [matchedCost.dormitoryCost.min, matchedCost.rentCost.min].filter((v): v is number => v !== null);
+    const maxs = [matchedCost.dormitoryCost.max, matchedCost.rentCost.max].filter((v): v is number => v !== null);
+    if (mins.length === 0 || maxs.length === 0) {
+      return {
+        status: 'NO_DATA', label: 'Chưa đủ dữ liệu nhà ở', estimatedMonthlyMin: 0, estimatedMonthlyMax: 0,
+        estimatedTotalMin: 0, estimatedTotalMax: 0, userMonthlyBudget: userMonthlyBudgetVnd,
+        warning: 'Tài liệu nguồn chưa có đủ dữ liệu nhà ở.', source: matchedCost.source
+      };
+    }
+    housingMin = Math.min(...mins);
+    housingMax = Math.max(...maxs);
   }
 
   // In VNĐ (costs are in millions of VNĐ)
@@ -121,6 +223,7 @@ export function evaluateBudget(
     estimatedTotalMin: totalMin,
     estimatedTotalMax: totalMax,
     userMonthlyBudget: userMonthlyBudgetVnd,
-    warning
+    warning,
+    source: matchedCost.source
   };
 }

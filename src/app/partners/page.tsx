@@ -47,6 +47,8 @@ export default function PartnersPage() {
   const rawUnis = universitiesData as PartnerUniversity[];
   const rawEqs = equivalencesData as CourseEquivalence[];
   const rawCosts = costsData as Record<string, CountryCost>;
+  const totalCountries = new Set(rawUnis.map(uni => uni.country)).size;
+  const approvedEquivalences = rawEqs.filter(eq => eq.status === 'APPROVED').length;
 
   // Count approved equivalences per university
   const approvedCounts = useMemo(() => {
@@ -169,7 +171,7 @@ export default function PartnersPage() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">116</span>
+              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">{rawUnis.length}</span>
               <span className="font-label-sm text-label-sm text-on-surface-variant text-xs">Đại học đối tác S27</span>
             </div>
           </div>
@@ -183,7 +185,7 @@ export default function PartnersPage() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">22</span>
+              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">{totalCountries}</span>
               <span className="font-label-sm text-label-sm text-on-surface-variant text-xs">Quốc gia & Vùng</span>
             </div>
           </div>
@@ -197,7 +199,7 @@ export default function PartnersPage() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">2.094+</span>
+              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">{approvedEquivalences}</span>
               <span className="font-label-sm text-label-sm text-on-surface-variant text-xs">Môn tương đương đã duyệt</span>
             </div>
           </div>
@@ -211,8 +213,8 @@ export default function PartnersPage() {
               />
             </div>
             <div className="flex flex-col">
-              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">100%</span>
-              <span className="font-label-sm text-label-sm text-on-surface-variant text-xs">Miễn học phí song phương</span>
+              <span className="font-headline-md text-headline-md text-on-surface font-extrabold leading-tight text-xl sm:text-2xl">—</span>
+              <span className="font-label-sm text-label-sm text-on-surface-variant text-xs">Chưa có tổng hợp học phí từ tài liệu</span>
             </div>
           </div>
         </div>
@@ -294,7 +296,7 @@ export default function PartnersPage() {
                 onChange={(e) => setSelectedScholarship(e.target.value)}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-low text-on-surface focus:outline-none focus:ring-1 focus:ring-primary border border-surface-container"
               >
-                <option value="ALL">Tất cả (Bao gồm miễn 100% học phí)</option>
+                <option value="ALL">Tất cả trạng thái học bổng/học phí</option>
                 <option value="WITH_SCHOLARSHIP">Có học bổng sinh hoạt phí song phương</option>
               </select>
             </div>
@@ -310,7 +312,7 @@ export default function PartnersPage() {
                 onChange={(e) => setHasEquivalencesOnly(e.target.value === 'APPROVED_ONLY')}
                 className="w-full px-3.5 py-2.5 rounded-xl bg-surface-container-low text-on-surface focus:outline-none focus:ring-1 focus:ring-primary border border-surface-container"
               >
-                <option value="ALL">Tất cả 116 trường đối tác</option>
+                <option value="ALL">Tất cả {rawUnis.length} trường đối tác</option>
                 <option value="APPROVED_ONLY">Chỉ trường đã có môn duyệt tại FTU</option>
               </select>
             </div>
@@ -324,7 +326,7 @@ export default function PartnersPage() {
                 Kỳ S27 (2026 - 2027)
               </span>
               <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold">
-                Miễn học phí song phương
+                Dữ liệu học phí theo từng tài liệu đối tác
               </span>
               {(searchTerm || selectedRegion !== 'ALL' || selectedLanguage !== 'ALL' || selectedScholarship !== 'ALL' || hasEquivalencesOnly) && (
                 <button
@@ -383,7 +385,7 @@ export default function PartnersPage() {
                   {/* Top Badges */}
                   <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                     <span className="px-3 py-1 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold shadow-sm text-[11px]">
-                      {uni.scholarship && !uni.scholarship.toLowerCase().includes('không') ? uni.scholarship : 'FTU Partner'}
+                      {uni.scholarship || 'Chưa có dữ liệu học bổng'}
                     </span>
                     <span className="px-2.5 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm font-semibold text-[11px]">
                       {uni.region}
@@ -410,7 +412,7 @@ export default function PartnersPage() {
                     </h3>
 
                     <p className="font-body-sm text-body-sm text-on-surface-variant text-xs line-clamp-2 mt-1.5 leading-relaxed">
-                      {uni.requirements || 'Yêu cầu: Sinh viên chính quy FTU, GPA ≥ 2.8/4, tiếng Anh tối thiểu B2 CEFR hoặc tương đương.'}
+                      {uni.requirements || 'Chưa có yêu cầu riêng trong tài liệu đối tác.'}
                     </p>
 
                     {/* Key Criteria Pills */}
@@ -418,14 +420,14 @@ export default function PartnersPage() {
                       <div className="bg-surface-container-low p-2.5 rounded-xl flex flex-col">
                         <span className="font-label-sm text-on-surface-variant text-[11px]">Ngôn ngữ đào tạo</span>
                         <span className="font-label-md text-on-surface font-bold truncate">
-                          {uni.languages || 'Tiếng Anh'}
+                          {uni.languages || 'Chưa có dữ liệu'}
                         </span>
                       </div>
 
                       <div className="bg-surface-container-low p-2.5 rounded-xl flex flex-col">
                         <span className="font-label-sm text-on-surface-variant text-[11px]">Sinh hoạt phí TB</span>
                         <span className="font-label-md text-primary font-bold truncate">
-                          {countryCost ? countryCost.livingCost.raw : 'Theo Factsheet'}
+                          {countryCost ? countryCost.livingCost.raw : 'Chưa có dữ liệu chi phí'}
                         </span>
                       </div>
                     </div>

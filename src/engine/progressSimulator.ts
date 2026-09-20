@@ -15,6 +15,7 @@ export interface ProgressSimulationResult {
   thesisEligible: boolean;
   hasMidtermInternship: boolean;
   canRegisterThesisImmediately: boolean;
+  thesisEligibilityStatus: 'VERIFIED' | 'NEEDS_VERIFICATION';
   
   // Graduation timeline assessment
   targetGraduationSemester: string;
@@ -143,6 +144,10 @@ export function simulateStudentProgress(
     thesisEligible,
     hasMidtermInternship,
     canRegisterThesisImmediately,
+    // The S27 process document confirms the need to include HPTN but does not
+    // state the six-credit threshold. Keep the calculation as an advisory
+    // simulation and prevent it from being presented as an official decision.
+    thesisEligibilityStatus: 'NEEDS_VERIFICATION',
     targetGraduationSemester,
     isLikelyOnTime,
     warnings,

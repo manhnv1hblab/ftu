@@ -111,7 +111,7 @@ export default function HandbookPage() {
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="material-symbols-outlined text-base text-tertiary shrink-0 mt-0.5">check_circle</span>
-                  <span>IELTS ≥ 6.0 hoặc chứng chỉ tương đương.</span>
+                  <span>Chứng chỉ tiếng Anh tương đương B2 CEFR trở lên, còn hiệu lực theo quy trình S27.</span>
                 </div>
                 <div className="flex items-start gap-2">
                   <span className="material-symbols-outlined text-base text-tertiary shrink-0 mt-0.5">check_circle</span>
@@ -383,61 +383,17 @@ export default function HandbookPage() {
         </div>
       </div>
 
-      {/* Credit Conversion Reference Table */}
+      {/* Credit Conversion Reference */}
       <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-surface-container shadow-sm space-y-4">
         <div className="flex items-center gap-2 text-secondary">
           <span className="material-symbols-outlined text-2xl">calculate</span>
           <h2 className="font-headline-md text-headline-md text-on-surface font-bold">
-            Bảng quy chuẩn chuyển đổi tín chỉ quốc tế sang FTU
+            Quy đổi tín chỉ
           </h2>
         </div>
         <p className="text-body-sm text-on-surface-variant">
-          Áp dụng cho sinh viên tham gia các chương trình trao đổi AIMS, Erasmus+, song phương và tự túc.
+          Tài liệu S27 hiện cung cấp bảng equivalence theo từng học phần và trường đối tác, nhưng không cung cấp một bảng tỷ lệ quy đổi tín chỉ quốc tế dùng chung. Hệ thống không tự suy đoán tỷ lệ; việc công nhận chính thức cần được FTU thẩm định.
         </p>
-
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse text-body-sm">
-            <thead>
-              <tr className="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase">
-                <th className="py-3 px-4 rounded-l-xl">Hệ thống tín chỉ đối tác</th>
-                <th className="py-3 px-4">Khu vực áp dụng</th>
-                <th className="py-3 px-4 text-center">Tỷ lệ quy đổi sang FTU</th>
-                <th className="py-3 px-4 text-center">Tải học tập chuẩn / kỳ</th>
-                <th className="py-3 px-4 rounded-r-xl">Lưu ý đặc biệt</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-surface-container/60">
-              <tr>
-                <td className="py-3.5 px-4 font-bold text-on-surface">ECTS (European Credit Transfer)</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Châu Âu (Pháp, Đức, Phần Lan, Na Uy...)</td>
-                <td className="py-3.5 px-4 text-center font-mono font-bold text-primary">2 ECTS = 1 Tín chỉ FTU</td>
-                <td className="py-3.5 px-4 text-center">30 ECTS (15 TC FTU)</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Môn 5-6 ECTS thường đổi môn 3 TC FTU</td>
-              </tr>
-              <tr>
-                <td className="py-3.5 px-4 font-bold text-on-surface">US Semester Credit</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Hoa Kỳ, Canada</td>
-                <td className="py-3.5 px-4 text-center font-mono font-bold text-primary">1 US Credit = 1 Tín chỉ FTU</td>
-                <td className="py-3.5 px-4 text-center">12 - 15 Credits</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Cần kiểm tra số giờ giảng dạy trực tiếp</td>
-              </tr>
-              <tr>
-                <td className="py-3.5 px-4 font-bold text-on-surface">Korean / Japanese Credit</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Hàn Quốc, Nhật Bản, Đài Loan</td>
-                <td className="py-3.5 px-4 text-center font-mono font-bold text-primary">1 Credit = 1 Tín chỉ FTU</td>
-                <td className="py-3.5 px-4 text-center">15 - 18 Credits</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Khóa học 3 tín chỉ = 45-48 giờ học</td>
-              </tr>
-              <tr>
-                <td className="py-3.5 px-4 font-bold text-on-surface">ACTS (AIMS Credit Transfer)</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Đông Nam Á (Thái Lan, Malaysia, Indo...)</td>
-                <td className="py-3.5 px-4 text-center font-mono font-bold text-primary">1 ACTS = 1 Tín chỉ FTU</td>
-                <td className="py-3.5 px-4 text-center">12 - 15 ACTS</td>
-                <td className="py-3.5 px-4 text-on-surface-variant">Áp dụng trực tiếp theo thỏa thuận AIMS</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
       </div>
 
       {/* Official FTU Contacts Strip */}
@@ -451,22 +407,22 @@ export default function HandbookPage() {
               Cần hỗ trợ trực tiếp từ Ban Điều phối Trao đổi FTU?
             </h4>
             <p className="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-              Phòng A202 (Nhà A) • Giờ hành chính: 08:00 - 11:30 & 13:30 - 17:00 (Thứ 2 đến Thứ 6)
+              Phòng Hợp tác Quốc tế, A903 - Tầng 9 - Nhà A • 09:00 - 11:30 hoặc 14:00 - 17:00 các ngày làm việc
             </p>
           </div>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           <a
-            href="mailto:qldt@ftu.edu.vn"
+            href="mailto:outbound@ftu.edu.vn"
             className="px-5 py-2.5 rounded-full bg-white text-on-surface hover:text-primary font-label-md text-label-md font-bold transition-all shadow-xs border border-surface-container"
           >
-            Email: qldt@ftu.edu.vn
+            Email: outbound@ftu.edu.vn
           </a>
           <a
-            href="tel:02438356800"
+            href="tel:02432595161"
             className="px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold shadow-xs hover:bg-primary-container transition-all"
           >
-            Hotline: (024) 3835 6800
+            Hotline: (+84) 24 325 95161 (ext. 6200)
           </a>
         </div>
       </div>

@@ -1,6 +1,7 @@
 import { CourseEquivalence } from './equivalence';
 import { PartnerUniversity } from './university';
 import { BudgetEvaluation } from './cost';
+import { DataSourceRef } from './provenance';
 
 export interface CourseMatchPair {
   ftuCourseCode: string;
@@ -32,11 +33,16 @@ export interface UniversityMatchResult {
   budgetEvaluation: BudgetEvaluation;
   recommendationScore: number;
   recommendationReasons: string[];
+  dataStatus: 'VERIFIED' | 'NEEDS_VERIFICATION' | 'NO_DATA';
+  sources: DataSourceRef[];
 }
 
 export interface SelectedStudyPlan {
   universityId: string;
   universityName: string;
+  status?: 'VALID' | 'DRAFT_NOT_ELIGIBLE' | 'NEEDS_VERIFICATION';
+  savedAt?: string;
+  sources?: DataSourceRef[];
   // At least 3 transferred FTU courses
   transferredCourses: CourseMatchPair[];
   // Additional host courses to reach >= 5 courses at host

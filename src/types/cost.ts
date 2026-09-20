@@ -5,6 +5,8 @@ export interface CostRange {
   available?: boolean | null;
 }
 
+import { DataSourceRef } from './provenance';
+
 export interface CountryCost {
   country: string;
   livingCost: CostRange;
@@ -13,11 +15,7 @@ export interface CountryCost {
   oneTimeDepositFee: number | null;
   requiresVerification: boolean;
   warningNote: string;
-  source: {
-    file: string;
-    sheet: string;
-    column: number;
-  };
+  source: DataSourceRef;
 }
 
 export type BudgetAssessment = 'WITHIN_BUDGET' | 'NEAR_BUDGET' | 'EXCEEDS_BUDGET' | 'NEEDS_VERIFICATION' | 'NO_DATA';
@@ -31,4 +29,5 @@ export interface BudgetEvaluation {
   estimatedTotalMax: number;
   userMonthlyBudget: number;
   warning?: string;
+  source?: DataSourceRef;
 }

@@ -36,7 +36,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/partners" className="hover:text-primary transition-colors flex items-center gap-1">
                   <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                  Danh mục 116 trường đối tác S27
+                  Danh mục trường đối tác S27
                 </Link>
               </li>
               <li>

@@ -26,6 +26,8 @@ export default function HomePage() {
   const totalUnis = rawUnis.length;
   const uniqueCountries = new Set(rawUnis.map(u => u.country)).size;
   const approvedEquivalences = rawEqs.filter(e => e.status === 'APPROVED').length;
+  const featuredUni = rawUnis[0];
+  const featuredEqCount = featuredUni ? rawEqs.filter(e => e.partnerS27Id === featuredUni.id && e.status === 'APPROVED').length : 0;
 
   return (
     <div className="flex flex-col w-full pb-20 space-y-12">
@@ -37,7 +39,7 @@ export default function HomePage() {
               info
             </span>
             <p className="font-body-sm text-body-sm truncate">
-              <strong>Thông báo Kỳ S27 (Học kỳ II năm học 2026 – 2027):</strong> Cổng tra cứu môn quy đổi và đối soát điều kiện học vụ chính thức dành cho sinh viên đại học chính quy FTU.
+              <strong>Thông báo Kỳ S27 (Học kỳ II năm học 2026 – 2027):</strong> Công cụ tra cứu và mô phỏng tư vấn dựa trên các tài liệu S27 dành cho sinh viên đại học chính quy FTU.
             </p>
           </div>
           <Link
@@ -99,7 +101,7 @@ export default function HomePage() {
                 className="inline-flex items-center justify-center gap-space-xs px-space-lg py-3.5 bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim rounded-full font-label-lg text-label-lg transition-all text-xs sm:text-sm font-bold"
                 href="/partners"
               >
-                <span>Khám phá 116 trường đối tác FTU</span>
+                <span>Khám phá {totalUnis} trường đối tác FTU</span>
                 <span className="material-symbols-outlined text-lg">arrow_forward</span>
               </Link>
             </div>
@@ -107,15 +109,15 @@ export default function HomePage() {
             {/* Metrics Dashboard Strip */}
             <div className="grid grid-cols-3 gap-3 pt-space-md border-t border-surface-container">
               <div className="bg-surface-container-lowest p-3.5 rounded-2xl border border-surface-container shadow-xs hover:border-primary/30 transition-colors">
-                <span className="block font-headline-lg font-extrabold text-primary text-2xl sm:text-3xl">116</span>
+                <span className="block font-headline-lg font-extrabold text-primary text-2xl sm:text-3xl">{totalUnis}</span>
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Trường đối tác S27</span>
               </div>
               <div className="bg-surface-container-lowest p-3.5 rounded-2xl border border-surface-container shadow-xs hover:border-secondary/30 transition-colors">
-                <span className="block font-headline-lg font-extrabold text-secondary text-2xl sm:text-3xl">2.094+</span>
+                <span className="block font-headline-lg font-extrabold text-secondary text-2xl sm:text-3xl">{approvedEquivalences}</span>
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Môn duyệt chính thức</span>
               </div>
               <div className="bg-surface-container-lowest p-3.5 rounded-2xl border border-surface-container shadow-xs hover:border-tertiary/30 transition-colors">
-                <span className="block font-headline-lg font-extrabold text-tertiary text-2xl sm:text-3xl">22</span>
+                <span className="block font-headline-lg font-extrabold text-tertiary text-2xl sm:text-3xl">{uniqueCountries}</span>
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Quốc gia & Vùng</span>
               </div>
             </div>
@@ -151,7 +153,7 @@ export default function HomePage() {
                     </span>
                   </div>
                   <p className="text-xs font-bold text-white/95 leading-snug">
-                    Tự tin bay đến 22 quốc gia • Bảo toàn tiến độ tốt nghiệp đúng hạn
+                    Khám phá {uniqueCountries} quốc gia/vùng theo dữ liệu đối tác S27 • Mô phỏng tiến độ để tham khảo
                   </p>
                 </div>
               </div>
@@ -161,16 +163,16 @@ export default function HomePage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span className="font-bold text-on-surface">Đại học Chung-Ang (CAU)</span>
+                    <span className="font-bold text-on-surface">{featuredUni?.name || 'Chưa có trường được audit'}</span>
                   </div>
-                  <span className="text-[11px] font-bold text-primary">Seoul, Hàn Quốc</span>
+                  <span className="text-[11px] font-bold text-primary">{featuredUni ? `${featuredUni.city ? `${featuredUni.city}, ` : ''}${featuredUni.country}` : 'Chưa có địa điểm'}</span>
                 </div>
                 <div className="flex justify-between text-on-surface-variant text-[11px]">
-                  <span>Học phí: <strong className="text-emerald-700 font-bold">Miễn 100% song phương</strong></span>
-                  <span>Môn tiền lệ: <strong className="text-primary font-bold">114 môn duyệt</strong></span>
+                  <span>Học bổng/học phí: <strong className="text-emerald-700 font-bold">{featuredUni?.scholarship || 'Chưa có dữ liệu đã audit'}</strong></span>
+                  <span>Môn tiền lệ: <strong className="text-primary font-bold">{featuredEqCount} môn duyệt</strong></span>
                 </div>
                 <Link
-                  href="/partners/chung-ang-university"
+                  href={featuredUni ? `/partners/${featuredUni.id}` : '/partners'}
                   className="block w-full text-center py-2 rounded-xl bg-primary hover:bg-primary-container text-white font-bold transition-all text-xs shadow-xs"
                 >
                   Xem chi tiết trường đối tác mẫu
@@ -273,7 +275,7 @@ export default function HomePage() {
             href="/partners"
             className="inline-flex items-center gap-1 font-label-md text-label-md text-primary font-bold hover:underline text-xs"
           >
-            <span>Xem toàn bộ 116 trường đối tác S27</span>
+            <span>Xem toàn bộ {totalUnis} trường đối tác S27</span>
             <span className="material-symbols-outlined text-base">arrow_forward</span>
           </Link>
         </div>
@@ -307,7 +309,7 @@ export default function HomePage() {
 
                   <div className="absolute top-3 left-3 flex flex-wrap gap-1.5 z-10">
                     <span className="px-2.5 py-0.5 rounded-full bg-primary text-on-primary font-label-sm text-label-sm font-bold text-[10px]">
-                      {uni.scholarship && !uni.scholarship.toLowerCase().includes('không') ? uni.scholarship : 'FTU Partner'}
+                      {uni.scholarship || 'Chưa có dữ liệu học bổng'}
                     </span>
                     <span className="px-2 py-0.5 rounded-full bg-surface-container-lowest/90 backdrop-blur-sm text-on-surface font-label-sm text-label-sm font-semibold text-[10px]">
                       {uni.region}
@@ -320,7 +322,7 @@ export default function HomePage() {
                       <span>{uni.country}</span>
                     </div>
                     <span className="bg-surface-container-lowest/30 px-2 py-0.5 rounded backdrop-blur-sm font-bold text-[10px]">
-                      {uni.quota || '2 - 3 SV/kỳ'}
+                      {uni.quota || 'Chưa có dữ liệu chỉ tiêu'}
                     </span>
                   </div>
                 </div>
@@ -331,7 +333,7 @@ export default function HomePage() {
                       {uni.name}
                     </h3>
                     <p className="font-body-sm text-body-sm text-on-surface-variant line-clamp-2 mt-1 leading-relaxed">
-                      {uni.requirements || 'Yêu cầu tuyển chọn chung: Sinh viên đại học chính quy FTU, GPA ≥ 2.8/4, tiếng Anh tối thiểu B2 CEFR.'}
+                      {uni.requirements || 'Chưa có yêu cầu riêng trong tài liệu nguồn.'}
                     </p>
                   </div>
 
@@ -371,7 +373,7 @@ export default function HomePage() {
             </h2>
 
             <p className="text-white/90 text-xs sm:text-sm leading-relaxed">
-              Trợ lý học vụ 3D FTU GoGlobal sẽ tự động đối chiếu các môn chưa học của bạn với syllabus 116 đối tác, cảnh báo rủi ro trễ hạn tốt nghiệp và đề xuất 3 phương án học tập hoàn hảo nhất.
+              Trợ lý học vụ 3D FTU GoGlobal sẽ đối chiếu các môn chưa học với dữ liệu đối tác và môn tương đương đã được chuẩn hóa từ tài liệu S27. Các kết quả thiếu dữ liệu sẽ được đánh dấu để xác minh.
             </p>
 
             <div className="flex flex-wrap items-center gap-3 pt-2">

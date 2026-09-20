@@ -1,3 +1,5 @@
+import { DataSourceRef } from './provenance';
+
 export interface CourseOffering {
   courseCode: string;
   courseName: string;
@@ -8,10 +10,5 @@ export interface CourseOffering {
   academicYear: string;
   cohortTarget: string;
   note?: string;
-  source: {
-    file: string;
-    sheet: string;
-    row: number;
-    block?: string;
-  };
+  source: DataSourceRef;
 }

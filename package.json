@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "node scripts/lint_contract.js",
+    "typecheck": "tsc --noEmit",
+    "test:engine": "node scripts/test_engine_rules.js",
+    "test:data": "python scripts/validate_data.py",
+    "test:e2e": "node scripts/test_e2e_smoke.js",
+    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:data && npm run test:e2e && npm run build"
   },
   "dependencies": {
     "clsx": "^2.1.1",

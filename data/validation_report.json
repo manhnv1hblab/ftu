@@ -1,4 +1,36 @@
 {
+  "sourceChecks": [
+    {
+      "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
+      "exists": true,
+      "sizeBytes": 54662
+    },
+    {
+      "file": "Danh sách học phần tương đương (với các trường đối tác).xlsx",
+      "exists": true,
+      "sizeBytes": 770284
+    },
+    {
+      "file": "Bảng chi phí ước tình khi tham gia kỳ trao đổi.xlsx",
+      "exists": true,
+      "sizeBytes": 64394
+    },
+    {
+      "file": "Copy of Kế hoạch mở môn năm học 2627 theo số lớp - V2.xlsx",
+      "exists": true,
+      "sizeBytes": 76544
+    },
+    {
+      "file": "ChuongTrinhDaoTao.xlsx",
+      "exists": true,
+      "sizeBytes": 76271
+    },
+    {
+      "file": "Quy trình tham gia CTTD học kỳ II năm học 2026 - 2027.docx",
+      "exists": true,
+      "sizeBytes": 17922
+    }
+  ],
   "summary": {
     "partnerUniversitiesCount": 116,
     "totalEquivalenceRows": 4463,
@@ -12,6 +44,3174 @@
   },
   "dataQualityChecks": {
     "duplicateUniversityIds": [],
+    "duplicateEquivalenceIds": [],
+    "equivalencesReferencingUnknownUniversity": [],
+    "equivalencesWithoutPartnerId": [
+      {
+        "id": "eq-25",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-26",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-27",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-28",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-29",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-30",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-31",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-32",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-33",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-34",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-35",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-36",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-37",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-38",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-39",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-40",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-41",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-42",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-43",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-44",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-45",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-46",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-47",
+        "partnerUni": "Beijing Foreign Studies University"
+      },
+      {
+        "id": "eq-48",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-49",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-50",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-51",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-52",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-53",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-54",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-55",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-56",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-57",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-58",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-59",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-60",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-61",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-62",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-63",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-64",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-65",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-66",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-67",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-68",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-69",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-70",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-71",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-72",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-73",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-74",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-75",
+        "partnerUni": "Beijing International Studies University"
+      },
+      {
+        "id": "eq-1655",
+        "partnerUni": "Yamanashi Gakuin University"
+      },
+      {
+        "id": "eq-1656",
+        "partnerUni": "Yamanashi Gakuin University"
+      },
+      {
+        "id": "eq-1657",
+        "partnerUni": "Yamanashi Gakuin University"
+      },
+      {
+        "id": "eq-1658",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1659",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1660",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1661",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1662",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1663",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1664",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1665",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1666",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1667",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1668",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1669",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1670",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1671",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1672",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1673",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1674",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1675",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1676",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1677",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1678",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1679",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1680",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1681",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1682",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1683",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1684",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1685",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1686",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1687",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1688",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1689",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1690",
+        "partnerUni": "Yokohama National University"
+      },
+      {
+        "id": "eq-1691",
+        "partnerUni": "Chosun University"
+      },
+      {
+        "id": "eq-1692",
+        "partnerUni": "Chosun University"
+      },
+      {
+        "id": "eq-1693",
+        "partnerUni": "Chosun University"
+      },
+      {
+        "id": "eq-1694",
+        "partnerUni": "Chosun University"
+      },
+      {
+        "id": "eq-2286",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2287",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2288",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2289",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2290",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2291",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2292",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2293",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2294",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2295",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2296",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2297",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2298",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2299",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2300",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2301",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2302",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2303",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2304",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2305",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2306",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2307",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2308",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2309",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2310",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2311",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2312",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2313",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2314",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2315",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2316",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2317",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2318",
+        "partnerUni": "SolBridge International School of Business, Woosong University"
+      },
+      {
+        "id": "eq-2372",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2373",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2374",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2375",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2376",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2377",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2378",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2379",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2380",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2381",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2382",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2383",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2384",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2385",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2386",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2387",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2388",
+        "partnerUni": "University of Seoul (UOS)"
+      },
+      {
+        "id": "eq-2652",
+        "partnerUni": "PXL University of Applied Sciences and Arts"
+      },
+      {
+        "id": "eq-2653",
+        "partnerUni": "PXL University of Applied Sciences and Arts"
+      },
+      {
+        "id": "eq-2654",
+        "partnerUni": "PXL University of Applied Sciences and Arts"
+      },
+      {
+        "id": "eq-2655",
+        "partnerUni": "PXL University of Applied Sciences and Arts"
+      },
+      {
+        "id": "eq-2656",
+        "partnerUni": "PXL University of Applied Sciences and Arts"
+      },
+      {
+        "id": "eq-2657",
+        "partnerUni": "PXL University of Applied Sciences and Arts"
+      },
+      {
+        "id": "eq-2658",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2659",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2660",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2661",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2662",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2663",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2664",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2665",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2666",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2667",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2668",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2669",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2670",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2671",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2672",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2673",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2674",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2675",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2676",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2677",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2678",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2679",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2680",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2681",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2682",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2683",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2684",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2685",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2686",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2687",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2688",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2689",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2690",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2691",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2692",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2693",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2694",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2695",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2696",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2697",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2698",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2699",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2700",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2701",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2702",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2703",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2704",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2705",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2706",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2707",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2708",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2709",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2710",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2711",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2712",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2713",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2714",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2715",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2716",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2717",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2718",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2719",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2720",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2721",
+        "partnerUni": "Oulu Applied Science University"
+      },
+      {
+        "id": "eq-2722",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2723",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2724",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2725",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2726",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2727",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2728",
+        "partnerUni": "Seinajoki Applied Science University"
+      },
+      {
+        "id": "eq-2729",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2730",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2731",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2732",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2733",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2734",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2735",
+        "partnerUni": "ILERI (nstitut Libre d'Étude des Relations Internationales)"
+      },
+      {
+        "id": "eq-2790",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2791",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2792",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2793",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2794",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2795",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2796",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2797",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2798",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2799",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2800",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2801",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2802",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2803",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2804",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2805",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2806",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2807",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2808",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2809",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2810",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2811",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2812",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2813",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2814",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2815",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2816",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2817",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2818",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2819",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2820",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2821",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2822",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2823",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2824",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2825",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2826",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2827",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2828",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2829",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2830",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2831",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2832",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2833",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2834",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2835",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2836",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2837",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2838",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2839",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2840",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2841",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2842",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2843",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2844",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2845",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2846",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2847",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2848",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2849",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2850",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2851",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2852",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2853",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2854",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2855",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2856",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2857",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-2858",
+        "partnerUni": "IDRAC School of Management"
+      },
+      {
+        "id": "eq-3177",
+        "partnerUni": "WPME_PUFA"
+      },
+      {
+        "id": "eq-3178",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3179",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3180",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3181",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3182",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3183",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3184",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3185",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3186",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3187",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3188",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3189",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3190",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3191",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3192",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3193",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3194",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3195",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3196",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3197",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3198",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3199",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3200",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3201",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3202",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3203",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3204",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3205",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3206",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3207",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3208",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3209",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3210",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3211",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3212",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3213",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3214",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3215",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3216",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3217",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3218",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3219",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3220",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3221",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3222",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3223",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3224",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3225",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3226",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3227",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3228",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3229",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3230",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3231",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3232",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3233",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3234",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3235",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3236",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3237",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3238",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3239",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3240",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3241",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3242",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3243",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3244",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3245",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3246",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3247",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3248",
+        "partnerUni": "Goethe Frankfurt University"
+      },
+      {
+        "id": "eq-3339",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3340",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3341",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3342",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3343",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3344",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3345",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3346",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3347",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3348",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3349",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3350",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3351",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3352",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3353",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3354",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3355",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3356",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3357",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3358",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3359",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3360",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3361",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3362",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3363",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3364",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3365",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3366",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3367",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3368",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3369",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3370",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3371",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3372",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3373",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3374",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3375",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3376",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3377",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3378",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3379",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3380",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3381",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3382",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3383",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3384",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3385",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3386",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3387",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3388",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3389",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3390",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3391",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3392",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3393",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3394",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3395",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3396",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3397",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3398",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3399",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3400",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3401",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3402",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3403",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3404",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3405",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3406",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3407",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3408",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3409",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3410",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3411",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3412",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3413",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3414",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3415",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3416",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3417",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3418",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3419",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3420",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3421",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3422",
+        "partnerUni": "Hochschule Osnabruck Sciences University"
+      },
+      {
+        "id": "eq-3676",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3677",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3678",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3679",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3680",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3681",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3682",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3683",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3684",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3685",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3686",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3687",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3688",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3689",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3690",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3691",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3692",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3693",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3694",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3695",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3696",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3697",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3698",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3699",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3700",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3701",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3702",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3703",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3704",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3705",
+        "partnerUni": "Trier Applied Science University"
+      },
+      {
+        "id": "eq-3877",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3878",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3879",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3880",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3881",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3882",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3883",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3884",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3885",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3886",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3887",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3888",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3889",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3890",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3891",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3892",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3893",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3894",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3895",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3896",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3897",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3898",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3899",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3900",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3901",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3902",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3903",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3904",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3905",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3906",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3907",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3908",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3909",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3910",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3911",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3912",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3913",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3914",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3915",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3916",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3917",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3918",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3919",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3920",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3921",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3922",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3923",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3924",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3925",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3926",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3927",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3928",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3929",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3930",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3931",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3932",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3933",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3934",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3935",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3936",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3937",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3938",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3939",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3940",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3941",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3942",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3943",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3944",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3945",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3946",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3947",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3948",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3949",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3950",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3951",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3952",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3953",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3954",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3955",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3956",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3957",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3958",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3959",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3960",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3961",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3962",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3963",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3964",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3965",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3966",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3967",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3968",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3969",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3970",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3971",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3972",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3973",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3974",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3975",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-3976",
+        "partnerUni": "LUISS University"
+      },
+      {
+        "id": "eq-4089",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4090",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4091",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4092",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4093",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4094",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4095",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4096",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4097",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4098",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4099",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4100",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4101",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4102",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4103",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4104",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4105",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4106",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4107",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4108",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4109",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4110",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4111",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4112",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4113",
+        "partnerUni": "National Research University, Higher School of Economics, St. Petersburg"
+      },
+      {
+        "id": "eq-4114",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4115",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4116",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4117",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4118",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4119",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4120",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4121",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4122",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4123",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4124",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4125",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4126",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4127",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4128",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4129",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4130",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4131",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4132",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4133",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4134",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4135",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4136",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4137",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4138",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4139",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4140",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4141",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4142",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4143",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4144",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4145",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4146",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4147",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4148",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4149",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4150",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4151",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4152",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4153",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4154",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4155",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4156",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4157",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4158",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4159",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4160",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4161",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4162",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4163",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4164",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4165",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4166",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4167",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4168",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4169",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4170",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4171",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4172",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4173",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4174",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4175",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4176",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4177",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4178",
+        "partnerUni": "University of Barcelona"
+      },
+      {
+        "id": "eq-4179",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4180",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4181",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4182",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4183",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4184",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4185",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4186",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4187",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4188",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4189",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4190",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4191",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4192",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4193",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4194",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4195",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4196",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4197",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4198",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4199",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4200",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4201",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4202",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4203",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4204",
+        "partnerUni": "Gothenburg University"
+      },
+      {
+        "id": "eq-4205",
+        "partnerUni": "Uppsala University"
+      },
+      {
+        "id": "eq-4206",
+        "partnerUni": "Uppsala University"
+      },
+      {
+        "id": "eq-4207",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4208",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4209",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4210",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4211",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4212",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4213",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4214",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4215",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4216",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4217",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4218",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4219",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4220",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4221",
+        "partnerUni": "Business School Lausanne (BSL)"
+      },
+      {
+        "id": "eq-4222",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4223",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4224",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4225",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4226",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4227",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4228",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4229",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4230",
+        "partnerUni": "Geneva Business School"
+      },
+      {
+        "id": "eq-4271",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4272",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4273",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4274",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4275",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4276",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4277",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4278",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4279",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4280",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4281",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4282",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4283",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4284",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4285",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4286",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4287",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4288",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4289",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4290",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4291",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4292",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4293",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4294",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4295",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4296",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4297",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4298",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4299",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4300",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4301",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4302",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4303",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4304",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4305",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4306",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4307",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4308",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4309",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4310",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4311",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4312",
+        "partnerUni": "University of Victoria"
+      },
+      {
+        "id": "eq-4325",
+        "partnerUni": "ATI College"
+      },
+      {
+        "id": "eq-4326",
+        "partnerUni": "ATI College"
+      },
+      {
+        "id": "eq-4327",
+        "partnerUni": "ATI College"
+      },
+      {
+        "id": "eq-4328",
+        "partnerUni": "ATI College"
+      },
+      {
+        "id": "eq-4329",
+        "partnerUni": "ATI College"
+      },
+      {
+        "id": "eq-4330",
+        "partnerUni": "ATI College"
+      },
+      {
+        "id": "eq-4331",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4332",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4333",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4334",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4335",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4336",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4337",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4338",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4339",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4340",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4341",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4342",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4343",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4344",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4345",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4346",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4347",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4348",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4349",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4350",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      },
+      {
+        "id": "eq-4351",
+        "partnerUni": "Darla Moore School of Business, University of South Carolina"
+      }
+    ],
     "universitiesWithoutEquivalences": [
       {
         "id": "university-of-the-bahamas",
@@ -234,6 +3434,30 @@
         "country": "Australia"
       }
     ],
+    "countriesWithoutCost": [
+      {
+        "universityId": "university-of-the-bahamas",
+        "country": "The Bahamas"
+      },
+      {
+        "universityId": "lingnan-university",
+        "country": "\"HongKong, China\""
+      },
+      {
+        "universityId": "karpagam-academy-of-higher-education-kahe",
+        "country": "India"
+      },
+      {
+        "universityId": "s-p-jain-institute-of-management-research",
+        "country": "India"
+      },
+      {
+        "universityId": "sopot-university-of-applied-sciences",
+        "country": "Poland"
+      }
+    ],
+    "curriculumDuplicateCourseCodes": [],
+    "offeringsMissingCourseCode": [],
     "swissCostDiscrepancy": {
       "hasDiscrepancy": true,
       "details": "Thụy Sĩ vs Thuỵ Sỹ có mức chi phí khác nhau trong tài liệu gốc. Đã gắn cờ requiresVerification."
@@ -243,6 +3467,8 @@
       "passedCourses": 32,
       "takenButNotPassedCourses": 9,
       "remainingCourses": 43
-    }
+    },
+    "recordsWithoutSource": [],
+    "sourceFilesOutsideDocument": []
   }
 }

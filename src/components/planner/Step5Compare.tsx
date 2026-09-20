@@ -7,6 +7,7 @@ import costsData from '../../../data/costs_by_country.json';
 import universitiesData from '../../../data/universities_s27.json';
 import { CountryCost } from '../../types/cost';
 import { PartnerUniversity } from '../../types/university';
+import { S27_RULES } from '../../config/s27Rules';
 
 export const Step5Compare: React.FC = () => {
   const router = useRouter();
@@ -56,31 +57,21 @@ export const Step5Compare: React.FC = () => {
       if (ok) {
         showNotification('Đã nạp thành công bản kế hoạch từ file JSON!');
       } else {
-        alert('File JSON không hợp lệ hoặc sai cấu trúc.');
+        showNotification('File JSON không hợp lệ hoặc không vượt qua kiểm tra nguồn dữ liệu.');
       }
     };
     reader.readAsText(file);
   };
 
-  // Ensure default sample assignments for NV1, NV2, NV3 if empty
-  const defaultUni1 = rawUnis.find(u => u.id === 'chung-ang-university') || rawUnis[0];
-  const defaultUni2 = rawUnis.find(u => u.id === 'audencia-business-school') || rawUnis[1] || rawUnis[0];
-  const defaultUni3 = rawUnis.find(u => u.id === 'oita-university') || rawUnis[2] || rawUnis[0];
-
-  const plan1 = rankedChoices.nv1;
-  const uni1 = plan1 ? (rawUnis.find(u => u.id === plan1.universityId) || defaultUni1) : defaultUni1;
-
-  const plan2 = rankedChoices.nv2;
-  const uni2 = plan2 ? (rawUnis.find(u => u.id === plan2.universityId) || defaultUni2) : defaultUni2;
-
-  const plan3 = rankedChoices.nv3;
-  const uni3 = plan3 ? (rawUnis.find(u => u.id === plan3.universityId) || defaultUni3) : defaultUni3;
-
-  const uniCards = [
-    { rank: 'nv1' as const, label: 'Nguyện vọng 1', uni: uni1, plan: plan1, badge: 'Ưu tiên cao nhất' },
-    { rank: 'nv2' as const, label: 'Nguyện vọng 2', uni: uni2, plan: plan2, badge: 'Đề xuất cân bằng' },
-    { rank: 'nv3' as const, label: 'Nguyện vọng 3', uni: uni3, plan: plan3, badge: 'Dự phòng tối ưu' }
-  ];
+  const uniCards = (['nv1', 'nv2', 'nv3'] as const)
+    .map(rank => {
+      const plan = rankedChoices[rank];
+      if (!plan || !plan.status || plan.transferredCourses.length === 0) return null;
+      const uni = rawUnis.find(u => u.id === plan.universityId);
+      if (!uni) return null;
+      return { rank, label: rank.toUpperCase(), uni, plan, badge: plan.status === 'VALID' ? 'Đã xác minh theo dữ liệu hiện có' : 'Bản nháp cần xác minh' };
+    })
+    .filter((card): card is NonNullable<typeof card> => Boolean(card));
 
   return (
     <div className="max-w-6xl mx-auto flex flex-col gap-6 animate-fade-in py-2">
@@ -103,7 +94,7 @@ export const Step5Compare: React.FC = () => {
               Bảng so sánh 3 nguyện vọng trao đổi
             </h1>
             <p className="text-xs text-on-surface-variant mt-0.5">
-              Đối chiếu toàn diện tín chỉ, học bổng 100% và bảo đảm tiến độ tốt nghiệp chuẩn K62.
+              Chỉ hiển thị các nguyện vọng đã lưu từ dữ liệu người dùng và nguồn S27 được audit.
             </p>
           </div>
         </div>
@@ -136,6 +127,12 @@ export const Step5Compare: React.FC = () => {
         </div>
       )}
 
+      {uniCards.length === 0 && (
+        <div className="p-5 rounded-2xl bg-amber-50 text-amber-900 border border-amber-200 text-sm">
+          Chưa có nguyện vọng nào được lưu. Hãy quay lại bước 3 và bước 4 để chọn trường, xây dựng kế hoạch và lưu NV1–NV3.
+        </div>
+      )}
+
       {/* 2. Clean Comparison Table Card */}
       <div className="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container/80 overflow-hidden">
         {/* Table Header: 3 Universities */}
@@ -145,7 +142,7 @@ export const Step5Compare: React.FC = () => {
               <div>
                 <div className="relative h-28 w-full rounded-2xl overflow-hidden bg-surface-container-low mb-3 shadow-xs">
                   <img
-                    src={uni.imageUrl || 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=400&q=80'}
+                    src={uni.imageUrl || '/images/logo.png'}
                     alt={uni.name}
                     className="w-full h-full object-cover"
                   />
@@ -193,15 +190,15 @@ export const Step5Compare: React.FC = () => {
             </span>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               {uniCards.map(({ rank, plan }) => {
-                const count = plan?.transferredCourses?.length || 4;
-                const cr = count * 3;
+                const count = plan?.transferredCourses?.length || 0;
+                const cr = plan?.transferredCourses?.reduce((sum, course) => sum + course.ftuCredits, 0) || 0;
                 return (
                   <div key={rank} className="bg-surface-container-low/50 p-3 rounded-2xl border border-surface-container/60">
                     <span className="text-sm font-black text-on-surface block">
                       {count} môn ({cr} tín chỉ FTU)
                     </span>
                     <span className="text-[11px] text-emerald-700 font-bold mt-0.5 block">
-                      ✓ Đạt quy tắc S27 (≥ 3 môn chuyển giao)
+                      {count >= S27_RULES.transferredCoursesMinimum ? `Đạt ngưỡng tối thiểu ${S27_RULES.transferredCoursesMinimum} môn` : 'Chưa đạt ngưỡng tối thiểu'}
                     </span>
                   </div>
                 );
@@ -216,14 +213,14 @@ export const Step5Compare: React.FC = () => {
             </span>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               {uniCards.map(({ rank, plan }) => {
-                const count = (plan?.transferredCourses?.length || 4) + (plan?.hostAdditionalCourses?.length || 2);
+                const count = (plan?.transferredCourses?.length || 0) + (plan?.hostAdditionalCourses?.length || 0);
                 return (
                   <div key={rank} className="bg-surface-container-low/50 p-3 rounded-2xl border border-surface-container/60">
                     <span className="text-sm font-black text-on-surface block">
                       {count} môn học quốc tế
                     </span>
                     <span className="text-[11px] text-emerald-700 font-bold mt-0.5 block">
-                      ✓ Đạt quy định tối thiểu ≥ 5 môn
+                      {count >= S27_RULES.hostCoursesMinimum ? `Đạt ngưỡng tối thiểu ${S27_RULES.hostCoursesMinimum} môn` : 'Chưa đạt ngưỡng tối thiểu'}
                     </span>
                   </div>
                 );
@@ -237,13 +234,13 @@ export const Step5Compare: React.FC = () => {
               3. Chính sách học phí
             </span>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
-              {uniCards.map(({ rank }) => (
+              {uniCards.map(({ rank, uni }) => (
                 <div key={rank} className="bg-surface-container-low/50 p-3 rounded-2xl border border-surface-container/60">
                   <span className="font-bold text-emerald-800 block">
-                    Miễn 100% học phí đối tác
+                    {uni.scholarship || 'Chưa có dữ liệu học bổng/học phí được audit'}
                   </span>
                   <span className="text-[11px] text-on-surface-variant mt-0.5 block">
-                    Đóng học phí tín chỉ FTU theo khung hiện hành
+                    {uni.source?.file ? `Nguồn: ${uni.source.file}` : 'Cần xác minh từ tài liệu nguồn'}
                   </span>
                 </div>
               ))}
@@ -258,17 +255,17 @@ export const Step5Compare: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-1">
               {uniCards.map(({ rank, uni }) => {
                 const cost = rawCosts[uni.country];
-                const minMonthly = cost?.livingCost?.min ? cost.livingCost.min / 1_000_000 : 15;
-                const maxMonthly = cost?.livingCost?.max ? cost.livingCost.max / 1_000_000 : 22;
-                const totalMin = Math.round(minMonthly * 5);
-                const totalMax = Math.round(maxMonthly * 5);
+                const minMonthly = cost?.livingCost?.min;
+                const maxMonthly = cost?.livingCost?.max;
+                const totalMin = minMonthly !== null && minMonthly !== undefined ? Math.round(minMonthly * 5) : null;
+                const totalMax = maxMonthly !== null && maxMonthly !== undefined ? Math.round(maxMonthly * 5) : null;
                 return (
                   <div key={rank} className="bg-surface-container-low/50 p-3 rounded-2xl border border-surface-container/60">
                     <span className="text-sm font-bold text-on-surface block">
-                      ~{totalMin} - {totalMax} triệu VNĐ
+                      {totalMin !== null && totalMax !== null ? `~${totalMin} - ${totalMax} triệu VNĐ` : 'Chưa có dữ liệu chi phí đã audit'}
                     </span>
                     <span className="text-[11px] text-on-surface-variant mt-0.5 block">
-                      Ăn ở, bảo hiểm, visa & đi lại
+                      {cost?.source?.file ? `Nguồn: ${cost.source.file}` : 'Cần xác minh từ tài liệu nguồn'}
                     </span>
                   </div>
                 );
@@ -285,10 +282,11 @@ export const Step5Compare: React.FC = () => {
               {uniCards.map(({ rank, uni }) => (
                 <div key={rank} className="bg-surface-container-low/50 p-3 rounded-2xl border border-surface-container/60">
                   <span className="font-semibold text-on-surface block">
-                    GPA ≥ {(uni.minGpa || 2.8).toFixed(1)}/4.0 • {uni.minIelts ? `IELTS ≥ ${uni.minIelts}` : (uni.languages || 'IELTS ≥ 6.0')}
+                    {uni.minGpa !== undefined ? `GPA ≥ ${uni.minGpa.toFixed(1)}/4.0` : 'Chưa có ngưỡng GPA riêng'}
+                    {uni.languages ? ` • ${uni.languages}` : ' • Chưa có yêu cầu ngoại ngữ riêng'}
                   </span>
                   <span className="text-[11px] text-emerald-700 font-medium mt-0.5 block">
-                    {uni.hasDormitory ? '✓ Có KTX sinh viên quốc tế' : 'Hỗ trợ thuê ngoài'}
+                    {uni.hasDormitory === true ? 'Có dữ liệu KTX' : uni.hasDormitory === false ? 'Không có dữ liệu KTX' : 'Chưa có dữ liệu KTX được audit'}
                   </span>
                 </div>
               ))}
@@ -313,7 +311,7 @@ export const Step5Compare: React.FC = () => {
             className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
           >
             <span className="material-symbols-outlined text-base">print</span>
-            <span>Xuất bản kế hoạch học tập A4 (Trình QLĐT)</span>
+            <span>Xuất bản bản dự thảo A4</span>
           </button>
         </div>
       </div>

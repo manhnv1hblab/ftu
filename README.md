@@ -1,6 +1,6 @@
 # 🌏 FTU GoGlobal — Nền Tảng Tư Vấn & Lập Kế Hoạch Trao Đổi Sinh Viên Quốc Tế
 
-> **Hệ thống tư vấn học vụ trao đổi sinh viên chính thức cho kỳ S27 (Học kỳ II Năm học 2026–2027) — Trường Đại học Ngoại thương (FTU).**
+> **Công cụ tư vấn và lập bản nháp kế hoạch trao đổi kỳ S27 — dữ liệu nghiệp vụ được chuẩn hóa từ tài liệu trong thư mục `document/`.**
 
 ---
 
@@ -8,10 +8,10 @@
 
 **FTU GoGlobal** là ứng dụng web toàn diện giúp sinh viên Đại học Ngoại thương lập kế hoạch trao đổi học tập quốc tế song phương thông minh, chính xác và tối ưu:
 - **Rà soát điều kiện học vụ:** Kiểm tra tự động điểm GPA (thang 4 / thang 10), chuẩn đầu ra tiếng Anh, tín chỉ tích lũy, các môn điều kiện (Triết học, Thể chất, GDQP...).
-- **Khám phá 116 đối tác toàn cầu:** Dữ liệu chuẩn hóa chi tiết 116 trường đại học đối tác tại Châu Âu, Châu Á, Châu Mỹ và Châu Đại Dương với đầy đủ kiểm định quốc tế (AACSB, EQUIS, AMBA), chi phí sinh hoạt bóc tách, khí hậu, visa, cơ sở vật chất và môn tương đương.
+- **Khám phá danh sách đối tác S27:** Số lượng và thuộc tính hiển thị được lấy từ danh sách đối tác trong `document/`; dữ liệu thiếu được đánh dấu cần xác minh.
 - **Ghép cặp môn học 1-1:** Tự động đối ứng các môn học FTU với các môn đối tác theo quy tắc học vụ của Nhà trường (tối thiểu 3 môn FTU / 5 môn đối tác, bảo toàn tiến độ tốt nghiệp).
 - **So sánh đa chiều:** Đặt lên bàn cân 3 nguyện vọng theo học phí, chi phí sinh hoạt, tỷ lệ chuyển đổi tín chỉ và tiến độ ra trường.
-- **Xuất kế hoạch & In ấn:** Xuất bản kế hoạch học tập PDF chuẩn form phòng Quản lý đào tạo FTU.
+- **Xuất kế hoạch & In ấn:** Xuất bản dự thảo kế hoạch để người dùng kiểm tra và gửi phê duyệt chính thức.
 
 ---
 
@@ -20,7 +20,7 @@
 - **Frontend Core:** Next.js 14 (App Router) + TypeScript + React 18
 - **Styling:** Tailwind CSS + Vanilla CSS Micro-animations + HCL Visual Tokens
 - **Thiết kế & Đồ họa:** Bộ biểu tượng 3D & Linh vật FTUer Claymorphism / Pixar độc quyền
-- **Xử lý Dữ liệu:** Pure Client-side + LocalStorage Persistence (bảo mật tuyệt đối thông tin sinh viên)
+- **Xử lý Dữ liệu:** Pure Client-side + LocalStorage Persistence; đây không phải hệ thống lưu trữ hồ sơ chính thức.
 
 ---
 
@@ -53,7 +53,7 @@ npm run start
 
 ```
 ├── data/                         # Dữ liệu chuẩn hóa kỳ S27
-│   ├── universities_s27.json     # 116 trường đại học đối tác với đầy đủ dữ liệu
+│   ├── universities_s27.json     # Dữ liệu chuẩn hóa từ danh sách đối tác trong document/
 │   ├── equivalences_s27.json     # Bảng tương đương môn học
 │   ├── sample_curricula.json     # Khung chương trình đào tạo mẫu
 │   └── country_costs.json        # Thống kê chi phí sinh hoạt các quốc gia
@@ -64,7 +64,7 @@ npm run start
 │   ├── app/                      # Next.js App Router pages
 │   │   ├── compare/              # Trang so sánh nguyện vọng
 │   │   ├── handbook/             # Cẩm nang du học 4 giai đoạn
-│   │   ├── partners/             # Danh mục & Chi tiết 116 trường
+│   │   ├── partners/             # Danh mục và chi tiết trường từ dữ liệu đã audit
 │   │   ├── planner/              # Bộ lập kế hoạch 5 bước
 │   │   ├── print/                # Trang xuất in ấn PDF kế hoạch
 │   │   └── reviews/              # Cộng đồng đánh giá & kinh nghiệm

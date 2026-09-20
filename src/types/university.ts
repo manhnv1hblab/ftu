@@ -1,3 +1,5 @@
+import { DataSourceRef } from './provenance';
+
 export interface PartnerUniversity {
   id: string;
   name: string;
@@ -10,11 +12,7 @@ export interface PartnerUniversity {
   statusAtFtu?: string;
   scholarship?: string;
   catalogueUrl?: string;
-  source: {
-    file: string;
-    sheet: string;
-    row: number;
-  };
+  source: DataSourceRef;
   // Presentation & UI properties
   vietnameseName?: string;
   city?: string;

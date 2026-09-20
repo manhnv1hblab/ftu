@@ -24,6 +24,7 @@ export const Step3Matches: React.FC = () => {
   const [min3Only, setMin3Only] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
+  const [notification, setNotification] = useState<string | null>(null);
 
   const rawUnis = universitiesData as PartnerUniversity[];
   const rawEqs = equivalencesData as CourseEquivalence[];
@@ -45,7 +46,7 @@ export const Step3Matches: React.FC = () => {
   const filteredResults = useMemo(() => {
     return evaluatedResults.filter((res) => {
       // Threshold >= 3 courses filter
-      if (min3Only && res.approvedPairsCount < 3) return false;
+      if (min3Only && !res.meetsEligibility) return false;
 
       // Region filter
       if (selectedRegion !== 'ALL') {
@@ -103,12 +104,13 @@ export const Step3Matches: React.FC = () => {
       } else if (!rankedChoices.nv3) {
         setRankedChoice('nv3', { universityId: uniId, universityName: uniName, transferredCourses: [] });
       } else {
-        alert('Bạn đã chọn tối đa 3 trường vào danh sách so sánh. Hãy bỏ chọn một trường trước.');
+        setNotification('Bạn đã chọn tối đa 3 trường vào danh sách so sánh. Hãy bỏ chọn một trường trước.');
+        window.setTimeout(() => setNotification(null), 3000);
       }
     }
   };
 
-  const qualifiedCount = evaluatedResults.filter(r => r.approvedPairsCount >= 3).length;
+  const qualifiedCount = evaluatedResults.filter(r => r.meetsEligibility).length;
 
   return (
     <div className="max-w-6xl mx-auto flex flex-col gap-6 animate-fade-in py-2">
@@ -125,7 +127,7 @@ export const Step3Matches: React.FC = () => {
           <div>
             <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold mb-1">
               <span className="material-symbols-outlined text-sm">handshake</span>
-              <span>Mạng lưới 116 đối tác kỳ S27</span>
+              <span>Mạng lưới {rawUnis.length} đối tác kỳ S27</span>
             </div>
             <h1 className="text-xl sm:text-2xl font-extrabold text-on-surface tracking-tight">
               Gợi ý trường đối tác theo độ khớp môn học
@@ -138,9 +140,15 @@ export const Step3Matches: React.FC = () => {
 
         <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 px-3.5 py-2 rounded-2xl border border-emerald-200 self-start sm:self-auto shrink-0 shadow-xs">
           <span className="material-symbols-outlined text-base text-emerald-600">verified</span>
-          <span>{qualifiedCount} trường đạt chuẩn S27 (≥ 3 môn)</span>
+          <span>{qualifiedCount} trường đủ điều kiện theo dữ liệu đã audit</span>
         </div>
       </div>
+
+      {notification && (
+        <div role="status" className="p-3 rounded-2xl bg-amber-600 text-white text-xs font-bold text-center shadow-sm">
+          {notification}
+        </div>
+      )}
 
       {/* 2. Clean Horizontal Tool Bar (Search, Region Chips, S27 Toggle) */}
       <div className="bg-surface-container-lowest rounded-3xl p-4 sm:p-5 shadow-sm border border-surface-container/80 flex flex-col gap-3">
@@ -217,8 +225,10 @@ export const Step3Matches: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredResults.map((res) => {
             const uni = res.university;
-            const matchPercent = Math.min(99, Math.round(75 + res.approvedPairsCount * 4.5));
             const inCompare = isCompared(uni.id);
+            const transferredCredits = res.matchedPairs
+              .filter(pair => pair.status === 'APPROVED')
+              .reduce((sum, pair) => sum + pair.ftuCredits, 0);
 
             return (
               <div
@@ -235,7 +245,7 @@ export const Step3Matches: React.FC = () => {
                           className="w-full h-full object-contain"
                           src={
                             uni.logoUrl ||
-                            'https://lh3.googleusercontent.com/aida-public/AB6AXuBYrSJJv8tnvnNbbVbSPelMcE9csuxAtzZtahSOi-V4nce5Xd0MwmovlOSLCkgTzL7Xi_d4nHh3LOzSdTOTWUMbHMuvTQXb1ipo3Vocl0jQVnWEdfsLHCvihOPSI-p8jZaA4DJJbd8IBy3zTMKYbqDXfE0SrpXpWuT9YSoxXRBrIjJNEMwQkfFWPaGECffg3NeWj6xESWvAR4P-5waGgGV8M5PKjmwYc0p07uqwbkMl5TnPQmxH8itN'
+                            '/images/logo.png'
                           }
                         />
                       </div>
@@ -250,15 +260,15 @@ export const Step3Matches: React.FC = () => {
                       </div>
                     </div>
 
-                    <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold shrink-0 border border-emerald-200">
-                      {matchPercent}%
+                    <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold shrink-0 border ${res.meetsEligibility ? 'bg-emerald-50 text-emerald-800 border-emerald-200' : 'bg-amber-50 text-amber-800 border-amber-200'}`}>
+                      {res.meetsEligibility ? 'Đủ điều kiện' : 'Cần xác minh'}
                     </span>
                   </div>
 
                   {/* Transfer pill */}
                   <div className="bg-surface-container-low rounded-xl px-3 py-2 flex items-center justify-between text-xs">
                     <span className="font-semibold text-primary">
-                      ✓ Quy đổi: {res.approvedPairsCount} môn ({res.approvedPairsCount * 3} TC FTU)
+                      Quy đổi đã duyệt: {res.approvedPairsCount} môn ({transferredCredits} TC FTU)
                     </span>
                     <span className="text-[11px] text-on-surface-variant font-medium">
                       {uni.region}
@@ -269,11 +279,11 @@ export const Step3Matches: React.FC = () => {
                   <div className="grid grid-cols-2 gap-2 text-[11px] text-on-surface-variant bg-surface rounded-xl p-2.5 border border-surface-container/60">
                     <div>
                       <span>GPA: </span>
-                      <strong className="text-on-surface font-semibold">≥ {(uni.minGpa || 2.8).toFixed(1)}/4.0</strong>
+                      <strong className="text-on-surface font-semibold">{uni.minGpa !== undefined ? `≥ ${uni.minGpa.toFixed(1)}/4.0` : 'Chưa có dữ liệu riêng'}</strong>
                     </div>
                     <div>
                       <span>Ngoại ngữ: </span>
-                      <strong className="text-on-surface font-semibold">{uni.minIelts ? `IELTS ≥ ${uni.minIelts}` : (uni.languages || 'IELTS ≥ 6.0')}</strong>
+                      <strong className="text-on-surface font-semibold">{uni.languages || 'Chưa có yêu cầu riêng'}</strong>
                     </div>
                   </div>
                 </div>

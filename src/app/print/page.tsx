@@ -56,11 +56,14 @@ export default function PrintPlanPage() {
           <span>Độc lập - Tự do - Hạnh phúc</span>
         </div>
 
-        <h1 className="text-lg sm:text-xl font-extrabold uppercase pt-2 text-black tracking-tight">
-          BẢN KẾ HOẠCH HỌC TẬP TRAO ĐỔI SINH VIÊN S27
+          <h1 className="text-lg sm:text-xl font-extrabold uppercase pt-2 text-black tracking-tight">
+          BẢN DỰ THẢO KẾ HOẠCH HỌC TẬP TRAO ĐỔI SINH VIÊN S27
         </h1>
         <p className="text-xs italic text-gray-700">
           Chương trình trao đổi sinh viên đi Học kỳ II năm học 2026 – 2027 (Kỳ học Mùa Xuân 2027)
+        </p>
+        <p className="text-[10px] font-semibold text-gray-600 uppercase">
+          Bản tư vấn dự thảo — không thay thế phê duyệt chính thức của P.HTQT hoặc Bộ môn
         </p>
       </div>
 
@@ -108,7 +111,7 @@ export default function PrintPlanPage() {
                 return (
                   <tr key={rank}>
                     <td className="py-2 px-2 border-r border-black text-center font-bold">
-                      {rank.toUpperCase()}
+              {rank.toUpperCase()} {plan?.status !== 'VALID' ? '(BẢN NHÁP)' : ''}
                     </td>
                     <td className="py-2 px-2 border-r border-black font-semibold">
                       {uni?.name || plan!.universityName}
@@ -123,7 +126,7 @@ export default function PrintPlanPage() {
                       {totalHost} môn
                     </td>
                     <td className="py-2 px-2 text-center">
-                      {plan?.graduationSimulation?.thesisEligible ? 'Đủ điều kiện (Nợ ≤ 6 TC)' : 'Đang xét duyệt'}
+                      {plan?.status === 'VALID' && plan?.graduationSimulation?.thesisEligible ? 'Đạt theo dữ liệu hiện có' : 'Cần xác minh / chưa đủ điều kiện'}
                     </td>
                   </tr>
                 );
@@ -150,6 +153,7 @@ export default function PrintPlanPage() {
                 <span>{rank.toUpperCase()}: {uni?.name || plan!.universityName}</span>
                 <span>{uni?.country}</span>
               </div>
+              <p className="text-[10px] text-gray-600">Trạng thái: {plan!.status || 'NEEDS_VERIFICATION'} · Nguồn dữ liệu: tài liệu S27 đã chuẩn hóa</p>
 
               {/* Transferred courses table */}
               <table className="w-full text-left border border-gray-300 divide-y divide-gray-300 text-[11px]">

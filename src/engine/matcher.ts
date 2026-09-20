@@ -6,6 +6,8 @@ import { CourseMatchPair, UniversityMatchResult } from '../types/studyPlan';
 import { checkProgramEligibility } from './eligibility';
 import { evaluateBudget } from './costCalculator';
 import { CountryCost } from '../types/cost';
+import { normalizeCode, normalizeName, sourceStatus } from '../lib/dataIntegrity';
+import { S27_RULES } from '../config/s27Rules';
 
 export function matchCoursesForUniversity(
   university: PartnerUniversity,
@@ -16,8 +18,8 @@ export function matchCoursesForUniversity(
   // Filter equivalences for this university
   const uniId = university.id;
   const uniEquivalences = allEquivalences.filter(
-    eq => eq.partnerS27Id === uniId || eq.partnerUni.toLowerCase() === university.name.toLowerCase()
-  );
+    eq => eq.partnerS27Id === uniId || (!eq.partnerS27Id && normalizeName(eq.partnerUni) === normalizeName(university.name))
+  ).filter(eq => eq.status !== 'REJECTED');
 
   // Group approved equivalences
   // We need 1-to-1 matching so that:
@@ -38,17 +40,17 @@ export function matchCoursesForUniversity(
     if (usedFtuCourses.has(studentCourse.code.toUpperCase())) continue;
 
     for (const eq of sortedEqs) {
-      const hostKey = `${eq.hostCourseCode}_${eq.hostCourseName}`.toLowerCase();
+      const hostKey = `${normalizeCode(eq.hostCourseCode)}_${normalizeName(eq.hostCourseName)}`;
       if (usedHostCourses.has(hostKey)) continue;
 
       // Check if FTU course code matches
       const isCodeMatch = eq.ftuCourseCodes.some(
-        c => c.toUpperCase() === studentCourse.code.toUpperCase()
+        c => normalizeCode(c) === normalizeCode(studentCourse.code)
       );
 
       // Or fallback to clean name match if code was omitted in raw note
       const isNameMatch = !eq.ftuCourseCodes.length &&
-        eq.ftuCourseNameClean.toLowerCase() === studentCourse.name.toLowerCase();
+        normalizeName(eq.ftuCourseNameClean) === normalizeName(studentCourse.name);
 
       if (isCodeMatch || isNameMatch) {
         // Offerings check in FTU 2026-2027
@@ -70,9 +72,9 @@ export function matchCoursesForUniversity(
         if (eq.status === 'PENDING') {
           riskLevel = 'MEDIUM';
           riskReason = 'Môn đang chờ bộ môn phê duyệt. Cần nộp đề cương để xét.';
-        } else if (eq.status === 'REJECTED') {
+        } else if (eq.status === 'UNCERTAIN') {
           riskLevel = 'HIGH';
-          riskReason = 'Bộ môn đã từ chối tương đương trong dữ liệu nguồn.';
+          riskReason = 'Dữ liệu tương đương chưa đủ chắc chắn trong tài liệu nguồn. Không được coi là kết quả đã duyệt.';
         } else if (offeringTerms.length === 1 && offeringTerms[0] === 'HK2') {
           riskLevel = 'MEDIUM';
           riskReason = 'Môn này tại FTU chỉ dự kiến mở vào HK2. Nếu không đổi được sẽ phải chờ năm sau.';
@@ -128,9 +130,9 @@ export function evaluateAllUniversities(
   } else if (profile.manualCourseCodes && profile.manualCourseCodes.length > 0) {
     for (const code of profile.manualCourseCodes) {
       remainingCourses.push({
-        code: code.trim().toUpperCase(),
-        name: `Học phần ${code.trim().toUpperCase()}`,
-        credits: 3
+        code: normalizeCode(code),
+        name: '',
+        credits: 0
       });
     }
   }
@@ -147,6 +149,7 @@ export function evaluateAllUniversities(
 
     const approvedPairs = matchedPairs.filter(p => p.status === 'APPROVED');
     const pendingPairs = matchedPairs.filter(p => p.status === 'PENDING');
+    const uncertainPairs = matchedPairs.filter(p => p.status === 'UNCERTAIN');
 
     // Program eligibility check
     const elig = checkProgramEligibility(profile, uni);
@@ -159,8 +162,8 @@ export function evaluateAllUniversities(
     );
 
     const missingReqs = [...elig.unmetSummary];
-    if (approvedPairs.length < 3) {
-      missingReqs.push(`Chưa đủ 3 môn quy đổi hợp lệ (Hiện có: ${approvedPairs.length}/3)`);
+    if (approvedPairs.length < S27_RULES.transferredCoursesMinimum) {
+      missingReqs.push(`Chưa đủ ${S27_RULES.transferredCoursesMinimum} môn quy đổi đã được phê duyệt (Hiện có: ${approvedPairs.length}/${S27_RULES.transferredCoursesMinimum})`);
     }
     if (budgetEval.status === 'EXCEEDS_BUDGET') {
       missingReqs.push(`Dự kiến chi phí vượt ngân sách (${budgetEval.warning || ''})`);
@@ -172,7 +175,7 @@ export function evaluateAllUniversities(
 
     // Base score on approved pairs (crucial requirement: >= 3)
     score += approvedPairs.length * 25;
-    if (approvedPairs.length >= 3) {
+    if (approvedPairs.length >= S27_RULES.transferredCoursesMinimum) {
       reasons.push(`Đạt điều kiện ghép môn: Có ${approvedPairs.length} học phần chuyển điểm về FTU.`);
     }
 
@@ -208,17 +211,28 @@ export function evaluateAllUniversities(
       reasons.push(`Cơ hội học bổng: ${uni.scholarship}`);
     }
 
+    const sources = [uni.source, ...matchedPairs.map(p => allEquivalences.find(eq => eq.id === p.equivalenceId)?.source).filter(Boolean) as NonNullable<CourseEquivalence['source']>[]];
+    if (budgetEval.source) sources.push(budgetEval.source);
+    const dataStatus = budgetEval.status === 'NO_DATA' || budgetEval.status === 'NEEDS_VERIFICATION' || uncertainPairs.length > 0
+      ? 'NEEDS_VERIFICATION'
+      : sources.every(source => sourceStatus(source) === 'VERIFIED') ? 'VERIFIED' : 'NEEDS_VERIFICATION';
+
     results.push({
       university: uni,
       matchedPairs,
       approvedPairsCount: approvedPairs.length,
       pendingPairsCount: pendingPairs.length,
       totalMatchCount: matchedPairs.length,
-      meetsEligibility: elig.isEligible && approvedPairs.length >= 3,
+      meetsEligibility: elig.isEligible
+        && approvedPairs.length >= S27_RULES.transferredCoursesMinimum
+        && ['WITHIN_BUDGET', 'NEAR_BUDGET'].includes(budgetEval.status)
+        && dataStatus === 'VERIFIED',
       missingRequirements: missingReqs,
       budgetEvaluation: budgetEval,
       recommendationScore: score,
-      recommendationReasons: reasons
+      recommendationReasons: reasons,
+      dataStatus,
+      sources
     });
   }
 

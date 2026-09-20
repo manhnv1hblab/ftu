@@ -11,6 +11,7 @@ import { PartnerUniversity } from '../../../types/university';
 import { CourseEquivalence } from '../../../types/equivalence';
 import { CountryCost } from '../../../types/cost';
 import { useStudent } from '../../../context/StudentContext';
+import { S27_RULES } from '../../../config/s27Rules';
 
 const COUNTRY_CAMPUS_HEROES: Record<string, string> = {
   'Korea': 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1600&q=85',
@@ -133,7 +134,7 @@ export default function UniversityDetailPage() {
 
             <div className="flex items-center gap-2">
               <span className="px-3 py-1 rounded-full bg-primary text-white text-xs font-bold shadow-sm">
-                {university.quota || 'Chỉ tiêu: 2 - 3 SV/kỳ'}
+                {university.quota || 'Chưa có dữ liệu chỉ tiêu'}
               </span>
               <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-semibold">
                 {university.flag || '🌏'} {university.city ? `${university.city}, ` : ''}{university.country}
@@ -145,9 +146,7 @@ export default function UniversityDetailPage() {
           <div className="space-y-3 pb-2 max-w-4xl">
             <div className="flex flex-wrap items-center gap-2">
               <span className="px-3 py-1 rounded-full bg-primary-container text-white text-xs font-extrabold uppercase tracking-wider shadow-sm">
-                {university.scholarship && !university.scholarship.toLowerCase().includes('không')
-                  ? university.scholarship
-                  : 'Miễn 100% học phí song phương FTU'}
+                {university.scholarship || 'Chưa có dữ liệu học bổng/học phí'}
               </span>
               <span className="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white text-xs font-medium">
                 {university.qsRank || university.nationalRank || university.region}
@@ -172,7 +171,7 @@ export default function UniversityDetailPage() {
             <div className="flex flex-wrap items-center gap-4 text-xs pt-1 text-white/90">
               <span className="flex items-center gap-1 font-semibold">
                 <span className="material-symbols-outlined text-primary-fixed text-base">language</span>
-                <span>{university.languages || 'Tiếng Anh'}</span>
+                <span>{university.languages || 'Chưa có dữ liệu ngôn ngữ'}</span>
               </span>
               <span className="flex items-center gap-1 font-semibold">
                 <span className="material-symbols-outlined text-emerald-400 text-base">verified</span>
@@ -200,7 +199,7 @@ export default function UniversityDetailPage() {
           <div className="bg-surface-container-lowest p-5 rounded-3xl shadow-sm border border-surface-container/80 flex flex-col justify-between">
             <span className="text-xs font-bold text-on-surface-variant uppercase">Học phí đối tác</span>
             <span className="text-xl font-black text-primary mt-1">
-              Miễn 100%
+              {university.scholarship || 'Chưa có dữ liệu'}
             </span>
             <span className="text-[11px] text-on-surface-variant mt-1">Thỏa thuận trao đổi song phương</span>
           </div>
@@ -208,7 +207,7 @@ export default function UniversityDetailPage() {
           <div className="bg-surface-container-lowest p-5 rounded-3xl shadow-sm border border-surface-container/80 flex flex-col justify-between">
             <span className="text-xs font-bold text-on-surface-variant uppercase">Sinh hoạt phí ước tính</span>
             <span className="text-xl font-black text-on-surface mt-1">
-              {countryCost ? countryCost.livingCost.raw : 'Theo Factsheet'}
+              {countryCost ? countryCost.livingCost.raw : 'Chưa có dữ liệu chi phí'}
             </span>
             <span className="text-[11px] text-on-surface-variant mt-1">Ăn ở thiết yếu / kỳ 5 tháng</span>
           </div>
@@ -320,33 +319,33 @@ export default function UniversityDetailPage() {
               <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-1">
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Năm thành lập</span>
                 <span className="text-base font-extrabold text-on-surface block">
-                  {university.foundedYear || '1918'}
+                  {university.foundedYear || 'Chưa có dữ liệu'}
                 </span>
-                <span className="text-[11px] text-on-surface-variant">Bề dày truyền thống học thuật</span>
+                <span className="text-[11px] text-on-surface-variant">Chỉ hiển thị khi có nguồn xác minh</span>
               </div>
 
               <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-1">
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Quy mô sinh viên</span>
                 <span className="text-base font-extrabold text-on-surface block">
-                  {university.studentCount || '25,000+ sinh viên'}
+                  {university.studentCount || 'Chưa có dữ liệu'}
                 </span>
-                <span className="text-[11px] text-on-surface-variant">Cộng đồng sinh viên đa quốc gia</span>
+                <span className="text-[11px] text-on-surface-variant">Chỉ hiển thị khi có nguồn xác minh</span>
               </div>
 
               <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-1">
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Xếp hạng quốc tế</span>
                 <span className="text-base font-extrabold text-primary block">
-                  {university.qsRank || university.nationalRank || 'Đối tác uy tín'}
+                  {university.qsRank || university.nationalRank || 'Chưa có dữ liệu'}
                 </span>
-                <span className="text-[11px] text-on-surface-variant">{university.nationalRank || 'Top bảng xếp hạng'}</span>
+                <span className="text-[11px] text-on-surface-variant">Chỉ hiển thị khi có nguồn xác minh</span>
               </div>
 
               <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-1">
                 <span className="text-[11px] font-bold text-on-surface-variant uppercase">Thời gian học kỳ S27</span>
                 <span className="text-base font-extrabold text-emerald-800 block">
-                  {university.semesterDates || 'Tháng 2/3 - Tháng 6/7'}
+                  {university.semesterDates || 'Chưa có dữ liệu'}
                 </span>
-                <span className="text-[11px] text-on-surface-variant">Học kỳ Mùa Xuân 2027</span>
+                <span className="text-[11px] text-on-surface-variant">Theo tài liệu S27; lịch cụ thể cần xác minh</span>
               </div>
             </div>
 
@@ -358,7 +357,7 @@ export default function UniversityDetailPage() {
                   <span>Kiểm định & Chứng nhận chất lượng</span>
                 </div>
                 <p className="text-xs text-on-surface-variant leading-relaxed">
-                  {university.accreditation || 'Được Bộ Giáo dục quốc gia công nhận và đạt các tiêu chuẩn kiểm định giáo dục đại học quốc tế uy tín.'}
+                  {university.accreditation || 'Chưa có dữ liệu kiểm định được xác minh trong bộ dữ liệu S27.'}
                 </p>
               </div>
 
@@ -368,7 +367,7 @@ export default function UniversityDetailPage() {
                   <span>Đặc điểm khuôn viên trường</span>
                 </div>
                 <p className="text-xs text-on-surface-variant leading-relaxed">
-                  {university.campusType || `Khuôn viên đại học hiện đại tại ${university.city || university.country}, kết nối thuận tiện với hệ thống tàu điện ngầm và xe buýt.`}
+                  {university.campusType || 'Chưa có dữ liệu đặc điểm khuôn viên được xác minh trong bộ dữ liệu S27.'}
                 </p>
               </div>
             </div>
@@ -720,37 +719,11 @@ export default function UniversityDetailPage() {
               </div>
             )}
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs pt-2">
-              <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-2">
-                <div className="flex items-center gap-2 text-primary font-bold">
-                  <span className="material-symbols-outlined text-lg">directions_subway</span>
-                  <span>Giao thông & Di chuyển</span>
-                </div>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Kết nối thuận tiện bằng hệ thống tàu điện ngầm và xe buýt công cộng. Sinh viên quốc tế được mua vé tháng ưu đãi sinh viên.
-                </p>
-              </div>
-
-              <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-2">
-                <div className="flex items-center gap-2 text-secondary font-bold">
-                  <span className="material-symbols-outlined text-lg">restaurant_menu</span>
-                  <span>Ẩm thực & Căn tin</span>
-                </div>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Hệ thống căn tin sinh viên phong phú với thực đơn đa dạng văn hóa, siêu thị tiện lợi ngay trong khuôn viên campus.
-                </p>
-              </div>
-
-              <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-2">
-                <div className="flex items-center gap-2 text-tertiary font-bold">
-                  <span className="material-symbols-outlined text-lg">diversity_3</span>
-                  <span>Mạng lưới Buddy & CLB Quốc tế</span>
-                </div>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Chương trình ghép đôi Buddy sinh viên bản địa giúp hỗ trợ làm quen văn hóa, đăng ký cư trú và sinh hoạt học thuật.
-                </p>
-              </div>
-            </div>
+            {!university.climate && (!university.campusFacilities || university.campusFacilities.length === 0) && (
+              <p className="text-xs text-on-surface-variant border-t border-surface-container pt-4">
+                Tài liệu S27 hiện chưa cung cấp dữ liệu đã audit về đời sống và cơ sở vật chất của trường này.
+              </p>
+            )}
           </div>
         </section>
       )}
@@ -772,7 +745,7 @@ export default function UniversityDetailPage() {
               <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-1.5">
                 <span className="text-[11px] font-bold text-primary uppercase block">Thời hạn nộp hồ sơ S27</span>
                 <span className="text-base font-extrabold text-on-surface block">
-                  {university.applicationDeadlineS27 || '20/10/2026 (Chốt đề cử FTU: 01/10/2026)'}
+                  {university.applicationDeadlineS27 || 'Chưa có deadline trong tài liệu đối tác'}
                 </span>
                 <span className="text-[11px] text-on-surface-variant">Sinh viên cần chuẩn bị đầy đủ hồ sơ trước hạn chót</span>
               </div>
@@ -780,7 +753,7 @@ export default function UniversityDetailPage() {
               <div className="bg-surface-container-low p-4 rounded-2xl border border-surface-container space-y-1.5">
                 <span className="text-[11px] font-bold text-secondary uppercase block">Loại thị thực du học (Visa)</span>
                 <span className="text-base font-extrabold text-on-surface block">
-                  {university.visaType || 'Thị thực sinh viên trao đổi chính thức'}
+                  {university.visaType || 'Chưa có dữ liệu visa trong tài liệu đối tác'}
                 </span>
                 <span className="text-[11px] text-on-surface-variant">Được cấp theo Thư chấp nhận (Letter of Acceptance)</span>
               </div>
@@ -793,9 +766,9 @@ export default function UniversityDetailPage() {
                   <span>Điều kiện học vụ bắt buộc</span>
                 </h3>
                 <ul className="space-y-1.5 text-on-surface-variant list-disc pl-4 leading-relaxed">
-                  <li>GPA tích lũy tối thiểu: <strong>≥ {(university.minGpa || 2.8).toFixed(2)}/4.0</strong> hoặc <strong>≥ 7.50/10.0</strong>.</li>
-                  <li>Ngoại ngữ: <strong>{university.minIelts ? `IELTS ≥ ${university.minIelts}` : (university.languages || 'IELTS ≥ 6.0')}</strong>.</li>
-                  <li>Đã hoàn thành tối thiểu 2 học kỳ và tích lũy ít nhất 35 tín chỉ FTU.</li>
+                  <li>GPA chung S27: <strong>≥ {S27_RULES.gpa4Minimum.toFixed(2)}/4.0</strong> hoặc <strong>≥ {S27_RULES.gpa10Minimum.toFixed(2)}/10.0</strong>.</li>
+                  <li>Ngoại ngữ riêng đối tác: <strong>{university.requirements || 'Chưa có dữ liệu yêu cầu riêng'}</strong>.</li>
+                  <li>Hoàn thành tối thiểu {S27_RULES.completedSemestersMinimum} học kỳ và tích lũy ít nhất {S27_RULES.accumulatedCreditsMinimum} tín chỉ FTU.</li>
                   <li>Không tham gia trao đổi vào học kỳ cuối khóa tốt nghiệp.</li>
                 </ul>
               </div>
@@ -806,10 +779,9 @@ export default function UniversityDetailPage() {
                   <span>Cam kết số lượng môn học</span>
                 </h3>
                 <ul className="space-y-1.5 text-on-surface-variant list-disc pl-4 leading-relaxed">
-                  <li>Học <strong>tối thiểu 5 học phần</strong> tại {university.name}.</li>
-                  <li>Chuyển điểm về <strong>tối thiểu 3 học phần</strong> tương đương tại FTU.</li>
-                  <li>Ký Thỏa thuận học tập (Learning Agreement) trước khi xuất cảnh.</li>
-                  <li>Nộp hồ sơ chuyển điểm trong vòng 30 ngày sau khi nhận bảng điểm gốc.</li>
+                  <li>Học <strong>tối thiểu {S27_RULES.hostCoursesMinimum} học phần</strong> tại trường đối tác.</li>
+                  <li>Chuyển điểm về <strong>tối thiểu {S27_RULES.transferredCoursesMinimum} học phần</strong> tương đương tại FTU.</li>
+                  <li>Chi tiết thủ tục và thời hạn phải đối chiếu trực tiếp với quy trình S27 và thông báo của trường đối tác.</li>
                 </ul>
               </div>
             </div>

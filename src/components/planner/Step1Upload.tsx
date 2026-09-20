@@ -11,9 +11,7 @@ export const Step1Upload: React.FC = () => {
   const [manualText, setManualText] = useState('');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [attachedFileName, setAttachedFileName] = useState<string | null>(
-    profile.courses.length > 0 ? 'Bang_Diem_Tin_Chi_LeMaiAnh_K62KTĐN.xlsx' : null
-  );
+  const [attachedFileName, setAttachedFileName] = useState<string | null>(null);
 
   // File Upload Handler
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +20,6 @@ export const Step1Upload: React.FC = () => {
 
     setIsProcessing(true);
     setErrorMessage(null);
-    setAttachedFileName(file.name);
 
     const reader = new FileReader();
     reader.onload = (evt) => {
@@ -94,8 +91,17 @@ export const Step1Upload: React.FC = () => {
             continue;
           }
 
-          const nameVal = colName !== -1 && row[colName] ? String(row[colName]).trim() : `Học phần ${codeVal}`;
-          const crVal = colCredits !== -1 && row[colCredits] ? parseFloat(String(row[colCredits])) || 3 : 3;
+          if (colName === -1 || !row[colName] || !String(row[colName]).trim()) {
+            throw new Error(`Thiếu tên học phần tại dòng ${r + 1}. Không được tự suy đoán dữ liệu môn học.`);
+          }
+          if (colCredits === -1 || row[colCredits] === undefined || row[colCredits] === null || row[colCredits] === '') {
+            throw new Error(`Thiếu số tín chỉ tại dòng ${r + 1}. Không được tự gán số tín chỉ mặc định.`);
+          }
+          const nameVal = String(row[colName]).trim();
+          const crVal = parseFloat(String(row[colCredits]).replace(',', '.'));
+          if (!Number.isFinite(crVal) || crVal <= 0) {
+            throw new Error(`Số tín chỉ không hợp lệ tại dòng ${r + 1}.`);
+          }
           const isMand = colMandatory !== -1 && row[colMandatory] ? String(row[colMandatory]).trim().toLowerCase() === 'x' : false;
           const isTak = colTaken !== -1 && row[colTaken] ? String(row[colTaken]).trim().toLowerCase() === 'x' : false;
           const isPass = colPassed !== -1 && row[colPassed] ? String(row[colPassed]).trim().toLowerCase() === 'x' : false;
@@ -117,11 +123,20 @@ export const Step1Upload: React.FC = () => {
             minCredits: minCr,
             maxCredits: maxCr,
             suggestedSemester: currentSemester
+            ,dataStatus: 'VERIFIED'
           });
         }
 
         if (parsedCourses.length === 0) {
           throw new Error('File không chứa danh sách môn học hợp lệ.');
+        }
+
+        const duplicateCodes = parsedCourses
+          .map(course => course.courseCode)
+          .filter((code, index, allCodes) => allCodes.indexOf(code) !== index);
+        if (duplicateCodes.length > 0) {
+          const uniqueDuplicateCodes = Array.from(new Set(duplicateCodes));
+          throw new Error(`Trùng mã học phần: ${uniqueDuplicateCodes.join(', ')}. Vui lòng kiểm tra lại file trước khi import.`);
         }
 
         const passedCredits = parsedCourses
@@ -134,6 +149,7 @@ export const Step1Upload: React.FC = () => {
           isProfileComplete: true
         });
 
+        setAttachedFileName(file.name);
         setIsProcessing(false);
       } catch (err: any) {
         setIsProcessing(false);
@@ -166,11 +182,12 @@ export const Step1Upload: React.FC = () => {
 
     const manualCourses: StudentCourse[] = cleanCodes.map(code => ({
       courseCode: code,
-      courseName: `Học phần ${code}`,
-      credits: 3,
+      courseName: '',
+      credits: 0,
       isMandatory: true,
       isTaken: false,
-      isPassed: false
+      isPassed: false,
+      dataStatus: 'NEEDS_VERIFICATION'
     }));
 
     updateProfile({
@@ -184,7 +201,7 @@ export const Step1Upload: React.FC = () => {
 
   const handleUseSample = () => {
     loadSampleProfile();
-    setAttachedFileName('Bang_Diem_Tin_Chi_LeMaiAnh_K62KTĐN.xlsx');
+    setAttachedFileName('Hồ sơ mẫu (demo từ dữ liệu CTĐT)');
   };
 
   const courseCount = profile.courses.length;
@@ -203,7 +220,7 @@ export const Step1Upload: React.FC = () => {
           Cung cấp Bảng điểm & Chương trình Đào tạo FTU
         </h1>
         <p className="text-sm text-on-surface-variant max-w-xl mx-auto">
-          Hệ thống sẽ đối chiếu các môn học chưa hoàn thành với syllabus của 116 trường đối tác quốc tế để gợi ý phương án chuyển đổi tín chỉ tối ưu.
+          Hệ thống sẽ đối chiếu các môn học chưa hoàn thành với dữ liệu trường đối tác và môn tương đương đã được audit từ tài liệu S27.
         </p>
       </div>
 
@@ -275,7 +292,7 @@ export const Step1Upload: React.FC = () => {
             <input
               id="fileUploadInput"
               type="file"
-              accept=".xlsx,.xls,.pdf"
+              accept=".xlsx,.xls"
               onChange={handleFileUpload}
               className="hidden"
             />
@@ -290,7 +307,7 @@ export const Step1Upload: React.FC = () => {
               Kéo thả file bảng điểm vào đây
             </h3>
             <p className="text-xs text-on-surface-variant max-w-sm mb-5">
-              Hỗ trợ định dạng <strong>.xlsx, .xls, .pdf</strong> trích xuất từ cổng <span className="text-primary font-medium">ftugate.ftu.edu.vn</span>
+              Hỗ trợ định dạng <strong>.xlsx, .xls</strong> theo template hồ sơ trong <span className="text-primary font-medium">public/templates</span>
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-3">
@@ -308,7 +325,7 @@ export const Step1Upload: React.FC = () => {
                 className="px-4 py-2.5 rounded-full bg-white hover:bg-surface-container text-on-surface text-sm font-semibold transition-all border border-surface-container inline-flex items-center gap-1.5 shadow-xs"
               >
                 <span className="material-symbols-outlined text-base text-primary">bolt</span>
-                <span>Dùng thử hồ sơ mẫu K62</span>
+                <span>Dùng thử hồ sơ mẫu</span>
               </button>
             </div>
           </div>
@@ -323,7 +340,7 @@ export const Step1Upload: React.FC = () => {
                 <div>
                   <div className="flex items-center gap-2">
                     <span className="text-sm font-bold text-emerald-950 truncate max-w-xs sm:max-w-md">
-                      {attachedFileName || 'Hồ sơ sinh viên K62 Kinh tế Đối ngoại'}
+                      {attachedFileName || 'Hồ sơ đã nhập (chưa có tên file)'}
                     </span>
                     <span className="px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900 text-[11px] font-bold">
                       Đã nạp
@@ -379,6 +396,7 @@ export const Step1Upload: React.FC = () => {
                 onChange={(e) => updateProfile({ cohort: e.target.value })}
                 className="w-full bg-surface-container-low rounded-xl py-2 px-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-surface-container"
               >
+                <option value="">Chọn khóa</option>
                 <option value="K62">K62 (2023 - 2027)</option>
                 <option value="K61">K61 (2022 - 2026)</option>
                 <option value="K63">K63 (2024 - 2028)</option>
@@ -386,15 +404,13 @@ export const Step1Upload: React.FC = () => {
             </div>
 
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-on-surface-variant uppercase">Khoa / Viện</label>
-              <select
-                defaultValue="ktkdqt"
+              <label className="text-xs font-bold text-on-surface-variant uppercase">Ngành / Khoa</label>
+              <input
+                value={profile.major}
+                onChange={(e) => updateProfile({ major: e.target.value })}
+                placeholder="Nhập đúng theo hồ sơ"
                 className="w-full bg-surface-container-low rounded-xl py-2 px-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-surface-container"
-              >
-                <option value="ktkdqt">Viện KT & Kinh doanh Quốc tế</option>
-                <option value="qtkd">Khoa Quản trị Kinh doanh</option>
-                <option value="tcnh">Khoa Tài chính - Ngân hàng</option>
-              </select>
+              />
             </div>
 
             <div className="flex flex-col gap-1.5">
@@ -429,6 +445,9 @@ export const Step1Upload: React.FC = () => {
               placeholder="VD: KTE402, KTE408, TIN314, PLU422, KTE410, TCH341"
               className="w-full p-3.5 rounded-xl border border-surface-container bg-surface-container-low text-xs font-mono text-on-surface focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary transition-all"
             />
+            <p className="text-[11px] text-amber-700">
+              Nhập mã môn chỉ tạo hồ sơ nháp cần xác minh; hệ thống không tự suy đoán tên môn hoặc số tín chỉ.
+            </p>
           </div>
 
           <div className="pt-3 flex justify-end border-t border-surface-container">

@@ -19,6 +19,7 @@ export interface StudentCourse {
   suggestedSemester?: string;
   // User custom status when reviewing
   status?: 'PASSED' | 'IN_PROGRESS' | 'NOT_TAKEN';
+  dataStatus?: 'VERIFIED' | 'NEEDS_VERIFICATION';
 }
 
 export interface ElectiveGroupProgress {

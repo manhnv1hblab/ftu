@@ -1,11 +1,13 @@
 import openpyxl
 import sys
+from pathlib import Path
 from difflib import get_close_matches
 
 sys.stdout.reconfigure(encoding='utf-8')
+DOCUMENT_DIR = Path(__file__).resolve().parents[1] / 'document'
 
 # Partners
-wb_part = openpyxl.load_workbook(r'c:\Users\ManhNV1\Desktop\ftu - Copy\document\[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx', data_only=True)
+wb_part = openpyxl.load_workbook(DOCUMENT_DIR / '[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx', data_only=True)
 s_part = wb_part['Danh sách đối tác S27']
 partners = []
 for r in s_part.iter_rows(min_row=2, values_only=True):
@@ -13,7 +15,7 @@ for r in s_part.iter_rows(min_row=2, values_only=True):
         partners.append(str(r[3]).strip())
 
 # Equivalence
-wb_eq = openpyxl.load_workbook(r'c:\Users\ManhNV1\Desktop\ftu - Copy\document\Danh sách học phần tương đương (với các trường đối tác).xlsx', data_only=True)
+wb_eq = openpyxl.load_workbook(DOCUMENT_DIR / 'Danh sách học phần tương đương (với các trường đối tác).xlsx', data_only=True)
 s_eq = wb_eq['Tổng']
 eq_unis = set()
 for r in s_eq.iter_rows(min_row=2, values_only=True):

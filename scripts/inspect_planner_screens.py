@@ -1,14 +1,15 @@
 import sys
 import re
+from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
 
-stitch_dir = r'c:\Users\ManhNV1\Desktop\ftu - Copy\stitch_ftu_exchange_planner'
+stitch_dir = Path(__file__).resolve().parents[1] / 'stitch_ftu_exchange_planner'
 
 def inspect_file(filename, title):
     print(f"\n==============================================")
     print(f"=== {title} ===")
-    path = f"{stitch_dir}\\{filename}\\code.html"
+    path = stitch_dir / filename / 'code.html'
     with open(path, encoding='utf-8') as f:
         c = f.read()
     m = re.search(r'<main[^>]*>(.*?)</main>', c, re.DOTALL)
