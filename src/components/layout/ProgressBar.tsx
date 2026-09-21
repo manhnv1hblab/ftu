@@ -4,7 +4,7 @@ import React from 'react';
 import { useStudent } from '../../context/StudentContext';
 
 export const ProgressBar: React.FC = () => {
-  const { currentStep, setCurrentStep } = useStudent();
+  const { currentStep, setCurrentStep, selectedUniId } = useStudent();
 
   const steps = [
     { num: 1, title: 'Tải bảng điểm / CTĐT', subtitle: 'File .xlsx / Mã môn' },
@@ -26,8 +26,11 @@ export const ProgressBar: React.FC = () => {
               <React.Fragment key={s.num}>
                 {/* Step Item */}
                 <button
-                  onClick={() => setCurrentStep(s.num)}
-                  className="flex items-center gap-space-xs shrink-0 text-left group focus:outline-none transition-all"
+                  onClick={() => (s.num !== 4 || selectedUniId) && setCurrentStep(s.num)}
+                  disabled={s.num === 4 && !selectedUniId}
+                  aria-disabled={s.num === 4 && !selectedUniId}
+                  title={s.num === 4 && !selectedUniId ? 'Hãy chọn một trường trước khi lập phương án.' : undefined}
+                  className={`flex items-center gap-space-xs shrink-0 text-left group focus:outline-none transition-all ${s.num === 4 && !selectedUniId ? 'opacity-45 cursor-not-allowed' : ''}`}
                 >
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center font-label-md text-label-md shrink-0 transition-all ${

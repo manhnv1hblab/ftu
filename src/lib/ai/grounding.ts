@@ -67,6 +67,11 @@ export interface GroundingContext {
     nv2?: GroundingPlanContext;
     nv3?: GroundingPlanContext;
   };
+  preferredUniversities?: {
+    nv1?: { universityId?: string; universityName?: string };
+    nv2?: { universityId?: string; universityName?: string };
+    nv3?: { universityId?: string; universityName?: string };
+  };
 }
 
 export interface GroundingResult {
@@ -172,7 +177,10 @@ export function buildGroundingContext(query: string, context: GroundingContext =
     context.currentPlan?.universityId,
     context.rankedChoices?.nv1?.universityId,
     context.rankedChoices?.nv2?.universityId,
-    context.rankedChoices?.nv3?.universityId
+    context.rankedChoices?.nv3?.universityId,
+    context.preferredUniversities?.nv1?.universityId,
+    context.preferredUniversities?.nv2?.universityId,
+    context.preferredUniversities?.nv3?.universityId
   ].filter((value): value is string => Boolean(value)));
   for (const university of universities.filter(item => selectedUniversityIds.has(item.id))) {
     if (!partnerMatches.some(item => item.university.id === university.id)) partnerMatches.push({ university, score: 100 });
@@ -245,6 +253,12 @@ export function buildGroundingContext(query: string, context: GroundingContext =
   facts.push(...compactPlan('NGUYỆN VỌNG 1', context.rankedChoices?.nv1));
   facts.push(...compactPlan('NGUYỆN VỌNG 2', context.rankedChoices?.nv2));
   facts.push(...compactPlan('NGUYỆN VỌNG 3', context.rankedChoices?.nv3));
+  for (const rank of ['nv1', 'nv2', 'nv3'] as const) {
+    const preferred = context.preferredUniversities?.[rank];
+    if (preferred) {
+      facts.push(`${rank.toUpperCase()}: trường đã chọn=${safeText(preferred.universityName, 160)}; trạng thái phương án=${context.rankedChoices?.[rank] ? 'đã lưu' : 'chưa lập phương án'}`);
+    }
+  }
   facts.push(`CÂU HỎI HIỆN TẠI: ${queryText}`);
   facts.push('NGUYÊN TẮC DỮ LIỆU: APPROVED mới là mapping đã duyệt; PENDING/UNCERTAIN/REJECTED không được trình bày như đã được công nhận. Thiếu nguồn hoặc yêu cầu riêng chưa đối chiếu phải trả lời là NEEDS_VERIFICATION. Không suy ra dữ liệu học phí, visa, học bổng, tín chỉ host, equivalence hoặc khả năng đỗ nếu nguồn không nêu rõ.');
 

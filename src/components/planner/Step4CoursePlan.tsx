@@ -12,6 +12,7 @@ import { CourseEquivalence } from '../../types/equivalence';
 import { CourseOffering } from '../../types/courseOffering';
 import { CourseMatchPair, SelectedStudyPlan } from '../../types/studyPlan';
 import { S27_RULES } from '../../config/s27Rules';
+import { PreferenceRank } from '../../types/preference';
 
 export const Step4CoursePlan: React.FC = () => {
   const {
@@ -19,7 +20,12 @@ export const Step4CoursePlan: React.FC = () => {
     selectedUniId,
     setCurrentStep,
     setRankedChoice,
-    setCurrentPlan
+    setCurrentPlan,
+    rankedChoices,
+    preferredUniversities,
+    activePreferenceRank,
+    openPlanForPreference,
+    setPreferenceReplacementRank
   } = useStudent();
 
   const rawUnis = universitiesData as PartnerUniversity[];
@@ -52,22 +58,36 @@ export const Step4CoursePlan: React.FC = () => {
     );
   }, [university, profile, rawEqs, rawOfferings]);
 
-  // Selected transferred pairs (minimum 3)
-  const [selectedPairs, setSelectedPairs] = useState<CourseMatchPair[]>(() => {
-    return candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum);
-  });
+  const inferredRank = (['nv1', 'nv2', 'nv3'] as const).find(rank => preferredUniversities[rank]?.universityId === selectedUniId);
+  const [selectedRank, setSelectedRank] = useState<PreferenceRank>(activePreferenceRank || inferredRank || 'nv1');
 
   useEffect(() => {
-    setSelectedPairs(candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum));
-  }, [candidatePairs]);
+    if (activePreferenceRank) setSelectedRank(activePreferenceRank);
+  }, [activePreferenceRank]);
+
+  const savedPlan = rankedChoices[selectedRank]?.universityId === university?.id
+    ? rankedChoices[selectedRank]
+    : undefined;
+
+  // Selected transferred pairs (minimum 3), restored from the current NV plan when available.
+  const [selectedPairs, setSelectedPairs] = useState<CourseMatchPair[]>([]);
 
   // Additional host courses to ensure >= 5 courses
   const [additionalHostCourses, setAdditionalHostCourses] = useState<
     { hostCourseName: string; hostCourseCode?: string; estimatedCredits?: number; note?: string }[]
   >([]);
 
+  const editorKey = `${selectedRank}:${university?.id || 'none'}:${savedPlan?.savedAt || 'new'}:${candidatePairs.map(pair => `${pair.equivalenceId}:${pair.status}`).join('|')}`;
+  const [initializedEditorKey, setInitializedEditorKey] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!university || initializedEditorKey === editorKey) return;
+    setSelectedPairs(savedPlan?.transferredCourses || candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum));
+    setAdditionalHostCourses(savedPlan?.hostAdditionalCourses || []);
+    setInitializedEditorKey(editorKey);
+  }, [candidatePairs, editorKey, initializedEditorKey, savedPlan, university]);
+
   const [newHostName, setNewHostName] = useState('');
-  const [selectedRank, setSelectedRank] = useState<'nv1' | 'nv2' | 'nv3'>('nv1');
   const [saveSuccessMsg, setSaveSuccessMsg] = useState<string | null>(null);
 
   // Toggle selection of a course pair
@@ -121,19 +141,27 @@ export const Step4CoursePlan: React.FC = () => {
   const additionalCoursesVerified = additionalHostCourses.every(course => Boolean(
     course.hostCourseCode && course.estimatedCredits && course.estimatedCredits > 0
   ));
+  const planStatus: SelectedStudyPlan['status'] = !satisfies3Transfers || !satisfies5HostCourses
+    ? 'DRAFT_NOT_ELIGIBLE'
+    : !additionalCoursesVerified || simulation.thesisEligibilityStatus !== 'VERIFIED'
+      ? 'NEEDS_VERIFICATION'
+      : 'VALID';
+  const missingPlanRequirements = [
+    !satisfies3Transfers ? `Cần tối thiểu ${S27_RULES.transferredCoursesMinimum} môn FTU có mapping APPROVED.` : null,
+    !satisfies5HostCourses ? `Cần tối thiểu ${S27_RULES.hostCoursesMinimum} học phần tại trường đối tác.` : null,
+    !additionalCoursesVerified ? 'Môn host bổ sung cần mã môn và số tín chỉ đã xác minh.' : null,
+    simulation.thesisEligibilityStatus !== 'VERIFIED' ? 'Mô phỏng HPTN hiện chỉ mang tính tư vấn và cần xác minh.' : null
+  ].filter((reason): reason is string => Boolean(reason));
+  const hasUnsavedChanges = JSON.stringify(selectedPairs) !== JSON.stringify(savedPlan?.transferredCourses || [])
+    || JSON.stringify(additionalHostCourses) !== JSON.stringify(savedPlan?.hostAdditionalCourses || []);
+  const confirmLeaveEditor = () => !hasUnsavedChanges || window.confirm('Bạn có thay đổi chưa lưu. Rời màn hình này sẽ giữ lại bản đã lưu trước đó. Bạn có muốn tiếp tục không?');
 
   const handleSaveToPreference = () => {
     if (!university) return;
-    const status = satisfies3Transfers
-      && satisfies5HostCourses
-      && additionalCoursesVerified
-      && simulation.thesisEligibilityStatus === 'VERIFIED'
-      ? 'VALID'
-      : 'NEEDS_VERIFICATION';
     const plan: SelectedStudyPlan = {
       universityId: university.id,
       universityName: university.name,
-      status,
+      status: planStatus,
       savedAt: new Date().toISOString(),
       sources: [university.source, ...selectedPairs.map(pair => rawEqs.find(eq => eq.id === pair.equivalenceId)?.source).filter(Boolean) as NonNullable<CourseEquivalence['source']>[]],
       transferredCourses: selectedPairs,
@@ -150,9 +178,9 @@ export const Step4CoursePlan: React.FC = () => {
 
     setRankedChoice(selectedRank, plan);
     setCurrentPlan(plan);
-    setSaveSuccessMsg(status === 'VALID'
-      ? `Đã lưu phương án hợp lệ vào ${selectedRank.toUpperCase()} thành công!`
-      : `Đã lưu phương án vào ${selectedRank.toUpperCase()} với trạng thái cần xác minh dữ liệu.`);
+    setSaveSuccessMsg(planStatus === 'VALID'
+      ? `Đã lưu phương án vào ${selectedRank.toUpperCase()} thành công.`
+      : `Đã lưu ${selectedRank.toUpperCase()} với trạng thái ${planStatus === 'DRAFT_NOT_ELIGIBLE' ? 'chưa đủ điều kiện' : 'cần xác minh'}.`);
     setTimeout(() => setSaveSuccessMsg(null), 3000);
   };
 
@@ -178,6 +206,7 @@ export const Step4CoursePlan: React.FC = () => {
             />
           </div>
           <div>
+            <p className="text-[11px] font-bold text-primary mb-1">Gợi ý trường → {selectedRank.toUpperCase()} → Lập phương án môn học</p>
             <div className="flex items-center gap-2">
               <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">
                 {university.region} • {university.flag || '🌏'}
@@ -187,14 +216,18 @@ export const Step4CoursePlan: React.FC = () => {
               </span>
             </div>
             <h1 className="text-xl sm:text-2xl font-bold text-on-surface tracking-tight mt-0.5">
-              {university.name}
+              Đang lập phương án {selectedRank.toUpperCase()}: {university.name}
             </h1>
           </div>
         </div>
 
         <button
           type="button"
-          onClick={() => setCurrentStep(3)}
+          onClick={() => {
+            if (!confirmLeaveEditor()) return;
+            setPreferenceReplacementRank(selectedRank);
+            setCurrentStep(3);
+          }}
           className="text-xs text-primary font-bold hover:underline flex items-center gap-1 self-start sm:self-auto"
         >
           <span className="material-symbols-outlined text-base">sync_alt</span>
@@ -242,6 +275,16 @@ export const Step4CoursePlan: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {missingPlanRequirements.length > 0 && (
+        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-4 text-amber-950">
+          <p className="text-xs font-extrabold">Phương án hiện chưa hoàn tất theo dữ liệu đang có</p>
+          <ul className="mt-1 space-y-1 text-[11px] list-disc list-inside">
+            {missingPlanRequirements.map(reason => <li key={reason}>{reason}</li>)}
+          </ul>
+          <p className="mt-2 text-[11px]">Bạn vẫn có thể lưu bản nháp để tiếp tục xác minh sau.</p>
+        </div>
+      )}
 
       {/* 3. Bilateral Course Mapping Section with 3D Scales */}
       <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-7 shadow-sm border border-surface-container/80 flex flex-col gap-4">
@@ -394,10 +437,14 @@ export const Step4CoursePlan: React.FC = () => {
               <button
                 key={r}
                 type="button"
-                onClick={() => setSelectedRank(r)}
+                onClick={() => {
+                  if (!preferredUniversities[r] || r === selectedRank || !confirmLeaveEditor()) return;
+                  openPlanForPreference(r);
+                }}
+                disabled={!preferredUniversities[r]}
                 className={`px-3 py-1 rounded-full text-xs font-bold transition-all ${selectedRank === r
                     ? 'bg-primary text-white shadow-xs'
-                    : 'text-on-surface-variant hover:text-on-surface'
+                    : preferredUniversities[r] ? 'text-on-surface-variant hover:text-on-surface' : 'text-on-surface-variant/40 cursor-not-allowed'
                   }`}
               >
                 {r.toUpperCase()}
@@ -410,7 +457,7 @@ export const Step4CoursePlan: React.FC = () => {
             onClick={handleSaveToPreference}
             className="px-4 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container text-xs font-bold text-on-surface border border-surface-container transition-colors"
           >
-            Lưu
+            Lưu bản nháp
           </button>
         </div>
 
@@ -428,7 +475,7 @@ export const Step4CoursePlan: React.FC = () => {
           }}
           className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
         >
-          <span>Tiếp tục: Bảng so sánh 3 nguyện vọng</span>
+          <span>Lưu & xem so sánh</span>
           <span className="material-symbols-outlined text-base">arrow_forward</span>
         </button>
       </div>

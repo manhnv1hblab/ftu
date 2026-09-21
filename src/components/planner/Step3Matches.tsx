@@ -12,14 +12,21 @@ import { CourseEquivalence } from '../../types/equivalence';
 import { CountryCost } from '../../types/cost';
 import { CourseOffering } from '../../types/courseOffering';
 import { S27_RULES } from '../../config/s27Rules';
+import { PreferenceRank } from '../../types/preference';
 
 export const Step3Matches: React.FC = () => {
   const {
     profile,
     setCurrentStep,
-    setSelectedUniId,
     rankedChoices,
-    setRankedChoice
+    preferredUniversities,
+    preferenceReplacementRank,
+    setPreferenceReplacementRank,
+    selectPreferredUniversity,
+    replacePreferredUniversity,
+    removePreferredUniversity,
+    reorderPreferredUniversities,
+    openPlanForPreference
   } = useStudent();
 
   // Show auditable candidates first. Users can enable the strict S27 eligibility filter
@@ -29,6 +36,12 @@ export const Step3Matches: React.FC = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [notification, setNotification] = useState<string | null>(null);
+  const [replacementRank, setReplacementRank] = useState<PreferenceRank | null>(preferenceReplacementRank);
+  const [pendingRemoval, setPendingRemoval] = useState<PreferenceRank | null>(null);
+
+  React.useEffect(() => {
+    setReplacementRank(preferenceReplacementRank);
+  }, [preferenceReplacementRank]);
 
   const rawUnis = universitiesData as PartnerUniversity[];
   const rawEqs = equivalencesData as CourseEquivalence[];
@@ -85,38 +98,70 @@ export const Step3Matches: React.FC = () => {
     });
   }, [evaluatedResults, min3Only, verifiedOnly, selectedRegion, searchQuery]);
 
-  const handleSelectUniversity = (uniId: string) => {
-    setSelectedUniId(uniId);
-    setCurrentStep(4);
+  const preferenceRanks: PreferenceRank[] = ['nv1', 'nv2', 'nv3'];
+  const selectedCount = preferenceRanks.filter(rank => Boolean(preferredUniversities[rank])).length;
+  const draftedCount = preferenceRanks.filter(rank => Boolean(rankedChoices[rank]?.transferredCourses?.length)).length;
+  const readyCount = preferenceRanks.filter(rank => rankedChoices[rank]?.status === 'VALID').length;
+
+  const selectedRankForUniversity = (uniId: string): PreferenceRank | null => (
+    preferenceRanks.find(rank => preferredUniversities[rank]?.universityId === uniId) || null
+  );
+
+  const nextAvailableRank = (): PreferenceRank | null => (
+    preferenceRanks.find(rank => !preferredUniversities[rank]) || null
+  );
+
+  const notify = (message: string) => {
+    setNotification(message);
+    window.setTimeout(() => setNotification(null), 3500);
   };
 
-  const isCompared = (uniId: string) => {
-    return (
-      rankedChoices.nv1?.universityId === uniId ||
-      rankedChoices.nv2?.universityId === uniId ||
-      rankedChoices.nv3?.universityId === uniId
-    );
-  };
-
-  const toggleCompare = (uniId: string, uniName: string) => {
-    if (rankedChoices.nv1?.universityId === uniId) {
-      setRankedChoice('nv1', undefined);
-    } else if (rankedChoices.nv2?.universityId === uniId) {
-      setRankedChoice('nv2', undefined);
-    } else if (rankedChoices.nv3?.universityId === uniId) {
-      setRankedChoice('nv3', undefined);
-    } else {
-      if (!rankedChoices.nv1) {
-        setRankedChoice('nv1', { universityId: uniId, universityName: uniName, transferredCourses: [] });
-      } else if (!rankedChoices.nv2) {
-        setRankedChoice('nv2', { universityId: uniId, universityName: uniName, transferredCourses: [] });
-      } else if (!rankedChoices.nv3) {
-        setRankedChoice('nv3', { universityId: uniId, universityName: uniName, transferredCourses: [] });
-      } else {
-        setNotification('Bạn đã chọn tối đa 3 trường vào danh sách so sánh. Hãy bỏ chọn một trường trước.');
-        window.setTimeout(() => setNotification(null), 3000);
-      }
+  const chooseUniversity = (uniId: string, uniName: string) => {
+    const existingRank = selectedRankForUniversity(uniId);
+    const targetRank = replacementRank || existingRank || nextAvailableRank();
+    if (!targetRank) {
+      notify('Bạn đã chọn đủ 3 trường. Hãy đổi hoặc bỏ một trường trước khi chọn thêm.');
+      return;
     }
+
+    const university = {
+      universityId: uniId,
+      universityName: uniName,
+      selectedAt: new Date().toISOString()
+    };
+    const success = replacementRank
+      ? replacePreferredUniversity(targetRank, university)
+      : selectPreferredUniversity(targetRank, university);
+    if (!success) {
+      notify('Trường này đã có trong danh sách NV1–NV3.');
+      return;
+    }
+    setReplacementRank(null);
+    setPreferenceReplacementRank(null);
+    notify(`${uniName} đã được chọn vào ${targetRank.toUpperCase()}.`);
+  };
+
+  const handleOpenPlan = (rank: PreferenceRank) => {
+    if (!openPlanForPreference(rank)) notify('Hãy chọn trường vào nguyện vọng trước.');
+  };
+
+  const handleQuickPlan = (uniId: string, uniName: string) => {
+    const existingRank = selectedRankForUniversity(uniId);
+    if (existingRank) {
+      handleOpenPlan(existingRank);
+      return;
+    }
+    const rank = nextAvailableRank();
+    if (!rank) {
+      notify('Bạn đã chọn đủ 3 trường. Hãy lập phương án từ khay NV1–NV3.');
+      return;
+    }
+    const success = selectPreferredUniversity(rank, {
+      universityId: uniId,
+      universityName: uniName,
+      selectedAt: new Date().toISOString()
+    });
+    if (success) setCurrentStep(4);
   };
 
   const approvedThresholdCount = evaluatedResults.filter(
@@ -159,6 +204,69 @@ export const Step3Matches: React.FC = () => {
       {notification && (
         <div role="status" className="p-3 rounded-2xl bg-amber-600 text-white text-xs font-bold text-center shadow-sm">
           {notification}
+        </div>
+      )}
+
+      <section className="bg-surface-container-lowest rounded-3xl p-4 sm:p-5 shadow-sm border border-primary/20">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
+          <div>
+            <h2 className="text-sm font-extrabold text-on-surface">Danh sách nguyện vọng</h2>
+            <p className="text-xs text-on-surface-variant mt-0.5">Chọn trường theo thứ tự ưu tiên. Bạn sẽ lập phương án môn học riêng cho từng trường.</p>
+          </div>
+          <span className="text-xs font-bold text-primary">Đã chọn {selectedCount}/3 · Đã lập {draftedCount}/3 · Đủ dữ liệu {readyCount}/3</span>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          {preferenceRanks.map((rank, index) => {
+            const preference = preferredUniversities[rank];
+            const plan = rankedChoices[rank];
+            const planStatus = !preference
+              ? 'Chưa chọn trường'
+                : plan?.status === 'VALID'
+                  ? 'Đã đủ dữ liệu theo rule hiện tại'
+                : plan?.status
+                  ? 'Đã lưu bản nháp / cần xác minh'
+                  : 'Chưa lập phương án';
+            return (
+              <div key={rank} className={`rounded-2xl border p-3 ${preference ? 'border-primary/30 bg-primary/5' : 'border-surface-container bg-surface-container-low/40'}`}>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-black text-primary">{rank.toUpperCase()}</span>
+                  {preference && <span className="text-[10px] font-bold text-on-surface-variant">{planStatus}</span>}
+                </div>
+                <p className="text-xs font-bold text-on-surface mt-2 line-clamp-2 min-h-8">{preference?.universityName || 'Chưa chọn trường'}</p>
+                <div className="flex flex-wrap items-center gap-1.5 mt-3">
+                  {preference ? (
+                    <>
+                      <button type="button" onClick={() => handleOpenPlan(rank)} className="px-2.5 py-1.5 rounded-full bg-primary text-white text-[11px] font-bold">{plan?.transferredCourses?.length ? 'Chỉnh sửa phương án' : 'Lập phương án'}</button>
+                      <button type="button" onClick={() => { setReplacementRank(rank); setPreferenceReplacementRank(rank); }} className="px-2.5 py-1.5 rounded-full bg-surface-container text-on-surface text-[11px] font-semibold">Đổi trường</button>
+                      {index > 0 && preferredUniversities[preferenceRanks[index - 1]] && <button type="button" onClick={() => reorderPreferredUniversities(rank, preferenceRanks[index - 1])} className="px-2 py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container" aria-label={`Đưa ${rank.toUpperCase()} lên trước`}><span className="material-symbols-outlined text-sm">arrow_back</span></button>}
+                      {index < preferenceRanks.length - 1 && preferredUniversities[preferenceRanks[index + 1]] && <button type="button" onClick={() => reorderPreferredUniversities(rank, preferenceRanks[index + 1])} className="px-2 py-1.5 rounded-full text-on-surface-variant hover:bg-surface-container" aria-label={`Đưa ${rank.toUpperCase()} xuống sau`}><span className="material-symbols-outlined text-sm">arrow_forward</span></button>}
+                      <button type="button" onClick={() => setPendingRemoval(rank)} className="px-2 py-1.5 rounded-full text-rose-700 hover:bg-rose-50 text-[11px] font-semibold">Bỏ chọn</button>
+                    </>
+                  ) : (
+                    <span className="text-[11px] text-on-surface-variant">Chọn thêm từ danh sách bên dưới</span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {replacementRank && (
+        <div role="status" className="flex items-center justify-between gap-3 p-3 rounded-2xl bg-sky-50 text-sky-900 border border-sky-200 text-xs">
+          <span>Đang chọn trường thay thế cho {replacementRank.toUpperCase()}. Bấm “Chọn vào NV” ở một thẻ trường.</span>
+          <button type="button" onClick={() => { setReplacementRank(null); setPreferenceReplacementRank(null); }} className="font-bold underline">Hủy</button>
+        </div>
+      )}
+
+      {pendingRemoval && (
+        <div role="dialog" aria-modal="true" className="rounded-2xl border border-rose-200 bg-rose-50 p-4 text-sm text-rose-950">
+          <p className="font-bold">Bỏ {pendingRemoval.toUpperCase()} khỏi danh sách?</p>
+          <p className="text-xs mt-1">Nếu nguyện vọng này đã có phương án, phương án tương ứng cũng sẽ được xóa khỏi so sánh.</p>
+          <div className="flex justify-end gap-2 mt-3">
+            <button type="button" onClick={() => setPendingRemoval(null)} className="px-3 py-1.5 rounded-full bg-white border border-rose-200 text-xs font-semibold">Hủy</button>
+            <button type="button" onClick={() => { removePreferredUniversity(pendingRemoval); setPendingRemoval(null); }} className="px-3 py-1.5 rounded-full bg-rose-700 text-white text-xs font-bold">Bỏ chọn</button>
+          </div>
         </div>
       )}
 
@@ -249,7 +357,7 @@ export const Step3Matches: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredResults.map((res) => {
             const uni = res.university;
-            const inCompare = isCompared(uni.id);
+            const selectedRank = selectedRankForUniversity(uni.id);
             const transferredCredits = res.matchedPairs
               .filter(pair => pair.status === 'APPROVED')
               .reduce((sum, pair) => sum + pair.ftuCredits, 0);
@@ -326,24 +434,24 @@ export const Step3Matches: React.FC = () => {
                 <div className="pt-2 border-t border-surface-container flex items-center justify-between gap-2">
                   <button
                     type="button"
-                    onClick={() => toggleCompare(uni.id, uni.name)}
-                    className={`text-xs font-semibold px-2.5 py-1.5 rounded-full transition-colors flex items-center gap-1 ${inCompare
+                    onClick={() => chooseUniversity(uni.id, uni.name)}
+                    className={`text-xs font-semibold px-2.5 py-1.5 rounded-full transition-colors flex items-center gap-1 ${selectedRank
                         ? 'bg-primary text-white font-bold'
                         : 'text-on-surface-variant hover:bg-surface-container'
                       }`}
                   >
                     <span className="material-symbols-outlined text-sm">
-                      {inCompare ? 'check' : 'add'}
+                      {selectedRank ? 'check' : 'add'}
                     </span>
-                    <span>{inCompare ? 'Đã so sánh' : 'So sánh'}</span>
+                    <span>{selectedRank ? `Đã chọn ${selectedRank.toUpperCase()}` : 'Chọn vào NV'}</span>
                   </button>
 
                   <button
                     type="button"
-                    onClick={() => handleSelectUniversity(uni.id)}
+                    onClick={() => handleQuickPlan(uni.id, uni.name)}
                     className="px-4 py-1.5 rounded-full bg-primary text-on-primary text-xs font-bold hover:bg-primary-container transition-all flex items-center gap-1 shadow-xs"
                   >
-                    <span>Xem môn</span>
+                    <span>{selectedRank ? `Lập phương án ${selectedRank.toUpperCase()}` : 'Chọn & lập phương án'}</span>
                     <span className="material-symbols-outlined text-sm">arrow_forward</span>
                   </button>
                 </div>

@@ -4,11 +4,12 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { StudentProfile } from '../types/studentProfile';
 import { StudentCourse } from '../types/curriculum';
 import { SelectedStudyPlan } from '../types/studyPlan';
+import { PreferredUniversities, PreferenceRank, PreferredUniversity } from '../types/preference';
 import sampleCurriculumData from '../../data/sample_curriculum.json';
 import { SOURCE_MANIFEST } from '../config/sourceManifest';
 
 const STORAGE_KEY = 'FTU_GOGLOBAL_PLANNER_DRAFT_V2';
-const STORAGE_VERSION = '2.0.0';
+const STORAGE_VERSION = '3.0.0';
 const DATA_VERSION = 'S27-2026-2027';
 
 function checksum(input: string): string {
@@ -79,10 +80,54 @@ function isValidPlan(value: unknown): value is SelectedStudyPlan {
     && (plan.status === undefined || ['VALID', 'DRAFT_NOT_ELIGIBLE', 'NEEDS_VERIFICATION'].includes(plan.status));
 }
 
+function isValidPreferredUniversity(value: unknown): value is PreferredUniversity {
+  if (!value || typeof value !== 'object') return false;
+  const preferred = value as Partial<PreferredUniversity>;
+  return typeof preferred.universityId === 'string'
+    && typeof preferred.universityName === 'string'
+    && typeof preferred.selectedAt === 'string';
+}
+
+function isValidPreferredUniversities(value: unknown): value is PreferredUniversities {
+  if (!value || typeof value !== 'object') return false;
+  const preferences = value as Record<string, unknown>;
+  return (preferences.nv1 === undefined || isValidPreferredUniversity(preferences.nv1))
+    && (preferences.nv2 === undefined || isValidPreferredUniversity(preferences.nv2))
+    && (preferences.nv3 === undefined || isValidPreferredUniversity(preferences.nv3));
+}
+
+function derivePreferencesFromPlans(value: unknown): PreferredUniversities {
+  if (!isValidRankedChoices(value)) return {};
+  const preferences: PreferredUniversities = {};
+  (['nv1', 'nv2', 'nv3'] as const).forEach(rank => {
+    const plan = value[rank];
+    if (plan) {
+      preferences[rank] = {
+        universityId: plan.universityId,
+        universityName: plan.universityName,
+        selectedAt: plan.savedAt || new Date(0).toISOString()
+      };
+    }
+  });
+  return preferences;
+}
+
 function isValidRankedChoices(value: unknown): value is { nv1?: SelectedStudyPlan; nv2?: SelectedStudyPlan; nv3?: SelectedStudyPlan } {
   if (!value || typeof value !== 'object') return false;
   const choices = value as Record<string, unknown>;
   return ['nv1', 'nv2', 'nv3'].every(key => choices[key] === undefined || isValidPlan(choices[key]));
+}
+
+function normalizeRankedChoices(value: unknown): { nv1?: SelectedStudyPlan; nv2?: SelectedStudyPlan; nv3?: SelectedStudyPlan } {
+  if (!isValidRankedChoices(value)) return {};
+  const normalized: { nv1?: SelectedStudyPlan; nv2?: SelectedStudyPlan; nv3?: SelectedStudyPlan } = {};
+  (['nv1', 'nv2', 'nv3'] as const).forEach(rank => {
+    const plan = value[rank];
+    if (plan && (Boolean(plan.status) || Boolean(plan.savedAt) || plan.transferredCourses.length > 0 || Boolean(plan.hostAdditionalCourses?.length))) {
+      normalized[rank] = plan;
+    }
+  });
+  return normalized;
 }
 
 function hasValidChecksum(value: Record<string, unknown>): boolean {
@@ -135,6 +180,16 @@ interface StudentContextType {
     nv2?: SelectedStudyPlan;
     nv3?: SelectedStudyPlan;
   };
+  preferredUniversities: PreferredUniversities;
+  activePreferenceRank: PreferenceRank | null;
+  preferenceReplacementRank: PreferenceRank | null;
+  setPreferenceReplacementRank: (rank: PreferenceRank | null) => void;
+  selectPreferredUniversity: (rank: PreferenceRank, university: PreferredUniversity) => boolean;
+  replacePreferredUniversity: (rank: PreferenceRank, university: PreferredUniversity) => boolean;
+  removePreferredUniversity: (rank: PreferenceRank) => void;
+  reorderPreferredUniversities: (from: PreferenceRank, to: PreferenceRank) => void;
+  openPlanForPreference: (rank: PreferenceRank) => boolean;
+  clearSavedPlan: (rank: PreferenceRank) => void;
   setRankedChoice: (rank: 'nv1' | 'nv2' | 'nv3', plan: SelectedStudyPlan | undefined) => void;
   updateProfile: (updates: Partial<StudentProfile>) => void;
   updateCourse: (courseCode: string, isPassed: boolean, isTaken: boolean) => void;
@@ -159,6 +214,9 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     nv2?: SelectedStudyPlan;
     nv3?: SelectedStudyPlan;
   }>({});
+  const [preferredUniversities, setPreferredUniversities] = useState<PreferredUniversities>({});
+  const [activePreferenceRank, setActivePreferenceRank] = useState<PreferenceRank | null>(null);
+  const [preferenceReplacementRank, setPreferenceReplacementRank] = useState<PreferenceRank | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
 
@@ -170,10 +228,15 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         const parsed = JSON.parse(saved);
         if (!hasValidChecksum(parsed)) throw new Error('Draft checksum mismatch');
         if (isValidProfile(parsed.profile)) setProfile(parsed.profile);
-        if (isValidRankedChoices(parsed.rankedChoices)) setRankedChoices(parsed.rankedChoices);
+        setRankedChoices(normalizeRankedChoices(parsed.rankedChoices));
+        const restoredPreferences = isValidPreferredUniversities(parsed.preferredUniversities)
+          ? parsed.preferredUniversities
+          : derivePreferencesFromPlans(parsed.rankedChoices);
+        setPreferredUniversities(restoredPreferences);
         if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.currentPlan);
         if (parsed.currentStep) setCurrentStep(parsed.currentStep);
         if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
+        if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
         if (parsed.updatedAt) setLastSavedAt(parsed.updatedAt);
       }
     } catch (e) {
@@ -190,10 +253,14 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         const parsed = JSON.parse(event.newValue);
         if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return;
         setProfile(parsed.profile);
-        setRankedChoices(isValidRankedChoices(parsed.rankedChoices) ? parsed.rankedChoices : {});
+        setRankedChoices(normalizeRankedChoices(parsed.rankedChoices));
+        setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
+          ? parsed.preferredUniversities
+          : derivePreferencesFromPlans(parsed.rankedChoices));
         setCurrentPlan(isValidPlan(parsed.currentPlan) ? parsed.currentPlan : null);
         setCurrentStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
         setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
+        setActivePreferenceRank(['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank) ? parsed.activePreferenceRank : null);
         setLastSavedAt(typeof parsed.updatedAt === 'string' ? parsed.updatedAt : null);
       } catch (e) {
         console.warn('Could not synchronize draft from another tab', e);
@@ -214,6 +281,8 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
           profile,
           currentPlan,
           rankedChoices,
+          preferredUniversities,
+          activePreferenceRank,
           currentStep,
           selectedUniId,
           sourceManifest: SOURCE_MANIFEST
@@ -226,13 +295,16 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
     }, 500);
     return () => window.clearTimeout(timer);
-  }, [isHydrated, profile, currentPlan, rankedChoices, currentStep, selectedUniId]);
+  }, [isHydrated, profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
 
   const updateProfile = (updates: Partial<StudentProfile>) => {
     setProfile(prev => ({ ...prev, ...updates }));
     // Any profile/course change invalidates derived matching and graduation results.
     setCurrentPlan(null);
     setRankedChoices({});
+    setPreferredUniversities({});
+    setActivePreferenceRank(null);
+    setPreferenceReplacementRank(null);
   };
 
   const updateCourse = (courseCode: string, isPassed: boolean, isTaken: boolean) => {
@@ -278,6 +350,9 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setSelectedUniId(null);
     setCurrentPlan(null);
     setRankedChoices({});
+    setPreferredUniversities({});
+    setActivePreferenceRank(null);
+    setPreferenceReplacementRank(null);
     if (typeof window !== 'undefined') {
       localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
@@ -294,6 +369,8 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         profile,
         currentPlan,
         rankedChoices,
+        preferredUniversities,
+        activePreferenceRank,
         currentStep,
         selectedUniId,
         sourceManifest: SOURCE_MANIFEST
@@ -317,10 +394,14 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       const ranked = parsed.rankedChoices || {};
       if (!isValidRankedChoices(ranked)) return false;
       if (parsed.profile) setProfile(parsed.profile);
-      setRankedChoices(ranked);
+      setRankedChoices(normalizeRankedChoices(ranked));
+      setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
+        ? parsed.preferredUniversities
+        : derivePreferencesFromPlans(ranked));
       if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.currentPlan);
       if (parsed.currentStep) setCurrentStep(parsed.currentStep);
       if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
+      if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
       if (parsed.updatedAt) setLastSavedAt(parsed.updatedAt);
       return true;
     } catch (e) {
@@ -337,6 +418,8 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       profile,
       currentPlan,
       rankedChoices,
+      preferredUniversities,
+      activePreferenceRank,
       sourceManifest: SOURCE_MANIFEST
     };
     const serialized = JSON.stringify(draft);
@@ -353,8 +436,12 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       }
       if (isValidProfile(parsed.profile) && isValidRankedChoices(parsed.rankedChoices)) {
         setProfile(parsed.profile);
-        setRankedChoices(parsed.rankedChoices);
+        setRankedChoices(normalizeRankedChoices(parsed.rankedChoices));
+        setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
+          ? parsed.preferredUniversities
+          : derivePreferencesFromPlans(parsed.rankedChoices));
         if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.currentPlan);
+        if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
         return true;
       }
       return false;
@@ -376,6 +463,95 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     });
   };
 
+  const selectPreferredUniversity = (rank: PreferenceRank, university: PreferredUniversity): boolean => {
+    const duplicate = Object.entries(preferredUniversities).some(([existingRank, existing]) => (
+      existingRank !== rank && existing?.universityId === university.universityId
+    ));
+    if (duplicate) return false;
+    setPreferredUniversities(prev => ({ ...prev, [rank]: university }));
+    setPreferenceReplacementRank(null);
+    setActivePreferenceRank(rank);
+    setSelectedUniId(university.universityId);
+    return true;
+  };
+
+  const replacePreferredUniversity = (rank: PreferenceRank, university: PreferredUniversity): boolean => {
+    const duplicate = Object.entries(preferredUniversities).some(([existingRank, existing]) => (
+      existingRank !== rank && existing?.universityId === university.universityId
+    ));
+    if (duplicate) return false;
+    setRankedChoices(prev => {
+      const next = { ...prev };
+      delete next[rank];
+      return next;
+    });
+    setCurrentPlan(null);
+    setPreferredUniversities(prev => ({ ...prev, [rank]: university }));
+    setPreferenceReplacementRank(null);
+    setActivePreferenceRank(rank);
+    setSelectedUniId(university.universityId);
+    return true;
+  };
+
+  const removePreferredUniversity = (rank: PreferenceRank) => {
+    setPreferredUniversities(prev => {
+      const next = { ...prev };
+      delete next[rank];
+      return next;
+    });
+    setRankedChoices(prev => {
+      const next = { ...prev };
+      delete next[rank];
+      return next;
+    });
+    if (activePreferenceRank === rank) {
+      setActivePreferenceRank(null);
+      setSelectedUniId(null);
+      setCurrentPlan(null);
+      setPreferenceReplacementRank(null);
+    }
+  };
+
+  const reorderPreferredUniversities = (from: PreferenceRank, to: PreferenceRank) => {
+    if (from === to) return;
+    setPreferredUniversities(prev => {
+      const next = { ...prev };
+      const fromValue = next[from];
+      const toValue = next[to];
+      if (fromValue) next[to] = fromValue; else delete next[to];
+      if (toValue) next[from] = toValue; else delete next[from];
+      return next;
+    });
+    setRankedChoices(prev => {
+      const next = { ...prev };
+      const fromValue = next[from];
+      const toValue = next[to];
+      if (fromValue) next[to] = fromValue; else delete next[to];
+      if (toValue) next[from] = toValue; else delete next[from];
+      return next;
+    });
+    setActivePreferenceRank(prev => prev === from ? to : prev === to ? from : prev);
+  };
+
+  const openPlanForPreference = (rank: PreferenceRank): boolean => {
+    const preference = preferredUniversities[rank];
+    if (!preference) return false;
+    setActivePreferenceRank(rank);
+    setSelectedUniId(preference.universityId);
+    setCurrentPlan(rankedChoices[rank] || null);
+    setCurrentStep(4);
+    return true;
+  };
+
+  const clearSavedPlan = (rank: PreferenceRank) => {
+    setRankedChoices(prev => {
+      const next = { ...prev };
+      delete next[rank];
+      return next;
+    });
+    if (activePreferenceRank === rank) setCurrentPlan(null);
+  };
+
   return (
     <StudentContext.Provider
       value={{
@@ -387,6 +563,16 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         currentPlan,
         setCurrentPlan,
         rankedChoices,
+        preferredUniversities,
+        activePreferenceRank,
+        preferenceReplacementRank,
+        setPreferenceReplacementRank,
+        selectPreferredUniversity,
+        replacePreferredUniversity,
+        removePreferredUniversity,
+        reorderPreferredUniversities,
+        openPlanForPreference,
+        clearSavedPlan,
         setRankedChoice,
         updateProfile,
         updateCourse,

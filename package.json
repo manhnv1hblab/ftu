@@ -11,7 +11,8 @@
     "test:engine": "node scripts/test_engine_rules.js",
     "test:data": "python scripts/validate_data.py",
     "test:e2e": "node scripts/test_e2e_smoke.js",
-    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:data && npm run test:e2e && npm run build"
+    "test:flow": "node scripts/test_planner_flow_contract.js",
+    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:data && npm run test:e2e && npm run test:flow && npm run build"
   },
   "dependencies": {
     "clsx": "^2.1.1",

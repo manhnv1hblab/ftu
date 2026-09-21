@@ -14,7 +14,7 @@ const initialMessage: ChatMessage = {
   content: 'Xin chào! Tôi là trợ lý FTU GoGlobal. Tôi chỉ tư vấn dựa trên dữ liệu S27 đã audit trong hệ thống. Nếu nguồn chưa đủ chắc chắn, tôi sẽ nói rõ “cần xác minh” thay vì tự suy đoán.'
 };
 
-function buildClientContext(profile: ReturnType<typeof useStudent>['profile'], currentStep: number, currentPlan: ReturnType<typeof useStudent>['currentPlan'], rankedChoices: ReturnType<typeof useStudent>['rankedChoices']) {
+function buildClientContext(profile: ReturnType<typeof useStudent>['profile'], currentStep: number, currentPlan: ReturnType<typeof useStudent>['currentPlan'], rankedChoices: ReturnType<typeof useStudent>['rankedChoices'], preferredUniversities: ReturnType<typeof useStudent>['preferredUniversities']) {
   return {
     currentStep,
     profile: {
@@ -41,20 +41,21 @@ function buildClientContext(profile: ReturnType<typeof useStudent>['profile'], c
       }))
     },
     currentPlan,
-    rankedChoices
+    rankedChoices,
+    preferredUniversities
   };
 }
 
 export const AdvisorChat: React.FC = () => {
-  const { profile, currentStep, currentPlan, rankedChoices } = useStudent();
+  const { profile, currentStep, currentPlan, rankedChoices, preferredUniversities } = useStudent();
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
   const [isLoading, setIsLoading] = useState(false);
 
   const context = useMemo(
-    () => buildClientContext(profile, currentStep, currentPlan, rankedChoices),
-    [profile, currentStep, currentPlan, rankedChoices]
+    () => buildClientContext(profile, currentStep, currentPlan, rankedChoices, preferredUniversities),
+    [profile, currentStep, currentPlan, rankedChoices, preferredUniversities]
   );
 
   const sendMessage = async (event?: FormEvent) => {
