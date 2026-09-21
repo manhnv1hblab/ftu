@@ -73,6 +73,7 @@ export const ProfileDetailsForm: React.FC = () => {
         <div className="flex flex-col gap-1.5">
           <label className={labelClass} htmlFor="profile-program">Chương trình</label>
           <select id="profile-program" value={profile.program} onChange={e => updateProfile({ program: e.target.value as typeof profile.program })} className={inputClass}>
+            <option value="">Chưa xác định</option>
             <option value="Tiêu chuẩn">Tiêu chuẩn</option>
             <option value="CLC">Chất lượng cao (CLC)</option>
             <option value="CTTT">Tiên tiến (CTTT)</option>

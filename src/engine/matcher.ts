@@ -205,6 +205,13 @@ export function evaluateAllUniversities(
       ? 'NEEDS_VERIFICATION'
       : sources.every(source => sourceStatus(source) === 'VERIFIED') ? 'VERIFIED' : 'NEEDS_VERIFICATION';
 
+    if (uncertainPairs.length > 0) {
+      missingReqs.push(`${uncertainPairs.length} equivalence chưa đủ cơ sở xác minh`);
+    }
+    if (dataStatus !== 'VERIFIED') {
+      missingReqs.push('Một hoặc nhiều nguồn dữ liệu của kết quả này chưa ở trạng thái VERIFIED');
+    }
+
     results.push({
       university: uni,
       matchedPairs,

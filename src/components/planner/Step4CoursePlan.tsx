@@ -114,13 +114,22 @@ export const Step4CoursePlan: React.FC = () => {
   }, [profile, selectedPairs, rawOfferings]);
 
   const totalHostCoursesCount = selectedPairs.length + additionalHostCourses.length;
-  const selectedTransferredCredits = selectedPairs.reduce((sum, pair) => sum + pair.ftuCredits, 0);
-  const satisfies3Transfers = selectedPairs.length >= S27_RULES.transferredCoursesMinimum;
+  const approvedSelectedPairs = selectedPairs.filter(pair => pair.status === 'APPROVED');
+  const selectedTransferredCredits = approvedSelectedPairs.reduce((sum, pair) => sum + pair.ftuCredits, 0);
+  const satisfies3Transfers = approvedSelectedPairs.length >= S27_RULES.transferredCoursesMinimum;
   const satisfies5HostCourses = totalHostCoursesCount >= S27_RULES.hostCoursesMinimum;
+  const additionalCoursesVerified = additionalHostCourses.every(course => Boolean(
+    course.hostCourseCode && course.estimatedCredits && course.estimatedCredits > 0
+  ));
 
   const handleSaveToPreference = () => {
     if (!university) return;
-    const status = satisfies3Transfers && satisfies5HostCourses && simulation.thesisEligibilityStatus === 'VERIFIED' ? 'VALID' : 'NEEDS_VERIFICATION';
+    const status = satisfies3Transfers
+      && satisfies5HostCourses
+      && additionalCoursesVerified
+      && simulation.thesisEligibilityStatus === 'VERIFIED'
+      ? 'VALID'
+      : 'NEEDS_VERIFICATION';
     const plan: SelectedStudyPlan = {
       universityId: university.id,
       universityName: university.name,
@@ -203,8 +212,8 @@ export const Step4CoursePlan: React.FC = () => {
             {satisfies3Transfers ? 'check_circle' : 'warning'}
           </span>
           <div>
-            <span className="font-bold block">Quy đổi FTU: {selectedPairs.length}/{S27_RULES.transferredCoursesMinimum} môn</span>
-            <span className="text-[11px] opacity-80">{selectedTransferredCredits} tín chỉ công nhận</span>
+            <span className="font-bold block">Quy đổi FTU: {approvedSelectedPairs.length}/{S27_RULES.transferredCoursesMinimum} môn đã duyệt</span>
+            <span className="text-[11px] opacity-80">{selectedTransferredCredits} tín chỉ đã được công nhận</span>
           </div>
         </div>
 
@@ -283,7 +292,11 @@ export const Step4CoursePlan: React.FC = () => {
                     <input
                       type="checkbox"
                       checked={isSelected}
-                      onChange={() => { }} // handled by div onClick
+                      onChange={(event) => {
+                        event.stopPropagation();
+                        toggleSelectPair(pair);
+                      }}
+                      onClick={(event) => event.stopPropagation()}
                       className="rounded text-primary focus:ring-primary h-4 w-4 shrink-0"
                     />
                     <div className="flex flex-col">

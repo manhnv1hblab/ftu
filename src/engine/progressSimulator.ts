@@ -42,7 +42,8 @@ export function simulateStudentProgress(
 
   // Filter out courses simulated as failed transfer
   const successfulTransfers = transferredPairs.filter(
-    p => !failedTransferCourseCodes.includes(p.ftuCourseCode.toUpperCase())
+    p => p.status === 'APPROVED'
+      && !failedTransferCourseCodes.includes(p.ftuCourseCode.toUpperCase())
   );
 
   // Total credits transferred back

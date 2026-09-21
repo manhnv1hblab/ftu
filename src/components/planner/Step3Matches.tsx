@@ -152,7 +152,7 @@ export const Step3Matches: React.FC = () => {
 
         <div className="flex items-center gap-2 text-xs font-bold text-emerald-800 bg-emerald-50 px-3.5 py-2 rounded-2xl border border-emerald-200 self-start sm:self-auto shrink-0 shadow-xs">
           <span className="material-symbols-outlined text-base text-emerald-600">verified</span>
-          <span>{approvedThresholdCount} trường có ≥{S27_RULES.transferredCoursesMinimum} môn đã duyệt · {qualifiedCount} trường đủ điều kiện đầy đủ</span>
+          <span>{approvedThresholdCount} trường có ≥{S27_RULES.transferredCoursesMinimum} môn đã duyệt · {qualifiedCount} trường đã xác minh đầy đủ</span>
         </div>
       </div>
 
@@ -313,6 +313,9 @@ export const Step3Matches: React.FC = () => {
 
                   <div className="space-y-1 text-[11px] text-on-surface-variant">
                     {res.recommendationReasons.slice(0, 2).map(reason => <p key={reason}>• {reason}</p>)}
+                    {!res.meetsEligibility && res.missingRequirements.slice(0, 2).map(reason => (
+                      <p key={reason} className="text-amber-700">• {reason}</p>
+                    ))}
                     <p className="truncate" title={res.sources[0]?.file || 'Chưa có nguồn'}>
                       <strong className="text-on-surface">Nguồn:</strong> {res.sources[0]?.file || 'Chưa có nguồn dữ liệu'}
                     </p>

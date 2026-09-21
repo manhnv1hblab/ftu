@@ -169,7 +169,7 @@ export const Step2Review: React.FC = () => {
               <span className="material-symbols-outlined text-sm">
                 {eligibility.isEligible ? 'verified' : 'help'}
               </span>
-              <span>{eligibility.isEligible ? 'Đủ chuẩn S27' : 'Chi tiết điều kiện'}</span>
+              <span>{eligibility.isEligible ? 'Đủ điều kiện hồ sơ S27' : 'Chi tiết điều kiện'}</span>
             </button>
           </div>
         </div>
@@ -220,7 +220,7 @@ export const Step2Review: React.FC = () => {
         {showEligibilityDetails && (
           <div className="bg-surface-container-low/70 rounded-2xl p-4 mt-2 border border-surface-container text-xs space-y-3 animate-fade-in">
             <div className="flex items-center justify-between font-bold text-on-surface">
-              <span>Đánh giá 4 tiêu chí trao đổi S27 (Quy chế FTU)</span>
+              <span>Đánh giá điều kiện trao đổi S27 theo hồ sơ</span>
               <span className={eligibility.isEligible ? 'text-emerald-700' : 'text-amber-700'}>
                 {eligibility.isEligible ? '✓ Đủ điều kiện theo dữ liệu hiện có' : 'Cần xác minh / bổ sung dữ liệu'}
               </span>

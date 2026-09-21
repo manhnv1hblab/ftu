@@ -184,6 +184,7 @@ export function checkProgramEligibility(
       requiredValue: partnerUni.requirements,
       detail: partnerUni.requirements
     });
+    unmetSummary.push(`Chưa đối chiếu yêu cầu riêng của ${partnerUni.name} từ nội dung nguồn`);
   }
 
   const isEligible = criteria.every(c => c.passed);
