@@ -15,6 +15,11 @@ const MAX_MESSAGE_LENGTH = 2400;
 const MAX_FACTS_LENGTH = 42_000;
 const RATE_LIMIT = 20;
 const RATE_WINDOW_MS = 60_000;
+const DEFAULT_GROQ_MODEL = 'openai/gpt-oss-120b';
+const DEPRECATED_GROQ_MODELS = new Set([
+  'llama-3.3-70b-versatile',
+  'llama-3.1-8b-instant',
+]);
 const requestBuckets = new Map<string, { count: number; resetAt: number }>();
 
 function getClientKey(request: NextRequest): string {
@@ -52,6 +57,12 @@ function errorResponse(message: string, status: number): NextResponse {
   return NextResponse.json({ error: message }, { status, headers: { 'Cache-Control': 'no-store' } });
 }
 
+function getGroqModel(): string {
+  const configuredModel = process.env.GROQ_MODEL?.trim();
+  if (!configuredModel || DEPRECATED_GROQ_MODELS.has(configuredModel)) return DEFAULT_GROQ_MODEL;
+  return configuredModel;
+}
+
 export async function POST(request: NextRequest): Promise<NextResponse> {
   if (isRateLimited(getClientKey(request))) return errorResponse('Bạn đã gửi quá nhiều câu hỏi trong thời gian ngắn. Vui lòng thử lại sau một phút.', 429);
 
@@ -70,6 +81,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   const grounding = buildGroundingContext(messages[messages.length - 1].content, payload.context || {});
   const facts = grounding.facts.slice(0, MAX_FACTS_LENGTH);
+  const model = getGroqModel();
   const systemPrompt = `Bạn là trợ lý tư vấn FTU GoGlobal cho chương trình trao đổi S27.
 
 BẮT BUỘC:
@@ -94,7 +106,7 @@ ${facts}`;
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: process.env.GROQ_MODEL?.trim() || 'llama-3.3-70b-versatile',
+        model,
         temperature: 0.1,
         max_completion_tokens: 900,
         messages: [
@@ -106,7 +118,21 @@ ${facts}`;
     });
 
     const result = await response.json() as { choices?: Array<{ message?: { content?: unknown } }> };
-    if (!response.ok) return errorResponse('Groq không trả lời được lúc này. Vui lòng thử lại sau.', 502);
+    if (!response.ok) {
+      const errorBody = result as { error?: { type?: string; code?: string; message?: string } };
+      console.error('[ai/chat] Groq request failed', {
+        status: response.status,
+        model,
+        type: errorBody.error?.type,
+        code: errorBody.error?.code,
+        message: errorBody.error?.message,
+      });
+      if (response.status === 401 || response.status === 403) {
+        return errorResponse('Groq API key không hợp lệ hoặc chưa được cấp quyền cho model đang dùng.', 502);
+      }
+      if (response.status === 429) return errorResponse('Groq đang giới hạn tốc độ hoặc hạn mức. Vui lòng thử lại sau.', 502);
+      return errorResponse('Groq không trả lời được lúc này. Vui lòng thử lại sau.', 502);
+    }
     const answer = result.choices?.[0]?.message?.content;
     if (typeof answer !== 'string' || !answer.trim()) return errorResponse('Groq trả về câu trả lời rỗng.', 502);
 

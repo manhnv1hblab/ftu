@@ -54,7 +54,7 @@ Sao chép `.env.example` thành `.env.local`, sau đó thêm key ở server:
 
 ```env
 GROQ_API_KEY=your-groq-api-key
-GROQ_MODEL=llama-3.3-70b-versatile
+GROQ_MODEL=openai/gpt-oss-120b
 ```
 
 Không dùng `NEXT_PUBLIC_GROQ_API_KEY` và không commit `.env.local`. Chatbot chỉ được cung cấp các bản ghi phù hợp từ `data/`, quy tắc S27 và nguồn trong `document/`; dữ liệu `PENDING`, `UNCERTAIN`, `REJECTED` hoặc thiếu nguồn phải được trả lời là cần xác minh.
