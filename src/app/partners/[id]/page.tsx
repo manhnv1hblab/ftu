@@ -95,7 +95,8 @@ export default function UniversityDetailPage() {
     COUNTRY_CAMPUS_HEROES[university.country] ||
     (university.region === 'Asia' ? COUNTRY_CAMPUS_HEROES['Korea'] :
       university.region === 'Europe' ? COUNTRY_CAMPUS_HEROES['France'] :
-        COUNTRY_CAMPUS_HEROES['default']);
+      COUNTRY_CAMPUS_HEROES['default']);
+  const isCampusImage = university.imageSourceType === 'official-campus-image' || university.imageSourceType === 'internet-campus-image';
 
   const gallery = university.galleryImages && university.galleryImages.length > 0
     ? university.galleryImages
@@ -113,9 +114,9 @@ export default function UniversityDetailPage() {
       <div className="relative h-[360px] md:h-[440px] w-full overflow-hidden bg-surface-container-high">
         <Image
           src={heroImg}
-          alt={`Khuôn viên trường ${university.name}`}
+          alt={isCampusImage ? `Ảnh khuôn viên của ${university.name}` : `Hình ảnh nhận diện chính thức của ${university.name}`}
           fill
-          className="object-cover"
+          className={isCampusImage ? 'object-cover' : 'object-contain bg-white p-24'}
           priority
           unoptimized
         />
@@ -431,8 +432,8 @@ export default function UniversityDetailPage() {
           <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-sm border border-surface-container/80 space-y-4">
             <div className="flex items-center justify-between">
               <div>
-                <h3 className="text-base font-bold text-on-surface">Thư viện ảnh khuôn viên trường</h3>
-                <p className="text-xs text-on-surface-variant">Không gian giảng đường, thư viện và đời sống sinh viên tại {university.name}</p>
+                <h3 className="text-base font-bold text-on-surface">{isCampusImage ? 'Ảnh khuôn viên / cơ sở vật chất' : 'Ảnh nhận diện chính thức của trường'}</h3>
+                <p className="text-xs text-on-surface-variant">Nguồn ảnh được ghi lại để kiểm tra; ảnh không phải dữ liệu nghiệp vụ S27.</p>
               </div>
               <span className="text-xs font-bold text-primary">{gallery.length} hình ảnh</span>
             </div>
@@ -442,14 +443,14 @@ export default function UniversityDetailPage() {
                 <div key={idx} className="relative h-56 rounded-2xl overflow-hidden shadow-xs border border-surface-container group">
                   <Image
                     src={imgUrl}
-                    alt={`Khuôn viên ${university.name} ảnh ${idx + 1}`}
+                    alt={isCampusImage ? `Ảnh khuôn viên ${university.name} số ${idx + 1}` : `Ảnh nhận diện ${university.name} số ${idx + 1}`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className={isCampusImage ? 'object-cover group-hover:scale-105 transition-transform duration-500' : 'object-contain bg-white p-16 group-hover:scale-105 transition-transform duration-500'}
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <span className="absolute bottom-2.5 left-2.5 text-white text-[11px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
-                    Campus {university.name}
+                    {isCampusImage ? `Campus ${university.name}` : 'Official identity image'}
                   </span>
                 </div>
               ))}

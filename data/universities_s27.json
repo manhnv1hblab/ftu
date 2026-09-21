@@ -15,7 +15,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 2
-    }
+    },
+    "websiteUrl": "https://uregina.ca",
+    "logoUrl": "https://icon.horse/icon/uregina.ca",
+    "imageUrl": "https://www.uregina.ca/about/assets/images/heros/buildingshero-1600x858.jpg",
+    "imageSourceUrl": "https://www.uregina.ca/about/contact/maps-directions/buildings.html",
+    "imageSourceType": "official-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "Buildings and Floor Plans | University of Regina"
   },
   {
     "id": "university-of-the-bahamas",
@@ -33,7 +40,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 3
-    }
+    },
+    "websiteUrl": "https://ub.edu.bs",
+    "logoUrl": "https://icon.horse/icon/ub.edu.bs",
+    "imageUrl": "https://www.ub.edu.bs/wp-content/uploads/2017/05/Harry-C-Moore-Library-and-Information-Centre.jpg",
+    "imageSourceUrl": "https://www.ub.edu.bs/ub-announces-inaugural-presidents-gala-soiree/",
+    "imageSourceType": "official-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "UB Announces Inaugural President’s Gala Soirée - University of The Bahamas"
   },
   {
     "id": "millikin-university",
@@ -51,7 +65,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 4
-    }
+    },
+    "websiteUrl": "https://millikin.edu",
+    "logoUrl": "https://icon.horse/icon/millikin.edu",
+    "imageUrl": "https://icon.horse/icon/millikin.edu",
+    "imageSourceUrl": "https://millikin.edu",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "minnesota-state-university",
@@ -69,7 +89,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 5
-    }
+    },
+    "websiteUrl": "https://mnsu.edu",
+    "logoUrl": "https://icon.horse/icon/mnsu.edu",
+    "imageUrl": "https://collegevine.imgix.net/50e372a9-d43f-4b70-876b-9ab17484ef56.jpg?auto=format&crop=edges&fit=crop",
+    "imageSourceUrl": "https://www.collegevine.com/schools/minnesota-state-university-mankato",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "niagara-university",
@@ -87,7 +113,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 6
-    }
+    },
+    "websiteUrl": "https://niagara.edu",
+    "logoUrl": "https://icon.horse/icon/niagara.edu",
+    "imageUrl": "https://icon.horse/icon/niagara.edu",
+    "imageSourceUrl": "https://niagara.edu",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "university-of-south-carolina",
@@ -105,7 +137,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 7
-    }
+    },
+    "websiteUrl": "https://sc.edu",
+    "logoUrl": "https://icon.horse/icon/sc.edu",
+    "imageUrl": "https://www.sc.edu/imgs/background/background-campus-tours-31.jpg",
+    "imageSourceUrl": "https://sc.edu/visit/",
+    "imageSourceType": "official-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "Visit Campus | University of South Carolina"
   },
   {
     "id": "lingnan-university",
@@ -123,7 +162,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 8
-    }
+    },
+    "websiteUrl": "https://ln.edu.hk",
+    "logoUrl": "https://icon.horse/icon/ln.edu.hk",
+    "imageUrl": "https://icon.horse/icon/ln.edu.hk",
+    "imageSourceUrl": "https://ln.edu.hk",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "beijing-foreign-studies-university-bfsu",
@@ -141,7 +186,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 9
-    }
+    },
+    "websiteUrl": "https://bfsu.edu.cn",
+    "logoUrl": "https://icon.horse/icon/bfsu.edu.cn",
+    "imageUrl": "https://lxbw.bfsu.edu.cn/images/19/04/05/1wpl2xpxvg/201807115210152485255.jpg",
+    "imageSourceUrl": "https://lxbw.bfsu.edu.cn/xyfm1/xyfj.htm",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "beijing-international-studies-university-bisu",
@@ -159,7 +210,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 10
-    }
+    },
+    "websiteUrl": "https://bisu.edu.cn",
+    "logoUrl": "https://icon.horse/icon/bisu.edu.cn",
+    "imageUrl": "https://icon.horse/icon/bisu.edu.cn",
+    "imageSourceUrl": "https://bisu.edu.cn",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "guangdong-university-of-foreign-studies-south-china-business-college-scbc",
@@ -177,7 +234,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 11
-    }
+    },
+    "websiteUrl": "https://gdufs.edu.cn",
+    "logoUrl": "https://icon.horse/icon/gdufs.edu.cn",
+    "imageUrl": "https://icon.horse/icon/gdufs.edu.cn",
+    "imageSourceUrl": "https://gdufs.edu.cn",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "guilin-university-of-electronic-technology",
@@ -195,7 +258,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 12
-    }
+    },
+    "websiteUrl": "https://guet.edu.cn",
+    "logoUrl": "https://icon.horse/icon/guet.edu.cn",
+    "imageUrl": "https://icon.horse/icon/guet.edu.cn",
+    "imageSourceUrl": "https://guet.edu.cn",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "hunan-normal-university",
@@ -213,7 +282,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 13
-    }
+    },
+    "websiteUrl": "https://hunnu.edu.cn",
+    "logoUrl": "https://icon.horse/icon/hunnu.edu.cn",
+    "imageUrl": "https://www.acabridge.cn/yxxw/yxyc/202412/W020241219352373244852.jpg",
+    "imageSourceUrl": "https://www.acabridge.cn/yxxw/yxyc/202412/t20241219_2647095.shtml",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kunming-university-of-science-and-technology",
@@ -231,7 +306,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 14
-    }
+    },
+    "websiteUrl": "https://kmust.edu.cn",
+    "logoUrl": "https://icon.horse/icon/kmust.edu.cn",
+    "imageUrl": "https://icon.horse/icon/kmust.edu.cn",
+    "imageSourceUrl": "https://kmust.edu.cn",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "shanghai-university-of-finance-and-economics",
@@ -249,7 +330,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 15
-    }
+    },
+    "websiteUrl": "https://sufe.edu.cn",
+    "logoUrl": "https://icon.horse/icon/sufe.edu.cn",
+    "imageUrl": "https://intlstu.sufe.edu.cn/_upload/article/images/cf/0d/78b20dca4eff83bfe9f6142ed262/51853aef-1706-460f-86b2-d881d4f5dc2c.jpg",
+    "imageSourceUrl": "https://intlstu.sufe.edu.cn/12487/list.htm",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "southwest-university",
@@ -267,7 +354,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 16
-    }
+    },
+    "websiteUrl": "https://swu.edu.cn",
+    "logoUrl": "https://icon.horse/icon/swu.edu.cn",
+    "imageUrl": "https://icon.horse/icon/swu.edu.cn",
+    "imageSourceUrl": "https://swu.edu.cn",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "karpagam-academy-of-higher-education-kahe",
@@ -285,7 +378,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 17
-    }
+    },
+    "websiteUrl": "https://kahedu.edu.in",
+    "logoUrl": "https://icon.horse/icon/kahedu.edu.in",
+    "imageUrl": "https://icon.horse/icon/kahedu.edu.in",
+    "imageSourceUrl": "https://kahedu.edu.in",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "s-p-jain-institute-of-management-research",
@@ -303,7 +402,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 18
-    }
+    },
+    "websiteUrl": "https://spjimr.org",
+    "logoUrl": "https://icon.horse/icon/spjimr.org",
+    "imageUrl": "https://icon.horse/icon/spjimr.org",
+    "imageSourceUrl": "https://spjimr.org",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "aichi-university",
@@ -321,7 +426,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 19
-    }
+    },
+    "websiteUrl": "https://aichi-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/aichi-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/aichi-u.ac.jp",
+    "imageSourceUrl": "https://aichi-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "akita-international-university",
@@ -339,7 +450,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 20
-    }
+    },
+    "websiteUrl": "https://aiu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/aiu.ac.jp",
+    "imageUrl": "https://icon.horse/icon/aiu.ac.jp",
+    "imageSourceUrl": "https://aiu.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "aomori-chuo-gakuin-university",
@@ -357,7 +474,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 21
-    }
+    },
+    "websiteUrl": "https://aomoricgu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/aomoricgu.ac.jp",
+    "imageUrl": "https://up-j.shigaku.go.jp/photo/00000000044001000/0_20140807162813.jpg",
+    "imageSourceUrl": "https://up-j.shigaku.go.jp/school/category06/00000000044001000.html",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "doshisha-women-s-college-of-liberal-arts",
@@ -375,7 +498,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 22
-    }
+    },
+    "websiteUrl": "https://dwc.doshisha.ac.jp",
+    "logoUrl": "https://icon.horse/icon/dwc.doshisha.ac.jp",
+    "imageUrl": "https://www.dwc.doshisha.ac.jp/application/files/2816/4869/0421/dwcla_background_James-kan_snow.jpg",
+    "imageSourceUrl": "https://www.dwc.doshisha.ac.jp/about/publicity/background",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "fukui-prefectural-university",
@@ -393,7 +522,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 23
-    }
+    },
+    "websiteUrl": "https://fpu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/fpu.ac.jp",
+    "imageUrl": "https://icon.horse/icon/fpu.ac.jp",
+    "imageSourceUrl": "https://fpu.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "fukuyama-university",
@@ -411,7 +546,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 24
-    }
+    },
+    "websiteUrl": "https://fukuyama-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/fukuyama-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/fukuyama-u.ac.jp",
+    "imageSourceUrl": "https://fukuyama-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "hiroshima-university-of-economics",
@@ -429,7 +570,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 25
-    }
+    },
+    "websiteUrl": "https://hue.ac.jp",
+    "logoUrl": "https://icon.horse/icon/hue.ac.jp",
+    "imageUrl": "https://prtimes.jp/data/corp/161602/cover/sp-764266523a50323521be6cd6fd938be2-29aa06f698e300dd2fb4a36ab8011abb.jpeg?auto=avif",
+    "imageSourceUrl": "https://prtimes.jp/main/html/searchrlp/company_id/161602",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "学校法人石田学園　広島経済大学のプレスリリース｜PR TIMES (https://prtimes.jp/main/html/searchrlp/company_id/161602)"
   },
   {
     "id": "hitotsubashi-university",
@@ -447,7 +595,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 26
-    }
+    },
+    "websiteUrl": "https://hit-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/hit-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/hit-u.ac.jp",
+    "imageSourceUrl": "https://hit-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "international-university-of-japan",
@@ -465,7 +619,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 27
-    }
+    },
+    "websiteUrl": "https://iuj.ac.jp",
+    "logoUrl": "https://icon.horse/icon/iuj.ac.jp",
+    "imageUrl": "https://icon.horse/icon/iuj.ac.jp",
+    "imageSourceUrl": "https://iuj.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "j-f-oberlin-university",
@@ -483,7 +643,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 28
-    }
+    },
+    "websiteUrl": "https://obirin.ac.jp",
+    "logoUrl": "https://icon.horse/icon/obirin.ac.jp",
+    "imageUrl": "https://icon.horse/icon/obirin.ac.jp",
+    "imageSourceUrl": "https://obirin.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kagoshima-university",
@@ -501,7 +667,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 29
-    }
+    },
+    "websiteUrl": "https://kagoshima-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kagoshima-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kagoshima-u.ac.jp",
+    "imageSourceUrl": "https://kagoshima-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kanazawa-university",
@@ -519,7 +691,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 30
-    }
+    },
+    "websiteUrl": "https://kanazawa-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kanazawa-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kanazawa-u.ac.jp",
+    "imageSourceUrl": "https://kanazawa-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kanda-university-of-international-studies",
@@ -537,7 +715,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 31
-    }
+    },
+    "websiteUrl": "https://kandagaigo.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kandagaigo.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kandagaigo.ac.jp",
+    "imageSourceUrl": "https://kandagaigo.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kansai-university",
@@ -555,7 +739,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 32
-    }
+    },
+    "websiteUrl": "https://kansai-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kansai-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kansai-u.ac.jp",
+    "imageSourceUrl": "https://kansai-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "keio-university",
@@ -573,7 +763,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 33
-    }
+    },
+    "websiteUrl": "https://keio.ac.jp",
+    "logoUrl": "https://icon.horse/icon/keio.ac.jp",
+    "imageUrl": "https://icon.horse/icon/keio.ac.jp",
+    "imageSourceUrl": "https://keio.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kibi-international-university",
@@ -591,7 +787,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 34
-    }
+    },
+    "websiteUrl": "https://kiui.jp",
+    "logoUrl": "https://icon.horse/icon/kiui.jp",
+    "imageUrl": "https://icon.horse/icon/kiui.jp",
+    "imageSourceUrl": "https://kiui.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kobe-university",
@@ -609,7 +811,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 35
-    }
+    },
+    "websiteUrl": "https://kobe-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kobe-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kobe-u.ac.jp",
+    "imageSourceUrl": "https://kobe-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kumamoto-university",
@@ -627,7 +835,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 36
-    }
+    },
+    "websiteUrl": "https://kumamoto-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kumamoto-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kumamoto-u.ac.jp",
+    "imageSourceUrl": "https://kumamoto-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kwansei-gakuin-university",
@@ -645,7 +859,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 37
-    }
+    },
+    "websiteUrl": "https://kwansei.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kwansei.ac.jp",
+    "imageUrl": "https://ryugakuat.jp/wp/wp-content/uploads/2022/05/d97c50263c64191b4a87e849b78211fe-scaled.jpg",
+    "imageSourceUrl": "https://ryugakuat.jp/school/kwansei/",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "関西学院大学 | 留学＠JP ┃外国人進学・就職情報サイト (https://ryugakuat.jp/school/kwansei/)"
   },
   {
     "id": "kyorin-university",
@@ -663,7 +884,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 38
-    }
+    },
+    "websiteUrl": "https://kyorin-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/kyorin-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/kyorin-u.ac.jp",
+    "imageSourceUrl": "https://kyorin-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "meiji-university",
@@ -681,7 +908,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 39
-    }
+    },
+    "websiteUrl": "https://meiji.ac.jp",
+    "logoUrl": "https://icon.horse/icon/meiji.ac.jp",
+    "imageUrl": "https://icon.horse/icon/meiji.ac.jp",
+    "imageSourceUrl": "https://meiji.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "meiji-university-school-of-information-and-communication",
@@ -699,7 +932,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 40
-    }
+    },
+    "websiteUrl": "https://meiji.ac.jp",
+    "logoUrl": "https://icon.horse/icon/meiji.ac.jp",
+    "imageUrl": "https://icon.horse/icon/meiji.ac.jp",
+    "imageSourceUrl": "https://meiji.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "meiji-university-school-of-political-science-and-economics",
@@ -717,7 +956,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 41
-    }
+    },
+    "websiteUrl": "https://meiji.ac.jp",
+    "logoUrl": "https://icon.horse/icon/meiji.ac.jp",
+    "imageUrl": "https://icon.horse/icon/meiji.ac.jp",
+    "imageSourceUrl": "https://meiji.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "mie-university",
@@ -735,7 +980,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 42
-    }
+    },
+    "websiteUrl": "https://mie-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/mie-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/mie-u.ac.jp",
+    "imageSourceUrl": "https://mie-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "momoyama-gakuin-university",
@@ -753,7 +1004,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 43
-    }
+    },
+    "websiteUrl": "https://andrew.ac.jp",
+    "logoUrl": "https://icon.horse/icon/andrew.ac.jp",
+    "imageUrl": "https://www.andrew.ac.jp/newstopics3/2025/jbo7mq000001o4rs-img/jbo7mq000001o4sa.jpg",
+    "imageSourceUrl": "https://www.andrew.ac.jp/newstopics3/2025/jbo7mq000001o4rs.html",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "mukogawa-women-s-university",
@@ -771,7 +1028,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 44
-    }
+    },
+    "websiteUrl": "https://mukogawa-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/mukogawa-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/mukogawa-u.ac.jp",
+    "imageSourceUrl": "https://mukogawa-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "musashino-university",
@@ -789,7 +1052,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 45
-    }
+    },
+    "websiteUrl": "https://musashino-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/musashino-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/musashino-u.ac.jp",
+    "imageSourceUrl": "https://musashino-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "nagoya-city-university",
@@ -807,7 +1076,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 46
-    }
+    },
+    "websiteUrl": "https://nagoya-cu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/nagoya-cu.ac.jp",
+    "imageUrl": "https://icon.horse/icon/nagoya-cu.ac.jp",
+    "imageSourceUrl": "https://nagoya-cu.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "nagoya-university",
@@ -825,7 +1100,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 47
-    }
+    },
+    "websiteUrl": "https://nagoya-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/nagoya-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/nagoya-u.ac.jp",
+    "imageSourceUrl": "https://nagoya-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "nara-women-s-university",
@@ -843,7 +1124,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 48
-    }
+    },
+    "websiteUrl": "https://nara-wu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/nara-wu.ac.jp",
+    "imageUrl": "https://icon.horse/icon/nara-wu.ac.jp",
+    "imageSourceUrl": "https://nara-wu.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "onomichi-city-university",
@@ -861,7 +1148,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 49
-    }
+    },
+    "websiteUrl": "https://onomichi-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/onomichi-u.ac.jp",
+    "imageUrl": "https://s3-ap-northeast-1.amazonaws.com/license-shinronavi/images/148708/large.jpg",
+    "imageSourceUrl": "https://shinronavi.com/newschool/index/1582",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "osaka-international-university",
@@ -879,7 +1172,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 50
-    }
+    },
+    "websiteUrl": "https://oiu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/oiu.ac.jp",
+    "imageUrl": "https://icon.horse/icon/oiu.ac.jp",
+    "imageSourceUrl": "https://oiu.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "osaka-university-of-economics",
@@ -897,7 +1196,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 51
-    }
+    },
+    "websiteUrl": "https://osaka-ue.ac.jp",
+    "logoUrl": "https://icon.horse/icon/osaka-ue.ac.jp",
+    "imageUrl": "https://uni24k.com/media/CACHE/images/unis/building_schools_u005579f5_1544692f/a460b66f8609c38e35c07e4ae907c2ce.jpg",
+    "imageSourceUrl": "https://uni24k.com/u/7278/",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "otemon-gakuin-university",
@@ -915,7 +1220,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 52
-    }
+    },
+    "websiteUrl": "https://otemon.ac.jp",
+    "logoUrl": "https://icon.horse/icon/otemon.ac.jp",
+    "imageUrl": "https://icon.horse/icon/otemon.ac.jp",
+    "imageSourceUrl": "https://otemon.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "rikkyo-university",
@@ -933,7 +1244,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 53
-    }
+    },
+    "websiteUrl": "https://rikkyo.ac.jp",
+    "logoUrl": "https://icon.horse/icon/rikkyo.ac.jp",
+    "imageUrl": "https://icon.horse/icon/rikkyo.ac.jp",
+    "imageSourceUrl": "https://rikkyo.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "rikkyo-university-college-of-business",
@@ -951,7 +1268,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 54
-    }
+    },
+    "websiteUrl": "https://rikkyo.ac.jp",
+    "logoUrl": "https://icon.horse/icon/rikkyo.ac.jp",
+    "imageUrl": "https://icon.horse/icon/rikkyo.ac.jp",
+    "imageSourceUrl": "https://rikkyo.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "ritsumeikan-university",
@@ -969,7 +1292,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 55
-    }
+    },
+    "websiteUrl": "https://ritsumei.ac.jp",
+    "logoUrl": "https://icon.horse/icon/ritsumei.ac.jp",
+    "imageUrl": "https://icon.horse/icon/ritsumei.ac.jp",
+    "imageSourceUrl": "https://ritsumei.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "seinan-gakuin-university",
@@ -987,7 +1316,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 56
-    }
+    },
+    "websiteUrl": "https://seinan-gu.ac.jp",
+    "logoUrl": "https://icon.horse/icon/seinan-gu.ac.jp",
+    "imageUrl": "https://www.studyjapan.jp/schools/img/image/392",
+    "imageSourceUrl": "https://www.studyjapan.jp/en/schools/detail/R12609",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "sophia-university",
@@ -1005,7 +1340,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 57
-    }
+    },
+    "websiteUrl": "https://sophia.ac.jp",
+    "logoUrl": "https://icon.horse/icon/sophia.ac.jp",
+    "imageUrl": "https://icon.horse/icon/sophia.ac.jp",
+    "imageSourceUrl": "https://sophia.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "takushoku-university",
@@ -1023,7 +1364,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 58
-    }
+    },
+    "websiteUrl": "https://takushoku-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/takushoku-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/takushoku-u.ac.jp",
+    "imageSourceUrl": "https://takushoku-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "tohoku-university",
@@ -1041,7 +1388,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 59
-    }
+    },
+    "websiteUrl": "https://tohoku.ac.jp",
+    "logoUrl": "https://icon.horse/icon/tohoku.ac.jp",
+    "imageUrl": "https://icon.horse/icon/tohoku.ac.jp",
+    "imageSourceUrl": "https://tohoku.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "tokyo-keizai-university",
@@ -1059,7 +1412,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 60
-    }
+    },
+    "websiteUrl": "https://tku.ac.jp",
+    "logoUrl": "https://icon.horse/icon/tku.ac.jp",
+    "imageUrl": "https://www.tku.ac.jp/upload/media/images/2024chiiki_SP_IMG_O7A9463_green-30_0508.jpg",
+    "imageSourceUrl": "https://www.tku.ac.jp/renkei/",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "地域連携・社会貢献 | 東京経済大学 (https://www.tku.ac.jp/renkei/)"
   },
   {
     "id": "university-of-fukui",
@@ -1077,7 +1437,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 61
-    }
+    },
+    "websiteUrl": "https://u-fukui.ac.jp",
+    "logoUrl": "https://icon.horse/icon/u-fukui.ac.jp",
+    "imageUrl": "https://icon.horse/icon/u-fukui.ac.jp",
+    "imageSourceUrl": "https://u-fukui.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "wakayama-university",
@@ -1095,7 +1461,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 62
-    }
+    },
+    "websiteUrl": "https://wakayama-u.ac.jp",
+    "logoUrl": "https://icon.horse/icon/wakayama-u.ac.jp",
+    "imageUrl": "https://icon.horse/icon/wakayama-u.ac.jp",
+    "imageSourceUrl": "https://wakayama-u.ac.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "waseda-university",
@@ -1113,7 +1485,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 63
-    }
+    },
+    "websiteUrl": "https://waseda.jp",
+    "logoUrl": "https://icon.horse/icon/waseda.jp",
+    "imageUrl": "https://icon.horse/icon/waseda.jp",
+    "imageSourceUrl": "https://waseda.jp",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "chung-ang-university",
@@ -1131,7 +1509,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 64
-    }
+    },
+    "websiteUrl": "https://cau.ac.kr",
+    "logoUrl": "https://icon.horse/icon/cau.ac.kr",
+    "imageUrl": "https://www.studyinkorea.go.kr/file/imgpreview.do?fileStorePath=univStorePath&filename=EI_DATA_FILE201903180248156500_B.jpg",
+    "imageSourceUrl": "https://www.studyinkorea.go.kr/ko/search/universityInfo.do?tab=univ-basic-info&univCd=100367",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "dankook-university",
@@ -1149,7 +1533,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 65
-    }
+    },
+    "websiteUrl": "https://dankook.ac.kr",
+    "logoUrl": "https://icon.horse/icon/dankook.ac.kr",
+    "imageUrl": "https://icon.horse/icon/dankook.ac.kr",
+    "imageSourceUrl": "https://dankook.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "dongseo-university",
@@ -1167,7 +1557,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 66
-    }
+    },
+    "websiteUrl": "https://dongseo.ac.kr",
+    "logoUrl": "https://icon.horse/icon/dongseo.ac.kr",
+    "imageUrl": "https://icon.horse/icon/dongseo.ac.kr",
+    "imageSourceUrl": "https://dongseo.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "duksung-women-s-university",
@@ -1185,7 +1581,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 67
-    }
+    },
+    "websiteUrl": "https://duksung.ac.kr",
+    "logoUrl": "https://icon.horse/icon/duksung.ac.kr",
+    "imageUrl": "https://icon.horse/icon/duksung.ac.kr",
+    "imageSourceUrl": "https://duksung.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "ewha-womans-university",
@@ -1203,7 +1605,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 68
-    }
+    },
+    "websiteUrl": "https://ewha.ac.kr",
+    "logoUrl": "https://icon.horse/icon/ewha.ac.kr",
+    "imageUrl": "https://cdn.news.unn.net/news/photo/202009/234444_119872_5747.jpg",
+    "imageSourceUrl": "https://news.unn.net/news/articleView.html?idxno=234444",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "\"인문(人文)은 이화로\" 이화여대, 인문사회연구소 지원사업 최다 선정 < 대학뉴스 < 뉴스 < 기사본문 - 한국대학신문 - 411개 대학을 연결하는 '힘' (https://news.unn.net/news/articleView.html?idxno=234444)"
   },
   {
     "id": "hallym-university",
@@ -1221,7 +1630,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 69
-    }
+    },
+    "websiteUrl": "https://hallym.ac.kr",
+    "logoUrl": "https://icon.horse/icon/hallym.ac.kr",
+    "imageUrl": "https://icon.horse/icon/hallym.ac.kr",
+    "imageSourceUrl": "https://hallym.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "handong-global-university",
@@ -1239,7 +1654,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 70
-    }
+    },
+    "websiteUrl": "https://handong.edu",
+    "logoUrl": "https://icon.horse/icon/handong.edu",
+    "imageUrl": "https://icon.horse/icon/handong.edu",
+    "imageSourceUrl": "https://handong.edu",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "hannam-university",
@@ -1257,7 +1678,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 71
-    }
+    },
+    "websiteUrl": "https://hannam.ac.kr",
+    "logoUrl": "https://icon.horse/icon/hannam.ac.kr",
+    "imageUrl": "https://icon.horse/icon/hannam.ac.kr",
+    "imageSourceUrl": "https://hannam.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "hanyang-university-business-school",
@@ -1275,7 +1702,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 72
-    }
+    },
+    "websiteUrl": "https://hanyang.ac.kr",
+    "logoUrl": "https://icon.horse/icon/hanyang.ac.kr",
+    "imageUrl": "https://icon.horse/icon/hanyang.ac.kr",
+    "imageSourceUrl": "https://hanyang.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kangwon-national-university",
@@ -1293,7 +1726,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 73
-    }
+    },
+    "websiteUrl": "https://kangwon.ac.kr",
+    "logoUrl": "https://icon.horse/icon/kangwon.ac.kr",
+    "imageUrl": "https://icon.horse/icon/kangwon.ac.kr",
+    "imageSourceUrl": "https://kangwon.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kongju-national-university",
@@ -1311,7 +1750,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 74
-    }
+    },
+    "websiteUrl": "https://kongju.ac.kr",
+    "logoUrl": "https://icon.horse/icon/kongju.ac.kr",
+    "imageUrl": "https://icon.horse/icon/kongju.ac.kr",
+    "imageSourceUrl": "https://kongju.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "kyung-hee-university",
@@ -1329,7 +1774,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 75
-    }
+    },
+    "websiteUrl": "https://khu.ac.kr",
+    "logoUrl": "https://icon.horse/icon/khu.ac.kr",
+    "imageUrl": "https://i.pinimg.com/originals/3f/f5/e1/3ff5e169da27d72f19690e4ff551164c.jpg",
+    "imageSourceUrl": "https://pt.pinterest.com/pin/cherry-blossoms-in-kyung-hee-university-seoul-south-korea-10801350-in-2024--463378249178300708/",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "Cherry blossoms in Kyung Hee University Seoul South Korea [10801350] | Kyung hee, Korea university, University (https://pt.pinterest.com/pin/cherry-blossoms-in-kyung-hee-university-seoul-south-korea-10801350-in-2024--463378249178300708/)"
   },
   {
     "id": "pukyong-national-university",
@@ -1347,7 +1799,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 76
-    }
+    },
+    "websiteUrl": "https://pknu.ac.kr",
+    "logoUrl": "https://icon.horse/icon/pknu.ac.kr",
+    "imageUrl": "https://icon.horse/icon/pknu.ac.kr",
+    "imageSourceUrl": "https://pknu.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "seoul-national-university",
@@ -1365,7 +1823,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 77
-    }
+    },
+    "websiteUrl": "https://snu.ac.kr",
+    "logoUrl": "https://icon.horse/icon/snu.ac.kr",
+    "imageUrl": "https://icon.horse/icon/snu.ac.kr",
+    "imageSourceUrl": "https://snu.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "sogang-university",
@@ -1383,7 +1847,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 78
-    }
+    },
+    "websiteUrl": "https://sogang.ac.kr",
+    "logoUrl": "https://icon.horse/icon/sogang.ac.kr",
+    "imageUrl": "https://icon.horse/icon/sogang.ac.kr",
+    "imageSourceUrl": "https://sogang.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "sookmyung-women-s-university",
@@ -1401,7 +1871,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 79
-    }
+    },
+    "websiteUrl": "https://sookmyung.ac.kr",
+    "logoUrl": "https://icon.horse/icon/sookmyung.ac.kr",
+    "imageUrl": "https://icon.horse/icon/sookmyung.ac.kr",
+    "imageSourceUrl": "https://sookmyung.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "woosong-university",
@@ -1419,7 +1895,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 80
-    }
+    },
+    "websiteUrl": "https://wsu.ac.kr",
+    "logoUrl": "https://icon.horse/icon/wsu.ac.kr",
+    "imageUrl": "https://icon.horse/icon/wsu.ac.kr",
+    "imageSourceUrl": "https://wsu.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "yonsei-university-mirae-campus",
@@ -1437,7 +1919,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 81
-    }
+    },
+    "websiteUrl": "https://yonsei.ac.kr",
+    "logoUrl": "https://icon.horse/icon/yonsei.ac.kr",
+    "imageUrl": "https://icon.horse/icon/yonsei.ac.kr",
+    "imageSourceUrl": "https://yonsei.ac.kr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "chang-gung-university",
@@ -1455,7 +1943,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 82
-    }
+    },
+    "websiteUrl": "https://cgu.edu.tw",
+    "logoUrl": "https://icon.horse/icon/cgu.edu.tw",
+    "imageUrl": "https://images.1111.com.tw/discussPic/82/51798282_177526588.781746.jpg",
+    "imageSourceUrl": "https://university.1111.com.tw/zone/University/discussTopic.asp?cat=University&id=242695",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "ming-chuan-university",
@@ -1473,7 +1967,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 83
-    }
+    },
+    "websiteUrl": "https://mcu.edu.tw",
+    "logoUrl": "https://icon.horse/icon/mcu.edu.tw",
+    "imageUrl": "https://www.easy-go.mn/uploads/school-photo/middle/easy-go-school-photo-177554883610.jpg",
+    "imageSourceUrl": "https://www.easy-go.mn/school-photo/178/ming-chuan-university",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "nanhua-university",
@@ -1491,7 +1991,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 84
-    }
+    },
+    "websiteUrl": "https://nhu.edu.tw",
+    "logoUrl": "https://icon.horse/icon/nhu.edu.tw",
+    "imageUrl": "https://icon.horse/icon/nhu.edu.tw",
+    "imageSourceUrl": "https://nhu.edu.tw",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "national-kaohsiung-university-of-science-and-technology",
@@ -1509,7 +2015,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 85
-    }
+    },
+    "websiteUrl": "https://nkust.edu.tw",
+    "logoUrl": "https://icon.horse/icon/nkust.edu.tw",
+    "imageUrl": "https://icon.horse/icon/nkust.edu.tw",
+    "imageSourceUrl": "https://nkust.edu.tw",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "national-yunlin-university-of-science-and-technology",
@@ -1527,7 +2039,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 86
-    }
+    },
+    "websiteUrl": "https://yuntech.edu.tw",
+    "logoUrl": "https://icon.horse/icon/yuntech.edu.tw",
+    "imageUrl": "https://icon.horse/icon/yuntech.edu.tw",
+    "imageSourceUrl": "https://yuntech.edu.tw",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "hasselt-university",
@@ -1545,7 +2063,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 87
-    }
+    },
+    "websiteUrl": "https://uhasselt.be",
+    "logoUrl": "https://icon.horse/icon/uhasselt.be",
+    "imageUrl": "https://icon.horse/icon/uhasselt.be",
+    "imageSourceUrl": "https://uhasselt.be",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "oulu-university-of-applied-sciences",
@@ -1563,7 +2087,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 88
-    }
+    },
+    "websiteUrl": "https://oamk.fi",
+    "logoUrl": "https://icon.horse/icon/oamk.fi",
+    "imageUrl": "https://icon.horse/icon/oamk.fi",
+    "imageSourceUrl": "https://oamk.fi",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "seinajoki-university-of-applied-sciences",
@@ -1581,7 +2111,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 89
-    }
+    },
+    "websiteUrl": "https://seamk.fi",
+    "logoUrl": "https://icon.horse/icon/seamk.fi",
+    "imageUrl": "https://icon.horse/icon/seamk.fi",
+    "imageSourceUrl": "https://seamk.fi",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "aix-marseille-university",
@@ -1599,7 +2135,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 90
-    }
+    },
+    "websiteUrl": "https://univ-amu.fr",
+    "logoUrl": "https://icon.horse/icon/univ-amu.fr",
+    "imageUrl": "https://fr.readkong.com/static/ca/6f/ca6fb03039cbe09772a5cd31d6df8537/bienvenue-livret-d-accueil-2020-2021-aix-marseille-2880516-7.jpg",
+    "imageSourceUrl": "https://fr.readkong.com/page/bienvenue-livret-d-accueil-2020-2021-aix-marseille-2880516",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "Bienvenue - LIVRET D'ACCUEIL 2020-2021 - Aix-Marseille Université (https://fr.readkong.com/page/bienvenue-livret-d-accueil-2020-2021-aix-marseille-2880516)"
   },
   {
     "id": "ecol-3a",
@@ -1617,7 +2160,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 91
-    }
+    },
+    "websiteUrl": "https://ecole3a.edu",
+    "logoUrl": "https://icon.horse/icon/ecole3a.edu",
+    "imageUrl": "https://icon.horse/icon/ecole3a.edu",
+    "imageSourceUrl": "https://ecole3a.edu",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "ileri",
@@ -1635,7 +2184,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 92
-    }
+    },
+    "websiteUrl": "https://ileri.fr",
+    "logoUrl": "https://icon.horse/icon/ileri.fr",
+    "imageUrl": "https://icon.horse/icon/ileri.fr",
+    "imageSourceUrl": "https://ileri.fr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "ipag-business-school",
@@ -1653,7 +2208,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 93
-    }
+    },
+    "websiteUrl": "https://ipag.edu",
+    "logoUrl": "https://icon.horse/icon/ipag.edu",
+    "imageUrl": "https://icon.horse/icon/ipag.edu",
+    "imageSourceUrl": "https://ipag.edu",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "isc-paris-business-school",
@@ -1671,7 +2232,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 94
-    }
+    },
+    "websiteUrl": "https://iscparis.fr",
+    "logoUrl": "https://icon.horse/icon/iscparis.fr",
+    "imageUrl": "https://icon.horse/icon/iscparis.fr",
+    "imageSourceUrl": "https://iscparis.fr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "sciences-po",
@@ -1689,7 +2256,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 95
-    }
+    },
+    "websiteUrl": "https://sciencespo.fr",
+    "logoUrl": "https://icon.horse/icon/sciencespo.fr",
+    "imageUrl": "https://icon.horse/icon/sciencespo.fr",
+    "imageSourceUrl": "https://sciencespo.fr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "universit-polytechinique-hauts-de-france-uphf",
@@ -1707,7 +2280,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 96
-    }
+    },
+    "websiteUrl": "https://uphf.fr",
+    "logoUrl": "https://icon.horse/icon/uphf.fr",
+    "imageUrl": "https://icon.horse/icon/uphf.fr",
+    "imageSourceUrl": "https://uphf.fr",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "friedrich-alexander-universitat-erlangen-nurnberg-school-of-business-economics",
@@ -1725,7 +2304,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 97
-    }
+    },
+    "websiteUrl": "https://fau.eu",
+    "logoUrl": "https://icon.horse/icon/fau.eu",
+    "imageUrl": "https://www.forum-v.de/files/2016/02/Wiso-5.jpg",
+    "imageSourceUrl": "https://www.forum-v.de/ueber-forum-v/",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "goethe-university-frankfurt-am-main-faculty-of-economics-and-business-administration",
@@ -1743,7 +2328,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 98
-    }
+    },
+    "websiteUrl": "https://uni-frankfurt.de",
+    "logoUrl": "https://icon.horse/icon/uni-frankfurt.de",
+    "imageUrl": "https://icon.horse/icon/uni-frankfurt.de",
+    "imageSourceUrl": "https://uni-frankfurt.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "heinrich-heine-university-dusseldorf-hhu",
@@ -1761,7 +2352,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 99
-    }
+    },
+    "websiteUrl": "https://hhu.de",
+    "logoUrl": "https://icon.horse/icon/hhu.de",
+    "imageUrl": "https://www.buergeruni.hhu.de/fileadmin/_processed_/b/9/csm_Luftaufnahme_Campus_HHU_241860_-_C_Peter_Sondermann_96827ed5d6.jpg",
+    "imageSourceUrl": "https://www.buergeruni.hhu.de/alumni/alumni-news/detailansicht-news/rektorin-appelliert-an-friedliches-miteinander",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "Vandalismus auf dem Campus (https://www.buergeruni.hhu.de/alumni/alumni-news/detailansicht-news/rektorin-appelliert-an-friedliches-miteinander)"
   },
   {
     "id": "hochschule-trier-trier-university-of-applied-sciences",
@@ -1779,7 +2377,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 100
-    }
+    },
+    "websiteUrl": "https://hochschule-trier.de",
+    "logoUrl": "https://icon.horse/icon/hochschule-trier.de",
+    "imageUrl": "https://icon.horse/icon/hochschule-trier.de",
+    "imageSourceUrl": "https://hochschule-trier.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "mannheim-university",
@@ -1797,7 +2401,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 101
-    }
+    },
+    "websiteUrl": "https://uni-mannheim.de",
+    "logoUrl": "https://icon.horse/icon/uni-mannheim.de",
+    "imageUrl": "https://icon.horse/icon/uni-mannheim.de",
+    "imageSourceUrl": "https://uni-mannheim.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "neu-ulm-university-of-applied-sciences",
@@ -1815,7 +2425,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 102
-    }
+    },
+    "websiteUrl": "https://hs-neu-ulm.de",
+    "logoUrl": "https://icon.horse/icon/hs-neu-ulm.de",
+    "imageUrl": "https://icon.horse/icon/hs-neu-ulm.de",
+    "imageSourceUrl": "https://hs-neu-ulm.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "osnabr-ck-university-of-applied-sciences",
@@ -1833,7 +2449,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 103
-    }
+    },
+    "websiteUrl": "https://hs-osnabrueck.de",
+    "logoUrl": "https://icon.horse/icon/hs-osnabrueck.de",
+    "imageUrl": "https://icon.horse/icon/hs-osnabrueck.de",
+    "imageSourceUrl": "https://hs-osnabrueck.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "paderborn-university",
@@ -1851,7 +2473,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 104
-    }
+    },
+    "websiteUrl": "https://uni-paderborn.de",
+    "logoUrl": "https://icon.horse/icon/uni-paderborn.de",
+    "imageUrl": "https://icon.horse/icon/uni-paderborn.de",
+    "imageSourceUrl": "https://uni-paderborn.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "university-of-augsburg",
@@ -1869,7 +2497,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 105
-    }
+    },
+    "websiteUrl": "https://uni-augsburg.de",
+    "logoUrl": "https://icon.horse/icon/uni-augsburg.de",
+    "imageUrl": "https://icon.horse/icon/uni-augsburg.de",
+    "imageSourceUrl": "https://uni-augsburg.de",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "whu-otto-beisheim-school-of-management",
@@ -1887,7 +2521,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 106
-    }
+    },
+    "websiteUrl": "https://whu.edu",
+    "logoUrl": "https://icon.horse/icon/whu.edu",
+    "imageUrl": "https://www.mystipendium.de/sites/default/files/styles/adaptive_desk__max_1200_/public/whu-profil.jpg?itok=ylPfUmsH",
+    "imageSourceUrl": "https://www.mystipendium.de/hochschulen/whu",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "WHU – Otto Beisheim School of Management | myStipendium (https://www.mystipendium.de/hochschulen/whu)"
   },
   {
     "id": "universita-di-trento",
@@ -1905,7 +2546,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 107
-    }
+    },
+    "websiteUrl": "https://unitn.it",
+    "logoUrl": "https://icon.horse/icon/unitn.it",
+    "imageUrl": "https://icon.horse/icon/unitn.it",
+    "imageSourceUrl": "https://unitn.it",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "bi-norwegian-business-school",
@@ -1923,7 +2570,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 108
-    }
+    },
+    "websiteUrl": "https://bi.no",
+    "logoUrl": "https://icon.horse/icon/bi.no",
+    "imageUrl": "https://icon.horse/icon/bi.no",
+    "imageSourceUrl": "https://bi.no",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "sopot-university-of-applied-sciences",
@@ -1941,7 +2594,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 109
-    }
+    },
+    "websiteUrl": "https://ssw-sopot.pl",
+    "logoUrl": "https://icon.horse/icon/ssw-sopot.pl",
+    "imageUrl": "https://icon.horse/icon/ssw-sopot.pl",
+    "imageSourceUrl": "https://ssw-sopot.pl",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "national-research-university-higher-school-of-economics-hse",
@@ -1959,7 +2618,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 110
-    }
+    },
+    "websiteUrl": "https://hse.ru",
+    "logoUrl": "https://icon.horse/icon/hse.ru",
+    "imageUrl": "https://icon.horse/icon/hse.ru",
+    "imageSourceUrl": "https://hse.ru",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "russian-foreign-trade-academy-rfta",
@@ -1977,7 +2642,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 111
-    }
+    },
+    "websiteUrl": "https://vavt.ru",
+    "logoUrl": "https://icon.horse/icon/vavt.ru",
+    "imageUrl": "https://photos.wikimapia.org/p/00/07/13/75/20_big.jpg",
+    "imageSourceUrl": "https://wikimapia.org/169728/Russian-Foreign-Trade-Academy-main-building",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "russian-presidential-academy-of-national-economy-and-public-administration-russian-federation-ranepa",
@@ -1995,7 +2666,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 112
-    }
+    },
+    "websiteUrl": "https://ranepa.ru",
+    "logoUrl": "https://icon.horse/icon/ranepa.ru",
+    "imageUrl": "https://icon.horse/icon/ranepa.ru",
+    "imageSourceUrl": "https://ranepa.ru",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "university-of-las-palmas-de-gran-canaria-ulpgc",
@@ -2013,7 +2690,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 113
-    }
+    },
+    "websiteUrl": "https://ulpgc.es",
+    "logoUrl": "https://icon.horse/icon/ulpgc.es",
+    "imageUrl": "https://www.atlanticohoy.com/uploads/s1/30/24/38/1/universidad-de-las-palmas-de-gran-canaria-ulpgc.png",
+    "imageSourceUrl": "https://www.atlanticohoy.com/cultura/estas-son-dos-nuevas-titulaciones-universidad-palmas-gran-canaria_1529683_102.html",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "Estas son las dos nuevas titulaciones de la Universidad de Las Palmas de Gran Canaria (https://www.atlanticohoy.com/cultura/estas-son-dos-nuevas-titulaciones-universidad-palmas-gran-canaria_1529683_102.html)"
   },
   {
     "id": "university-of-gothenburg-school-of-business-economics-and-law",
@@ -2031,7 +2715,14 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 114
-    }
+    },
+    "websiteUrl": "https://gu.se",
+    "logoUrl": "https://icon.horse/icon/gu.se",
+    "imageUrl": "https://studentportal.gu.se/sites/default/files/styles/100_10_4_xmedium_1x/public/2024-02/webb_4648.jpg?h=74c6825a&itok=KLm3_XH2",
+    "imageSourceUrl": "https://studentportal.gu.se/en/news/new-opening-hours-in-the-schools-reception-at-vasagatan-1",
+    "imageSourceType": "internet-campus-image",
+    "imageVerifiedAt": "2026-09-21",
+    "imageSearchTitle": "New opening hours in the School's reception at Vasagatan 1 | Student Portal (https://studentportal.gu.se/en/news/new-opening-hours-in-the-schools-reception-at-vasagatan-1)"
   },
   {
     "id": "the-university-of-applied-sciences-and-arts-northwestern-switzerland-olten-fhnw",
@@ -2049,7 +2740,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 115
-    }
+    },
+    "websiteUrl": "https://fhnw.ch",
+    "logoUrl": "https://icon.horse/icon/fhnw.ch",
+    "imageUrl": "https://icon.horse/icon/fhnw.ch",
+    "imageSourceUrl": "https://fhnw.ch",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "queensland-university-of-technology-qut",
@@ -2067,7 +2764,13 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 116
-    }
+    },
+    "websiteUrl": "https://qut.edu.au",
+    "logoUrl": "https://icon.horse/icon/qut.edu.au",
+    "imageUrl": "https://icon.horse/icon/qut.edu.au",
+    "imageSourceUrl": "https://qut.edu.au",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   },
   {
     "id": "s-p-jain-school-of-global-management",
@@ -2085,6 +2788,12 @@
       "file": "[CTTĐ_S27] Danh sách trường đối tác trao đổi.xlsx",
       "sheet": "Danh sách đối tác S27",
       "row": 117
-    }
+    },
+    "websiteUrl": "https://spjain.edu",
+    "logoUrl": "https://icon.horse/icon/spjain.edu",
+    "imageUrl": "https://icon.horse/icon/spjain.edu",
+    "imageSourceUrl": "https://spjain.edu",
+    "imageSourceType": "official-domain-favicon",
+    "imageVerifiedAt": "2026-09-21"
   }
 ]

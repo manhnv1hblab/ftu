@@ -362,10 +362,12 @@ export default function PartnersPage() {
 
             // Resolve campus image
             const campusImg =
+              uni.imageUrl ||
               COUNTRY_CAMPUS_IMAGES[uni.country] ||
               (uni.region === 'Asia' ? COUNTRY_CAMPUS_IMAGES['Korea'] :
                 uni.region === 'Europe' ? COUNTRY_CAMPUS_IMAGES['France'] :
                   COUNTRY_CAMPUS_IMAGES['default']);
+            const isCampusImage = uni.imageSourceType === 'official-campus-image' || uni.imageSourceType === 'internet-campus-image';
 
             return (
               <article
@@ -376,9 +378,9 @@ export default function PartnersPage() {
                 <div className="relative h-48 w-full overflow-hidden bg-surface-container-low">
                   <Image
                     src={campusImg}
-                    alt={`Khuôn viên trường ${uni.name}`}
+                    alt={isCampusImage ? `Ảnh khuôn viên của ${uni.name}` : `Hình ảnh nhận diện chính thức của ${uni.name}`}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className={`${isCampusImage ? 'object-cover' : 'object-contain bg-white p-12'} group-hover:scale-105 transition-transform duration-500`}
                     unoptimized
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>

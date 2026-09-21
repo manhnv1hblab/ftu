@@ -25,6 +25,10 @@ export interface PartnerUniversity {
   hasScholarship?: boolean;
   logoUrl?: string;
   imageUrl?: string;
+  imageSourceUrl?: string;
+  imageSourceType?: 'official-domain-favicon' | 'official-campus-image' | 'internet-campus-image' | 'official-page-image' | 'verified-external-image';
+  imageVerifiedAt?: string;
+  imageSearchTitle?: string;
   galleryImages?: string[];
   description?: string;
   highlights?: string[];

@@ -1,0 +1,258 @@
+{
+  "minnesota-state-university": {
+    "imageUrl": "https://collegevine.imgix.net/50e372a9-d43f-4b70-876b-9ab17484ef56.jpg?auto=format&crop=edges&fit=crop",
+    "sourceUrl": "https://www.collegevine.com/schools/minnesota-state-university-mankato",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Minnesota State University"
+  },
+  "beijing-foreign-studies-university-bfsu": {
+    "imageUrl": "https://lxbw.bfsu.edu.cn/images/19/04/05/1wpl2xpxvg/201807115210152485255.jpg",
+    "sourceUrl": "https://lxbw.bfsu.edu.cn/xyfm1/xyfj.htm",
+    "title": "",
+    "score": 14,
+    "official": false,
+    "name": "Beijing Foreign Studies University (BFSU)"
+  },
+  "guangdong-university-of-foreign-studies-south-china-business-college-scbc": {
+    "imageUrl": "https://www.gwng.edu.cn/_upload/article/images/15/20/34c0623e4e50bd192a12c97ae262/8388d4f6-4e94-476a-8d3d-2967a4034d5f.jpg",
+    "sourceUrl": "https://www.gwng.edu.cn/2019/1024/c23a7001/page.htm",
+    "title": "学校正门 (https://www.gwng.edu.cn/2019/1024/c23a7001/page.htm)",
+    "score": 14,
+    "official": false,
+    "name": "Guangdong University of Foreign Studies, \nSouth China Business College (SCBC)"
+  },
+  "hunan-normal-university": {
+    "imageUrl": "https://www.acabridge.cn/yxxw/yxyc/202412/W020241219352373244852.jpg",
+    "sourceUrl": "https://www.acabridge.cn/yxxw/yxyc/202412/t20241219_2647095.shtml",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Hunan Normal University"
+  },
+  "shanghai-university-of-finance-and-economics": {
+    "imageUrl": "https://intlstu.sufe.edu.cn/_upload/article/images/cf/0d/78b20dca4eff83bfe9f6142ed262/51853aef-1706-460f-86b2-d881d4f5dc2c.jpg",
+    "sourceUrl": "https://intlstu.sufe.edu.cn/12487/list.htm",
+    "title": "",
+    "score": 14,
+    "official": false,
+    "name": "Shanghai University of Finance and Economics"
+  },
+  "s-p-jain-institute-of-management-research": {
+    "imageUrl": "https://www.collegebatch.com/static/clg-gallery/sp-jain-institute-of-management-research-mumbai-238713.jpg",
+    "sourceUrl": "https://www.collegebatch.com/87-sp-jain-institute-of-management-and-research-campus-tour-mumbai",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "S.P. Jain Institute of Management & Research"
+  },
+  "aomori-chuo-gakuin-university": {
+    "imageUrl": "https://up-j.shigaku.go.jp/photo/00000000044001000/0_20140807162813.jpg",
+    "sourceUrl": "https://up-j.shigaku.go.jp/school/category06/00000000044001000.html",
+    "title": "",
+    "score": 14,
+    "official": false,
+    "name": "Aomori Chuo Gakuin University"
+  },
+  "doshisha-women-s-college-of-liberal-arts": {
+    "imageUrl": "https://www.dwc.doshisha.ac.jp/application/files/2816/4869/0421/dwcla_background_James-kan_snow.jpg",
+    "sourceUrl": "https://www.dwc.doshisha.ac.jp/about/publicity/background",
+    "title": "",
+    "score": 14,
+    "official": false,
+    "name": "Doshisha Women's College of Liberal Arts"
+  },
+  "hiroshima-university-of-economics": {
+    "imageUrl": "https://prtimes.jp/data/corp/161602/cover/sp-764266523a50323521be6cd6fd938be2-29aa06f698e300dd2fb4a36ab8011abb.jpeg?auto=avif",
+    "sourceUrl": "https://prtimes.jp/main/html/searchrlp/company_id/161602",
+    "title": "学校法人石田学園　広島経済大学のプレスリリース｜PR TIMES (https://prtimes.jp/main/html/searchrlp/company_id/161602)",
+    "score": 11,
+    "official": false,
+    "name": "Hiroshima University of Economics"
+  },
+  "kwansei-gakuin-university": {
+    "imageUrl": "https://ryugakuat.jp/wp/wp-content/uploads/2022/05/d97c50263c64191b4a87e849b78211fe-scaled.jpg",
+    "sourceUrl": "https://ryugakuat.jp/school/kwansei/",
+    "title": "関西学院大学 | 留学＠JP ┃外国人進学・就職情報サイト (https://ryugakuat.jp/school/kwansei/)",
+    "score": 11,
+    "official": false,
+    "name": "Kwansei Gakuin University"
+  },
+  "meiji-university-school-of-information-and-communication": {
+    "imageUrl": "https://search-staff.com/img/cont/cont_1649146622_0.jpg",
+    "sourceUrl": "https://search-staff.com/chugaku-juken/contents/id/72",
+    "title": "",
+    "score": 14,
+    "official": false,
+    "name": "Meiji University, School of Information and Communication"
+  },
+  "meiji-university-school-of-political-science-and-economics": {
+    "imageUrl": "https://search-staff.com/img/cont/cont_1649146622_0.jpg",
+    "sourceUrl": "https://search-staff.com/chugaku-juken/contents/id/72",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Meiji University, School of Political Science and Economics"
+  },
+  "momoyama-gakuin-university": {
+    "imageUrl": "https://www.andrew.ac.jp/newstopics3/2025/jbo7mq000001o4rs-img/jbo7mq000001o4sa.jpg",
+    "sourceUrl": "https://www.andrew.ac.jp/newstopics3/2025/jbo7mq000001o4rs.html",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Momoyama Gakuin University"
+  },
+  "mukogawa-women-s-university": {
+    "imageUrl": "https://info.mukogawa-u.ac.jp/mwuphotos/photos/344.jpg",
+    "sourceUrl": "https://www.mukogawa-u.ac.jp/~global/",
+    "title": "Mukogawa Women's University (https://www.mukogawa-u.ac.jp/~global/)",
+    "score": 11,
+    "official": false,
+    "name": "Mukogawa Women's University"
+  },
+  "onomichi-city-university": {
+    "imageUrl": "https://s3-ap-northeast-1.amazonaws.com/license-shinronavi/images/148708/large.jpg",
+    "sourceUrl": "https://shinronavi.com/newschool/index/1582",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Onomichi City University"
+  },
+  "osaka-university-of-economics": {
+    "imageUrl": "https://uni24k.com/media/CACHE/images/unis/building_schools_u005579f5_1544692f/a460b66f8609c38e35c07e4ae907c2ce.jpg",
+    "sourceUrl": "https://uni24k.com/u/7278/",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Osaka University of Economics"
+  },
+  "seinan-gakuin-university": {
+    "imageUrl": "https://www.studyjapan.jp/schools/img/image/392",
+    "sourceUrl": "https://www.studyjapan.jp/en/schools/detail/R12609",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Seinan Gakuin University"
+  },
+  "tokyo-keizai-university": {
+    "imageUrl": "https://www.tku.ac.jp/upload/media/images/2024chiiki_SP_IMG_O7A9463_green-30_0508.jpg",
+    "sourceUrl": "https://www.tku.ac.jp/renkei/",
+    "title": "地域連携・社会貢献 | 東京経済大学 (https://www.tku.ac.jp/renkei/)",
+    "score": 11,
+    "official": false,
+    "name": "Tokyo Keizai University"
+  },
+  "chung-ang-university": {
+    "imageUrl": "https://www.studyinkorea.go.kr/file/imgpreview.do?fileStorePath=univStorePath&filename=EI_DATA_FILE201903180248156500_B.jpg",
+    "sourceUrl": "https://www.studyinkorea.go.kr/ko/search/universityInfo.do?tab=univ-basic-info&univCd=100367",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Chung-Ang University"
+  },
+  "ewha-womans-university": {
+    "imageUrl": "https://cdn.news.unn.net/news/photo/202009/234444_119872_5747.jpg",
+    "sourceUrl": "https://news.unn.net/news/articleView.html?idxno=234444",
+    "title": "\"인문(人文)은 이화로\" 이화여대, 인문사회연구소 지원사업 최다 선정 < 대학뉴스 < 뉴스 < 기사본문 - 한국대학신문 - 411개 대학을 연결하는 '힘' (https://news.unn.net/news/articleView.html?idxno=234444)",
+    "score": 11,
+    "official": false,
+    "name": "Ewha Womans University"
+  },
+  "kyung-hee-university": {
+    "imageUrl": "https://i.pinimg.com/originals/3f/f5/e1/3ff5e169da27d72f19690e4ff551164c.jpg",
+    "sourceUrl": "https://pt.pinterest.com/pin/cherry-blossoms-in-kyung-hee-university-seoul-south-korea-10801350-in-2024--463378249178300708/",
+    "title": "Cherry blossoms in Kyung Hee University Seoul South Korea [10801350] | Kyung hee, Korea university, University (https://pt.pinterest.com/pin/cherry-blossoms-in-kyung-hee-university-seoul-south-korea-10801350-in-2024--463378249178300708/)",
+    "score": 11,
+    "official": false,
+    "name": "Kyung Hee University"
+  },
+  "sookmyung-women-s-university": {
+    "imageUrl": "https://data.si.re.kr/photos/files/img/06/06U02403Dc82000.jpg",
+    "sourceUrl": "https://data.si.re.kr/photo/06u02403dc82000",
+    "title": "숙명여대 | 서울연구데이터서비스 (https://data.si.re.kr/photo/06u02403dc82000)",
+    "score": 11,
+    "official": false,
+    "name": "Sookmyung Women's University"
+  },
+  "chang-gung-university": {
+    "imageUrl": "https://images.1111.com.tw/discussPic/82/51798282_177526588.781746.jpg",
+    "sourceUrl": "https://university.1111.com.tw/zone/University/discussTopic.asp?cat=University&id=242695",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Chang Gung University"
+  },
+  "ming-chuan-university": {
+    "imageUrl": "https://www.easy-go.mn/uploads/school-photo/middle/easy-go-school-photo-177554883610.jpg",
+    "sourceUrl": "https://www.easy-go.mn/school-photo/178/ming-chuan-university",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Ming Chuan University"
+  },
+  "aix-marseille-university": {
+    "imageUrl": "https://fr.readkong.com/static/ca/6f/ca6fb03039cbe09772a5cd31d6df8537/bienvenue-livret-d-accueil-2020-2021-aix-marseille-2880516-7.jpg",
+    "sourceUrl": "https://fr.readkong.com/page/bienvenue-livret-d-accueil-2020-2021-aix-marseille-2880516",
+    "title": "Bienvenue - LIVRET D'ACCUEIL 2020-2021 - Aix-Marseille Université (https://fr.readkong.com/page/bienvenue-livret-d-accueil-2020-2021-aix-marseille-2880516)",
+    "score": 11,
+    "official": false,
+    "name": "Aix-Marseille University"
+  },
+  "friedrich-alexander-universitat-erlangen-nurnberg-school-of-business-economics": {
+    "imageUrl": "https://www.forum-v.de/files/2016/02/Wiso-5.jpg",
+    "sourceUrl": "https://www.forum-v.de/ueber-forum-v/",
+    "title": "",
+    "score": 23,
+    "official": false,
+    "name": "Friedrich- Alexander-Universitat Erlangen-Nurnberg, School of Business & Economics"
+  },
+  "heinrich-heine-university-dusseldorf-hhu": {
+    "imageUrl": "https://www.buergeruni.hhu.de/fileadmin/_processed_/b/9/csm_Luftaufnahme_Campus_HHU_241860_-_C_Peter_Sondermann_96827ed5d6.jpg",
+    "sourceUrl": "https://www.buergeruni.hhu.de/alumni/alumni-news/detailansicht-news/rektorin-appelliert-an-friedliches-miteinander",
+    "title": "Vandalismus auf dem Campus (https://www.buergeruni.hhu.de/alumni/alumni-news/detailansicht-news/rektorin-appelliert-an-friedliches-miteinander)",
+    "score": 17,
+    "official": false,
+    "name": "Heinrich-Heine University Dusseldorf (HHU)"
+  },
+  "whu-otto-beisheim-school-of-management": {
+    "imageUrl": "https://www.mystipendium.de/sites/default/files/styles/adaptive_desk__max_1200_/public/whu-profil.jpg?itok=ylPfUmsH",
+    "sourceUrl": "https://www.mystipendium.de/hochschulen/whu",
+    "title": "WHU – Otto Beisheim School of Management | myStipendium (https://www.mystipendium.de/hochschulen/whu)",
+    "score": 14,
+    "official": false,
+    "name": "WHU-Otto Beisheim School of Management"
+  },
+  "russian-foreign-trade-academy-rfta": {
+    "imageUrl": "https://photos.wikimapia.org/p/00/07/13/75/20_big.jpg",
+    "sourceUrl": "https://wikimapia.org/169728/Russian-Foreign-Trade-Academy-main-building",
+    "title": "",
+    "score": 14,
+    "official": false,
+    "name": "Russian Foreign Trade Academy (RFTA)"
+  },
+  "university-of-las-palmas-de-gran-canaria-ulpgc": {
+    "imageUrl": "https://www.atlanticohoy.com/uploads/s1/30/24/38/1/universidad-de-las-palmas-de-gran-canaria-ulpgc.png",
+    "sourceUrl": "https://www.atlanticohoy.com/cultura/estas-son-dos-nuevas-titulaciones-universidad-palmas-gran-canaria_1529683_102.html",
+    "title": "Estas son las dos nuevas titulaciones de la Universidad de Las Palmas de Gran Canaria (https://www.atlanticohoy.com/cultura/estas-son-dos-nuevas-titulaciones-universidad-palmas-gran-canaria_1529683_102.html)",
+    "score": 20,
+    "official": false,
+    "name": "University of Las Palmas de Gran Canaria (ULPGC)"
+  },
+  "university-of-gothenburg-school-of-business-economics-and-law": {
+    "imageUrl": "https://studentportal.gu.se/sites/default/files/styles/100_10_4_xmedium_1x/public/2024-02/webb_4648.jpg?h=74c6825a&itok=KLm3_XH2",
+    "sourceUrl": "https://studentportal.gu.se/en/news/new-opening-hours-in-the-schools-reception-at-vasagatan-1",
+    "title": "New opening hours in the School's reception at Vasagatan 1 | Student Portal (https://studentportal.gu.se/en/news/new-opening-hours-in-the-schools-reception-at-vasagatan-1)",
+    "score": 14,
+    "official": false,
+    "name": "University of Gothenburg, School of Business, Economics and Law"
+  },
+  "queensland-university-of-technology-qut": {
+    "imageUrl": "https://media.glassdoor.com/l/10/60/3c/94/gardens-point-campus-main-entrance.jpg",
+    "sourceUrl": "https://www.glassdoor.com.au/Photos/QUT-Office-Photos-IMG1704280.htm",
+    "title": "",
+    "score": 11,
+    "official": false,
+    "name": "Queensland University of Technology (QUT)"
+  }
+}

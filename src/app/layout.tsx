@@ -3,6 +3,7 @@ import './globals.css';
 import { StudentProvider } from '../context/StudentContext';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
+import { AdvisorChat } from '../components/ai/AdvisorChat';
 
 export const metadata: Metadata = {
   title: 'FTU GoGlobal — Cổng Tư Vấn Trao Đổi Sinh Viên S27',
@@ -37,6 +38,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
+          <AdvisorChat />
         </StudentProvider>
       </body>
     </html>

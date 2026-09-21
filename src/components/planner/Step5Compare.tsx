@@ -145,7 +145,7 @@ export const Step5Compare: React.FC = () => {
                   <img
                     src={uni.imageUrl || '/images/logo.png'}
                     alt={uni.name}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full ${uni.imageSourceType === 'official-campus-image' || uni.imageSourceType === 'internet-campus-image' ? 'object-cover' : 'object-contain bg-white p-8'}`}
                   />
                   <span className="absolute top-2 left-2 px-2.5 py-0.5 rounded-full bg-primary text-white text-[10px] font-bold shadow-xs">
                     {label}

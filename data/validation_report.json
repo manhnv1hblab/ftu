@@ -3458,6 +3458,8 @@
     ],
     "curriculumDuplicateCourseCodes": [],
     "offeringsMissingCourseCode": [],
+    "universitiesWithoutImage": [],
+    "invalidImageLinkMetadata": [],
     "swissCostDiscrepancy": {
       "hasDiscrepancy": true,
       "details": "Thụy Sĩ vs Thuỵ Sỹ có mức chi phí khác nhau trong tài liệu gốc. Đã gắn cờ requiresVerification."

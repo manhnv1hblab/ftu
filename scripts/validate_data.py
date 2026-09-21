@@ -64,6 +64,8 @@ report = {
         "countriesWithoutCost": [],
         "curriculumDuplicateCourseCodes": [],
         "offeringsMissingCourseCode": [],
+        "universitiesWithoutImage": [],
+        "invalidImageLinkMetadata": [],
         "swissCostDiscrepancy": {
             "hasDiscrepancy": True,
             "details": "Thụy Sĩ vs Thuỵ Sỹ có mức chi phí khác nhau trong tài liệu gốc. Đã gắn cờ requiresVerification."
@@ -103,6 +105,18 @@ for u in unis:
     if u["id"] in uni_ids:
         report["dataQualityChecks"]["duplicateUniversityIds"].append(u["id"])
     uni_ids.add(u["id"])
+    allowed_image_types = {"official-domain-favicon", "official-campus-image", "internet-campus-image", "official-page-image", "verified-external-image"}
+    if not u.get("imageUrl") or not u.get("imageSourceUrl") or u.get("imageSourceType") not in allowed_image_types:
+        report["dataQualityChecks"]["universitiesWithoutImage"].append({
+            "id": u.get("id"),
+            "name": u.get("name")
+        })
+    elif not str(u["imageUrl"]).startswith(("https://icon.horse/icon/", "http://", "https://")) or not str(u["imageSourceUrl"]).startswith(("http://", "https://")):
+        report["dataQualityChecks"]["invalidImageLinkMetadata"].append({
+            "id": u.get("id"),
+            "imageUrl": u.get("imageUrl"),
+            "imageSourceUrl": u.get("imageSourceUrl")
+        })
 
 eq_ids = set()
 for eq in eqs:
@@ -170,6 +184,8 @@ critical_quality_errors = (
     + report["dataQualityChecks"]["equivalencesReferencingUnknownUniversity"]
     + report["dataQualityChecks"]["curriculumDuplicateCourseCodes"]
     + report["dataQualityChecks"]["offeringsMissingCourseCode"]
+    + report["dataQualityChecks"]["universitiesWithoutImage"]
+    + report["dataQualityChecks"]["invalidImageLinkMetadata"]
 )
 if critical_quality_errors:
     print('ERROR: critical data quality checks failed.')
