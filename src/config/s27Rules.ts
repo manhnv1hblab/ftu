@@ -16,6 +16,6 @@ export const S27_RULES = {
   transferredCoursesMinimum: 3,
   englishMinimumLevel: 'B2',
   source: S27_RULE_SOURCE,
-  dataVersion: 'S27-2026-2027'
+  dataVersion: 'S27-2026-2027-course-audit-2'
 } as const;
 

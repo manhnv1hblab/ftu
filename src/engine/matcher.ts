@@ -1,3 +1,4 @@
+import { isAvailableForTransfer } from './transferEligibility';
 import { PartnerUniversity } from '../types/university';
 import { CourseEquivalence } from '../types/equivalence';
 import { CourseOffering } from '../types/courseOffering';
@@ -11,99 +12,179 @@ import { S27_RULES } from '../config/s27Rules';
 
 export function matchCoursesForUniversity(
   university: PartnerUniversity,
-  studentCoursesNotPassed: { code: string; name: string; credits: number; program?: string }[],
+  studentCoursesNotPassed: { code: string; name: string; credits: number; program?: string; cohort?: string }[],
   allEquivalences: CourseEquivalence[],
   courseOfferings?: CourseOffering[]
 ): CourseMatchPair[] {
-  // Filter equivalences for this university
   const uniId = university.id;
-  const uniEquivalences = allEquivalences.filter(
-    eq => eq.partnerS27Id === uniId || (!eq.partnerS27Id && normalizeName(eq.partnerUni) === normalizeName(university.name))
-  ).filter(eq => eq.status !== 'REJECTED');
+  const uniEquivalences = allEquivalences.filter(eq =>
+    eq.partnerS27Id === uniId || (!eq.partnerS27Id && normalizeName(eq.partnerUni) === normalizeName(university.name))
+  ).filter(eq => eq.status !== 'REJECTED').sort((a, b) => a.id.localeCompare(b.id));
+  const courses = Array.from(new Map(studentCoursesNotPassed.map(course => [normalizeCode(course.code), course])).values())
+    .sort((a, b) => normalizeCode(a.code).localeCompare(normalizeCode(b.code)));
+  const candidates: { courseIndex: number; hostKey: string; eq: CourseEquivalence; scopeVerified: boolean; verificationReason?: string }[] = [];
 
-  // Group approved equivalences
-  // We need 1-to-1 matching so that:
-  // - 1 host course is not reused for multiple FTU courses
-  // - 1 FTU course is not paired multiple times
-  const usedHostCourses = new Set<string>();
-  const usedFtuCourses = new Set<string>();
-  const matchedPairs: CourseMatchPair[] = [];
-
-  // Sort candidate equivalences: APPROVED first, then PENDING
-  const sortedEqs = [...uniEquivalences].sort((a, b) => {
-    if (a.status === 'APPROVED' && b.status !== 'APPROVED') return -1;
-    if (a.status !== 'APPROVED' && b.status === 'APPROVED') return 1;
-    return 0;
-  });
-
-  for (const studentCourse of studentCoursesNotPassed) {
-    if (usedFtuCourses.has(studentCourse.code.toUpperCase())) continue;
-
-    for (const eq of sortedEqs) {
-      const hostKey = `${normalizeCode(eq.hostCourseCode)}_${normalizeName(eq.hostCourseName)}`;
-      if (usedHostCourses.has(hostKey)) continue;
-
-      // Check if FTU course code matches
-      const isCodeMatch = eq.ftuCourseCodes.some(
-        c => normalizeCode(c) === normalizeCode(studentCourse.code)
-      );
-
-      // Or fallback to clean name match if code was omitted in raw note
-      const isNameMatch = !eq.ftuCourseCodes.length &&
-        normalizeName(eq.ftuCourseNameClean) === normalizeName(studentCourse.name);
-
-      if (isCodeMatch || isNameMatch) {
-        // Offerings check in FTU 2026-2027
-        const offeringTerms: ('HK1' | 'HK2')[] = [];
-        if (courseOfferings) {
-          for (const off of courseOfferings) {
-            if (off.courseCode.toUpperCase() === studentCourse.code.toUpperCase()) {
-              if (!offeringTerms.includes(off.semester)) {
-                offeringTerms.push(off.semester);
-              }
-            }
-          }
-        }
-
-        // Assess risk
-        let riskLevel: 'LOW' | 'MEDIUM' | 'HIGH' = 'LOW';
-        let riskReason = 'Môn tương đương đã được phê duyệt chính thức.';
-
-        if (eq.status === 'PENDING') {
-          riskLevel = 'MEDIUM';
-          riskReason = 'Môn đang chờ bộ môn phê duyệt. Cần nộp đề cương để xét.';
-        } else if (eq.status === 'UNCERTAIN') {
-          riskLevel = 'HIGH';
-          riskReason = 'Dữ liệu tương đương chưa đủ chắc chắn trong tài liệu nguồn. Không được coi là kết quả đã duyệt.';
-        } else if (offeringTerms.length === 1 && offeringTerms[0] === 'HK2') {
-          riskLevel = 'MEDIUM';
-          riskReason = 'Môn này tại FTU chỉ dự kiến mở vào HK2. Nếu không đổi được sẽ phải chờ năm sau.';
-        }
-
-        matchedPairs.push({
-          ftuCourseCode: studentCourse.code,
-          ftuCourseName: studentCourse.name,
-          ftuCredits: studentCourse.credits,
-          hostCourseCode: eq.hostCourseCode,
-          hostCourseName: eq.hostCourseName,
-          equivalenceId: eq.id,
-          status: eq.status,
-          faculty: eq.faculty,
-          approver: eq.approver,
-          approvalYear: eq.approvalYear,
-          offeredInSemester: offeringTerms,
-          riskLevel,
-          riskReason
+  const appliesToProfile = (restriction: string, program?: string, cohort?: string): { applies: boolean; verified: boolean } => {
+    if (!restriction.trim()) return { applies: true, verified: false };
+    const clean = (value: string) => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('vi-VN');
+    const text = clean(restriction);
+    let verified = true;
+    let applies = true;
+    const aliases: Record<string, string[]> = {
+      'tieu chuan': ['tieu chuan', 'tc'],
+      'clc': ['clc', 'chat luong cao'],
+      'cttt': ['cttt', 'tien tien']
+    };
+    const tokens = text.split(/[^a-z0-9]+/).filter(Boolean);
+    const hasStandard = text.includes('tieu chuan') || tokens.includes('tc');
+    const hasClc = tokens.includes('clc') || text.includes('chat luong cao');
+    const hasCttt = tokens.includes('cttt') || text.includes('tien tien');
+    const explicitlyScoped = hasStandard || hasClc || hasCttt;
+    if (explicitlyScoped) {
+      if (!program) verified = false;
+      else {
+        const selected = clean(program);
+        const choices = Object.entries(aliases).flatMap(([key, values]) =>
+          values.some(alias => selected === alias || selected.includes(alias)) ? [key] : []
+        );
+        if (choices.length === 0) verified = false;
+        else applies = choices.some(choice => {
+          if (choice === 'tieu chuan') return hasStandard;
+          if (choice === 'clc') return hasClc;
+          return hasCttt;
         });
-
-        usedHostCourses.add(hostKey);
-        usedFtuCourses.add(studentCourse.code.toUpperCase());
-        break; // 1-1 match found for this student course
       }
+    } else verified = false;
+
+    const cohortRules = Array.from(text.matchAll(/\bk\s*(\d{2})\b/g)).map(match => Number(match[1]));
+    if (cohortRules.length) {
+      const studentCohort = Number((cohort || '').match(/\d{2}/)?.[0]);
+      if (!Number.isFinite(studentCohort)) verified = false;
+      else if (/ve truoc|tro ve truoc|den k|toi k/.test(text)) {
+        applies = applies && studentCohort <= Math.min(...cohortRules);
+      } else if (/tu k/.test(text)) {
+        applies = applies && studentCohort >= Math.min(...cohortRules);
+      } else if (cohortRules.length === 1) {
+        applies = applies && studentCohort === cohortRules[0];
+      } else verified = false;
+    } else if (/k\d{2}|khoa/.test(text)) verified = false;
+    return { applies, verified };
+  };
+
+  for (let courseIndex = 0; courseIndex < courses.length; courseIndex += 1) {
+    const course = courses[courseIndex];
+    for (const eq of uniEquivalences) {
+      const codeMatch = eq.ftuCourseCodes.some(code => normalizeCode(code) === normalizeCode(course.code));
+      const nameMatch = !eq.ftuCourseCodes.length && Boolean(course.name)
+        && normalizeName(eq.ftuCourseNameClean) === normalizeName(course.name);
+      if (!codeMatch && !nameMatch) continue;
+      const scope = appliesToProfile(eq.curriculum || '', course.program, course.cohort);
+      if (!scope.applies) continue;
+      const courseDataVerified = Boolean(course.name.trim()) && Number.isFinite(course.credits) && course.credits > 0;
+      const hostKey = normalizeCode(eq.hostCourseCode)
+        ? `code:${normalizeCode(eq.hostCourseCode)}`
+        : `name:${normalizeName(eq.hostCourseName)}`;
+      candidates.push({
+        courseIndex,
+        hostKey,
+        eq,
+        scopeVerified: scope.verified && courseDataVerified,
+        verificationReason: !courseDataVerified ? 'Hồ sơ chỉ có mã môn hoặc thiếu tên/tín chỉ; cần đối chiếu với CTĐT.'
+          : scope.verified ? undefined : course.program
+            ? 'Phạm vi chương trình/khóa trong nguồn thiếu hoặc chưa nhận diện được.'
+            : 'Chưa có chương trình đào tạo để xác minh phạm vi áp dụng.'
+      });
     }
   }
 
-  return matchedPairs;
+  // Max-cost augmenting paths maximize approved pairs first, then pending,
+  // then uncertain pairs, while preserving a one-to-one course mapping.
+  const hostKeys = Array.from(new Set(candidates.map(candidate => candidate.hostKey))).sort();
+  const source = 0;
+  const courseStart = 1;
+  const hostStart = courseStart + courses.length;
+  const sink = hostStart + hostKeys.length;
+  type Edge = { to: number; rev: number; capacity: number; cost: number; candidate?: typeof candidates[number] };
+  const graph: Edge[][] = Array.from({ length: sink + 1 }, () => []);
+  const addEdge = (from: number, to: number, capacity: number, cost: number, candidate?: typeof candidates[number]) => {
+    const forward: Edge = { to, rev: graph[to].length, capacity, cost, candidate };
+    const reverse: Edge = { to: from, rev: graph[from].length, capacity: 0, cost: -cost };
+    graph[from].push(forward);
+    graph[to].push(reverse);
+  };
+  const hostIndex = new Map(hostKeys.map((key, index) => [key, index]));
+  courses.forEach((_, index) => addEdge(source, courseStart + index, 1, 0));
+  hostKeys.forEach((_, index) => addEdge(hostStart + index, sink, 1, 0));
+  const count = courses.length;
+  const statusWeight = { APPROVED: (count + 1) ** 2, PENDING: count + 1, UNCERTAIN: 1 };
+  for (const candidate of candidates) {
+    const matchStatus = candidate.scopeVerified ? candidate.eq.status : 'UNCERTAIN';
+    const weight = statusWeight[matchStatus as keyof typeof statusWeight] || 0;
+    if (weight) addEdge(courseStart + candidate.courseIndex, hostStart + hostIndex.get(candidate.hostKey)!, 1, -weight, candidate);
+  }
+
+  while (true) {
+    const distance = Array(graph.length).fill(Number.POSITIVE_INFINITY) as number[];
+    const previousNode = Array(graph.length).fill(-1) as number[];
+    const previousEdge = Array(graph.length).fill(-1) as number[];
+    const inQueue = Array(graph.length).fill(false) as boolean[];
+    const queue = [source];
+    distance[source] = 0;
+    inQueue[source] = true;
+    for (let cursor = 0; cursor < queue.length; cursor += 1) {
+      const node = queue[cursor];
+      inQueue[node] = false;
+      graph[node].forEach((edge, edgeIndex) => {
+        if (edge.capacity <= 0 || distance[edge.to] <= distance[node] + edge.cost) return;
+        distance[edge.to] = distance[node] + edge.cost;
+        previousNode[edge.to] = node;
+        previousEdge[edge.to] = edgeIndex;
+        if (!inQueue[edge.to]) { queue.push(edge.to); inQueue[edge.to] = true; }
+      });
+    }
+    if (!Number.isFinite(distance[sink]) || distance[sink] >= 0) break;
+    for (let node = sink; node !== source; node = previousNode[node]) {
+      const edge = graph[previousNode[node]][previousEdge[node]];
+      edge.capacity -= 1;
+      graph[node][edge.rev].capacity += 1;
+    }
+  }
+
+  const chosen = graph.slice(courseStart, hostStart).flatMap(edges => edges
+    .filter(edge => edge.candidate && edge.capacity === 0)
+    .map(edge => edge.candidate!));
+  return chosen.map(candidate => {
+    const course = courses[candidate.courseIndex];
+    const eq = candidate.eq;
+    const offeringTerms: ('HK1' | 'HK2')[] = [];
+    for (const off of courseOfferings || []) {
+      if (normalizeCode(off.courseCode) === normalizeCode(course.code) && !offeringTerms.includes(off.semester)) offeringTerms.push(off.semester);
+    }
+    const riskLevel: CourseMatchPair['riskLevel'] = eq.status === 'UNCERTAIN' || !candidate.scopeVerified ? 'HIGH'
+      : eq.status === 'PENDING' || (offeringTerms.length === 1 && offeringTerms[0] === 'HK2') ? 'MEDIUM' : 'LOW';
+    const riskReason = !candidate.scopeVerified ? candidate.verificationReason!
+      : eq.status === 'PENDING' ? 'Môn đang chờ bộ môn phê duyệt. Cần nộp đề cương để xét.'
+        : eq.status === 'UNCERTAIN' ? 'Dữ liệu tương đương chưa đủ chắc chắn trong tài liệu nguồn. Không được coi là kết quả đã duyệt.'
+          : offeringTerms.length === 1 && offeringTerms[0] === 'HK2' ? 'Môn này tại FTU chỉ dự kiến mở vào HK2. Nếu không đổi được sẽ phải chờ năm sau.'
+            : 'Môn tương đương đã được phê duyệt theo tài liệu nguồn.';
+    return {
+      ftuCourseCode: course.code,
+      ftuCourseName: course.name,
+      ftuCredits: course.credits,
+      hostCourseCode: eq.hostCourseCode,
+      hostCourseName: eq.hostCourseName,
+      equivalenceId: eq.id,
+      status: eq.status,
+      verificationStatus: candidate.scopeVerified ? 'VERIFIED' as const : 'NEEDS_VERIFICATION' as const,
+      verificationReason: candidate.verificationReason,
+      faculty: eq.faculty,
+      approver: eq.approver,
+      approvalYear: eq.approvalYear,
+      offeredInSemester: offeringTerms,
+      riskLevel,
+      riskReason
+    };
+  }).sort((a, b) => normalizeCode(a.ftuCourseCode).localeCompare(normalizeCode(b.ftuCourseCode)));
 }
 
 export function evaluateAllUniversities(
@@ -114,16 +195,17 @@ export function evaluateAllUniversities(
   courseOfferings: CourseOffering[]
 ): UniversityMatchResult[] {
   // Extract remaining courses for student
-  const remainingCourses: { code: string; name: string; credits: number; program?: string }[] = [];
+  const remainingCourses: { code: string; name: string; credits: number; program?: string; cohort?: string }[] = [];
 
   if (profile.courses && profile.courses.length > 0) {
     for (const c of profile.courses) {
-      if (!c.isPassed) {
+      if (isAvailableForTransfer(c)) {
         remainingCourses.push({
           code: c.courseCode,
           name: c.courseName,
           credits: c.credits,
-          program: c.program
+        program: c.program || profile.program,
+        cohort: profile.cohort
         });
       }
     }
@@ -132,7 +214,9 @@ export function evaluateAllUniversities(
       remainingCourses.push({
         code: normalizeCode(code),
         name: '',
-        credits: 0
+        credits: 0,
+        program: profile.program,
+        cohort: profile.cohort
       });
     }
   }
@@ -147,9 +231,9 @@ export function evaluateAllUniversities(
       courseOfferings
     );
 
-    const approvedPairs = matchedPairs.filter(p => p.status === 'APPROVED');
-    const pendingPairs = matchedPairs.filter(p => p.status === 'PENDING');
-    const uncertainPairs = matchedPairs.filter(p => p.status === 'UNCERTAIN');
+    const approvedPairs = matchedPairs.filter(p => p.status === 'APPROVED' && p.verificationStatus === 'VERIFIED');
+    const pendingPairs = matchedPairs.filter(p => p.status === 'PENDING' && p.verificationStatus === 'VERIFIED');
+    const uncertainPairs = matchedPairs.filter(p => p.status === 'UNCERTAIN' || p.verificationStatus !== 'VERIFIED');
 
     // Program eligibility check
     const elig = checkProgramEligibility(profile, uni);

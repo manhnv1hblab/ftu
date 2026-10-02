@@ -4,6 +4,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -57,6 +58,16 @@ PARTNER_NAME_ALIASES = {
     "Hanyang University Business School": "Hanyang University",
     "Sookmyung Women's University": "Sookmyung Women’s University",
     "University of Seoul": "University of Seoul (UOS)",
+    "Beijing Foreign Studies University (BFSU)": "Beijing Foreign Studies University",
+    "Beijing International Studies University (BISU)": "Beijing International Studies University",
+    "Oulu University of Applied Sciences": "Oulu Applied Science University",
+    "Seinajoki University of Applied Sciences": "Seinajoki Applied Science University",
+    "Goethe University Frankfurt am Main, Faculty of Economics and Business Administration": "Goethe Frankfurt University",
+    "Hochschule Trier, Trier University of Applied Sciences": "Trier Applied Science University",
+    "National Research University Higher School of Economics (HSE)": "National Research University, Higher School of Economics, St. Petersburg",
+    "University of Gothenburg, School of Business, Economics and Law": "Gothenburg University",
+    "University of South Carolina": "Darla Moore School of Business, University of South Carolina",
+    "Osnabrück University of Applied Sciences": "Hochschule Osnabruck Sciences University",
 }
 
 # -------------------------------------------------------------
@@ -115,10 +126,19 @@ wb_eq = openpyxl.load_workbook(os.path.join(DOC_DIR, "Danh sách học phần t�
 s_eq = wb_eq['Tổng']
 
 # Reverse alias dictionary so we can map sheet Tong names back to S27 partner IDs
+def normalize_partner_key(value):
+    value = unicodedata.normalize('NFKC', str(value or '')).casefold().strip()
+    value = ''.join(char for char in unicodedata.normalize('NFD', value) if unicodedata.category(char) != 'Mn')
+    return re.sub(r'[^a-z0-9]+', ' ', value).strip()
+
 tong_to_s27_id = {}
 for p in partners_list:
-    tong_to_s27_id[p["aliasInTong"].lower()] = p["id"]
-    tong_to_s27_id[p["name"].lower()] = p["id"]
+    tong_to_s27_id[normalize_partner_key(p["aliasInTong"])] = p["id"]
+    tong_to_s27_id[normalize_partner_key(p["name"])] = p["id"]
+for partner_name, alias_name in PARTNER_NAME_ALIASES.items():
+    matching_partner = next((p for p in partners_list if p["name"] == partner_name), None)
+    if matching_partner:
+        tong_to_s27_id[normalize_partner_key(alias_name)] = matching_partner["id"]
 
 equivalences_list = []
 stats = {
@@ -158,7 +178,9 @@ for idx, r in enumerate(s_eq.iter_rows(min_row=2, values_only=True), start=2):
     # Determine status
     # 1. Check if rejected
     name_lower = ftu_course_name_raw.lower()
-    if "không tương đương" in name_lower or "từ chối" in name_lower or "ko tương đương" in name_lower:
+    if any(marker in name_lower for marker in [
+        "không tương đương", "không ương đương", "không có học phần", "từ chối", "ko tương đương"
+    ]):
         status = "REJECTED"
         stats["rejected"] += 1
     # 2. Check if pending
@@ -166,7 +188,10 @@ for idx, r in enumerate(s_eq.iter_rows(min_row=2, values_only=True), start=2):
         status = "PENDING"
         stats["pending"] += 1
     # 3. Check if approved (has valid approver or not marked rejected/pending and has FTU code/name)
-    elif approver or approval_year or (ftu_course_code_raw and not any(kw in name_lower for kw in ["chưa rõ", "xem lại"])):
+    elif any(kw in name_lower for kw in ["chưa rõ", "xem lại", "cần rà soát", "chưa xác minh"]):
+        status = "UNCERTAIN"
+        stats["uncertain"] += 1
+    elif approver or approval_year:
         status = "APPROVED"
         stats["approved"] += 1
     else:
@@ -192,7 +217,7 @@ for idx, r in enumerate(s_eq.iter_rows(min_row=2, values_only=True), start=2):
         split_codes = [ftu_course_code_raw.strip()]
 
     # Map to partner S27 ID
-    partner_s27_id = tong_to_s27_id.get(partner_uni.lower())
+    partner_s27_id = tong_to_s27_id.get(normalize_partner_key(partner_uni))
     if partner_s27_id:
         stats["matched_to_s27"] += 1
 

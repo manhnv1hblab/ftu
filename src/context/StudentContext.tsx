@@ -1,16 +1,17 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { StudentProfile } from '../types/studentProfile';
 import { StudentCourse } from '../types/curriculum';
 import { SelectedStudyPlan } from '../types/studyPlan';
 import { PreferredUniversities, PreferenceRank, PreferredUniversity } from '../types/preference';
 import sampleCurriculumData from '../../data/sample_curriculum.json';
+import { removeUnavailableTransfers } from '../engine/transferEligibility';
 import { SOURCE_MANIFEST } from '../config/sourceManifest';
 
 const STORAGE_KEY = 'FTU_GOGLOBAL_PLANNER_DRAFT_V2';
 const STORAGE_VERSION = '3.0.0';
-const DATA_VERSION = 'S27-2026-2027';
+const DATA_VERSION = 'S27-2026-2027-course-audit-2';
 
 function checksum(input: string): string {
   let hash = 2166136261;
@@ -130,6 +131,29 @@ function normalizeRankedChoices(value: unknown): { nv1?: SelectedStudyPlan; nv2?
   return normalized;
 }
 
+function markPlanForRevalidation(plan: SelectedStudyPlan | undefined | null): SelectedStudyPlan | undefined {
+  if (!plan) return undefined;
+  return {
+    ...plan,
+    status: 'NEEDS_VERIFICATION',
+    transferredCourses: plan.transferredCourses.map(pair => ({
+      ...pair,
+      verificationStatus: 'NEEDS_VERIFICATION',
+      verificationReason: 'Bản nháp được tạo bằng hồ sơ hoặc phiên bản dữ liệu cũ; cần đối chiếu lại.'
+    })),
+    graduationSimulation: undefined
+  };
+}
+
+function markRankedChoicesForRevalidation(value: unknown): { nv1?: SelectedStudyPlan; nv2?: SelectedStudyPlan; nv3?: SelectedStudyPlan } {
+  const choices = normalizeRankedChoices(value);
+  return {
+    nv1: markPlanForRevalidation(choices.nv1),
+    nv2: markPlanForRevalidation(choices.nv2),
+    nv3: markPlanForRevalidation(choices.nv3)
+  };
+}
+
 function hasValidChecksum(value: Record<string, unknown>): boolean {
   if (!value.checksum || typeof value.checksum !== 'string') return true;
   const { checksum: suppliedChecksum, ...payload } = value;
@@ -208,12 +232,17 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [profile, setProfile] = useState<StudentProfile>(defaultProfile);
   const [currentStep, setCurrentStep] = useState<number>(1);
   const [selectedUniId, setSelectedUniId] = useState<string | null>(null);
-  const [currentPlan, setCurrentPlan] = useState<SelectedStudyPlan | null>(null);
-  const [rankedChoices, setRankedChoices] = useState<{
+  const [storedCurrentPlan, setCurrentPlan] = useState<SelectedStudyPlan | null>(null);
+  const [storedRankedChoices, setRankedChoices] = useState<{
     nv1?: SelectedStudyPlan;
     nv2?: SelectedStudyPlan;
     nv3?: SelectedStudyPlan;
   }>({});
+  // Sanitize every read, including restored/imported drafts and profile changes.
+  const currentPlan = useMemo(() => storedCurrentPlan ? removeUnavailableTransfers(storedCurrentPlan, profile.courses) : null, [storedCurrentPlan, profile.courses]);
+  const rankedChoices = useMemo(() => Object.fromEntries(Object.entries(storedRankedChoices).map(([rank, plan]) => [
+    rank, plan ? removeUnavailableTransfers(plan, profile.courses) : undefined
+  ])) as typeof storedRankedChoices, [storedRankedChoices, profile.courses]);
   const [preferredUniversities, setPreferredUniversities] = useState<PreferredUniversities>({});
   const [activePreferenceRank, setActivePreferenceRank] = useState<PreferenceRank | null>(null);
   const [preferenceReplacementRank, setPreferenceReplacementRank] = useState<PreferenceRank | null>(null);
@@ -227,13 +256,18 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       if (saved) {
         const parsed = JSON.parse(saved);
         if (!hasValidChecksum(parsed)) throw new Error('Draft checksum mismatch');
+        const needsRevalidation = parsed.dataVersion !== DATA_VERSION;
         if (isValidProfile(parsed.profile)) setProfile(parsed.profile);
-        setRankedChoices(normalizeRankedChoices(parsed.rankedChoices));
+        setRankedChoices(needsRevalidation
+          ? markRankedChoicesForRevalidation(parsed.rankedChoices)
+          : normalizeRankedChoices(parsed.rankedChoices));
         const restoredPreferences = isValidPreferredUniversities(parsed.preferredUniversities)
           ? parsed.preferredUniversities
           : derivePreferencesFromPlans(parsed.rankedChoices);
         setPreferredUniversities(restoredPreferences);
-        if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.currentPlan);
+        if (isValidPlan(parsed.currentPlan)) setCurrentPlan(needsRevalidation
+          ? markPlanForRevalidation(parsed.currentPlan) || null
+          : parsed.currentPlan);
         if (parsed.currentStep) setCurrentStep(parsed.currentStep);
         if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
         if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
@@ -253,11 +287,16 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         const parsed = JSON.parse(event.newValue);
         if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return;
         setProfile(parsed.profile);
-        setRankedChoices(normalizeRankedChoices(parsed.rankedChoices));
+        const needsRevalidation = parsed.dataVersion !== DATA_VERSION;
+        setRankedChoices(needsRevalidation
+          ? markRankedChoicesForRevalidation(parsed.rankedChoices)
+          : normalizeRankedChoices(parsed.rankedChoices));
         setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
           ? parsed.preferredUniversities
           : derivePreferencesFromPlans(parsed.rankedChoices));
-        setCurrentPlan(isValidPlan(parsed.currentPlan) ? parsed.currentPlan : null);
+        setCurrentPlan(isValidPlan(parsed.currentPlan)
+          ? (needsRevalidation ? markPlanForRevalidation(parsed.currentPlan) || null : parsed.currentPlan)
+          : null);
         setCurrentStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
         setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
         setActivePreferenceRank(['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank) ? parsed.activePreferenceRank : null);
@@ -299,12 +338,9 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const updateProfile = (updates: Partial<StudentProfile>) => {
     setProfile(prev => ({ ...prev, ...updates }));
-    // Any profile/course change invalidates derived matching and graduation results.
-    setCurrentPlan(null);
-    setRankedChoices({});
-    setPreferredUniversities({});
-    setActivePreferenceRank(null);
-    setPreferenceReplacementRank(null);
+    // Keep the user's shortlist and draft, but never present derived results as current.
+    setCurrentPlan(prev => markPlanForRevalidation(prev) || null);
+    setRankedChoices(prev => Object.fromEntries(Object.entries(prev).map(([rank, plan]) => [rank, markPlanForRevalidation(plan)])) as typeof rankedChoices);
   };
 
   const updateCourse = (courseCode: string, isPassed: boolean, isTaken: boolean) => {
@@ -327,6 +363,10 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         accumulatedCredits: passedCredits > 0 ? passedCredits : prev.accumulatedCredits
       };
     });
+    setCurrentPlan(prev => markPlanForRevalidation(prev) || null);
+    setRankedChoices(prev => Object.fromEntries(Object.entries(prev).map(([rank, plan]) => [
+      rank, markPlanForRevalidation(plan)
+    ])) as typeof rankedChoices);
   };
 
   const loadSampleProfile = () => {
@@ -429,18 +469,23 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const importDraftJson = (jsonString: string): boolean => {
     try {
       const parsed = JSON.parse(jsonString);
-      if (!parsed || parsed.version !== STORAGE_VERSION || parsed.dataVersion !== DATA_VERSION) return false;
+      if (!parsed || parsed.version !== STORAGE_VERSION || typeof parsed.dataVersion !== 'string') return false;
       if (parsed.checksum) {
         const { checksum: suppliedChecksum, ...payload } = parsed;
         if (checksum(JSON.stringify(payload)) !== suppliedChecksum) return false;
       }
       if (isValidProfile(parsed.profile) && isValidRankedChoices(parsed.rankedChoices)) {
         setProfile(parsed.profile);
-        setRankedChoices(normalizeRankedChoices(parsed.rankedChoices));
+        const needsRevalidation = parsed.dataVersion !== DATA_VERSION;
+        setRankedChoices(needsRevalidation
+          ? markRankedChoicesForRevalidation(parsed.rankedChoices)
+          : normalizeRankedChoices(parsed.rankedChoices));
         setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
           ? parsed.preferredUniversities
           : derivePreferencesFromPlans(parsed.rankedChoices));
-        if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.currentPlan);
+        if (isValidPlan(parsed.currentPlan)) setCurrentPlan(needsRevalidation
+          ? markPlanForRevalidation(parsed.currentPlan) || null
+          : parsed.currentPlan);
         if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
         return true;
       }

@@ -359,7 +359,7 @@ export const Step3Matches: React.FC = () => {
             const uni = res.university;
             const selectedRank = selectedRankForUniversity(uni.id);
             const transferredCredits = res.matchedPairs
-              .filter(pair => pair.status === 'APPROVED')
+              .filter(pair => pair.status === 'APPROVED' && pair.verificationStatus === 'VERIFIED')
               .reduce((sum, pair) => sum + pair.ftuCredits, 0);
 
             return (

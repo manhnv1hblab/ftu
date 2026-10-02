@@ -12,6 +12,8 @@ export interface CourseMatchPair {
   hostCredits?: number;
   equivalenceId: string;
   status: 'APPROVED' | 'PENDING' | 'REJECTED' | 'UNCERTAIN';
+  verificationStatus?: 'VERIFIED' | 'NEEDS_VERIFICATION';
+  verificationReason?: string;
   faculty?: string;
   approver?: string;
   approvalYear?: string;

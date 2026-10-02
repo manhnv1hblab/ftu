@@ -187,7 +187,7 @@ export const Step5Compare: React.FC = () => {
         <div className="divide-y divide-surface-container text-xs">
           <ComparisonRow title="1. Quy đổi về FTU" slots={slots} render={(slot) => {
             if (!slot.plan) return '—';
-            const approved = slot.plan.transferredCourses.filter(course => course.status === 'APPROVED');
+            const approved = slot.plan.transferredCourses.filter(course => course.status === 'APPROVED' && course.verificationStatus === 'VERIFIED');
             const credits = approved.reduce((sum, course) => sum + course.ftuCredits, 0);
             return <><strong>{approved.length} môn · {credits} tín chỉ FTU</strong><span className={approved.length >= S27_RULES.transferredCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{approved.length >= S27_RULES.transferredCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.transferredCoursesMinimum} môn đã duyệt` : `Chưa đủ ${S27_RULES.transferredCoursesMinimum} môn đã duyệt`}</span></>;
           }} />
