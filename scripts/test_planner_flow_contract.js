@@ -5,8 +5,11 @@ const root = path.resolve(__dirname, '..');
 const read = relative => fs.readFileSync(path.join(root, relative), 'utf8');
 const context = read('src/context/StudentContext.tsx');
 const step3 = read('src/components/planner/Step3Matches.tsx');
+const step2 = read('src/components/planner/Step2Review.tsx');
 const step4 = read('src/components/planner/Step4CoursePlan.tsx');
 const step5 = read('src/components/planner/Step5Compare.tsx');
+const transferEligibility = read('src/engine/transferEligibility.ts');
+const matcher = read('src/engine/matcher.ts');
 const print = read('src/app/print/page.tsx');
 const navbar = read('src/components/layout/Navbar.tsx');
 const step1 = read('src/components/planner/Step1Upload.tsx');
@@ -25,7 +28,9 @@ const checks = [
   ['draft persistence is account-only', !context.includes('localStorage') && context.includes('accountReady') && context.includes("fetch('/api/planner/draft'")],
   ['account sync waits for account restoration', context.includes('if (!user?.id || !accountReady) return;') && context.includes('skipNextSync.current')],
   ['manual draft actions are removed', !navbar.includes('saveDraft') && !navbar.includes('resetAll') && !navbar.includes('resolveDraftConflict')],
-  ['course upload replaces without a delete button', !step1.includes('setAttachedFileName(null)')]
+  ['course upload replaces without a delete button', !step1.includes('setAttachedFileName(null)')],
+  ['transfer candidate predicate excludes special courses', transferEligibility.includes('isTransferCandidate') && step1.includes('isTransferCandidate') && step2.includes('isTransferCandidate') && step4.includes('isTransferCandidate') && step5.includes('isTransferCandidate') && matcher.includes('isTransferCandidate')],
+  ['review and upload do not use the status-only transfer filter', !step1.includes('filter(isAvailableForTransfer)') && !step2.includes('filter(isAvailableForTransfer)')]
 ];
 
 const failures = checks.filter(([, passed]) => !passed);

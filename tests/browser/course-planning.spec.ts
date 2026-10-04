@@ -11,6 +11,16 @@ test('Excel upload preserves course codes and passed status in course review', a
   await expect(page.getByText('EAB111', { exact: true })).toBeVisible();
 });
 
+test('thesis and midterm internship are not shown as transfer candidates', async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.goto('/planner');
+  await page.locator('#fileUploadInput').setInputFiles('public/templates/Mau_ChuongTrinhDaoTao_FTU.xlsx');
+  await page.locator('main button').filter({ hasText: 'arrow_forward' }).last().click();
+
+  await expect(page.getByText('KTE504', { exact: true })).toHaveCount(0);
+  await expect(page.getByText('KTE526', { exact: true })).toHaveCount(0);
+});
+
 test('manual course codes stay unverified and saved plans work in the current session', async ({ page }) => {
   test.setTimeout(60_000);
   await page.goto('/planner');

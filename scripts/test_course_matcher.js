@@ -11,7 +11,7 @@ require.extensions['.ts'] = (module, filename) => {
 };
 
 const { evaluateAllUniversities, matchCoursesForUniversity } = require('../src/engine/matcher.ts');
-const { isExcludedFromTransfer } = require('../src/engine/transferEligibility.ts');
+const { isExcludedFromTransfer, isTransferCandidate } = require('../src/engine/transferEligibility.ts');
 const { findCountryCost } = require('../src/engine/costCalculator.ts');
 const university = { id: 'partner-1', name: 'Partner One' };
 const student = (code, program = 'Tiêu chuẩn', cohort = 'K62') => ({ code, name: `FTU ${code}`, credits: 3, program, cohort });
@@ -56,6 +56,44 @@ assert.equal(manualCourse[0].verificationStatus, 'NEEDS_VERIFICATION', 'manual c
 
 assert.equal(isExcludedFromTransfer({ courseCode: 'KTE504', courseName: '\u0054h\u1ef1c t\u1eadp gi\u1eefa kh\u00f3a' }), true, 'midterm internship is excluded from equivalence matching');
 assert.equal(isExcludedFromTransfer({ courseCode: 'KTE526', courseName: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p' }), true, 'graduation thesis is excluded from equivalence matching');
+for (const code of ['KTE504', 'KTE526', 'HPTN', 'KLTN', 'KTE525']) {
+  assert.equal(isTransferCandidate({
+    courseCode: code,
+    courseName: 'Open course',
+    credits: 3,
+    isMandatory: true,
+    isTaken: false,
+    isPassed: false,
+    status: 'NOT_TAKEN'
+  }), false, `${code} is not a transfer candidate`);
+}
+assert.equal(isTransferCandidate({
+  courseCode: 'SPECIAL-1',
+  courseName: 'Th\u1ef1c t\u1eadp gi\u1eefa kh\u00f3a',
+  credits: 3,
+  isMandatory: true,
+  isTaken: false,
+  isPassed: false,
+  status: 'NOT_TAKEN'
+}), false, 'midterm internship name marker is not a transfer candidate');
+assert.equal(isTransferCandidate({
+  courseCode: 'SPECIAL-2',
+  courseName: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p',
+  credits: 9,
+  isMandatory: true,
+  isTaken: false,
+  isPassed: false,
+  status: 'NOT_TAKEN'
+}), false, 'graduation thesis name marker is not a transfer candidate');
+assert.equal(isTransferCandidate({
+  courseCode: 'OPEN-1',
+  courseName: 'Open course',
+  credits: 3,
+  isMandatory: true,
+  isTaken: false,
+  isPassed: false,
+  status: 'NOT_TAKEN'
+}), true, 'an open ordinary course remains a transfer candidate');
 const excludedCourses = matchCoursesForUniversity(university, [
   student('KTE504'),
   { ...student('KTE526'), name: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p' }

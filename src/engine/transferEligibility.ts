@@ -42,6 +42,11 @@ export function isExcludedFromTransfer(course: Pick<StudentCourse, 'courseCode' 
     || NON_TRANSFER_COURSE_NAME_MARKERS.some(marker => name.includes(marker));
 }
 
+/** A course can enter the exchange-equivalence flow only when it is open and transferable. */
+export function isTransferCandidate(course: StudentCourse): boolean {
+  return isAvailableForTransfer(course) && !isExcludedFromTransfer(course);
+}
+
 export function removeUnavailableTransfers(plan: SelectedStudyPlan, courses: StudentCourse[]): SelectedStudyPlan {
   const excludedCodes = new Set(courses
     .filter(course => !isAvailableForTransfer(course) || isExcludedFromTransfer(course))

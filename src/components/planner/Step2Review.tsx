@@ -6,7 +6,7 @@ import { checkProgramEligibility } from '../../engine/eligibility';
 import { calculateElectiveGroups } from '../../engine/electives';
 import { StudentCourse } from '../../types/curriculum';
 import { ProfileDetailsForm } from './ProfileDetailsForm';
-import { isAvailableForTransfer, isCourseInProgress, isCoursePassed } from '../../engine/transferEligibility';
+import { isCourseInProgress, isCoursePassed, isTransferCandidate } from '../../engine/transferEligibility';
 
 export const Step2Review: React.FC = () => {
   const { profile, updateProfile, setCurrentStep } = useStudent();
@@ -35,7 +35,7 @@ export const Step2Review: React.FC = () => {
   // Categorize courses
   const passedCourses = useMemo(() => profile.courses.filter(isCoursePassed), [profile.courses]);
   const enrolledCourses = useMemo(() => profile.courses.filter(isCourseInProgress), [profile.courses]);
-  const remainingCourses = useMemo(() => profile.courses.filter(isAvailableForTransfer), [profile.courses]);
+  const remainingCourses = useMemo(() => profile.courses.filter(isTransferCandidate), [profile.courses]);
 
   const passedCredits = passedCourses.reduce((sum, c) => sum + c.credits, 0);
   const enrolledCredits = enrolledCourses.reduce((sum, c) => sum + c.credits, 0);

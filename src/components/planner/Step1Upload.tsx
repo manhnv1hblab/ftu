@@ -6,7 +6,7 @@ import * as XLSX from 'xlsx';
 import { useStudent } from '../../context/StudentContext';
 import { StudentCourse } from '../../types/curriculum';
 import { parseCurriculumRows } from '../../lib/curriculumParser';
-import { isAvailableForTransfer, isCoursePassed } from '../../engine/transferEligibility';
+import { isCoursePassed, isTransferCandidate } from '../../engine/transferEligibility';
 
 export const Step1Upload: React.FC = () => {
   const { profile, updateProfile, setCurrentStep, loadSampleProfile } = useStudent();
@@ -113,7 +113,7 @@ export const Step1Upload: React.FC = () => {
 
   const courseCount = profile.courses.length;
   const passedCredits = profile.courses.filter(isCoursePassed).reduce((sum, c) => sum + c.credits, 0);
-  const remainingCredits = profile.courses.filter(isAvailableForTransfer).reduce((sum, c) => sum + c.credits, 0);
+  const remainingCredits = profile.courses.filter(isTransferCandidate).reduce((sum, c) => sum + c.credits, 0);
 
   return (
     <div className="max-w-3xl mx-auto flex flex-col gap-6 animate-fade-in py-4">

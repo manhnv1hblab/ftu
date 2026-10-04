@@ -1,4 +1,4 @@
-import { isAvailableForTransfer, isExcludedFromTransfer } from './transferEligibility';
+import { isExcludedFromTransfer, isTransferCandidate } from './transferEligibility';
 import { PartnerUniversity } from '../types/university';
 import { CourseEquivalence } from '../types/equivalence';
 import { CourseOffering } from '../types/courseOffering';
@@ -208,7 +208,7 @@ export function evaluateAllUniversities(
 
   if (profile.courses && profile.courses.length > 0) {
     for (const c of profile.courses) {
-      if (isAvailableForTransfer(c)) {
+      if (isTransferCandidate(c)) {
         remainingCourses.push({
           code: c.courseCode,
           name: c.courseName,
