@@ -4,10 +4,10 @@ import React from 'react';
 import { useStudent } from '../../context/StudentContext';
 
 export const ProgressBar: React.FC = () => {
-  const { currentStep, setCurrentStep, selectedUniId } = useStudent();
+  const { currentStep, setCurrentStep, selectedUniId, profile } = useStudent();
 
   const steps = [
-    { num: 1, title: 'Tải bảng điểm / CTĐT', subtitle: 'File .xlsx / Mã môn' },
+    { num: 1, title: 'Tải lên Chương trình đào tạo', subtitle: 'File .xlsx / Mã môn' },
     { num: 2, title: 'Rà soát hồ sơ', subtitle: 'Tình trạng tích lũy' },
     { num: 3, title: 'Gợi ý trường', subtitle: 'Khớp môn ≥ 3' },
     { num: 4, title: 'Lập phương án', subtitle: '5 môn đối tác / 3 FTU' },
@@ -19,6 +19,7 @@ export const ProgressBar: React.FC = () => {
       <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-md md:p-space-lg border border-surface-container">
         <div className="flex items-center justify-between gap-space-xs overflow-x-auto pb-space-xs scrollbar-none">
           {steps.map((s, idx) => {
+            const blocked = (s.num >= 2 && !profile.courses.length) || (s.num >= 3 && !profile.isProfileComplete) || (s.num === 4 && !selectedUniId);
             const isCompleted = currentStep > s.num;
             const isCurrent = currentStep === s.num;
 
@@ -26,11 +27,11 @@ export const ProgressBar: React.FC = () => {
               <React.Fragment key={s.num}>
                 {/* Step Item */}
                 <button
-                  onClick={() => (s.num !== 4 || selectedUniId) && setCurrentStep(s.num)}
-                  disabled={s.num === 4 && !selectedUniId}
-                  aria-disabled={s.num === 4 && !selectedUniId}
-                  title={s.num === 4 && !selectedUniId ? 'Hãy chọn một trường trước khi lập phương án.' : undefined}
-                  className={`flex items-center gap-space-xs shrink-0 text-left group focus:outline-none transition-all ${s.num === 4 && !selectedUniId ? 'opacity-45 cursor-not-allowed' : ''}`}
+                  onClick={() => setCurrentStep(s.num)}
+                  disabled={blocked}
+                  aria-disabled={blocked}
+                  title={blocked ? 'Hoàn thành hồ sơ và chọn trường trước khi chuyển bước.' : undefined}
+                  className={`flex items-center gap-space-xs shrink-0 text-left group focus:outline-none transition-all ${blocked ? 'opacity-45 cursor-not-allowed' : ''}`}
                 >
                   <div
                     className={`w-9 h-9 rounded-full flex items-center justify-center font-label-md text-label-md shrink-0 transition-all ${

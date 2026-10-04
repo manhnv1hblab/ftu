@@ -7,10 +7,11 @@ import { SelectedStudyPlan } from '../types/studyPlan';
 import { PreferredUniversities, PreferenceRank, PreferredUniversity } from '../types/preference';
 import sampleCurriculumData from '../../data/sample_curriculum.json';
 import { removeUnavailableTransfers } from '../engine/transferEligibility';
+import { normalizeProfile, allowedPlannerStep } from '../lib/profileValidation';
 import { SOURCE_MANIFEST } from '../config/sourceManifest';
 
 const STORAGE_KEY = 'FTU_GOGLOBAL_PLANNER_DRAFT_V2';
-const STORAGE_VERSION = '3.0.0';
+const STORAGE_VERSION = '4.0.0';
 const DATA_VERSION = 'S27-2026-2027-course-audit-2';
 
 function checksum(input: string): string {
@@ -229,8 +230,9 @@ interface StudentContextType {
 const StudentContext = createContext<StudentContextType | undefined>(undefined);
 
 export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [profile, setProfile] = useState<StudentProfile>(defaultProfile);
-  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [storedProfile, setProfile] = useState<StudentProfile>(defaultProfile);
+  const profile = useMemo(() => normalizeProfile(storedProfile), [storedProfile]);
+  const [requestedStep, setRequestedStep] = useState<number>(1);
   const [selectedUniId, setSelectedUniId] = useState<string | null>(null);
   const [storedCurrentPlan, setCurrentPlan] = useState<SelectedStudyPlan | null>(null);
   const [storedRankedChoices, setRankedChoices] = useState<{
@@ -247,6 +249,11 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [activePreferenceRank, setActivePreferenceRank] = useState<PreferenceRank | null>(null);
   const [preferenceReplacementRank, setPreferenceReplacementRank] = useState<PreferenceRank | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
+  const currentStep = allowedPlannerStep(requestedStep, profile, selectedUniId);
+  const setCurrentStep = (step: number) => setRequestedStep(allowedPlannerStep(step, profile, selectedUniId));
+  useEffect(() => {
+    if (isHydrated && requestedStep !== currentStep) setRequestedStep(currentStep);
+  }, [isHydrated, requestedStep, currentStep]);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
 
   // Auto load draft from localStorage on mount
@@ -256,7 +263,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       if (saved) {
         const parsed = JSON.parse(saved);
         if (!hasValidChecksum(parsed)) throw new Error('Draft checksum mismatch');
-        const needsRevalidation = parsed.dataVersion !== DATA_VERSION;
+        const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
         if (isValidProfile(parsed.profile)) setProfile(parsed.profile);
         setRankedChoices(needsRevalidation
           ? markRankedChoicesForRevalidation(parsed.rankedChoices)
@@ -268,7 +275,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         if (isValidPlan(parsed.currentPlan)) setCurrentPlan(needsRevalidation
           ? markPlanForRevalidation(parsed.currentPlan) || null
           : parsed.currentPlan);
-        if (parsed.currentStep) setCurrentStep(parsed.currentStep);
+        if (parsed.currentStep) setRequestedStep(parsed.currentStep);
         if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
         if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
         if (parsed.updatedAt) setLastSavedAt(parsed.updatedAt);
@@ -287,7 +294,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         const parsed = JSON.parse(event.newValue);
         if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return;
         setProfile(parsed.profile);
-        const needsRevalidation = parsed.dataVersion !== DATA_VERSION;
+        const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
         setRankedChoices(needsRevalidation
           ? markRankedChoicesForRevalidation(parsed.rankedChoices)
           : normalizeRankedChoices(parsed.rankedChoices));
@@ -297,7 +304,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         setCurrentPlan(isValidPlan(parsed.currentPlan)
           ? (needsRevalidation ? markPlanForRevalidation(parsed.currentPlan) || null : parsed.currentPlan)
           : null);
-        setCurrentStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
+        setRequestedStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
         setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
         setActivePreferenceRank(['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank) ? parsed.activePreferenceRank : null);
         setLastSavedAt(typeof parsed.updatedAt === 'string' ? parsed.updatedAt : null);
@@ -337,7 +344,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   }, [isHydrated, profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
 
   const updateProfile = (updates: Partial<StudentProfile>) => {
-    setProfile(prev => ({ ...prev, ...updates }));
+    setProfile(prev => normalizeProfile({ ...normalizeProfile(prev), ...updates }));
     // Keep the user's shortlist and draft, but never present derived results as current.
     setCurrentPlan(prev => markPlanForRevalidation(prev) || null);
     setRankedChoices(prev => Object.fromEntries(Object.entries(prev).map(([rank, plan]) => [rank, markPlanForRevalidation(plan)])) as typeof rankedChoices);
@@ -379,9 +386,9 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       ...defaultProfile,
       courses: rawCourses,
       accumulatedCredits: passedCredits,
-      isProfileComplete: true
+      isProfileComplete: false
     });
-    setCurrentStep(2);
+    setRequestedStep(2);
   };
 
   const resetAll = () => {
@@ -434,12 +441,12 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       const ranked = parsed.rankedChoices || {};
       if (!isValidRankedChoices(ranked)) return false;
       if (parsed.profile) setProfile(parsed.profile);
-      setRankedChoices(normalizeRankedChoices(ranked));
+      setRankedChoices(parsed.version !== STORAGE_VERSION || parsed.dataVersion !== DATA_VERSION ? markRankedChoicesForRevalidation(ranked) : normalizeRankedChoices(ranked));
       setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
         ? parsed.preferredUniversities
         : derivePreferencesFromPlans(ranked));
-      if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.currentPlan);
-      if (parsed.currentStep) setCurrentStep(parsed.currentStep);
+      if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.version !== STORAGE_VERSION || parsed.dataVersion !== DATA_VERSION ? markPlanForRevalidation(parsed.currentPlan) || null : parsed.currentPlan);
+      if (parsed.currentStep) setRequestedStep(parsed.currentStep);
       if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
       if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
       if (parsed.updatedAt) setLastSavedAt(parsed.updatedAt);
@@ -469,14 +476,14 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const importDraftJson = (jsonString: string): boolean => {
     try {
       const parsed = JSON.parse(jsonString);
-      if (!parsed || parsed.version !== STORAGE_VERSION || typeof parsed.dataVersion !== 'string') return false;
+      if (!parsed || ![STORAGE_VERSION, '3.0.0'].includes(parsed.version) || typeof parsed.dataVersion !== 'string') return false;
       if (parsed.checksum) {
         const { checksum: suppliedChecksum, ...payload } = parsed;
         if (checksum(JSON.stringify(payload)) !== suppliedChecksum) return false;
       }
       if (isValidProfile(parsed.profile) && isValidRankedChoices(parsed.rankedChoices)) {
         setProfile(parsed.profile);
-        const needsRevalidation = parsed.dataVersion !== DATA_VERSION;
+        const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
         setRankedChoices(needsRevalidation
           ? markRankedChoicesForRevalidation(parsed.rankedChoices)
           : normalizeRankedChoices(parsed.rankedChoices));

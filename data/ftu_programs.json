@@ -1,0 +1,1484 @@
+{
+  "checkedAt": "2026-10-04",
+  "note": "IDs are internal catalogue keys, not Ministry programme codes. Empty matchingProgram requires verification; never infer TC/CLC/CTTT.",
+  "programs": [
+    {
+      "id": "k64-kinh-te-chuong-trinh-ao-tao-kinh-te-oi-ngoai",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình đào tạo Kinh tế đối ngoại",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-te-chuong-trinh-ao-tao-kinh-te-oi-ngoai-ct-clc",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình đào tạo Kinh tế đối ngoại (CT CLC)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-te-chuong-trinh-ao-tao-kinh-te-oi-ngoai-ct-tien-tien",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình đào tạo Kinh tế đối ngoại (CT tiên tiến)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-te-quoc-te-chuong-trinh-ao-tao-kinh-te-quoc-te",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình đào tạo Kinh tế quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-te-quoc-te-chuong-trinh-ao-tao-kinh-te-quoc-te-ct-clc",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình đào tạo Kinh tế quốc tế (CT CLC)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo Kinh doanh quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-quoc-te-ct-clc",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo Kinh doanh quốc tế (CT CLC)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-logistics-va-quan-ly-chuoi-cung-ung-ct-hnnqt",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo Logistics và Quản lý chuỗi cung ứng (CT ĐHNNQT)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-tien-tien-i-hons-kinh-doanh-quoc-te-va-phan-tich-du-lieu-kinh-doanh",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo tiên tiến i-Hons Kinh doanh quốc tế và Phân tích dữ liệu kinh doanh",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-quan-tri-kinh-doanh-chuong-trinh-ao-tao-quan-tri-kinh-doanh",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình đào tạo Quản trị kinh doanh",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-quan-tri-kinh-doanh-chuong-trinh-ao-tao-quan-tri-kinh-doanh-ct-clc",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình đào tạo Quản trị kinh doanh (CT CLC)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-quan-tri-kinh-doanh-chuong-trinh-ao-tao-quan-tri-kinh-doanh-ct-tien-tien",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình đào tạo Quản trị kinh doanh (CT tiên tiến)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-quan-tri-khach-san-chuong-trinh-ao-tao-quan-tri-khach-san-ct-hnnqt",
+      "majorId": "quan-tri-khach-san",
+      "majorName": "Quản trị khách sạn",
+      "name": "Chương trình đào tạo Quản trị khách sạn (CT ĐHNNQT)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ke-toan-chuong-trinh-ao-tao-ke-toan-kiem-toan",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Chương trình đào tạo Kế toán – Kiểm toán",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ke-toan-chuong-trinh-ao-tao-ke-toan-kiem-toan-inh-huong-nghe-nghiep-acca",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Chương trình đào tạo Kế toán – Kiểm toán định hướng nghề nghiệp ACCA",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-luat-chuong-trinh-ao-tao-luat-thuong-mai-quoc-te",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Chương trình đào tạo Luật thương mại quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-luat-chuong-trinh-ao-tao-luat-kinh-doanh-quoc-te-theo-mo-hinh-thuc-hanh-nghe-nghiep",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Chương trình đào tạo Luật Kinh doanh quốc tế theo mô hình thực hành nghề nghiệp",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-te-chinh-tri-chuong-trinh-ao-tao-kinh-te-chinh-tri-quoc-te-cthptqt",
+      "majorId": "kinh-te-chinh-tri",
+      "majorName": "Kinh tế chính trị",
+      "name": "Chương trình đào tạo Kinh tế chính trị quốc tế (CTĐHPTQT)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-marketing-chuong-trinh-ao-tao-marketing-so-ct-hnnqt",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Chương trình đào tạo Marketing số (CT ĐHNNQT)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-marketing-chuong-trinh-ao-tao-truyen-thong-marketing-tich-hop-ct-hnnqt",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Chương trình đào tạo Truyền thông marketing tích hợp (CT ĐHNNQT )",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-so-ct-hnnqt",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo Kinh doanh số (CT ĐHNNQT)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban-ct-hnnqt",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo Kinh doanh quốc tế theo mô hình tiên tiến Nhật Bản (CT ĐHNNQT)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo Tài chính Ngân hàng",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang-ct-clc",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo Tài chính Ngân hàng (CT CLC)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang-ct-tien-tien",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo Tài chính Ngân hàng (CT tiên tiến)",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-anh-chuong-trinh-ao-tao-tieng-anh-thuong-mai",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Chương trình đào tạo Tiếng Anh thương mại",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-anh-chuong-trinh-ao-tao-tieng-anh-thuong-mai-nganh-phu-kinh-doanh-quoc-te-ct-clc-nganh-chinh-ngon-ngu-anh-nganh-phu-kinh-doanh-quoc-te",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Chương trình đào tạo Tiếng Anh thương mại, ngành phụ Kinh doanh quốc tế (CT CLC), ngành chính Ngôn ngữ Anh ngành phụ Kinh doanh quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-phap-chuong-trinh-ao-tao-tieng-phap-thuong-mai-ct-tich-hop-nganh-chinh-ngon-ngu-phap-nganh-phu-kinh-doanh-quoc-te",
+      "majorId": "ngon-ngu-phap",
+      "majorName": "Ngôn ngữ Pháp",
+      "name": "Chương trình đào tạo Tiếng Pháp thương mại (CT Tích hợp), ngành chính Ngôn ngữ pháp ngành phụ Kinh doanh quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-nhat-chuong-trinh-ao-tao-tieng-nhat-thuong-mai",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Chương trình đào tạo Tiếng Nhật thương mại",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-nhat-chuong-trinh-ao-tao-tieng-nhat-thuong-mai-nganh-phu-kinh-doanh-quoc-te-ct-clc-nganh-chinh-ngon-ngu-nhat-nganh-phu-kinh-doanh-quoc-te",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Chương trình đào tạo Tiếng Nhật thương mại, ngành phụ Kinh doanh quốc tế (CT CLC), ngành chính Ngôn ngữ Nhật ngành phụ Kinh doanh quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-tieng-trung-thuong-mai",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Chương trình đào tạo Tiếng Trung thương mại",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-tieng-trung-thuong-mai-ct-clc-nganh-chinh-ngon-ngu-trung-quoc-nganh-phu-kinh-doanh-quoc-te",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Chương trình đào tạo Tiếng Trung thương mại (CT CLC), ngành chính Ngôn ngữ Trung quốc ngành phụ Kinh doanh quốc tế",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k64-khoa-hoc-may-tinh-chuong-trinh-ao-tao-khoa-hoc-may-tinh-trong-kinh-te-va-kinh-doanh",
+      "majorId": "khoa-hoc-may-tinh",
+      "majorName": "Khoa học máy tính",
+      "name": "Chương trình đào tạo Khoa học máy tính trong kinh tế và kinh doanh",
+      "cohorts": [
+        "K64"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k62-kinh-te-nganh-kinh-te",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Ngành Kinh tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-chuong-trinh-tieu-chuan-kinh-te-oi-ngoai",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình tiêu chuẩn Kinh tế đối ngoại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-dao-tao-nganh-kinh-te-ap-dung-tu-khoa-62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-chuong-trinh-chat-luong-cao-kinh-te-oi-ngoai",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình chất lượng cao Kinh tế đối ngoại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-chat-luong-cao-kinh-te-doi-ngoai-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-chuong-trinh-tien-tien-kinh-te-oi-ngoai",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình tiên tiến Kinh tế đối ngoại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-tien-tien-kinh-te-doi-ngoai-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-chuong-trinh-tieu-chuan-thuong-mai-quoc-te",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình tiêu chuẩn Thương mại quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-thuong-mai-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-doanh-quoc-te-nganh-kinh-doanh-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Ngành Kinh doanh quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-doanh-quoc-te-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-kinh-doanh-so",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình định hướng nghề nghiệp quốc tế Kinh doanh số",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-dinh-huong-nghe-nghiep-quoc-te-kinh-doanh-so-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k63-kinh-doanh-quoc-te-chuong-trinh-tien-tien-i-hons-kinh-doanh-quoc-te-va-phan-tich-du-lieu-kinh-doanh-hop-tac-voi-university-of-queensland",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình tiên tiến i- Hons Kinh doanh quốc tế và Phân tích dữ liệu kinh doanh (hợp tác với University of Queensland)",
+      "cohorts": [
+        "K63"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-tien-tien-i-hons-kinh-doanh-quoc-te-va-phan-tich-du-lieu-kinh-doanh-hop-tac-voi-university-of-queensland/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-doanh-quoc-te-chuong-trinh-logistic-va-quan-ly-chuoi-cung-ung",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình Logistic và Quản lý chuỗi cung ứng",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-logistic-va-quan-ly-chuoi-cung-ung-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-doanh-quoc-te-chuong-trinh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình Kinh doanh quốc tế theo mô hình tiên tiến Nhật bản",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-kinh-doanh-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình chất lượng cao Kinh doanh quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-doanh-quoc-te-chuong-trinh-tieu-chuan-kinh-doanh-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình tiêu chuẩn Kinh doanh quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-quoc-te-nganh-kinh-te-quoc-te",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Ngành Kinh tế quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-quoc-te-chuong-trinh-kinh-te-quoc-te",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình Kinh tế quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-quoc-te-chuong-trinh-chat-luong-cao-kinh-te-quoc-te-ap-dung-tu-k62-tro-i",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình chất lượng cao Kinh tế quốc tế (áp dụng từ K62 trở đi)",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/62clcktqt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-quoc-te-chuong-trinh-kinh-te-va-phat-trien-quoc-te",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình Kinh tế và phát triển quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-te-va-phat-trien-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-quan-tri-kinh-doanh-nganh-quan-tri-kinh-doanh",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Ngành Quản trị kinh doanh",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-quan-tri-kinh-doanh-chuong-trinh-tien-tien-quan-tri-kinh-doanh-quoc-te",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình tiên tiến Quản trị kinh doanh quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/chuong-trinh-tien-tien-quan-tri-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-quan-tri-kinh-doanh-chuong-trinh-chat-luong-cao-quan-tri-kinh-doanh",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình chất lượng cao Quản trị kinh doanh",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-quan-tri-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-quan-tri-kinh-doanh-chuong-trinh-tieu-chuan-quan-tri-kinh-doanh",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình tiêu chuẩn Quản trị kinh doanh",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-quan-tri-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-quan-tri-khach-san-nganh-quan-tri-khach-san",
+      "majorId": "quan-tri-khach-san",
+      "majorName": "Quản trị khách sạn",
+      "name": "Ngành Quản trị khách sạn",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-quan-tri-khach-san-chuong-trinh-chat-luong-cao-quan-tri-khach-san-ap-dung-tu-k62-tro-i",
+      "majorId": "quan-tri-khach-san",
+      "majorName": "Quản trị khách sạn",
+      "name": "Chương trình chất lượng cao Quản trị khách sạn (áp dụng từ K62 trở đi)",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-quan-tri-khach-san-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-tai-chinh-ngan-hang-nganh-tai-chinh-ngan-hang",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Ngành Tài chính ngân hàng",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tien-tien-tai-chinh-ngan-hang",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình tiên tiến Tài chính Ngân hàng",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62cttttc/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-tai-chinh-ngan-hang-chuong-trinh-chat-luong-cao-ngan-hang-va-tai-chinh-quoc-te",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình chất lượng cao Ngân hàng và Tài chính quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62clctc/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tieu-chuan-phan-tich-va-au-tu-tai-chinh",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình tiêu chuẩn Phân tích và đầu tư tài chính",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62ptdt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tieu-chuan-ngan-hang",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình tiêu chuẩn Ngân hàng",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62nghg/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tieu-chuan-tai-chinh-quoc-te",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình tiêu chuẩn Tài chính quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62tcqt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-luat-nganh-luat",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Ngành Luật",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-luat-chuong-trinh-inh-huong-mo-hinh-thuc-hanh-nghe-nghiep-luat-kinh-doanh-quoc-te",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Chương trình định hướng mô hình thực hành nghề nghiệp Luật kinh doanh quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/62law/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-luat-chuong-trinh-tieu-chuan-luat-thuong-mai-quoc-te",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Chương trình tiêu chuẩn Luật thương mại quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-luat-thuong-mai-quoc-te-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ke-toan-nganh-ke-toan",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Ngành Kế toán",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
+    },
+    {
+      "id": "k62-ke-toan-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-acca-ke-toan-kiem-toan",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Chương trình định hướng nghề nghiệp quốc tế ACCA Kế toán – Kiểm toán",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/chuong-trinh-dinh-huong-nghe-nghiep-quoc-te-acca-ke-toan-kiem-toan/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
+    },
+    {
+      "id": "k62-ke-toan-chuong-trinh-tieu-chuan-ke-toan-kiem-toan",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Chương trình tiêu chuẩn Kế toán – Kiểm toán",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/62ktkt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
+    },
+    {
+      "id": "k62-marketing-nganh-marketing",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Ngành Marketing",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
+    },
+    {
+      "id": "k62-marketing-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-marketing-so",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Chương trình định hướng nghề nghiệp quốc tế Marketing số",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/62emar/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
+    },
+    {
+      "id": "k62-marketing-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-truyen-thong-marketing-tich-hop",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Chương trình định hướng nghề nghiệp quốc tế Truyền thông Marketing tích hợp",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/62imc/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
+    },
+    {
+      "id": "k62-ngon-ngu-anh-nganh-ngon-ngu-anh",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Ngành Ngôn ngữ Anh",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
+    },
+    {
+      "id": "k62-ngon-ngu-anh-chuong-trinh-chat-luong-cao-tieng-anh-thuong-mai",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Chương trình chất lượng cao Tiếng Anh thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/62clcta/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
+    },
+    {
+      "id": "k62-ngon-ngu-anh-chuong-trinh-tieu-chuan-tieng-anh-thuong-mai",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Chương trình tiêu chuẩn Tiếng Anh thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/62tatm/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
+    },
+    {
+      "id": "k62-ngon-ngu-phap-nganh-ngon-ngu-phap",
+      "majorId": "ngon-ngu-phap",
+      "majorName": "Ngôn ngữ Pháp",
+      "name": "Ngành Ngôn ngữ Pháp",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-phap-chuong-trinh-chat-luong-cao-tieng-phap-thuong-mai",
+      "majorId": "ngon-ngu-phap",
+      "majorName": "Ngôn ngữ Pháp",
+      "name": "Chương trình chất lượng cao Tiếng Pháp thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/62clctp/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-phap-chuong-trinh-tieu-chuan-tieng-phap-thuong-mai",
+      "majorId": "ngon-ngu-phap",
+      "majorName": "Ngôn ngữ Pháp",
+      "name": "Chương trình tiêu chuẩn Tiếng Pháp thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/62tptm/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-trung-quoc-nganh-ngon-ngu-trung-quoc",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Ngành Ngôn ngữ Trung Quốc",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-trung-quoc-chuong-trinh-chat-luong-cao-tieng-trung-thuong-mai",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Chương trình chất lượng cao tiếng Trung thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/62clctt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-trung-quoc-chuong-trinh-tieu-chuan-tieng-trung-thuong-mai",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Chương trình tiêu chuẩn Tiếng Trung thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/62tttm/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-nhat-nganh-ngon-ngu-nhat",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Ngành Ngôn ngữ Nhật",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-nhat-chuong-trinh-chat-luong-cao-tieng-nhat-thuong-mai",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Chương trình chất lượng cao Tiếng Nhật thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/62clctn/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-ngon-ngu-nhat-chuong-trinh-tieu-chuan-tieng-nhat-thuong-mai",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Chương trình tiêu chuẩn Tiếng Nhật thương mại",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/62tntm/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
+    },
+    {
+      "id": "k62-kinh-te-chinh-tri-chuong-trinh-kinh-te-chinh-tri-quoc-te",
+      "majorId": "kinh-te-chinh-tri",
+      "majorName": "Kinh tế chính trị",
+      "name": "Chương trình Kinh tế chính trị quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/cac-nganh-ngon-ngu/kt-ct-qt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k62-kinh-te-chinh-tri-chuong-trinh-kinh-te-chinh-tri-quoc-te",
+      "majorId": "kinh-te-chinh-tri",
+      "majorName": "Kinh tế chính trị",
+      "name": "Chương trình Kinh tế chính trị quốc tế",
+      "cohorts": [
+        "K62",
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/cac-nganh-ngon-ngu/kt-ct-qt/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+    },
+    {
+      "id": "k61-kinh-te-chuong-trinh-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-thuong-mai-quoc-te",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình đào tạo ngành kinh tế (mã số 7310101) chuyên ngành thương mại quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-thuong-mai-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+    },
+    {
+      "id": "k61-kinh-te-chuong-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-oi-ngoai-chuong-trinh-tien-tien-giang-day-bang-tieng-anh",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương đào tạo ngành: kinh tế (mã số 7310101) chuyên ngành: kinh tế đối ngoại (chương trình tiên tiến giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-doi-ngoai-chuong-trinh-tien-tien-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+    },
+    {
+      "id": "k61-kinh-te-chuong-trinh-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-oi-ngoai-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình đào tạo ngành: kinh tế (mã số :7310101) chuyên ngành: kinh tế đối ngoại (chương trình chất lượng cao giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-doi-ngoai-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+    },
+    {
+      "id": "k61-kinh-te-chuong-trinh-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-oi-ngoai",
+      "majorId": "kinh-te",
+      "majorName": "Kinh tế",
+      "name": "Chương trình đào tạo ngành: kinh tế (mã số: 7310101) chuyên ngành: kinh tế đối ngoại",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-doi-ngoai/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+    },
+    {
+      "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-so-chuong-trinh-inh-huong-nghe-nghiep-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo ngành kinh doanh quốc tế (mã số: 7340120) – chuyên ngành kinh doanh số (chương trình định hướng nghề nghiệp quốc tế)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2022-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-so-chuong-trinh-dinh-huong-nghe-nghiep-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh doanh quốc tế (mã số: 7340120) chuyên ngành: kinh doanh quốc tế theo mô hình tiên tiến nhật bản",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-logistics-va-quan-ly-chuoi-cung-ung-inh-huong-nghe-nghiep-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh doanh quốc tế (mã số: 7340120 ) chuyên ngành: logistics và quản lý chuỗi cung ứng định hướng nghề nghiệp quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-logistics-va-quan-ly-chuoi-cung-ung-dinh-huong-nghe-nghiep-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh doanh quốc tế (mã số: 7340120)chuyên ngành: kinh doanh quốc tế (chương trình chất lượng cao giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te",
+      "majorId": "kinh-doanh-quoc-te",
+      "majorName": "Kinh doanh quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh doanh quốc tế (mã số: 7340120) chuyên ngành: kinh doanh quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-te-quoc-te-chuong-trinh-ao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-va-phat-trien-quoc-te",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh tế quốc tế (mã số: 7310106) chuyên ngành: kinh tế và phát triển quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-va-phat-trien-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-te-quoc-te-chuong-trinh-ao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh tế quốc tế (mã số: 7310106) chuyên ngành: kinh tế quốc tế (chương trình chất lượng cao giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-kinh-te-quoc-te-chuong-trinh-ao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te",
+      "majorId": "kinh-te-quoc-te",
+      "majorName": "Kinh tế quốc tế",
+      "name": "Chương trình đào tạo ngành: kinh tế quốc tế (mã số: 7310106) chuyên ngành: kinh tế quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-quan-tri-kinh-doanh-chuong-trinh-ao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình đào tạo ngành quản trị kinh doanh (mã số: 7340101) – chuyên ngành quản trị kinh doanh quốc tế (chương trình chất lượng cao giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-quan-tri-kinh-doanh-chuong-trinh-ao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình đào tạo ngành: quản trị kinh doanh (mã số: 7340101) chuyên ngành quản trị kinh doanh quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-quan-tri-kinh-doanh-chuong-trinh-ao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-tien-tien-giang-day-bang-tieng-anh",
+      "majorId": "quan-tri-kinh-doanh",
+      "majorName": "Quản trị kinh doanh",
+      "name": "Chương trình đào tạo ngành: quản trị kinh doanh (mã số: 7340101) chuyên ngành quản trị kinh doanh quốc tế (chương trình tiên tiến giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-tien-tien-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-quan-tri-khach-san-chuong-trinh-ao-tao-nganh-quan-tri-khach-san-ma-so-7810201-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
+      "majorId": "quan-tri-khach-san",
+      "majorName": "Quản trị khách sạn",
+      "name": "Chương trình đào tạo ngành: quản trị khách sạn (mã số: 7810201) (chương trình chất lượng cao giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-khach-san-ma-so-7810201-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/"
+    },
+    {
+      "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-ngan-hang-chuong-trinh-tien-tien-giang-day-bang-tieng-anh",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo ngành tài chính – ngân hàng mã số: 7340201 chuyên ngành tài chính – ngân hàng (chương trình tiên tiến giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CTTT",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-ngan-hang-chuong-trinh-tien-tien-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang-va-tai-chinh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo ngành: tài chính – ngân hàng (mã số: 7340201) chuyên ngành: ngân hàng và tài chính quốc tế (chương trình chất lượng cao giảng dạy bằng tiếng anh)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang-va-tai-chinh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-phan-tich-va-au-tu-tai-chinh",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo tài chính – ngân hàng (mã số: 7340201) chuyên ngành: phân tích và đầu tư tài chính",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-phan-tich-va-dau-tu-tai-chinh/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo ngành: tài chính – ngân hàng (mã số: 7340201) chuyên ngành: ngân hàng",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-quoc-te",
+      "majorId": "tai-chinh-ngan-hang",
+      "majorName": "Tài chính-Ngân hàng",
+      "name": "Chương trình đào tạo ngành: tài chính – ngân hàng (mã số: 7340201) chuyên ngành: tài chính quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-luat-chuong-trinh-ao-tao-nganh-luat-ma-so-7380101-chuyen-nganh-luat-thuong-mai-quoc-te",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Chương trình đào tạo ngành: luật (mã số: 7380101) chuyên ngành: luật thương mại quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-luat-ma-so-7380101-chuyen-nganh-luat-thuong-mai-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-luat-chuong-trinh-ao-tao-chuyen-nganh-luat-kinh-doanh-quoc-te-theo-mo-hinh-thuc-hanh-nghe-nghiep",
+      "majorId": "luat",
+      "majorName": "Luật",
+      "name": "Chương trình đào tạo chuyên ngành luật kinh doanh quốc tế theo mô hình thực hành nghề nghiệp",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-chuyen-nganh-luat-kinh-doanh-quoc-te-theo-mo-hinh-thuc-hanh-nghe-nghiep/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-chuong-trinh-k60-tro-di/"
+    },
+    {
+      "id": "k61-ke-toan-chuong-trinh-ao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan-inh-huong-nghe-nghiep-acca",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Chương trình đào tạo ngành: kế toán (mã số: 7340301) chuyên ngành: kế toán – kiểm toán định hướng nghề nghiệp acca",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan-dinh-huong-nghe-nghiep-acca/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/nganh-ke-toan-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    },
+    {
+      "id": "k61-ke-toan-chuong-trinh-ao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan",
+      "majorId": "ke-toan",
+      "majorName": "Kế toán",
+      "name": "Chương trình đào tạo ngành: kế toán (mã số: 7340301) chuyên ngành: kế toán – kiểm toán",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/nganh-ke-toan-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    },
+    {
+      "id": "k61-marketing-chuong-trinh-ao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-truyen-thong-marketing-tich-hop-chuong-trinh-inh-huong-nghe-nghiep-quoc-te",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Chương trình đào tạo ngành marketing (mã số: 7340115) – chuyên ngành truyền thông marketing tích hợp (chương trình định hướng nghề nghiệp quốc tế)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2022-chuong-trinh-dao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-truyen-thong-marketing-tich-hop-chuong-trinh-dinh-huong-nghe-nghiep-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/nganh-marketing-ap-dung-tu-k61-tro-di/"
+    },
+    {
+      "id": "k61-marketing-chuong-trinh-ao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-marketing-so-chuong-trinh-inh-huong-nghe-nghiep-quoc-te",
+      "majorId": "marketing",
+      "majorName": "Marketing",
+      "name": "Chương trình đào tạo ngành marketing (mã số: 7340115) – chuyên ngành marketing số (chương trình định hướng nghề nghiệp quốc tế)",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2022-chuong-trinh-dao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-marketing-so-chuong-trinh-dinh-huong-nghe-nghiep-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/nganh-marketing-ap-dung-tu-k61-tro-di/"
+    },
+    {
+      "id": "k61-ngon-ngu-anh-chuong-trinh-ao-tao-nganh-ngon-ngu-anh-ma-so-7220201-chuyen-nganh-tieng-anh-thuong-mai",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Chương trình đào tạo ngành: ngôn ngữ anh (mã số:7220201) chuyên ngành: tiếng anh thương mại",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-anh-ma-so-7220201-chuyen-nganh-tieng-anh-thuong-mai/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/nna-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    },
+    {
+      "id": "k61-ngon-ngu-anh-chuong-trinh-chat-luong-cao-trinh-o-ai-hoc-nganh-ngon-ngu-anh-chuyen-nganh-tieng-anh-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te",
+      "majorId": "ngon-ngu-anh",
+      "majorName": "Ngôn ngữ Anh",
+      "name": "Chương trình chất lượng cao trình độ đại học ngành ngôn ngữ anh, chuyên ngành tiếng anh thương mại, chuyên ngành phụ kinh doanh quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-chat-luong-cao-trinh-do-dai-hoc-nganh-ngon-ngu-anh-chuyen-nganh-tieng-anh-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/nna-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    },
+    {
+      "id": "k61-ngon-ngu-phap-chuong-trinh-chat-luong-cao-nganh-ngon-ngu-phap-chuyen-nganh-tieng-phap-thuong-mai-chuyen-nganh-phu-thuong-mai-quoc-te",
+      "majorId": "ngon-ngu-phap",
+      "majorName": "Ngôn ngữ Pháp",
+      "name": "Chương trình chất lượng cao ngành ngôn ngữ pháp, chuyên ngành tiếng pháp thương mại, chuyên ngành phụ thương mại quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-chat-luong-cao-nganh-ngon-ngu-phap-chuyen-nganh-tieng-phap-thuong-mai-chuyen-nganh-phu-thuong-mai-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/"
+    },
+    {
+      "id": "k61-ngon-ngu-phap-chuong-trinh-ao-tao-nganh-ngon-ngu-phap-ma-so-72220203-chuyen-nganh-tieng-phap-thuong-mai",
+      "majorId": "ngon-ngu-phap",
+      "majorName": "Ngôn ngữ Pháp",
+      "name": "Chương trình đào tạo ngành: ngôn ngữ pháp (mã số: 72220203) chuyên ngành: tiếng pháp thương mại",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-phap-ma-so-72220203-chuyen-nganh-tieng-phap-thuong-mai/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/"
+    },
+    {
+      "id": "k61-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-chat-luong-cao-trinh-o-ai-hoc-nganh-ngon-ngu-trung-quoc-ma-nganh-7220204-chuyen-nganh-tieng-trung-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Chương trình đào tạo chất lượng cao trình độ đại học ngành: ngôn ngữ trung quốc mã ngành: 7220204 chuyên ngành: tiếng trung thương mại chuyên ngành phụ: kinh doanh quốc tế",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-chat-luong-cao-trinh-do-dai-hoc-nganh-ngon-ngu-trung-quoc-ma-nganh-7220204-chuyen-nganh-tieng-trung-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nnt-chuong-trinh-dao-tao-tu-k60-ve-sau/"
+    },
+    {
+      "id": "k61-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-nganh-ngon-ngu-trung-quoc-ma-so-7220204-chuyen-nganh-tieng-trung-thuong-mai-he-tieu-chuan",
+      "majorId": "ngon-ngu-trung-quoc",
+      "majorName": "Ngôn ngữ Trung Quốc",
+      "name": "Chương trình đào tạo ngành: ngôn ngữ trung quốc (mã số: 7220204) chuyên ngành: tiếng trung thương mại hệ tiêu chuẩn",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-trung-quoc-ma-so-7220204-chuyen-nganh-tieng-trung-thuong-mai-he-tieu-chuan/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nnt-chuong-trinh-dao-tao-tu-k60-ve-sau/"
+    },
+    {
+      "id": "k61-ngon-ngu-nhat-ban-mo-ta-chuong-trinh-ao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai-chuong-trinh-chat-luong-cao",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Bản mô tả chương trình đào tạo ngành ngôn ngữ nhật (mã số: 7220209) chuyên ngành tiếng nhật thương mại – chương trình chất lượng cao",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "CLC",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-ban-mo-ta-chuong-trinh-dao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai-chuong-trinh-chat-luong-cao/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    },
+    {
+      "id": "k61-ngon-ngu-nhat-chuong-trinh-ao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai",
+      "majorId": "ngon-ngu-nhat",
+      "majorName": "Ngôn ngữ Nhật",
+      "name": "Chương trình đào tạo ngành: ngôn ngữ nhật (mã số: 7220209) chuyên ngành: tiếng nhật thương mại",
+      "cohorts": [
+        "K61"
+      ],
+      "matchingProgram": "Tiêu chuẩn",
+      "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    }
+  ]
+}

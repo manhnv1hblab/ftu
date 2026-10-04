@@ -1,5 +1,6 @@
 'use client';
 
+import { AcademicProfileFields } from './AcademicProfileFields';
 import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { useStudent } from '../../context/StudentContext';
@@ -146,7 +147,7 @@ export const Step1Upload: React.FC = () => {
         updateProfile({
           courses: parsedCourses,
           accumulatedCredits: passedCredits > 0 ? passedCredits : profile.accumulatedCredits,
-          isProfileComplete: true
+          isProfileComplete: false
         });
 
         setAttachedFileName(file.name);
@@ -193,7 +194,7 @@ export const Step1Upload: React.FC = () => {
     updateProfile({
       courses: manualCourses,
       manualCourseCodes: cleanCodes,
-      isProfileComplete: true
+      isProfileComplete: false
     });
 
     setCurrentStep(2);
@@ -217,7 +218,7 @@ export const Step1Upload: React.FC = () => {
           <span>Học kỳ II Năm học 2026 - 2027 (Kỳ S27)</span>
         </div>
         <h1 className="text-2xl sm:text-3xl font-bold text-on-surface tracking-tight">
-          Cung cấp Bảng điểm / Chương trình Đào tạo FTU
+          Tải lên Chương trình đào tạo
         </h1>
         <p className="text-sm text-on-surface-variant max-w-xl mx-auto">
           Hệ thống sẽ đối chiếu các môn học chưa hoàn thành với dữ liệu trường đối tác và môn tương đương đã được audit từ tài liệu S27.
@@ -282,7 +283,7 @@ export const Step1Upload: React.FC = () => {
             <div className="text-xs">
               <p className="font-bold text-primary">Trợ lý Cố vấn Học vụ FTU 🎓</p>
               <p className="text-on-surface-variant mt-0.5 leading-relaxed">
-                Xin chào FTUer! Tải bảng điểm tín chỉ hoặc CTĐT vào đây, mình sẽ tự động đối soát và tìm ngay những trường có môn tương đương cho bạn nhé!
+                Xin chào FTUer! Hãy upload File excel “Chương trình đào tạo” của bạn (download từ FTUgate) vào đây, mình sẽ tự động đối soát và tìm ngay những trường phù hợp với bạn nhé!
               </p>
             </div>
           </div>
@@ -388,45 +389,7 @@ export const Step1Upload: React.FC = () => {
       ) : (
         /* Manual Input Mode */
         <div className="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-sm border border-surface-container/80 flex flex-col gap-5">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-on-surface-variant uppercase">Khóa sinh viên</label>
-              <select
-                value={profile.cohort}
-                onChange={(e) => updateProfile({ cohort: e.target.value })}
-                className="w-full bg-surface-container-low rounded-xl py-2 px-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-surface-container"
-              >
-                <option value="">Chọn khóa</option>
-                <option value="K62">K62 (2023 - 2027)</option>
-                <option value="K61">K61 (2022 - 2026)</option>
-                <option value="K63">K63 (2024 - 2028)</option>
-              </select>
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-on-surface-variant uppercase">Ngành / Khoa</label>
-              <input
-                value={profile.major}
-                onChange={(e) => updateProfile({ major: e.target.value })}
-                placeholder="Nhập đúng theo hồ sơ"
-                className="w-full bg-surface-container-low rounded-xl py-2 px-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-surface-container"
-              />
-            </div>
-
-            <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-on-surface-variant uppercase">Chương trình</label>
-              <select
-                value={profile.program}
-                onChange={(e) => updateProfile({ program: e.target.value as any })}
-                className="w-full bg-surface-container-low rounded-xl py-2 px-3 text-sm text-on-surface focus:outline-none focus:ring-2 focus:ring-primary border border-surface-container"
-              >
-                <option value="">Chưa xác định</option>
-                <option value="CLC">Kinh tế Đối ngoại (Chất lượng cao)</option>
-                <option value="Tiêu chuẩn">Kinh tế Đối ngoại (Tiêu chuẩn)</option>
-                <option value="CTTT">Chương trình Tiên tiến (CTTT)</option>
-              </select>
-            </div>
-          </div>
+          <AcademicProfileFields />
 
           <div className="flex flex-col gap-1.5 pt-1">
             <div className="flex justify-between items-center">

@@ -3,6 +3,11 @@ import { StudentCourse } from './curriculum';
 export interface StudentProfile {
   cohort: string; // e.g. "K62", "K63", "K64"
   major: string; // e.g. "Kinh tế đối ngoại", "Kinh tế quốc tế"
+  majorId?: string;
+  programId?: string;
+  programName?: string;
+  programSourceUrl?: string;
+  academicInputs?: Partial<Record<'gpa4' | 'gpa10' | 'completedSemesters', boolean>>;
   program: 'Tiêu chuẩn' | 'CLC' | 'CTTT' | '';
   exchangeSemester: string; // "Học kỳ II năm học 2026 - 2027 (S27)"
   targetGraduationSemester: string; // e.g. "Học kỳ 2 - 2027-2028"
@@ -21,6 +26,8 @@ export interface StudentProfile {
   
   // Language
   languageCertificate: {
+    availability?: '' | 'HAS_CERTIFICATE' | 'NO_CERTIFICATE';
+    validity?: '' | 'VALID' | 'EXPIRED' | 'UNKNOWN';
     language: string; // 'English' | 'French' | 'Japanese' | 'Chinese' | 'German'
     testName: string; // 'IELTS' | 'TOEFL iBT' | 'TOEFL ITP' | 'TOEIC' | 'VSTEP' | 'JLPT' | 'HSK' | 'CEFR B2'
     score: string; // e.g. "6.5", "7.0", "N2", "HSK 5"

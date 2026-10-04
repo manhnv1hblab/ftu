@@ -31,26 +31,6 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col w-full pb-20 space-y-12">
-      {/* Interactive Banner / Disclaimer Reminder (Exact Stitch Brand Standard) */}
-      <div className="w-full max-w-7xl mx-auto px-space-lg pt-space-md">
-        <div className="bg-amber-50 text-amber-900 rounded-full px-space-md py-space-xs flex items-center justify-between shadow-xs border border-amber-200 text-xs">
-          <div className="flex items-center gap-space-xs min-w-0">
-            <span className="material-symbols-outlined text-amber-600 text-base flex-shrink-0" style={{ fontVariationSettings: "'FILL' 1" }}>
-              info
-            </span>
-            <p className="font-body-sm text-body-sm truncate">
-              <strong>Thông báo Kỳ S27 (Học kỳ II năm học 2026 – 2027):</strong> Công cụ tra cứu và mô phỏng tư vấn dựa trên các tài liệu S27 dành cho sinh viên đại học chính quy FTU.
-            </p>
-          </div>
-          <Link
-            className="hidden sm:inline-flex font-label-sm text-label-sm text-amber-900 hover:text-amber-950 font-bold underline pl-space-sm flex-shrink-0"
-            href="/handbook"
-          >
-            Xem quy trình 11 bước
-          </Link>
-        </div>
-      </div>
-
       {/* Hero Section (Playful Mascot, Dynamic Discovery, Visual Scale) */}
       <section className="relative w-full max-w-7xl mx-auto px-space-lg pt-space-md pb-space-xl overflow-hidden">
         {/* Ambient decorative blobs */}

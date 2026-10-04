@@ -399,7 +399,9 @@ export const Step2Review: React.FC = () => {
           <button
             type="button"
             onClick={() => setCurrentStep(3)}
-            className="w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
+            disabled={!profile.isProfileComplete}
+            title={!profile.isProfileComplete ? "Hoàn thành các mục còn thiếu trong hồ sơ." : undefined}
+            className="disabled:opacity-50 disabled:cursor-not-allowed w-full sm:w-auto px-7 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary-container transition-all flex items-center justify-center gap-2"
           >
             <span>{eligibility.isEligible ? 'Tiếp tục: Tìm trường đối tác' : 'Tiếp tục khám phá trường (cần xác minh)'}</span>
             <span className="material-symbols-outlined text-base">arrow_forward</span>

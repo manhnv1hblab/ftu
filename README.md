@@ -21,7 +21,6 @@
 - **Styling:** Tailwind CSS + Vanilla CSS Micro-animations + HCL Visual Tokens
 - **Thiết kế & Đồ họa:** Bộ biểu tượng 3D & Linh vật FTUer Claymorphism / Pixar độc quyền
 - **Xử lý Dữ liệu:** Pure Client-side + LocalStorage Persistence; đây không phải hệ thống lưu trữ hồ sơ chính thức.
-- **AI tư vấn:** Groq Chat Completions qua server route `/api/chat`; API key chỉ nằm ở server, câu trả lời được grounding từ dữ liệu S27 đã audit.
 
 ---
 
@@ -48,18 +47,7 @@ npm run build
 npm run start
 ```
 
-### 5. Cấu hình chatbot Groq (tùy chọn)
-
-Sao chép `.env.example` thành `.env.local`, sau đó thêm key ở server:
-
-```env
-GROQ_API_KEY=your-groq-api-key
-GROQ_MODEL=openai/gpt-oss-120b
-```
-
-Không dùng `NEXT_PUBLIC_GROQ_API_KEY` và không commit `.env.local`. Chatbot chỉ được cung cấp các bản ghi phù hợp từ `data/`, quy tắc S27 và nguồn trong `document/`; dữ liệu `PENDING`, `UNCERTAIN`, `REJECTED` hoặc thiếu nguồn phải được trả lời là cần xác minh.
-
-### 6. Ảnh nhận diện trường đối tác
+### 5. Ảnh nhận diện trường đối tác
 
 Mỗi trường trong `data/universities_s27.json` có `imageUrl`, `logoUrl`, `imageSourceUrl`, `imageSourceType` và `imageVerifiedAt`. Hệ thống ưu tiên ảnh khuôn viên/cơ sở vật chất có trang nguồn khớp với trường (`official-campus-image` hoặc `internet-campus-image`); nếu không tìm được nguồn đủ chắc chắn thì dùng ảnh nhận diện từ domain chính thức (`official-domain-favicon`) và ghi rõ loại ảnh. Không dùng ảnh stock theo quốc gia để giả làm ảnh của trường.
 

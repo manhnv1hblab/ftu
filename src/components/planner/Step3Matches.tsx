@@ -29,10 +29,7 @@ export const Step3Matches: React.FC = () => {
     openPlanForPreference
   } = useStudent();
 
-  // Show auditable candidates first. Users can enable the strict S27 eligibility filter
-  // after completing the profile fields in Step 2.
   const [min3Only, setMin3Only] = useState(false);
-  const [verifiedOnly, setVerifiedOnly] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState<string>('ALL');
   const [searchQuery, setSearchQuery] = useState('');
   const [notification, setNotification] = useState<string | null>(null);
@@ -66,9 +63,6 @@ export const Step3Matches: React.FC = () => {
       // silently apply the complete profile, budget, and verification gates.
       if (min3Only && res.approvedPairsCount < S27_RULES.transferredCoursesMinimum) return false;
 
-      // Keep the stricter, end-to-end gate explicit and separate from the
-      // course-equivalence threshold above.
-      if (verifiedOnly && !res.meetsEligibility) return false;
 
       // Region filter
       if (selectedRegion !== 'ALL') {
@@ -96,7 +90,7 @@ export const Step3Matches: React.FC = () => {
 
       return true;
     });
-  }, [evaluatedResults, min3Only, verifiedOnly, selectedRegion, searchQuery]);
+  }, [evaluatedResults, min3Only, selectedRegion, searchQuery]);
 
   const preferenceRanks: PreferenceRank[] = ['nv1', 'nv2', 'nv3'];
   const selectedCount = preferenceRanks.filter(rank => Boolean(preferredUniversities[rank])).length;
@@ -298,16 +292,6 @@ export const Step3Matches: React.FC = () => {
             <span>Có ≥{S27_RULES.transferredCoursesMinimum} môn tương đương đã duyệt</span>
           </label>
 
-          {/* Strict end-to-end eligibility gate */}
-          <label className="flex items-center gap-2 text-xs font-bold text-on-surface cursor-pointer select-none bg-emerald-50 hover:bg-emerald-100 px-3.5 py-1.5 rounded-full border border-emerald-200 transition-colors">
-            <input
-              type="checkbox"
-              checked={verifiedOnly}
-              onChange={(e) => setVerifiedOnly(e.target.checked)}
-              className="rounded text-emerald-600 focus:ring-emerald-600 h-4 w-4"
-            />
-            <span>Chỉ hiển thị đủ điều kiện + đã xác minh</span>
-          </label>
         </div>
 
         {/* Region Filter Chips */}
