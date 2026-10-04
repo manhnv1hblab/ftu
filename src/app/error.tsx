@@ -9,7 +9,7 @@ export default function GlobalError({ reset }: { reset: () => void }) {
         <span className="material-symbols-outlined text-4xl text-primary">error</span>
         <h1 className="mt-4 text-2xl font-extrabold text-on-surface">Không thể tải dữ liệu trang</h1>
         <p className="mt-2 text-sm text-on-surface-variant">
-          Có lỗi tạm thời khi xử lý dữ liệu. Hồ sơ bản nháp trong trình duyệt không bị thay đổi.
+          Có lỗi tạm thời khi xử lý dữ liệu. Bản nháp tài khoản chưa bị thay đổi.
         </p>
         <button type="button" onClick={() => reset()} className="mt-6 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-on-primary">
           Thử lại

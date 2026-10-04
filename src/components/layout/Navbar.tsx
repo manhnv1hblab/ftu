@@ -8,25 +8,9 @@ import { useAuth } from '../../context/AuthContext';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { currentStep, saveDraft, resetAll, lastSavedAt, syncStatus, draftConflict, resolveDraftConflict } = useStudent();
+  const { currentStep, syncStatus } = useStudent();
   const { user, signOut, isConfigured } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [saveAlert, setSaveAlert] = useState<string | null>(null);
-
-  const handleQuickSave = () => {
-    const ok = saveDraft();
-    if (ok) {
-      setSaveAlert('Đã lưu bản nháp học tập thành công!');
-      setTimeout(() => setSaveAlert(null), 3000);
-    }
-  };
-
-  const handleResetDraft = () => {
-    if (!window.confirm('Xóa toàn bộ hồ sơ, kế hoạch và nguyện vọng đang lưu trên trình duyệt?')) return;
-    resetAll();
-    setSaveAlert('Đã xóa bản nháp trên trình duyệt.');
-    setTimeout(() => setSaveAlert(null), 3000);
-  };
 
   const navLinks = [
     { href: '/', label: 'Trang chủ', path: 'trang-chu' },
@@ -109,31 +93,6 @@ export const Navbar: React.FC = () => {
 
         {/* Action Buttons */}
         <div className="flex items-center gap-space-sm">
-          <button
-            onClick={handleQuickSave}
-            title="Lưu bản nháp kế hoạch"
-            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-primary/20 text-primary font-label-md text-label-md hover:bg-primary/5 transition-all"
-          >
-            <span className="material-symbols-outlined text-base">save</span>
-            <span>Lưu nháp</span>
-          </button>
-
-          {lastSavedAt && (
-            <span className="hidden xl:inline text-[11px] text-on-surface-variant" title={lastSavedAt}>
-              Đã lưu {new Date(lastSavedAt).toLocaleTimeString('vi-VN', { hour: '2-digit', minute: '2-digit' })}
-            </span>
-          )}
-
-          <button
-            type="button"
-            onClick={handleResetDraft}
-            title="Xóa toàn bộ dữ liệu bản nháp trên trình duyệt"
-            className="hidden xl:inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-rose-200 text-rose-700 font-label-md text-label-md hover:bg-rose-50 transition-all"
-          >
-            <span className="material-symbols-outlined text-base">delete_sweep</span>
-            <span>Xóa draft</span>
-          </button>
-
           <Link
             href="/planner"
             className="inline-flex items-center gap-space-xs px-5 py-2.5 rounded-full bg-primary text-on-primary font-label-md text-label-md shadow-md hover:bg-primary-container transition-all transform active:scale-95"
@@ -174,19 +133,11 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Save Notification Toast */}
-      {saveAlert && (
-        <div className="bg-emerald-700 text-white text-xs font-bold text-center py-1.5 px-4 animate-fade-in shadow-inner">
-          {saveAlert}
-        </div>
-      )}
-
-      {user && syncStatus !== 'LOCAL' && (
-        <div className={`px-4 py-1.5 text-center text-[11px] font-bold ${syncStatus === 'OFFLINE' ? 'bg-amber-100 text-amber-900' : syncStatus === 'CONFLICT' ? 'bg-violet-100 text-violet-900' : syncStatus === 'SYNCING' ? 'bg-sky-100 text-sky-900' : 'bg-emerald-100 text-emerald-900'}`}>
-          {syncStatus === 'SYNCING' && 'Đang đồng bộ bản nháp...'}
-          {syncStatus === 'SYNCED' && 'Bản nháp đã lưu trên tài khoản'}
-          {syncStatus === 'OFFLINE' && 'Chưa đồng bộ — dữ liệu vẫn được giữ trên thiết bị'}
-          {draftConflict && <span className="ml-2 inline-flex flex-wrap items-center justify-center gap-1.5"><span>Phát hiện bản nháp khác nhau:</span><button onClick={() => resolveDraftConflict('DEVICE')} className="rounded-full bg-white/70 px-2 py-0.5 underline">Dùng thiết bị</button><button onClick={() => resolveDraftConflict('ACCOUNT')} className="rounded-full bg-white/70 px-2 py-0.5 underline">Dùng tài khoản</button><button onClick={() => resolveDraftConflict('NEWER')} className="rounded-full bg-white/70 px-2 py-0.5 underline">Bản mới hơn</button></span>}
+      {user && syncStatus !== 'IDLE' && (
+        <div className={`px-4 py-1.5 text-center text-[11px] font-bold ${syncStatus === 'OFFLINE' ? 'bg-amber-100 text-amber-900' : syncStatus === 'SYNCING' ? 'bg-sky-100 text-sky-900' : 'bg-emerald-100 text-emerald-900'}`}>
+          {syncStatus === 'SYNCING' && 'Đang đồng bộ bản nháp tài khoản...'}
+          {syncStatus === 'SYNCED' && 'Bản nháp đã đồng bộ trên tài khoản'}
+          {syncStatus === 'OFFLINE' && 'Chưa đồng bộ bản nháp tài khoản — vui lòng kiểm tra kết nối'}
         </div>
       )}
 
@@ -218,18 +169,6 @@ export const Navbar: React.FC = () => {
               </Link>
             );
           })}
-          <div className="pt-2">
-            <button
-              onClick={() => {
-                handleQuickSave();
-                setMobileMenuOpen(false);
-              }}
-              className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl border border-primary/20 text-primary text-xs font-bold bg-primary/5"
-            >
-              <span className="material-symbols-outlined text-base">save</span>
-              <span>Lưu bản nháp vào trình duyệt</span>
-            </button>
-          </div>
         </div>
       )}
     </header>

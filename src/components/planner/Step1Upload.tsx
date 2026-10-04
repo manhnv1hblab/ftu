@@ -259,18 +259,6 @@ export const Step1Upload: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 self-end sm:self-auto">
-                <button
-                  type="button"
-                  onClick={() => {
-                    updateProfile({ courses: [], manualCourseCodes: [] });
-                    setAttachedFileName(null);
-                  }}
-                  className="text-xs text-rose-600 hover:text-rose-800 font-semibold px-2 py-1"
-                >
-                  Xóa
-                </button>
-              </div>
             </div>
           )}
 

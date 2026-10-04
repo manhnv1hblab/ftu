@@ -111,14 +111,14 @@ Mọi thắc mắc và đóng góp vui lòng mở Issue hoặc Pull Request trê
 
 ## Supabase (tùy chọn cho đồng bộ và review)
 
-Planner vẫn chạy guest bằng localStorage. Để bật đăng nhập, lưu bản nháp theo tài khoản và review cộng đồng:
+Planner guest vẫn có thể dùng tạm trong phiên hiện tại. Bản nháp bền vững chỉ được đồng bộ theo tài khoản; để bật đăng nhập, đồng bộ bản nháp và review cộng đồng:
 
 1. Tạo project Supabase, chạy `supabase/migrations/001_initial.sql` trong SQL Editor.
 2. Sao chép `.env.example` thành `.env.local`, điền URL, publishable key và service role key. Service role key chỉ được dùng ở server route.
 3. Trong Authentication → URL Configuration, thêm `http://localhost:3000/auth/callback` và `http://localhost:3000/auth/reset-password`; khi chạy bộ test có thể thêm các URL tương ứng ở cổng 3001.
 4. Chạy `npm run dev`, mở `/auth/login` để đăng ký/đăng nhập.
 
-`planner_drafts` lưu JSONB đã parse gồm hồ sơ, môn học và các phương án; file Excel gốc không được upload. Review guest đi qua `/api/reviews`, được kiểm tra server, giới hạn tần suất và hiển thị ở trạng thái `PUBLISHED`; admin ẩn/xóa trực tiếp trong Supabase Dashboard.
+`planner_drafts` lưu JSONB đã parse gồm hồ sơ, môn học và các phương án; file Excel gốc không được upload. Guest chỉ giữ dữ liệu trong bộ nhớ phiên và cần upload lại nếu bắt đầu phiên mới; người dùng đăng nhập được tự động tải và đồng bộ bản nháp tài khoản. Review guest đi qua `/api/reviews`, được kiểm tra server, giới hạn tần suất và hiển thị ở trạng thái `PUBLISHED`; admin ẩn/xóa trực tiếp trong Supabase Dashboard.
 
 Đăng ký tài khoản dùng email và mật khẩu, không yêu cầu xác minh email; Supabase tự tạo phiên đăng nhập ngay sau khi đăng ký. Email SMTP chỉ còn dùng cho chức năng quên mật khẩu.
 

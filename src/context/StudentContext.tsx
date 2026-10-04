@@ -11,10 +11,9 @@ import { normalizeProfile, allowedPlannerStep } from '../lib/profileValidation';
 import { SOURCE_MANIFEST } from '../config/sourceManifest';
 import { useAuth } from './AuthContext';
 
-const STORAGE_KEY = 'FTU_GOGLOBAL_PLANNER_DRAFT_V2';
 const STORAGE_VERSION = '4.0.0';
 const DATA_VERSION = 'S27-2026-2027-course-audit-3-program-mapping';
-type SyncStatus = 'LOCAL' | 'SYNCING' | 'SYNCED' | 'OFFLINE' | 'CONFLICT';
+type SyncStatus = 'IDLE' | 'SYNCING' | 'SYNCED' | 'OFFLINE';
 type DraftPayload = {
   version: string;
   dataVersion: string;
@@ -181,12 +180,6 @@ function markRankedChoicesForRevalidation(value: unknown): { nv1?: SelectedStudy
   };
 }
 
-function hasValidChecksum(value: Record<string, unknown>): boolean {
-  if (!value.checksum || typeof value.checksum !== 'string') return true;
-  const { checksum: suppliedChecksum, ...payload } = value;
-  return checksum(JSON.stringify(payload)) === suppliedChecksum;
-}
-
 const defaultProfile: StudentProfile = {
   cohort: '',
   major: '',
@@ -246,15 +239,9 @@ interface StudentContextType {
   updateProfile: (updates: Partial<StudentProfile>) => void;
   updateCourse: (courseCode: string, isPassed: boolean, isTaken: boolean) => void;
   loadSampleProfile: () => void;
-  resetAll: () => void;
-  saveDraft: () => boolean;
-  loadDraft: () => boolean;
   exportDraftJson: () => string;
   importDraftJson: (jsonString: string) => boolean;
-  lastSavedAt: string | null;
   syncStatus: SyncStatus;
-  draftConflict: boolean;
-  resolveDraftConflict: (choice: 'DEVICE' | 'ACCOUNT' | 'NEWER') => void;
 }
 
 const StudentContext = createContext<StudentContextType | undefined>(undefined);
@@ -279,123 +266,15 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [preferredUniversities, setPreferredUniversities] = useState<PreferredUniversities>({});
   const [activePreferenceRank, setActivePreferenceRank] = useState<PreferenceRank | null>(null);
   const [preferenceReplacementRank, setPreferenceReplacementRank] = useState<PreferenceRank | null>(null);
-  const [isHydrated, setIsHydrated] = useState(false);
+  const [accountReady, setAccountReady] = useState(!user?.id);
   const currentStep = allowedPlannerStep(requestedStep, profile, selectedUniId);
   // Evaluate navigation after batched profile/selection updates, including manual upload.
   const setCurrentStep = (step: number) => setRequestedStep(step);
   useEffect(() => {
-    if (isHydrated && requestedStep !== currentStep) setRequestedStep(currentStep);
-  }, [isHydrated, requestedStep, currentStep]);
-  const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
-  const [syncStatus, setSyncStatus] = useState<SyncStatus>('LOCAL');
-  const [pendingConflict, setPendingConflict] = useState<{ device: DraftPayload; account: DraftPayload } | null>(null);
-  const applyingRemote = useRef(false);
-  const previousUserId = useRef<string | null>(null);
-  const storageKey = user?.id ? `${STORAGE_KEY}:${user.id}` : STORAGE_KEY;
-
-  useEffect(() => {
-    if (previousUserId.current && previousUserId.current !== (user?.id || null)) {
-      setProfile(defaultProfile);
-      setRequestedStep(1);
-      setSelectedUniId(null);
-      setCurrentPlan(null);
-      setRankedChoices({});
-      setPreferredUniversities({});
-      setActivePreferenceRank(null);
-      setPreferenceReplacementRank(null);
-      setLastSavedAt(null);
-      setSyncStatus('LOCAL');
-    }
-    previousUserId.current = user?.id || null;
-  }, [user?.id]);
-
-  // Load the guest/device draft first. Authenticated drafts use a user-scoped key.
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(storageKey) || (user?.id ? localStorage.getItem(STORAGE_KEY) : null) || localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (!hasValidChecksum(parsed)) throw new Error('Draft checksum mismatch');
-        const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
-        if (isValidProfile(parsed.profile)) setProfile(parsed.profile);
-        setRankedChoices(needsRevalidation
-          ? markRankedChoicesForRevalidation(parsed.rankedChoices)
-          : normalizeRankedChoices(parsed.rankedChoices));
-        const restoredPreferences = isValidPreferredUniversities(parsed.preferredUniversities)
-          ? parsed.preferredUniversities
-          : derivePreferencesFromPlans(parsed.rankedChoices);
-        setPreferredUniversities(restoredPreferences);
-        if (isValidPlan(parsed.currentPlan)) setCurrentPlan(needsRevalidation
-          ? markPlanForRevalidation(parsed.currentPlan) || null
-          : parsed.currentPlan);
-        if (parsed.currentStep) setRequestedStep(parsed.currentStep);
-        if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
-        if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
-        if (parsed.updatedAt) setLastSavedAt(parsed.updatedAt);
-      }
-    } catch (e) {
-      console.warn('Could not restore draft from localStorage', e);
-    }
-    setIsHydrated(true);
-  }, [storageKey, user?.id]);
-
-  // Keep another open planner tab from silently overwriting a newer draft.
-  useEffect(() => {
-    const handleExternalDraftUpdate = (event: StorageEvent) => {
-      if (event.key !== storageKey && event.key !== STORAGE_KEY) return;
-      if (!event.newValue) return;
-      try {
-        const parsed = JSON.parse(event.newValue);
-        if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return;
-        setProfile(parsed.profile);
-        const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
-        setRankedChoices(needsRevalidation
-          ? markRankedChoicesForRevalidation(parsed.rankedChoices)
-          : normalizeRankedChoices(parsed.rankedChoices));
-        setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
-          ? parsed.preferredUniversities
-          : derivePreferencesFromPlans(parsed.rankedChoices));
-        setCurrentPlan(isValidPlan(parsed.currentPlan)
-          ? (needsRevalidation ? markPlanForRevalidation(parsed.currentPlan) || null : parsed.currentPlan)
-          : null);
-        setRequestedStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
-        setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
-        setActivePreferenceRank(['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank) ? parsed.activePreferenceRank : null);
-        setLastSavedAt(typeof parsed.updatedAt === 'string' ? parsed.updatedAt : null);
-      } catch (e) {
-        console.warn('Could not synchronize draft from another tab', e);
-      }
-    };
-    window.addEventListener('storage', handleExternalDraftUpdate);
-    return () => window.removeEventListener('storage', handleExternalDraftUpdate);
-  }, [storageKey]);
-
-  useEffect(() => {
-    if (!isHydrated) return;
-    const timer = window.setTimeout(() => {
-      try {
-        const payload: DraftPayload = {
-          version: STORAGE_VERSION,
-          dataVersion: DATA_VERSION,
-          updatedAt: new Date().toISOString(),
-          profile,
-          currentPlan,
-          rankedChoices,
-          preferredUniversities,
-          activePreferenceRank,
-          currentStep,
-          selectedUniId,
-          sourceManifest: SOURCE_MANIFEST
-        };
-        const serialized = JSON.stringify(payload);
-        localStorage.setItem(storageKey, JSON.stringify({ ...payload, checksum: checksum(serialized) }));
-        setLastSavedAt(payload.updatedAt);
-      } catch (e) {
-        console.error('Failed to auto-save draft', e);
-      }
-    }, 500);
-    return () => window.clearTimeout(timer);
-  }, [isHydrated, storageKey, profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
+    if (accountReady && requestedStep !== currentStep) setRequestedStep(currentStep);
+  }, [accountReady, requestedStep, currentStep]);
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>(user?.id ? 'SYNCING' : 'IDLE');
+  const skipNextSync = useRef(false);
 
   const draftPayload = useMemo<DraftPayload>(() => ({
     version: STORAGE_VERSION,
@@ -411,8 +290,18 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     sourceManifest: SOURCE_MANIFEST
   }), [profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
 
+  const clearInMemoryDraft = () => {
+    setProfile(defaultProfile);
+    setRequestedStep(1);
+    setSelectedUniId(null);
+    setCurrentPlan(null);
+    setRankedChoices({});
+    setPreferredUniversities({});
+    setActivePreferenceRank(null);
+    setPreferenceReplacementRank(null);
+  };
+
   const applyDraft = (parsed: DraftPayload) => {
-    applyingRemote.current = true;
     const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
     setProfile(parsed.profile);
     setRankedChoices(needsRevalidation ? markRankedChoicesForRevalidation(parsed.rankedChoices) : normalizeRankedChoices(parsed.rankedChoices));
@@ -421,14 +310,15 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setRequestedStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
     setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
     setActivePreferenceRank(parsed.activePreferenceRank && ['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank) ? parsed.activePreferenceRank : null);
-    setLastSavedAt(parsed.updatedAt || null);
-    setSyncStatus('SYNCED');
-    window.setTimeout(() => { applyingRemote.current = false; }, 0);
   };
 
-  // Supabase is the durable copy for authenticated users. A failed request leaves the local cache usable.
+  // The account draft is the only durable source. Guest state is intentionally memory-only.
   useEffect(() => {
-    if (!isHydrated || !user?.id || applyingRemote.current) return;
+    if (!user?.id || !accountReady) return;
+    if (skipNextSync.current) {
+      skipNextSync.current = false;
+      return;
+    }
     const timer = window.setTimeout(async () => {
       setSyncStatus('SYNCING');
       try {
@@ -439,40 +329,51 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         if (!response.ok) throw new Error('draft sync failed');
         setSyncStatus('SYNCED');
       } catch {
-        setSyncStatus(navigator.onLine ? 'OFFLINE' : 'OFFLINE');
+        setSyncStatus('OFFLINE');
       }
     }, 900);
     return () => window.clearTimeout(timer);
-  }, [draftPayload, isHydrated, user?.id]);
+  }, [accountReady, draftPayload, user?.id]);
 
-  // Restore the account copy after authentication, asking before overwriting a different device draft.
+  // Restore the account copy after authentication. The account always wins over guest state.
   useEffect(() => {
-    if (!isHydrated || !user?.id) return;
     let cancelled = false;
+    skipNextSync.current = true;
+    if (!user?.id) {
+      clearInMemoryDraft();
+      setAccountReady(true);
+      setSyncStatus('IDLE');
+      return () => { cancelled = true; };
+    }
+
+    setAccountReady(false);
+    setSyncStatus('SYNCING');
     const loadAccountDraft = async () => {
       try {
         const response = await fetch('/api/planner/draft', { cache: 'no-store' });
         if (!response.ok) throw new Error('draft load failed');
         const result = await response.json();
         const remote = result?.draft?.draft as DraftPayload | undefined;
-        if (cancelled || !remote || !isValidProfile(remote.profile)) return;
-        const localRaw = localStorage.getItem(storageKey) || localStorage.getItem(STORAGE_KEY);
-        const local = localRaw ? JSON.parse(localRaw) as DraftPayload : null;
-        if (local && isValidProfile(local.profile) && JSON.stringify(local) !== JSON.stringify(remote)) {
-          setPendingConflict({ device: local, account: remote });
-          setSyncStatus('CONFLICT');
-          return;
-        }
-        applyDraft(remote);
+        if (cancelled) return;
+        if (remote && isValidProfile(remote.profile)) applyDraft(remote);
+        else clearInMemoryDraft();
+        setAccountReady(true);
+        setSyncStatus(remote ? 'SYNCED' : 'IDLE');
       } catch {
-        if (!cancelled) setSyncStatus('OFFLINE');
+        if (!cancelled) {
+          setAccountReady(false);
+          setSyncStatus('OFFLINE');
+        }
       }
     };
     void loadAccountDraft();
-    return () => { cancelled = true; };
-  // applyDraft is declared below and intentionally stable for this effect's lifecycle.
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHydrated, storageKey, user?.id]);
+    const retryWhenOnline = () => { if (navigator.onLine) void loadAccountDraft(); };
+    window.addEventListener('online', retryWhenOnline);
+    return () => {
+      cancelled = true;
+      window.removeEventListener('online', retryWhenOnline);
+    };
+  }, [user?.id]);
 
   const updateProfile = (updates: Partial<StudentProfile>) => {
     setProfile(prev => normalizeProfile({ ...normalizeProfile(prev), ...updates }));
@@ -523,80 +424,6 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setRequestedStep(2);
   };
 
-  const resetAll = () => {
-    setProfile(defaultProfile);
-    setCurrentStep(1);
-    setSelectedUniId(null);
-    setCurrentPlan(null);
-    setRankedChoices({});
-    setPreferredUniversities({});
-    setActivePreferenceRank(null);
-    setPreferenceReplacementRank(null);
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem(storageKey);
-      if (storageKey !== STORAGE_KEY) localStorage.removeItem(STORAGE_KEY);
-      localStorage.removeItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
-      if (user?.id) void fetch('/api/planner/draft', { method: 'DELETE' });
-    }
-    setLastSavedAt(null);
-  };
-
-  const saveDraft = (): boolean => {
-    try {
-      const draft = {
-        version: STORAGE_VERSION,
-        dataVersion: DATA_VERSION,
-        updatedAt: new Date().toISOString(),
-        profile,
-        currentPlan,
-        rankedChoices,
-        preferredUniversities,
-        activePreferenceRank,
-        currentStep,
-        selectedUniId,
-        sourceManifest: SOURCE_MANIFEST
-      };
-      const serialized = JSON.stringify(draft);
-      localStorage.setItem(storageKey, JSON.stringify({ ...draft, checksum: checksum(serialized) }));
-      setLastSavedAt(draft.updatedAt);
-      if (user?.id) {
-        setSyncStatus('SYNCING');
-        void fetch('/api/planner/draft', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ draft, dataVersion: DATA_VERSION }) })
-          .then(response => { if (!response.ok) throw new Error('draft sync failed'); setSyncStatus('SYNCED'); })
-          .catch(() => setSyncStatus('OFFLINE'));
-      }
-      return true;
-    } catch (e) {
-      console.error('Failed to save draft', e);
-      return false;
-    }
-  };
-
-  const loadDraft = (): boolean => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
-      if (!saved) return false;
-      const parsed = JSON.parse(saved);
-      if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return false;
-      const ranked = parsed.rankedChoices || {};
-      if (!isValidRankedChoices(ranked)) return false;
-      if (parsed.profile) setProfile(parsed.profile);
-      setRankedChoices(parsed.version !== STORAGE_VERSION || parsed.dataVersion !== DATA_VERSION ? markRankedChoicesForRevalidation(ranked) : normalizeRankedChoices(ranked));
-      setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities)
-        ? parsed.preferredUniversities
-        : derivePreferencesFromPlans(ranked));
-      if (isValidPlan(parsed.currentPlan)) setCurrentPlan(parsed.version !== STORAGE_VERSION || parsed.dataVersion !== DATA_VERSION ? markPlanForRevalidation(parsed.currentPlan) || null : parsed.currentPlan);
-      if (parsed.currentStep) setRequestedStep(parsed.currentStep);
-      if (parsed.selectedUniId) setSelectedUniId(parsed.selectedUniId);
-      if (['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank)) setActivePreferenceRank(parsed.activePreferenceRank);
-      if (parsed.updatedAt) setLastSavedAt(parsed.updatedAt);
-      return true;
-    } catch (e) {
-      console.error('Failed to load draft', e);
-      return false;
-    }
-  };
-
   const exportDraftJson = (): string => {
     const draft = {
       version: STORAGE_VERSION,
@@ -640,19 +467,6 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     } catch (e) {
       console.error('Failed to import draft json', e);
       return false;
-    }
-  };
-
-  const resolveDraftConflict = (choice: 'DEVICE' | 'ACCOUNT' | 'NEWER') => {
-    if (!pendingConflict) return;
-    const chosen = choice === 'ACCOUNT' ? pendingConflict.account
-      : choice === 'NEWER' ? (new Date(pendingConflict.account.updatedAt).getTime() > new Date(pendingConflict.device.updatedAt).getTime() ? pendingConflict.account : pendingConflict.device)
-      : pendingConflict.device;
-    applyDraft(chosen);
-    setPendingConflict(null);
-    setSyncStatus(choice === 'DEVICE' ? 'SYNCING' : 'SYNCED');
-    if (choice === 'DEVICE') {
-      void fetch('/api/planner/draft', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ draft: chosen, dataVersion: DATA_VERSION }) }).catch(() => setSyncStatus('OFFLINE'));
     }
   };
 
@@ -783,15 +597,9 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         updateProfile,
         updateCourse,
         loadSampleProfile,
-        resetAll,
-        saveDraft,
-        loadDraft,
         exportDraftJson,
         importDraftJson,
-        lastSavedAt,
-        syncStatus,
-        draftConflict: Boolean(pendingConflict),
-        resolveDraftConflict
+        syncStatus
       }}
     >
       {children}

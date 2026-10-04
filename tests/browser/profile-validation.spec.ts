@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test';
-import { enterManualCourses, fillProfile, standardProgram } from './profile-helpers';
-import { academicPrograms, allowedPlannerStep, graduationYears, normalizeProfile, resolveProgramType, validateProfile } from '../../src/lib/profileValidation';
-import { StudentProfile } from '../../src/types/studentProfile';
+import { enterManualCourses, fillProfile } from './profile-helpers';
+import { academicPrograms, graduationYears, resolveProgramType } from '../../src/lib/profileValidation';
 
 test('catalogue has unique IDs and cohort-specific options', () => {
   expect(new Set(academicPrograms.map(p => p.id)).size).toBe(academicPrograms.length);
@@ -60,25 +59,12 @@ test('conditional certificate fields and cohort changes invalidate completeness'
   await expect(page.locator('#profile-program')).toHaveValue('');
 });
 
-test('legacy incomplete draft at step 5 is redirected without losing plans or old fields', async ({ page }) => {
+test('guest planner state is temporary and is not restored from local storage', async ({ page }) => {
   await enterManualCourses(page);
   await fillProfile(page);
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V2') || '{}').profile?.programId)).toBe(standardProgram.id);
-  const draft = await page.evaluate(() => JSON.parse(localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V2')!));
-  draft.version = '3.0.0'; delete draft.checksum;
-  delete draft.profile.programId; delete draft.profile.majorId;
-  delete draft.profile.languageCertificate.availability;
-  draft.currentStep = 5;
-  draft.rankedChoices = { nv1: { universityId: 'legacy', universityName: 'Legacy University', transferredCourses: [], status: 'DRAFT_NOT_ELIGIBLE' } };
-  await page.evaluate(d => localStorage.setItem('FTU_GOGLOBAL_PLANNER_DRAFT_V2', JSON.stringify(d)), draft);
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Bổ sung thông tin hồ sơ' })).toBeVisible();
-  await expect(page.getByText(/Thông tin đã lưu:/)).toBeVisible();
-  await expect(page.getByRole('button', { name: /Gợi ý trường/ })).toBeDisabled();
-  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V2')!).rankedChoices.nv1.universityName)).toBe('Legacy University');
-  const profile = draft.profile as StudentProfile;
-  expect(allowedPlannerStep(5, normalizeProfile(profile), null)).toBe(2);
-  expect(validateProfile(normalizeProfile(profile))['profile-program']).toBeTruthy();
+  await expect(page.locator('#fileUploadInput')).toHaveCount(1);
+  await expect(page.getByRole('button', { name: /Lưu nháp|Xóa draft/ })).toHaveCount(0);
 });
 
 test('mobile profile and university details remain usable without changing course selections', async ({ page }) => {
