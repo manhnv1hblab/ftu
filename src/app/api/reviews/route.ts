@@ -32,7 +32,7 @@ function requestFingerprint(request: Request, userId?: string) {
 }
 
 export async function GET(request: Request) {
-  const supabase = getSupabaseServerClient();
+  const supabase = getSupabaseServerClient() || getSupabaseAdminClient();
   if (!supabase) return NextResponse.json({ reviews: [], configured: false });
   const { searchParams } = new URL(request.url);
   let query = supabase.from('reviews').select('id,university_id,university_name,exchange_semester,major,display_name,is_anonymous,overall_rating,academic_rating,living_rating,process_rating,review_text,pros,cons,created_at').eq('status', 'PUBLISHED').order('created_at', { ascending: false }).limit(100);

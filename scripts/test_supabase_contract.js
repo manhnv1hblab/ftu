@@ -47,6 +47,8 @@ const checks = [
   ['Review rate limit is durable and atomic', read('supabase/migrations/002_review_rate_limit.sql').includes('consume_review_rate_limit') && read('src/app/api/reviews/route.ts').includes("admin.rpc('consume_review_rate_limit'")],
   ['Anonymous review names are discarded and redacted', read('src/app/api/reviews/route.ts').includes('display_name: isAnonymous ? null : displayName') && read('src/app/api/reviews/route.ts').includes('.map(publicReview)')],
   ['Review filters are checked against source data', read('src/app/api/reviews/route.ts').includes('!universityIds.has(universityId)') && read('src/app/api/reviews/route.ts').includes('!countries.has(country)')],
+  ['Guest review form is not gated by browser auth config', read('src/app/reviews/page.tsx').includes('disabled={busy}') && !read('src/app/reviews/page.tsx').includes('disabled={busy || !isConfigured}')],
+  ['Review GET has a server-side fallback', read('src/app/api/reviews/route.ts').includes('getSupabaseServerClient() || getSupabaseAdminClient()')],
   ['Draft payload size is bounded', read('src/app/api/planner/draft/route.ts').includes('MAX_DRAFT_BYTES')],
 ];
 for (const [label, pass] of checks) console.log(`${pass ? 'PASS' : 'FAIL'} ${label}`);
