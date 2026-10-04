@@ -1,12 +1,17 @@
 import { expect, test } from '@playwright/test';
 import { enterManualCourses, fillProfile, standardProgram } from './profile-helpers';
-import { academicPrograms, allowedPlannerStep, graduationYears, normalizeProfile, validateProfile } from '../../src/lib/profileValidation';
+import { academicPrograms, allowedPlannerStep, graduationYears, normalizeProfile, resolveProgramType, validateProfile } from '../../src/lib/profileValidation';
 import { StudentProfile } from '../../src/types/studentProfile';
 
 test('catalogue has unique IDs and cohort-specific options', () => {
   expect(new Set(academicPrograms.map(p => p.id)).size).toBe(academicPrograms.length);
   for (const cohort of ['K61', 'K62', 'K63', 'K64']) expect(academicPrograms.filter(p => p.cohorts.includes(cohort)).length).toBeGreaterThan(25);
-  expect(academicPrograms.filter(p => /nghề nghiệp|ĐHNNQT|Tích hợp/.test(p.name)).every(p => p.matchingProgram === '')).toBeTruthy();
+  expect(academicPrograms.every(p => ['Tiêu chuẩn', 'CLC', 'CTTT'].includes(p.matchingProgram))).toBeTruthy();
+  const standard = academicPrograms.find(p => p.cohorts.includes('K63') && p.majorName === 'Kinh tế quốc tế' && p.name === 'Chương trình Kinh tế quốc tế');
+  expect(standard && resolveProgramType(standard)).toEqual({ programType: 'Tiêu chuẩn', source: 'DEFAULT_STANDARD' });
+  expect(resolveProgramType({ name: 'Chương trình chất lượng cao Kinh tế quốc tế' })).toEqual({ programType: 'CLC', source: 'NAME_INFERRED' });
+  expect(resolveProgramType({ name: 'Chương trình đào tạo theo mô hình tiên tiến' })).toEqual({ programType: 'CTTT', source: 'NAME_INFERRED' });
+  expect(resolveProgramType({ name: 'Chương trình đào tạo (CT ĐHNNQT)' })).toEqual({ programType: 'CTTT', source: 'NAME_INFERRED' });
   expect(graduationYears('', new Date('2026-10-04T00:00:00Z'))).toEqual([2026, 2027, 2028, 2029, 2030, 2031, 2032]);
   expect(graduationYears('Học kỳ II năm học 2025 - 2026', new Date('2026-10-04T00:00:00Z'))[0]).toBe(2025);
 });

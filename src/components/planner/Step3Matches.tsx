@@ -342,7 +342,7 @@ export const Step3Matches: React.FC = () => {
             const uni = res.university;
             const selectedRank = selectedRankForUniversity(uni.id);
             const transferredCredits = res.matchedPairs
-              .filter(pair => pair.status === 'APPROVED' && pair.verificationStatus === 'VERIFIED')
+              .filter(pair => pair.status === 'APPROVED')
               .reduce((sum, pair) => sum + pair.ftuCredits, 0);
 
             return (
@@ -382,9 +382,12 @@ export const Step3Matches: React.FC = () => {
 
                   {/* Transfer pill */}
                   <div className="bg-surface-container-low rounded-xl px-3 py-2 flex items-center justify-between text-xs">
-                    <span className="font-semibold text-primary">
-                      Quy đổi đã duyệt: {res.approvedPairsCount} môn ({transferredCredits} TC FTU)
-                    </span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-semibold text-primary">
+                        Quy đổi đã duyệt: {res.approvedPairsCount} môn ({transferredCredits} TC FTU)
+                      </span>
+                      {res.verifiedPairsCount < res.approvedPairsCount && <span className="text-[10px] text-amber-700">Đã xác minh: {res.verifiedPairsCount} môn · cần đối chiếu thêm</span>}
+                    </div>
                     <span className="text-[11px] text-on-surface-variant font-medium">
                       {uni.region}
                     </span>

@@ -1,6 +1,6 @@
 {
   "checkedAt": "2026-10-04",
-  "note": "IDs are internal catalogue keys, not Ministry programme codes. Empty matchingProgram requires verification; never infer TC/CLC/CTTT.",
+  "note": "Programme types are normalized to exactly Standard, CLC, or CTTT. CLC/high-quality map to CLC; advanced/CTTT/DHNNQT map to CTTT; all other names default to Standard.",
   "programs": [
     {
       "id": "k64-kinh-te-chuong-trinh-ao-tao-kinh-te-oi-ngoai",
@@ -10,9 +10,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-kinh-te-chuong-trinh-ao-tao-kinh-te-oi-ngoai-ct-clc",
@@ -24,7 +26,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-kinh-te-chuong-trinh-ao-tao-kinh-te-oi-ngoai-ct-tien-tien",
@@ -36,7 +40,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-kinh-te-quoc-te-chuong-trinh-ao-tao-kinh-te-quoc-te",
@@ -46,9 +52,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-kinh-te-quoc-te-chuong-trinh-ao-tao-kinh-te-quoc-te-ct-clc",
@@ -60,7 +68,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-quoc-te",
@@ -70,9 +80,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-quoc-te-ct-clc",
@@ -84,7 +96,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-logistics-va-quan-ly-chuoi-cung-ung-ct-hnnqt",
@@ -94,9 +108,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-tien-tien-i-hons-kinh-doanh-quoc-te-va-phan-tich-du-lieu-kinh-doanh",
@@ -108,7 +124,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-quan-tri-kinh-doanh-chuong-trinh-ao-tao-quan-tri-kinh-doanh",
@@ -118,9 +136,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-quan-tri-kinh-doanh-chuong-trinh-ao-tao-quan-tri-kinh-doanh-ct-clc",
@@ -132,7 +152,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-quan-tri-kinh-doanh-chuong-trinh-ao-tao-quan-tri-kinh-doanh-ct-tien-tien",
@@ -144,7 +166,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-quan-tri-khach-san-chuong-trinh-ao-tao-quan-tri-khach-san-ct-hnnqt",
@@ -154,9 +178,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k64-ke-toan-chuong-trinh-ao-tao-ke-toan-kiem-toan",
@@ -166,9 +192,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-ke-toan-chuong-trinh-ao-tao-ke-toan-kiem-toan-inh-huong-nghe-nghiep-acca",
@@ -178,9 +206,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-luat-chuong-trinh-ao-tao-luat-thuong-mai-quoc-te",
@@ -190,9 +220,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-luat-chuong-trinh-ao-tao-luat-kinh-doanh-quoc-te-theo-mo-hinh-thuc-hanh-nghe-nghiep",
@@ -202,9 +234,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-kinh-te-chinh-tri-chuong-trinh-ao-tao-kinh-te-chinh-tri-quoc-te-cthptqt",
@@ -214,9 +248,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-marketing-chuong-trinh-ao-tao-marketing-so-ct-hnnqt",
@@ -226,9 +262,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k64-marketing-chuong-trinh-ao-tao-truyen-thong-marketing-tich-hop-ct-hnnqt",
@@ -238,9 +276,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-so-ct-hnnqt",
@@ -250,9 +290,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k64-kinh-doanh-quoc-te-chuong-trinh-ao-tao-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban-ct-hnnqt",
@@ -262,9 +304,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k64-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang",
@@ -274,9 +318,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang-ct-clc",
@@ -288,7 +334,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang-ct-tien-tien",
@@ -300,7 +348,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-ngon-ngu-anh-chuong-trinh-ao-tao-tieng-anh-thuong-mai",
@@ -310,9 +360,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-ngon-ngu-anh-chuong-trinh-ao-tao-tieng-anh-thuong-mai-nganh-phu-kinh-doanh-quoc-te-ct-clc-nganh-chinh-ngon-ngu-anh-nganh-phu-kinh-doanh-quoc-te",
@@ -324,7 +376,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-ngon-ngu-phap-chuong-trinh-ao-tao-tieng-phap-thuong-mai-ct-tich-hop-nganh-chinh-ngon-ngu-phap-nganh-phu-kinh-doanh-quoc-te",
@@ -334,9 +388,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-ngon-ngu-nhat-chuong-trinh-ao-tao-tieng-nhat-thuong-mai",
@@ -346,9 +402,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-ngon-ngu-nhat-chuong-trinh-ao-tao-tieng-nhat-thuong-mai-nganh-phu-kinh-doanh-quoc-te-ct-clc-nganh-chinh-ngon-ngu-nhat-nganh-phu-kinh-doanh-quoc-te",
@@ -360,7 +418,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-tieng-trung-thuong-mai",
@@ -370,9 +430,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k64-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-tieng-trung-thuong-mai-ct-clc-nganh-chinh-ngon-ngu-trung-quoc-nganh-phu-kinh-doanh-quoc-te",
@@ -384,7 +446,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k64-khoa-hoc-may-tinh-chuong-trinh-ao-tao-khoa-hoc-may-tinh-trong-kinh-te-va-kinh-doanh",
@@ -394,9 +458,11 @@
       "cohorts": [
         "K64"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-te-chuong-trinh-tieu-chuan-kinh-te-oi-ngoai",
@@ -409,7 +475,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-dao-tao-nganh-kinh-te-ap-dung-tu-khoa-62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-te-chuong-trinh-chat-luong-cao-kinh-te-oi-ngoai",
@@ -422,7 +490,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-chat-luong-cao-kinh-te-doi-ngoai-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-kinh-te-chuong-trinh-tien-tien-kinh-te-oi-ngoai",
@@ -435,7 +505,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-tien-tien-kinh-te-doi-ngoai-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-kinh-te-chuong-trinh-tieu-chuan-thuong-mai-quoc-te",
@@ -448,7 +520,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-thuong-mai-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-doanh-quoc-te-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-kinh-doanh-so",
@@ -459,9 +533,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-dinh-huong-nghe-nghiep-quoc-te-kinh-doanh-so-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k63-kinh-doanh-quoc-te-chuong-trinh-tien-tien-i-hons-kinh-doanh-quoc-te-va-phan-tich-du-lieu-kinh-doanh-hop-tac-voi-university-of-queensland",
@@ -473,7 +549,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-tien-tien-i-hons-kinh-doanh-quoc-te-va-phan-tich-du-lieu-kinh-doanh-hop-tac-voi-university-of-queensland/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-kinh-doanh-quoc-te-chuong-trinh-logistic-va-quan-ly-chuoi-cung-ung",
@@ -484,9 +562,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-logistic-va-quan-ly-chuoi-cung-ung-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-doanh-quoc-te-chuong-trinh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban",
@@ -497,9 +577,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k62-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-kinh-doanh-quoc-te",
@@ -512,7 +594,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-kinh-doanh-quoc-te-chuong-trinh-tieu-chuan-kinh-doanh-quoc-te",
@@ -525,7 +609,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-te-quoc-te-chuong-trinh-kinh-te-quoc-te",
@@ -536,9 +622,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-te-quoc-te-chuong-trinh-chat-luong-cao-kinh-te-quoc-te-ap-dung-tu-k62-tro-i",
@@ -551,7 +639,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/62clcktqt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-kinh-te-quoc-te-chuong-trinh-kinh-te-va-phat-trien-quoc-te",
@@ -562,9 +652,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-te-va-phat-trien-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-quan-tri-kinh-doanh-chuong-trinh-tien-tien-quan-tri-kinh-doanh-quoc-te",
@@ -577,7 +669,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/chuong-trinh-tien-tien-quan-tri-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-quan-tri-kinh-doanh-chuong-trinh-chat-luong-cao-quan-tri-kinh-doanh",
@@ -590,7 +684,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-quan-tri-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-quan-tri-kinh-doanh-chuong-trinh-tieu-chuan-quan-tri-kinh-doanh",
@@ -603,7 +699,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-quan-tri-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-quan-tri-khach-san-chuong-trinh-chat-luong-cao-quan-tri-khach-san-ap-dung-tu-k62-tro-i",
@@ -616,7 +714,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-quan-tri-khach-san-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tien-tien-tai-chinh-ngan-hang",
@@ -629,7 +729,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62cttttc/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-tai-chinh-ngan-hang-chuong-trinh-chat-luong-cao-ngan-hang-va-tai-chinh-quoc-te",
@@ -642,7 +744,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62clctc/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tieu-chuan-phan-tich-va-au-tu-tai-chinh",
@@ -655,7 +759,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62ptdt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tieu-chuan-ngan-hang",
@@ -668,7 +774,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62nghg/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tieu-chuan-tai-chinh-quoc-te",
@@ -681,7 +789,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/62tcqt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-luat-chuong-trinh-inh-huong-mo-hinh-thuc-hanh-nghe-nghiep-luat-kinh-doanh-quoc-te",
@@ -692,9 +802,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/62law/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-luat-chuong-trinh-tieu-chuan-luat-thuong-mai-quoc-te",
@@ -707,7 +819,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-luat-thuong-mai-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-ke-toan-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-acca-ke-toan-kiem-toan",
@@ -718,9 +832,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/chuong-trinh-dinh-huong-nghe-nghiep-quoc-te-acca-ke-toan-kiem-toan/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-ke-toan-chuong-trinh-tieu-chuan-ke-toan-kiem-toan",
@@ -733,7 +849,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/62ktkt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-marketing-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-marketing-so",
@@ -744,9 +862,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/62emar/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-marketing-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-truyen-thong-marketing-tich-hop",
@@ -757,9 +877,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/62imc/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-ngon-ngu-anh-chuong-trinh-chat-luong-cao-tieng-anh-thuong-mai",
@@ -772,7 +894,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/62clcta/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-ngon-ngu-anh-chuong-trinh-tieu-chuan-tieng-anh-thuong-mai",
@@ -785,7 +909,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/62tatm/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-ngon-ngu-phap-chuong-trinh-chat-luong-cao-tieng-phap-thuong-mai",
@@ -798,7 +924,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/62clctp/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-ngon-ngu-phap-chuong-trinh-tieu-chuan-tieng-phap-thuong-mai",
@@ -811,7 +939,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/62tptm/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-ngon-ngu-trung-quoc-chuong-trinh-chat-luong-cao-tieng-trung-thuong-mai",
@@ -824,7 +954,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/62clctt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-ngon-ngu-trung-quoc-chuong-trinh-tieu-chuan-tieng-trung-thuong-mai",
@@ -837,7 +969,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/62tttm/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-ngon-ngu-nhat-chuong-trinh-chat-luong-cao-tieng-nhat-thuong-mai",
@@ -850,7 +984,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/62clctn/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k62-ngon-ngu-nhat-chuong-trinh-tieu-chuan-tieng-nhat-thuong-mai",
@@ -863,7 +999,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/62tntm/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k62-kinh-te-chinh-tri-chuong-trinh-kinh-te-chinh-tri-quoc-te",
@@ -874,9 +1012,11 @@
         "K62",
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/cac-nganh-ngon-ngu/kt-ct-qt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-te-chuong-trinh-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-thuong-mai-quoc-te",
@@ -888,7 +1028,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-thuong-mai-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-te-chuong-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-oi-ngoai-chuong-trinh-tien-tien-giang-day-bang-tieng-anh",
@@ -900,7 +1042,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-doi-ngoai-chuong-trinh-tien-tien-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-kinh-te-chuong-trinh-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-oi-ngoai-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
@@ -912,7 +1056,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-doi-ngoai-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-kinh-te-chuong-trinh-ao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-oi-ngoai",
@@ -924,7 +1070,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-ma-so-7310101-chuyen-nganh-kinh-te-doi-ngoai/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-khoa-60/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-so-chuong-trinh-inh-huong-nghe-nghiep-quoc-te",
@@ -934,9 +1082,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2022-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-so-chuong-trinh-dinh-huong-nghe-nghiep-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban",
@@ -946,9 +1096,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-theo-mo-hinh-tien-tien-nhat-ban/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "NAME_INFERRED"
     },
     {
       "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-logistics-va-quan-ly-chuoi-cung-ung-inh-huong-nghe-nghiep-quoc-te",
@@ -958,9 +1110,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-logistics-va-quan-ly-chuoi-cung-ung-dinh-huong-nghe-nghiep-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
@@ -972,7 +1126,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-kinh-doanh-quoc-te-chuong-trinh-ao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te",
@@ -984,7 +1140,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-doanh-quoc-te-ma-so-7340120-chuyen-nganh-kinh-doanh-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kdqt-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-te-quoc-te-chuong-trinh-ao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-va-phat-trien-quoc-te",
@@ -996,7 +1154,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-va-phat-trien-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-kinh-te-quoc-te-chuong-trinh-ao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
@@ -1008,7 +1168,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-kinh-te-quoc-te-chuong-trinh-ao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te",
@@ -1020,7 +1182,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-nganh-kinh-te-quoc-te-ma-so-7310106-chuyen-nganh-kinh-te-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-ktqt-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-quan-tri-kinh-doanh-chuong-trinh-ao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
@@ -1032,7 +1196,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-quan-tri-kinh-doanh-chuong-trinh-ao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te",
@@ -1044,7 +1210,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-quan-tri-kinh-doanh-chuong-trinh-ao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-tien-tien-giang-day-bang-tieng-anh",
@@ -1056,7 +1224,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-kinh-doanh-ma-so-7340101-chuyen-nganh-quan-tri-kinh-doanh-quoc-te-chuong-trinh-tien-tien-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-qtkd-chuong-trinh-k60-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-quan-tri-khach-san-chuong-trinh-ao-tao-nganh-quan-tri-khach-san-ma-so-7810201-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
@@ -1068,7 +1238,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-quan-tri-khach-san-ma-so-7810201-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-ngan-hang-chuong-trinh-tien-tien-giang-day-bang-tieng-anh",
@@ -1080,7 +1252,9 @@
       ],
       "matchingProgram": "CTTT",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-ngan-hang-chuong-trinh-tien-tien-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/",
+      "programType": "CTTT",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang-va-tai-chinh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh",
@@ -1092,7 +1266,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang-va-tai-chinh-quoc-te-chuong-trinh-chat-luong-cao-giang-day-bang-tieng-anh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-phan-tich-va-au-tu-tai-chinh",
@@ -1104,7 +1280,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-phan-tich-va-dau-tu-tai-chinh/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang",
@@ -1116,7 +1294,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-ngan-hang/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-tai-chinh-ngan-hang-chuong-trinh-ao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-quoc-te",
@@ -1128,7 +1308,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-tai-chinh-ngan-hang-ma-so-7340201-chuyen-nganh-tai-chinh-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tcnh-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-luat-chuong-trinh-ao-tao-nganh-luat-ma-so-7380101-chuyen-nganh-luat-thuong-mai-quoc-te",
@@ -1140,7 +1322,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-luat-ma-so-7380101-chuyen-nganh-luat-thuong-mai-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-luat-chuong-trinh-ao-tao-chuyen-nganh-luat-kinh-doanh-quoc-te-theo-mo-hinh-thuc-hanh-nghe-nghiep",
@@ -1150,9 +1334,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-chuyen-nganh-luat-kinh-doanh-quoc-te-theo-mo-hinh-thuc-hanh-nghe-nghiep/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-chuong-trinh-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-chuong-trinh-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-ke-toan-chuong-trinh-ao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan-inh-huong-nghe-nghiep-acca",
@@ -1162,9 +1348,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan-dinh-huong-nghe-nghiep-acca/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/nganh-ke-toan-chuong-trinh-dao-tao-tu-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/nganh-ke-toan-chuong-trinh-dao-tao-tu-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-ke-toan-chuong-trinh-ao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan",
@@ -1176,7 +1364,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ke-toan-ma-so-7340301-chuyen-nganh-ke-toan-kiem-toan/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/nganh-ke-toan-chuong-trinh-dao-tao-tu-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/nganh-ke-toan-chuong-trinh-dao-tao-tu-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-marketing-chuong-trinh-ao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-truyen-thong-marketing-tich-hop-chuong-trinh-inh-huong-nghe-nghiep-quoc-te",
@@ -1186,9 +1376,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2022-chuong-trinh-dao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-truyen-thong-marketing-tich-hop-chuong-trinh-dinh-huong-nghe-nghiep-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/nganh-marketing-ap-dung-tu-k61-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/nganh-marketing-ap-dung-tu-k61-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-marketing-chuong-trinh-ao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-marketing-so-chuong-trinh-inh-huong-nghe-nghiep-quoc-te",
@@ -1198,9 +1390,11 @@
       "cohorts": [
         "K61"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2022-chuong-trinh-dao-tao-nganh-marketing-ma-so-7340115-chuyen-nganh-marketing-so-chuong-trinh-dinh-huong-nghe-nghiep-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/nganh-marketing-ap-dung-tu-k61-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/nganh-marketing-ap-dung-tu-k61-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-ngon-ngu-anh-chuong-trinh-ao-tao-nganh-ngon-ngu-anh-ma-so-7220201-chuyen-nganh-tieng-anh-thuong-mai",
@@ -1212,7 +1406,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-anh-ma-so-7220201-chuyen-nganh-tieng-anh-thuong-mai/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/nna-chuong-trinh-dao-tao-tu-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/nna-chuong-trinh-dao-tao-tu-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-ngon-ngu-anh-chuong-trinh-chat-luong-cao-trinh-o-ai-hoc-nganh-ngon-ngu-anh-chuyen-nganh-tieng-anh-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te",
@@ -1224,7 +1420,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-chat-luong-cao-trinh-do-dai-hoc-nganh-ngon-ngu-anh-chuyen-nganh-tieng-anh-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/nna-chuong-trinh-dao-tao-tu-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/nna-chuong-trinh-dao-tao-tu-k60-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-ngon-ngu-phap-chuong-trinh-chat-luong-cao-nganh-ngon-ngu-phap-chuyen-nganh-tieng-phap-thuong-mai-chuyen-nganh-phu-thuong-mai-quoc-te",
@@ -1236,7 +1434,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-chat-luong-cao-nganh-ngon-ngu-phap-chuyen-nganh-tieng-phap-thuong-mai-chuyen-nganh-phu-thuong-mai-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-ngon-ngu-phap-chuong-trinh-ao-tao-nganh-ngon-ngu-phap-ma-so-72220203-chuyen-nganh-tieng-phap-thuong-mai",
@@ -1248,7 +1448,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-phap-ma-so-72220203-chuyen-nganh-tieng-phap-thuong-mai/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-chat-luong-cao-trinh-o-ai-hoc-nganh-ngon-ngu-trung-quoc-ma-nganh-7220204-chuyen-nganh-tieng-trung-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te",
@@ -1260,7 +1462,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-chat-luong-cao-trinh-do-dai-hoc-nganh-ngon-ngu-trung-quoc-ma-nganh-7220204-chuyen-nganh-tieng-trung-thuong-mai-chuyen-nganh-phu-kinh-doanh-quoc-te/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nnt-chuong-trinh-dao-tao-tu-k60-ve-sau/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nnt-chuong-trinh-dao-tao-tu-k60-ve-sau/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-ngon-ngu-trung-quoc-chuong-trinh-ao-tao-nganh-ngon-ngu-trung-quoc-ma-so-7220204-chuyen-nganh-tieng-trung-thuong-mai-he-tieu-chuan",
@@ -1272,7 +1476,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-trung-quoc-ma-so-7220204-chuyen-nganh-tieng-trung-thuong-mai-he-tieu-chuan/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nnt-chuong-trinh-dao-tao-tu-k60-ve-sau/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nnt-chuong-trinh-dao-tao-tu-k60-ve-sau/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k61-ngon-ngu-nhat-ban-mo-ta-chuong-trinh-ao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai-chuong-trinh-chat-luong-cao",
@@ -1284,7 +1490,9 @@
       ],
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-ban-mo-ta-chuong-trinh-dao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai-chuong-trinh-chat-luong-cao/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/",
+      "programType": "CLC",
+      "programMappingSource": "CATALOGUE"
     },
     {
       "id": "k61-ngon-ngu-nhat-chuong-trinh-ao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai",
@@ -1296,7 +1504,9 @@
       ],
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     },
     {
       "id": "k63-khoa-hoc-may-tinh-va-du-lieu",
@@ -1306,9 +1516,11 @@
       "cohorts": [
         "K63"
       ],
-      "matchingProgram": "",
+      "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-khoa-hoc-may-tinh-va-du-lieu-trong-kinh-te-va-kinh-doanh-nganh-khoa-hoc-may-tinh-ma-nganh-7480101/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/hdhpbhyt-k63-2/"
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/hdhpbhyt-k63-2/",
+      "programType": "Tiêu chuẩn",
+      "programMappingSource": "DEFAULT_STANDARD"
     }
   ]
 }

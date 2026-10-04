@@ -17,7 +17,7 @@ const checks = [
   ['Step 4 no longer offers free host course entry', !step4.includes('Môn học tự do tại trường đối tác') && !step4.includes('handleAddHostCourse')],
   ['Step 4 labels the active preference', step4.includes('Đang lập phương án') && step4.includes('Lưu & xem so sánh')],
   ['Step 5 renders all three slots', step5.includes("const ranks: PreferenceRank[] = ['nv1', 'nv2', 'nv3']") && step5.includes('Chưa chọn trường')],
-  ['Step 5 does not invent metrics for missing plans', step5.includes("if (!slot.plan) return '—'")],
+  ['Step 5 previews matching data for selected universities without saved plans', step5.includes('previewPairsByUniversity') && step5.includes('Gợi ý tự động · chưa lưu phương án')],
   ['print output contains incomplete slots', print.includes('Chưa lập phương án') && print.includes('Chưa chọn trường')],
   ['export includes shortlist state', context.includes('preferredUniversities,') && context.includes('exportDraftJson')]
 ];

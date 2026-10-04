@@ -15,7 +15,7 @@ export function AcademicProfileFields({ errors = {} }: { errors?: ProfileErrors 
   const available = academicPrograms.filter(p => p.cohorts.includes(profile.cohort));
   const majors = Array.from(new Map(available.map(p => [p.majorId, p.majorName])).entries());
   const programs = available.filter(p => p.majorId === profile.majorId);
-  const clearProgram = { programId: '', programName: '', programSourceUrl: '', program: '' as const };
+  const clearProgram = { programId: '', programName: '', programSourceUrl: '', programType: '' as const, programMappingSource: undefined, program: '' as const };
   const attributes = (id: string) => ({ id, 'aria-invalid': !!errors[id], 'aria-describedby': errors[id] ? `${id}-error` : undefined, className: inputClass });
   return <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
     <Field id="profile-cohort" label="Khóa" error={errors['profile-cohort']}><select {...attributes('profile-cohort')} value={profile.cohort} onChange={e => {

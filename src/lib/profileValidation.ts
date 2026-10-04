@@ -1,9 +1,26 @@
-import { StudentProfile } from '../types/studentProfile';
+import { PROGRAM_TYPES, ProgramMappingSource, ProgramType, StudentProfile } from '../types/studentProfile';
 import catalogue from '../../data/ftu_programs.json';
 
 export const academicPrograms = catalogue.programs;
 export const cohorts = ['K61', 'K62', 'K63', 'K64'];
 export type ProfileErrors = Record<string, string>;
+
+export function resolveProgramType(program: { matchingProgram?: string; programType?: string; programMappingSource?: string; name?: string }): { programType: ProgramType; source: ProgramMappingSource } {
+  if (program.programType && (PROGRAM_TYPES as readonly string[]).includes(program.programType)) {
+    const source = ['CATALOGUE', 'NAME_INFERRED', 'DEFAULT_STANDARD'].includes(program.programMappingSource || '')
+      ? program.programMappingSource as ProgramMappingSource
+      : 'CATALOGUE';
+    return { programType: program.programType as ProgramType, source };
+  }
+  const explicit = program.matchingProgram?.trim();
+  if (explicit && (PROGRAM_TYPES as readonly string[]).includes(explicit)) {
+    return { programType: explicit as ProgramType, source: 'CATALOGUE' };
+  }
+  const name = (program.name || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('vi-VN');
+  if (name.includes('clc') || name.includes('chat luong cao')) return { programType: 'CLC', source: 'NAME_INFERRED' };
+  if (name.includes('cttt') || name.includes('tien tien') || name.includes('dhnnqt') || name.includes('đhnnqt')) return { programType: 'CTTT', source: 'NAME_INFERRED' };
+  return { programType: 'Tiêu chuẩn', source: 'DEFAULT_STANDARD' };
+}
 
 export function graduationYears(saved = '', now = new Date()): number[] {
   const parts = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Ho_Chi_Minh', year: 'numeric', month: 'numeric' }).formatToParts(now);
@@ -30,7 +47,10 @@ export function normalizeProfile(profile: StudentProfile): StudentProfile {
       major: selected.majorName,
       programName: selected.name,
       programSourceUrl: selected.sourceUrl,
-      program: selected.matchingProgram as StudentProfile['program']
+      ...(() => {
+        const resolved = resolveProgramType(selected);
+        return { program: resolved.programType, programType: resolved.programType, programMappingSource: resolved.source };
+      })()
     } : {}),
     languageCertificate: {
       ...profile.languageCertificate,
@@ -47,6 +67,7 @@ export function validateProfile(profile: StudentProfile): ProfileErrors {
   if (!cohorts.includes(profile.cohort)) errors['profile-cohort'] = 'Chọn khóa sinh viên.';
   if (!academicPrograms.some(p => p.majorId === profile.majorId && p.cohorts.includes(profile.cohort))) errors['profile-major'] = 'Chọn ngành theo khóa.';
   if (!academicPrograms.some(p => p.id === profile.programId && p.majorId === profile.majorId && p.cohorts.includes(profile.cohort))) errors['profile-program'] = 'Chọn chuyên ngành / chương trình đào tạo.';
+  if (!profile.programType || !(PROGRAM_TYPES as readonly string[]).includes(profile.programType) || profile.program !== profile.programType) errors['profile-program'] = 'Chọn chương trình đào tạo để xác định loại chương trình.';
   const graduation = profile.targetGraduationSemester.match(/^Học kỳ (I|II|Hè) năm học (\d{4}) - (\d{4})$/);
   if (!graduation || Number(graduation[3]) !== Number(graduation[2]) + 1) errors['profile-graduation'] = 'Chọn năm học và học kỳ dự kiến tốt nghiệp.';
   for (const [field, id, label, max] of [

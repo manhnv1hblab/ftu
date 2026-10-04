@@ -1,7 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
-import { StudentProfile } from '../types/studentProfile';
+import React, { createContext, useContext, useState, useEffect, useMemo, useRef } from 'react';
+import { PROGRAM_TYPES, StudentProfile } from '../types/studentProfile';
 import { StudentCourse } from '../types/curriculum';
 import { SelectedStudyPlan } from '../types/studyPlan';
 import { PreferredUniversities, PreferenceRank, PreferredUniversity } from '../types/preference';
@@ -9,10 +9,25 @@ import sampleCurriculumData from '../../data/sample_curriculum.json';
 import { removeUnavailableTransfers } from '../engine/transferEligibility';
 import { normalizeProfile, allowedPlannerStep } from '../lib/profileValidation';
 import { SOURCE_MANIFEST } from '../config/sourceManifest';
+import { useAuth } from './AuthContext';
 
 const STORAGE_KEY = 'FTU_GOGLOBAL_PLANNER_DRAFT_V2';
 const STORAGE_VERSION = '4.0.0';
-const DATA_VERSION = 'S27-2026-2027-course-audit-2';
+const DATA_VERSION = 'S27-2026-2027-course-audit-3-program-mapping';
+type SyncStatus = 'LOCAL' | 'SYNCING' | 'SYNCED' | 'OFFLINE' | 'CONFLICT';
+type DraftPayload = {
+  version: string;
+  dataVersion: string;
+  updatedAt: string;
+  profile: StudentProfile;
+  currentPlan: SelectedStudyPlan | null;
+  rankedChoices: { nv1?: SelectedStudyPlan; nv2?: SelectedStudyPlan; nv3?: SelectedStudyPlan };
+  preferredUniversities: PreferredUniversities;
+  activePreferenceRank: PreferenceRank | null;
+  currentStep: number;
+  selectedUniId: string | null;
+  sourceManifest: typeof SOURCE_MANIFEST;
+};
 
 function checksum(input: string): string {
   let hash = 2166136261;
@@ -37,6 +52,8 @@ function isValidProfile(value: unknown): value is StudentProfile {
     && (profile.academicInputs === undefined || (!!profile.academicInputs && typeof profile.academicInputs === 'object'
       && Object.values(profile.academicInputs).every(value => typeof value === 'boolean')))
     && ['', 'Tiêu chuẩn', 'CLC', 'CTTT'].includes(profile.program || '')
+    && (profile.programType === undefined || ['', ...PROGRAM_TYPES].includes(profile.programType || ''))
+    && (profile.programMappingSource === undefined || ['CATALOGUE', 'NAME_INFERRED', 'DEFAULT_STANDARD'].includes(profile.programMappingSource))
     && typeof profile.exchangeSemester === 'string'
     && typeof profile.targetGraduationSemester === 'string'
     && typeof profile.gpa4 === 'number'
@@ -173,6 +190,7 @@ const defaultProfile: StudentProfile = {
   cohort: '',
   major: '',
   program: '',
+  programType: '',
   exchangeSemester: 'Học kỳ II năm học 2026 - 2027 (S27)',
   targetGraduationSemester: '',
   gpa4: 0,
@@ -233,11 +251,15 @@ interface StudentContextType {
   exportDraftJson: () => string;
   importDraftJson: (jsonString: string) => boolean;
   lastSavedAt: string | null;
+  syncStatus: SyncStatus;
+  draftConflict: boolean;
+  resolveDraftConflict: (choice: 'DEVICE' | 'ACCOUNT' | 'NEWER') => void;
 }
 
 const StudentContext = createContext<StudentContextType | undefined>(undefined);
 
 export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const { user } = useAuth();
   const [storedProfile, setProfile] = useState<StudentProfile>(defaultProfile);
   const profile = useMemo(() => normalizeProfile(storedProfile), [storedProfile]);
   const [requestedStep, setRequestedStep] = useState<number>(1);
@@ -264,11 +286,32 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     if (isHydrated && requestedStep !== currentStep) setRequestedStep(currentStep);
   }, [isHydrated, requestedStep, currentStep]);
   const [lastSavedAt, setLastSavedAt] = useState<string | null>(null);
+  const [syncStatus, setSyncStatus] = useState<SyncStatus>('LOCAL');
+  const [pendingConflict, setPendingConflict] = useState<{ device: DraftPayload; account: DraftPayload } | null>(null);
+  const applyingRemote = useRef(false);
+  const previousUserId = useRef<string | null>(null);
+  const storageKey = user?.id ? `${STORAGE_KEY}:${user.id}` : STORAGE_KEY;
 
-  // Auto load draft from localStorage on mount
+  useEffect(() => {
+    if (previousUserId.current && previousUserId.current !== (user?.id || null)) {
+      setProfile(defaultProfile);
+      setRequestedStep(1);
+      setSelectedUniId(null);
+      setCurrentPlan(null);
+      setRankedChoices({});
+      setPreferredUniversities({});
+      setActivePreferenceRank(null);
+      setPreferenceReplacementRank(null);
+      setLastSavedAt(null);
+      setSyncStatus('LOCAL');
+    }
+    previousUserId.current = user?.id || null;
+  }, [user?.id]);
+
+  // Load the guest/device draft first. Authenticated drafts use a user-scoped key.
   useEffect(() => {
     try {
-      const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
+      const saved = localStorage.getItem(storageKey) || (user?.id ? localStorage.getItem(STORAGE_KEY) : null) || localStorage.getItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
       if (saved) {
         const parsed = JSON.parse(saved);
         if (!hasValidChecksum(parsed)) throw new Error('Draft checksum mismatch');
@@ -293,12 +336,13 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
       console.warn('Could not restore draft from localStorage', e);
     }
     setIsHydrated(true);
-  }, []);
+  }, [storageKey, user?.id]);
 
   // Keep another open planner tab from silently overwriting a newer draft.
   useEffect(() => {
     const handleExternalDraftUpdate = (event: StorageEvent) => {
-      if (event.key !== STORAGE_KEY || !event.newValue) return;
+      if (event.key !== storageKey && event.key !== STORAGE_KEY) return;
+      if (!event.newValue) return;
       try {
         const parsed = JSON.parse(event.newValue);
         if (!hasValidChecksum(parsed) || !isValidProfile(parsed.profile)) return;
@@ -323,13 +367,13 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     };
     window.addEventListener('storage', handleExternalDraftUpdate);
     return () => window.removeEventListener('storage', handleExternalDraftUpdate);
-  }, []);
+  }, [storageKey]);
 
   useEffect(() => {
     if (!isHydrated) return;
     const timer = window.setTimeout(() => {
       try {
-        const payload = {
+        const payload: DraftPayload = {
           version: STORAGE_VERSION,
           dataVersion: DATA_VERSION,
           updatedAt: new Date().toISOString(),
@@ -343,14 +387,91 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
           sourceManifest: SOURCE_MANIFEST
         };
         const serialized = JSON.stringify(payload);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...payload, checksum: checksum(serialized) }));
+        localStorage.setItem(storageKey, JSON.stringify({ ...payload, checksum: checksum(serialized) }));
         setLastSavedAt(payload.updatedAt);
       } catch (e) {
         console.error('Failed to auto-save draft', e);
       }
     }, 500);
     return () => window.clearTimeout(timer);
-  }, [isHydrated, profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
+  }, [isHydrated, storageKey, profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
+
+  const draftPayload = useMemo<DraftPayload>(() => ({
+    version: STORAGE_VERSION,
+    dataVersion: DATA_VERSION,
+    updatedAt: new Date().toISOString(),
+    profile,
+    currentPlan,
+    rankedChoices,
+    preferredUniversities,
+    activePreferenceRank,
+    currentStep,
+    selectedUniId,
+    sourceManifest: SOURCE_MANIFEST
+  }), [profile, currentPlan, rankedChoices, preferredUniversities, activePreferenceRank, currentStep, selectedUniId]);
+
+  const applyDraft = (parsed: DraftPayload) => {
+    applyingRemote.current = true;
+    const needsRevalidation = parsed.dataVersion !== DATA_VERSION || parsed.version !== STORAGE_VERSION;
+    setProfile(parsed.profile);
+    setRankedChoices(needsRevalidation ? markRankedChoicesForRevalidation(parsed.rankedChoices) : normalizeRankedChoices(parsed.rankedChoices));
+    setPreferredUniversities(isValidPreferredUniversities(parsed.preferredUniversities) ? parsed.preferredUniversities : derivePreferencesFromPlans(parsed.rankedChoices));
+    setCurrentPlan(isValidPlan(parsed.currentPlan) ? (needsRevalidation ? markPlanForRevalidation(parsed.currentPlan) || null : parsed.currentPlan) : null);
+    setRequestedStep(typeof parsed.currentStep === 'number' ? parsed.currentStep : 1);
+    setSelectedUniId(typeof parsed.selectedUniId === 'string' ? parsed.selectedUniId : null);
+    setActivePreferenceRank(parsed.activePreferenceRank && ['nv1', 'nv2', 'nv3'].includes(parsed.activePreferenceRank) ? parsed.activePreferenceRank : null);
+    setLastSavedAt(parsed.updatedAt || null);
+    setSyncStatus('SYNCED');
+    window.setTimeout(() => { applyingRemote.current = false; }, 0);
+  };
+
+  // Supabase is the durable copy for authenticated users. A failed request leaves the local cache usable.
+  useEffect(() => {
+    if (!isHydrated || !user?.id || applyingRemote.current) return;
+    const timer = window.setTimeout(async () => {
+      setSyncStatus('SYNCING');
+      try {
+        const response = await fetch('/api/planner/draft', {
+          method: 'PUT', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ draft: draftPayload, dataVersion: DATA_VERSION })
+        });
+        if (!response.ok) throw new Error('draft sync failed');
+        setSyncStatus('SYNCED');
+      } catch {
+        setSyncStatus(navigator.onLine ? 'OFFLINE' : 'OFFLINE');
+      }
+    }, 900);
+    return () => window.clearTimeout(timer);
+  }, [draftPayload, isHydrated, user?.id]);
+
+  // Restore the account copy after authentication, asking before overwriting a different device draft.
+  useEffect(() => {
+    if (!isHydrated || !user?.id) return;
+    let cancelled = false;
+    const loadAccountDraft = async () => {
+      try {
+        const response = await fetch('/api/planner/draft', { cache: 'no-store' });
+        if (!response.ok) throw new Error('draft load failed');
+        const result = await response.json();
+        const remote = result?.draft?.draft as DraftPayload | undefined;
+        if (cancelled || !remote || !isValidProfile(remote.profile)) return;
+        const localRaw = localStorage.getItem(storageKey) || localStorage.getItem(STORAGE_KEY);
+        const local = localRaw ? JSON.parse(localRaw) as DraftPayload : null;
+        if (local && isValidProfile(local.profile) && JSON.stringify(local) !== JSON.stringify(remote)) {
+          setPendingConflict({ device: local, account: remote });
+          setSyncStatus('CONFLICT');
+          return;
+        }
+        applyDraft(remote);
+      } catch {
+        if (!cancelled) setSyncStatus('OFFLINE');
+      }
+    };
+    void loadAccountDraft();
+    return () => { cancelled = true; };
+  // applyDraft is declared below and intentionally stable for this effect's lifecycle.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isHydrated, storageKey, user?.id]);
 
   const updateProfile = (updates: Partial<StudentProfile>) => {
     setProfile(prev => normalizeProfile({ ...normalizeProfile(prev), ...updates }));
@@ -410,8 +531,10 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setActivePreferenceRank(null);
     setPreferenceReplacementRank(null);
     if (typeof window !== 'undefined') {
-      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(storageKey);
+      if (storageKey !== STORAGE_KEY) localStorage.removeItem(STORAGE_KEY);
       localStorage.removeItem('FTU_GOGLOBAL_PLANNER_DRAFT_V1');
+      if (user?.id) void fetch('/api/planner/draft', { method: 'DELETE' });
     }
     setLastSavedAt(null);
   };
@@ -432,8 +555,14 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         sourceManifest: SOURCE_MANIFEST
       };
       const serialized = JSON.stringify(draft);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...draft, checksum: checksum(serialized) }));
+      localStorage.setItem(storageKey, JSON.stringify({ ...draft, checksum: checksum(serialized) }));
       setLastSavedAt(draft.updatedAt);
+      if (user?.id) {
+        setSyncStatus('SYNCING');
+        void fetch('/api/planner/draft', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ draft, dataVersion: DATA_VERSION }) })
+          .then(response => { if (!response.ok) throw new Error('draft sync failed'); setSyncStatus('SYNCED'); })
+          .catch(() => setSyncStatus('OFFLINE'));
+      }
       return true;
     } catch (e) {
       console.error('Failed to save draft', e);
@@ -509,6 +638,19 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     } catch (e) {
       console.error('Failed to import draft json', e);
       return false;
+    }
+  };
+
+  const resolveDraftConflict = (choice: 'DEVICE' | 'ACCOUNT' | 'NEWER') => {
+    if (!pendingConflict) return;
+    const chosen = choice === 'ACCOUNT' ? pendingConflict.account
+      : choice === 'NEWER' ? (new Date(pendingConflict.account.updatedAt).getTime() > new Date(pendingConflict.device.updatedAt).getTime() ? pendingConflict.account : pendingConflict.device)
+      : pendingConflict.device;
+    applyDraft(chosen);
+    setPendingConflict(null);
+    setSyncStatus(choice === 'DEVICE' ? 'SYNCING' : 'SYNCED');
+    if (choice === 'DEVICE') {
+      void fetch('/api/planner/draft', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ draft: chosen, dataVersion: DATA_VERSION }) }).catch(() => setSyncStatus('OFFLINE'));
     }
   };
 
@@ -643,7 +785,10 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
         loadDraft,
         exportDraftJson,
         importDraftJson,
-        lastSavedAt
+        lastSavedAt,
+        syncStatus,
+        draftConflict: Boolean(pendingConflict),
+        resolveDraftConflict
       }}
     >
       {children}

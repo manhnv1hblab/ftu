@@ -1,5 +1,9 @@
 import { StudentCourse } from './curriculum';
 
+export const PROGRAM_TYPES = ['Tiêu chuẩn', 'CLC', 'CTTT'] as const;
+export type ProgramType = typeof PROGRAM_TYPES[number];
+export type ProgramMappingSource = 'CATALOGUE' | 'NAME_INFERRED' | 'DEFAULT_STANDARD';
+
 export interface StudentProfile {
   cohort: string; // e.g. "K62", "K63", "K64"
   major: string; // e.g. "Kinh tế đối ngoại", "Kinh tế quốc tế"
@@ -7,8 +11,11 @@ export interface StudentProfile {
   programId?: string;
   programName?: string;
   programSourceUrl?: string;
+  programType: ProgramType | '';
+  programMappingSource?: ProgramMappingSource;
   academicInputs?: Partial<Record<'gpa4' | 'gpa10' | 'completedSemesters', boolean>>;
-  program: 'Tiêu chuẩn' | 'CLC' | 'CTTT' | '';
+  /** Backward-compatible alias for programType used by the matcher and saved drafts. */
+  program: ProgramType | '';
   exchangeSemester: string; // "Học kỳ II năm học 2026 - 2027 (S27)"
   targetGraduationSemester: string; // e.g. "Học kỳ 2 - 2027-2028"
   

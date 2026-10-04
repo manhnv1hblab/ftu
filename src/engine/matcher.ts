@@ -12,7 +12,7 @@ import { S27_RULES } from '../config/s27Rules';
 
 export function matchCoursesForUniversity(
   university: PartnerUniversity,
-  studentCoursesNotPassed: { code: string; name: string; credits: number; program?: string; cohort?: string }[],
+  studentCoursesNotPassed: { code: string; name: string; credits: number; program?: string; cohort?: string; programMappingSource?: StudentProfile['programMappingSource'] }[],
   allEquivalences: CourseEquivalence[],
   courseOfferings?: CourseOffering[]
 ): CourseMatchPair[] {
@@ -79,6 +79,7 @@ export function matchCoursesForUniversity(
         && normalizeName(eq.ftuCourseNameClean) === normalizeName(course.name);
       if (!codeMatch && !nameMatch) continue;
       const scope = appliesToProfile(eq.curriculum || '', course.program, course.cohort);
+      const mappingVerified = course.programMappingSource !== 'DEFAULT_STANDARD';
       if (!scope.applies) continue;
       const courseDataVerified = Boolean(course.name.trim()) && Number.isFinite(course.credits) && course.credits > 0;
       const hostKey = normalizeCode(eq.hostCourseCode)
@@ -88,8 +89,9 @@ export function matchCoursesForUniversity(
         courseIndex,
         hostKey,
         eq,
-        scopeVerified: scope.verified && courseDataVerified,
+        scopeVerified: scope.verified && mappingVerified && courseDataVerified,
         verificationReason: !courseDataVerified ? 'Hồ sơ chỉ có mã môn hoặc thiếu tên/tín chỉ; cần đối chiếu với CTĐT.'
+          : !mappingVerified ? 'Loại chương trình đang dùng ánh xạ mặc định Tiêu chuẩn; cần đối chiếu nguồn FTU.'
           : scope.verified ? undefined : course.program
             ? 'Phạm vi chương trình/khóa trong nguồn thiếu hoặc chưa nhận diện được.'
             : 'Chưa có chương trình đào tạo để xác minh phạm vi áp dụng.'
@@ -195,7 +197,8 @@ export function evaluateAllUniversities(
   courseOfferings: CourseOffering[]
 ): UniversityMatchResult[] {
   // Extract remaining courses for student
-  const remainingCourses: { code: string; name: string; credits: number; program?: string; cohort?: string }[] = [];
+  const remainingCourses: { code: string; name: string; credits: number; program?: string; cohort?: string; programMappingSource?: StudentProfile['programMappingSource'] }[] = [];
+  const profileProgram = profile.programType || profile.program;
 
   if (profile.courses && profile.courses.length > 0) {
     for (const c of profile.courses) {
@@ -204,8 +207,9 @@ export function evaluateAllUniversities(
           code: c.courseCode,
           name: c.courseName,
           credits: c.credits,
-        program: c.program || profile.program,
-        cohort: profile.cohort
+          program: c.program || profileProgram,
+          cohort: profile.cohort,
+          programMappingSource: c.program ? undefined : profile.programMappingSource
         });
       }
     }
@@ -215,8 +219,9 @@ export function evaluateAllUniversities(
         code: normalizeCode(code),
         name: '',
         credits: 0,
-        program: profile.program,
-        cohort: profile.cohort
+        program: profileProgram,
+        cohort: profile.cohort,
+        programMappingSource: profile.programMappingSource
       });
     }
   }
@@ -231,8 +236,9 @@ export function evaluateAllUniversities(
       courseOfferings
     );
 
-    const approvedPairs = matchedPairs.filter(p => p.status === 'APPROVED' && p.verificationStatus === 'VERIFIED');
-    const pendingPairs = matchedPairs.filter(p => p.status === 'PENDING' && p.verificationStatus === 'VERIFIED');
+    const approvedPairs = matchedPairs.filter(p => p.status === 'APPROVED');
+    const verifiedPairs = approvedPairs.filter(p => p.verificationStatus === 'VERIFIED');
+    const pendingPairs = matchedPairs.filter(p => p.status === 'PENDING');
     const uncertainPairs = matchedPairs.filter(p => p.status === 'UNCERTAIN' || p.verificationStatus !== 'VERIFIED');
 
     // Program eligibility check
@@ -248,6 +254,9 @@ export function evaluateAllUniversities(
     const missingReqs = [...elig.unmetSummary];
     if (approvedPairs.length < S27_RULES.transferredCoursesMinimum) {
       missingReqs.push(`Chưa đủ ${S27_RULES.transferredCoursesMinimum} môn quy đổi đã được phê duyệt (Hiện có: ${approvedPairs.length}/${S27_RULES.transferredCoursesMinimum})`);
+    }
+    if (verifiedPairs.length < approvedPairs.length) {
+      missingReqs.push(`${approvedPairs.length - verifiedPairs.length} môn đã duyệt cần xác minh thêm phạm vi chương trình`);
     }
     if (budgetEval.status === 'EXCEEDS_BUDGET') {
       missingReqs.push(`Dự kiến chi phí vượt ngân sách (${budgetEval.warning || ''})`);
@@ -300,6 +309,7 @@ export function evaluateAllUniversities(
       university: uni,
       matchedPairs,
       approvedPairsCount: approvedPairs.length,
+      verifiedPairsCount: verifiedPairs.length,
       pendingPairsCount: pendingPairs.length,
       totalMatchCount: matchedPairs.length,
       meetsEligibility: elig.isEligible

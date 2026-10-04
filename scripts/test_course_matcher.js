@@ -10,7 +10,7 @@ require.extensions['.ts'] = (module, filename) => {
   module._compile(output, filename);
 };
 
-const { matchCoursesForUniversity } = require('../src/engine/matcher.ts');
+const { evaluateAllUniversities, matchCoursesForUniversity } = require('../src/engine/matcher.ts');
 const university = { id: 'partner-1', name: 'Partner One' };
 const student = (code, program = 'Tiêu chuẩn', cohort = 'K62') => ({ code, name: `FTU ${code}`, credits: 3, program, cohort });
 const equivalence = (id, ftu, host, status = 'APPROVED', curriculum = 'Tiêu chuẩn, CLC, CTTT') => ({
@@ -61,8 +61,26 @@ const ordered = [equivalence('a-h1', 'A', 'H1'), equivalence('a-h2', 'A', 'H2'),
 const reorderedResult = matchCoursesForUniversity(university, [student('A'), student('B')], [...ordered].reverse());
 assert.deepEqual(reorderedResult.map(pair => [pair.ftuCourseCode, pair.equivalenceId]), maximumMatching.map(pair => [pair.ftuCourseCode, pair.equivalenceId]), 'input order does not change the selected mapping');
 
+const currentUniversities = require('../data/universities_s27.json');
+const currentEquivalences = require('../data/equivalences_s27.json');
+const currentCosts = require('../data/costs_by_country.json');
+const currentOfferings = require('../data/course_offerings_2627.json');
+const currentCourses = require('../data/sample_curriculum.json');
+const currentProfile = {
+  cohort: 'K63', major: 'Kinh tế quốc tế', program: 'Tiêu chuẩn', programType: 'Tiêu chuẩn', programMappingSource: 'DEFAULT_STANDARD',
+  gpa4: 3.61, gpa10: 8.55, completedSemesters: 4, accumulatedCredits: 93, courses: currentCourses,
+  monthlyBudgetVnd: 0, stayDurationMonths: 5, housingType: 'ANY', preferredRegions: [], manualCourseCodes: [],
+  exchangeSemester: 'Học kỳ II năm học 2026 - 2027 (S27)', targetGraduationSemester: 'Học kỳ II năm học 2027 - 2028',
+  hasParticipatedSemesterExchange: false, isFinalSemester: false, hasExemplaryStudentAward: false, hasPassedMidtermInternship: true,
+  languageCertificate: { availability: 'HAS_CERTIFICATE', validity: 'VALID', language: 'English', testName: 'IELTS', score: '6.5', level: 'B2', isValid: true },
+  isProfileComplete: true
+};
+const currentResults = evaluateAllUniversities(currentUniversities, currentProfile, currentEquivalences, currentCosts, currentOfferings);
+assert(currentResults.some(result => result.approvedPairsCount >= 3), 'default Tiêu chuẩn mapping keeps approved university candidates visible');
+const currentTop = currentResults.find(result => result.approvedPairsCount >= 3);
+assert(currentTop && currentTop.verifiedPairsCount < currentTop.approvedPairsCount, 'default mapping keeps verification warning separate from approved count');
+
 console.log('Course matcher scenarios: PASS');
-const { evaluateAllUniversities } = require('../src/engine/matcher.ts');
 const { removeUnavailableTransfers } = require('../src/engine/transferEligibility.ts');
 const { simulateStudentProgress } = require('../src/engine/progressSimulator.ts');
 const universities = require('../data/universities_s27.json');
@@ -89,6 +107,13 @@ assert.equal(cleaned.graduationSimulation, undefined);
 assert.equal(draft.transferredCourses.length, 3, 'draft sanitation must not mutate the original');
 const simulation = simulateStudentProgress(courses, before.matchedPairs, [], '', null);
 assert.equal(simulation.creditsTransferred, 6, 'stale enrolled selection cannot add transfer credits');
+const inProgressProjection = simulateStudentProgress([
+  { courseCode: 'DONE-LATER', courseName: 'Đang học', credits: 12, isMandatory: true, isTaken: true, isPassed: false },
+  { courseCode: 'NOT-TAKEN', courseName: 'Chưa học', credits: 3, isMandatory: true, isTaken: false, isPassed: false }
+], [], [], '', true);
+assert.equal(inProgressProjection.initialRemainingCredits, 3, 'in-progress credits are excluded from projected remaining credits');
+assert.equal(inProgressProjection.remainingDebtExcludingThesisAndExempt, 3, 'in-progress credits are excluded from HPTN debt');
+assert.equal(inProgressProjection.warnings.some(warning => warning.includes('12 tín chỉ')), false, 'in-progress credits do not trigger a debt warning');
 courses[2].isPassed = true;
 assert.equal(evaluate().approvedPairsCount, 2, 'passed courses must remain excluded');
 courses[2].isPassed = false;

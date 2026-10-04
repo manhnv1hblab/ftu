@@ -27,7 +27,8 @@ export interface CourseMatchPair {
 export interface UniversityMatchResult {
   university: PartnerUniversity;
   matchedPairs: CourseMatchPair[];
-  approvedPairsCount: number; // must be >= 3 to qualify
+  approvedPairsCount: number; // approved equivalences, even when programme scope still needs verification
+  verifiedPairsCount: number;
   pendingPairsCount: number;
   totalMatchCount: number;
   meetsEligibility: boolean;

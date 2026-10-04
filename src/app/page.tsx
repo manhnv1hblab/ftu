@@ -207,7 +207,7 @@ export default function HomePage() {
             {
               step: '5',
               title: 'So sánh & Xuất',
-              desc: 'Xếp nguyện vọng NV1 - NV3, lưu bản nháp, xuất file JSON và in bản kế hoạch A4.',
+              desc: 'Xếp nguyện vọng NV1 - NV3, lưu bản nháp trên trình duyệt và in bản kế hoạch A4.',
               icon3d: '/images/3d_scholarship.jpg',
             },
           ].map((item) => (

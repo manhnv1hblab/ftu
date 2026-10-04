@@ -4,12 +4,21 @@ import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useStudent } from '../../context/StudentContext';
 import universitiesData from '../../../data/universities_s27.json';
+import equivalencesData from '../../../data/equivalences_s27.json';
+import courseOfferingsData from '../../../data/course_offerings_2627.json';
 import { PartnerUniversity } from '../../types/university';
 import { PreferenceRank } from '../../types/preference';
+import { CourseEquivalence } from '../../types/equivalence';
+import { CourseOffering } from '../../types/courseOffering';
+import { CourseMatchPair } from '../../types/studyPlan';
 import { S27_RULES } from '../../config/s27Rules';
 import { UniversityMoreInfo, universityLivingCost } from './UniversityInfo';
+import { matchCoursesForUniversity } from '../../engine/matcher';
+import { isAvailableForTransfer } from '../../engine/transferEligibility';
 
 const ranks: PreferenceRank[] = ['nv1', 'nv2', 'nv3'];
+type ComparisonPlan = ReturnType<typeof useStudent>['rankedChoices']['nv1'];
+type ComparisonSlotData = { plan?: ComparisonPlan; previewPairs: CourseMatchPair[] };
 
 export const Step5Compare: React.FC = () => {
   const router = useRouter();
@@ -20,52 +29,65 @@ export const Step5Compare: React.FC = () => {
     setCurrentStep,
     setPreferenceReplacementRank,
     openPlanForPreference,
-    removePreferredUniversity,
-    exportDraftJson,
-    importDraftJson
+    removePreferredUniversity
   } = useStudent();
 
   const rawUnis = universitiesData as PartnerUniversity[];
+  const rawEqs = equivalencesData as CourseEquivalence[];
+  const rawOfferings = courseOfferingsData as CourseOffering[];
   const [notification, setNotification] = useState<string | null>(null);
   const [pendingRemoval, setPendingRemoval] = useState<PreferenceRank | null>(null);
+
+  // A selected university can be compared before its detailed plan is saved.
+  // Keep the same matching input as Step 4 so the comparison table can show a
+  // transparent preview instead of an empty cell for that selected slot.
+  const previewPairsByUniversity = useMemo(() => {
+    const profileProgram = profile.programType || profile.program;
+    const studentRemaining = profile.courses.length > 0
+      ? profile.courses.filter(isAvailableForTransfer).map(course => ({
+        code: course.courseCode,
+        name: course.courseName,
+        credits: course.credits,
+        program: course.program || profileProgram,
+        cohort: profile.cohort,
+        programMappingSource: course.program ? undefined : profile.programMappingSource
+      }))
+      : (profile.manualCourseCodes || []).map(code => ({
+        code,
+        name: '',
+        credits: 0,
+        program: profileProgram,
+        cohort: profile.cohort,
+        programMappingSource: profile.programMappingSource
+      }));
+
+    const selectedIds = new Set(Object.values(preferredUniversities).filter(Boolean).map(preference => preference!.universityId));
+    return new Map(rawUnis.filter(university => selectedIds.has(university.id)).map(university => [
+      university.id,
+      matchCoursesForUniversity(university, studentRemaining, rawEqs, rawOfferings)
+    ]));
+  }, [preferredUniversities, profile, rawEqs, rawOfferings, rawUnis]);
 
   const slots = useMemo(() => ranks.map(rank => {
     const preference = preferredUniversities[rank];
     const plan = rankedChoices[rank];
     const uni = preference ? rawUnis.find(item => item.id === preference.universityId) : undefined;
-    return { rank, preference, plan, uni };
-  }), [preferredUniversities, rankedChoices, rawUnis]);
+    const previewPairs = preference ? (previewPairsByUniversity.get(preference.universityId) || []) : [];
+    return { rank, preference, plan, uni, previewPairs };
+  }), [preferredUniversities, rankedChoices, previewPairsByUniversity, rawUnis]);
 
   const selectedCount = slots.filter(slot => slot.preference).length;
   const draftedCount = slots.filter(slot => slot.plan?.transferredCourses?.length).length;
   const readyCount = slots.filter(slot => slot.plan?.status === 'VALID').length;
+  const getComparisonPairs = (slot: ComparisonSlotData): CourseMatchPair[] => {
+    const savedPairs = slot.plan?.transferredCourses;
+    return savedPairs?.length ? savedPairs : slot.previewPairs;
+  };
+  const isPreviewOnly = (slot: ComparisonSlotData) => !slot.plan?.transferredCourses?.length && slot.previewPairs.length > 0;
 
   const showNotification = (message: string) => {
     setNotification(message);
     window.setTimeout(() => setNotification(null), 3500);
-  };
-
-  const handleExportJson = () => {
-    const blob = new Blob([exportDraftJson()], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `Ke_hoach_trao_doi_FTU_S27_${profile.cohort || 'draft'}_${new Date().toISOString().slice(0, 10)}.json`;
-    link.click();
-    URL.revokeObjectURL(url);
-    showNotification('Đã tải xuống JSON gồm shortlist và các phương án hiện có.');
-  };
-
-  const handleImportJson = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = () => {
-      const ok = importDraftJson(String(reader.result || ''));
-      showNotification(ok ? 'Đã nạp bản nháp và khôi phục đúng các slot NV.' : 'File JSON không hợp lệ hoặc không vượt qua kiểm tra nguồn dữ liệu.');
-      event.target.value = '';
-    };
-    reader.readAsText(file);
   };
 
   const openPlan = (rank: PreferenceRank) => {
@@ -105,15 +127,6 @@ export const Step5Compare: React.FC = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-end gap-2">
-        <label className="px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface text-xs font-semibold border border-surface-container transition-colors cursor-pointer">
-          <span className="material-symbols-outlined text-base align-middle mr-1">upload_file</span>
-          Nạp JSON
-          <input type="file" accept="application/json" onChange={handleImportJson} className="sr-only" />
-        </label>
-        <button type="button" onClick={handleExportJson} className="px-4 py-2.5 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface text-xs font-semibold border border-surface-container transition-colors flex items-center gap-1.5">
-          <span className="material-symbols-outlined text-base">download</span>
-          Lưu JSON bản nháp
-        </button>
         <button type="button" onClick={() => router.push('/print')} className="px-5 py-2.5 rounded-full bg-primary text-on-primary text-xs font-bold shadow-sm hover:bg-primary-container transition-all flex items-center gap-1.5">
           <span className="material-symbols-outlined text-base">print</span>
           Xuất bản nháp A4
@@ -183,15 +196,20 @@ export const Step5Compare: React.FC = () => {
 
         <div className="divide-y divide-surface-container text-xs">
           <ComparisonRow title="1. Quy đổi về FTU" slots={slots} render={(slot) => {
-            if (!slot.plan) return '—';
-            const approved = slot.plan.transferredCourses.filter(course => course.status === 'APPROVED' && course.verificationStatus === 'VERIFIED');
+            const pairs = getComparisonPairs(slot);
+            if (!slot.preference) return '—';
+            if (!pairs.length) return <span className="text-on-surface-variant">Chưa có dữ liệu quy đổi cho trường này</span>;
+            const approved = pairs.filter(course => course.status === 'APPROVED');
+            const verified = approved.filter(course => course.verificationStatus === 'VERIFIED');
             const credits = approved.reduce((sum, course) => sum + course.ftuCredits, 0);
-            return <><strong>{approved.length} môn · {credits} tín chỉ FTU</strong><span className={approved.length >= S27_RULES.transferredCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{approved.length >= S27_RULES.transferredCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.transferredCoursesMinimum} môn đã duyệt` : `Chưa đủ ${S27_RULES.transferredCoursesMinimum} môn đã duyệt`}</span></>;
+            return <>{isPreviewOnly(slot) && <span className="text-sky-700">Gợi ý tự động · chưa lưu phương án</span>}<strong>{approved.length} môn · {credits} tín chỉ FTU</strong><span className={approved.length >= S27_RULES.transferredCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{approved.length >= S27_RULES.transferredCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.transferredCoursesMinimum} môn đã duyệt` : `Chưa đủ ${S27_RULES.transferredCoursesMinimum} môn đã duyệt`}</span>{verified.length < approved.length && <span className="text-amber-700">Đã xác minh: {verified.length} môn · cần đối chiếu thêm</span>}</>;
           }} />
           <ComparisonRow title="2. Học phần tại trường đối tác" slots={slots} render={(slot) => {
-            if (!slot.plan) return '—';
-            const count = slot.plan.transferredCourses.length + (slot.plan.hostAdditionalCourses?.length || 0);
-            return <><strong>{count} môn</strong><span className={count >= S27_RULES.hostCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{count >= S27_RULES.hostCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.hostCoursesMinimum} môn` : `Chưa đủ ${S27_RULES.hostCoursesMinimum} môn`}</span></>;
+            if (!slot.preference) return '—';
+            const pairs = getComparisonPairs(slot);
+            const count = pairs.length + (slot.plan?.hostAdditionalCourses?.length || 0);
+            if (!count) return <span className="text-on-surface-variant">Chưa có dữ liệu học phần</span>;
+            return <>{isPreviewOnly(slot) && <span className="text-sky-700">Theo matching hiện tại · chưa lưu phương án</span>}<strong>{count} môn</strong><span className={count >= S27_RULES.hostCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{count >= S27_RULES.hostCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.hostCoursesMinimum} môn` : `Chưa đủ ${S27_RULES.hostCoursesMinimum} môn`}</span></>;
           }} />
           <ComparisonRow title="Địa điểm" slots={slots} render={slot => slot.uni ? [slot.uni.city, slot.uni.country].filter(Boolean).join(', ') : '—'} />
           <ComparisonRow title="Chỉ tiêu" slots={slots} render={slot => slot.uni ? slot.uni.quota || 'Chưa có thông tin' : '—'} />
@@ -204,11 +222,13 @@ export const Step5Compare: React.FC = () => {
           }} />
           <ComparisonRow title="Thông tin chi tiết và nguồn" slots={slots} render={slot => slot.uni ? <UniversityMoreInfo university={slot.uni} /> : '—'} />
           <ComparisonRow title="5. Tiến độ tốt nghiệp / HPTN" slots={slots} render={(slot) => {
-            if (!slot.plan?.graduationSimulation) return '—';
+            if (!slot.preference) return '—';
+            if (!slot.plan?.graduationSimulation) return <span className="text-on-surface-variant">Chưa lập phương án để mô phỏng</span>;
             return <><span>{slot.plan.graduationSimulation.canGraduateOnTime ? 'Có khả năng đúng hạn theo mô phỏng' : 'Có rủi ro cần xử lý'}</span><span className="text-amber-700">{slot.plan.status === 'VALID' ? 'Đã đủ dữ liệu theo rule hiện tại' : 'Cần xác minh'}</span></>;
           }} />
           <ComparisonRow title="6. Nguồn và rủi ro" slots={slots} render={(slot) => {
-            if (!slot.plan) return '—';
+            if (!slot.preference) return '—';
+            if (!slot.plan) return <span className="text-on-surface-variant">Chưa lập phương án; đang hiển thị dữ liệu matching</span>;
             const warnings = slot.plan.graduationSimulation?.riskWarnings || [];
             return <><span>{warnings.length ? `${warnings.length} cảnh báo mô phỏng` : 'Chưa ghi nhận cảnh báo mô phỏng'}</span><span className="text-on-surface-variant">{slot.plan.sources?.[0]?.file || 'Chưa có nguồn'}</span></>;
           }} />
@@ -231,8 +251,8 @@ export const Step5Compare: React.FC = () => {
 
 function ComparisonRow({ title, slots, render }: {
   title: string;
-  slots: Array<{ rank: PreferenceRank; preference?: { universityId: string; universityName: string }; plan?: ReturnType<typeof useStudent>['rankedChoices']['nv1']; uni?: PartnerUniversity }>;
-  render: (slot: { rank: PreferenceRank; preference?: { universityId: string; universityName: string }; plan?: ReturnType<typeof useStudent>['rankedChoices']['nv1']; uni?: PartnerUniversity }) => React.ReactNode;
+  slots: Array<{ rank: PreferenceRank; preference?: { universityId: string; universityName: string }; plan?: ComparisonPlan; uni?: PartnerUniversity; previewPairs: CourseMatchPair[] }>;
+  render: (slot: { rank: PreferenceRank; preference?: { universityId: string; universityName: string }; plan?: ComparisonPlan; uni?: PartnerUniversity; previewPairs: CourseMatchPair[] }) => React.ReactNode;
 }) {
   return (
     <div className="p-5 flex flex-col gap-2">

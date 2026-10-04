@@ -136,9 +136,10 @@ export const Step2Review: React.FC = () => {
               <div className="flex items-center gap-2">
                 <h2 className="text-lg sm:text-xl font-extrabold text-on-surface">Hồ sơ sinh viên</h2>
                 <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">
-                  {profile.cohort || 'Chưa nhập khóa'} • {profile.program || 'Chưa xác định chương trình'}
+                  {profile.cohort || 'Chưa nhập khóa'} • {profile.programName || 'Chưa chọn chương trình'}
                 </span>
               </div>
+              {profile.program && <p className="text-xs text-on-surface-variant mt-1">Loại chương trình: <strong className="text-on-surface">{profile.program}</strong>{profile.programMappingSource === 'DEFAULT_STANDARD' && <span className="text-amber-700"> · Ánh xạ mặc định, cần đối chiếu nguồn</span>}</p>}
               <p className="text-xs text-on-surface-variant mt-0.5">
                 MSSV: <strong className="text-on-surface">Chưa nhập</strong> • Cơ sở/ngành lấy từ hồ sơ người dùng
               </p>

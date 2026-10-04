@@ -4,10 +4,12 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useStudent } from '../../context/StudentContext';
+import { useAuth } from '../../context/AuthContext';
 
 export const Navbar: React.FC = () => {
   const pathname = usePathname();
-  const { currentStep, saveDraft, resetAll, lastSavedAt } = useStudent();
+  const { currentStep, saveDraft, resetAll, lastSavedAt, syncStatus, draftConflict, resolveDraftConflict } = useStudent();
+  const { user, signOut, isConfigured } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [saveAlert, setSaveAlert] = useState<string | null>(null);
 
@@ -141,6 +143,24 @@ export const Navbar: React.FC = () => {
             <span className="sm:hidden">Lập KH</span>
           </Link>
 
+          {isConfigured && (user ? (
+            <button
+              type="button"
+              onClick={() => signOut()}
+              title="Đăng xuất"
+              className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-primary/20 px-3 py-2 text-xs font-bold text-primary hover:bg-primary/5"
+            >
+              <span className="material-symbols-outlined text-base">account_circle</span>
+              <span className="max-w-[130px] truncate">{user.email}</span>
+              <span className="material-symbols-outlined text-sm">logout</span>
+            </button>
+          ) : (
+            <Link href="/auth/login" className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-primary/20 px-3 py-2 text-xs font-bold text-primary hover:bg-primary/5">
+              <span className="material-symbols-outlined text-base">login</span>
+              Đăng nhập
+            </Link>
+          ))}
+
           {/* Mobile menu toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -158,6 +178,15 @@ export const Navbar: React.FC = () => {
       {saveAlert && (
         <div className="bg-emerald-700 text-white text-xs font-bold text-center py-1.5 px-4 animate-fade-in shadow-inner">
           {saveAlert}
+        </div>
+      )}
+
+      {user && syncStatus !== 'LOCAL' && (
+        <div className={`px-4 py-1.5 text-center text-[11px] font-bold ${syncStatus === 'OFFLINE' ? 'bg-amber-100 text-amber-900' : syncStatus === 'CONFLICT' ? 'bg-violet-100 text-violet-900' : syncStatus === 'SYNCING' ? 'bg-sky-100 text-sky-900' : 'bg-emerald-100 text-emerald-900'}`}>
+          {syncStatus === 'SYNCING' && 'Đang đồng bộ bản nháp...'}
+          {syncStatus === 'SYNCED' && 'Bản nháp đã lưu trên tài khoản'}
+          {syncStatus === 'OFFLINE' && 'Chưa đồng bộ — dữ liệu vẫn được giữ trên thiết bị'}
+          {draftConflict && <span className="ml-2 inline-flex flex-wrap items-center justify-center gap-1.5"><span>Phát hiện bản nháp khác nhau:</span><button onClick={() => resolveDraftConflict('DEVICE')} className="rounded-full bg-white/70 px-2 py-0.5 underline">Dùng thiết bị</button><button onClick={() => resolveDraftConflict('ACCOUNT')} className="rounded-full bg-white/70 px-2 py-0.5 underline">Dùng tài khoản</button><button onClick={() => resolveDraftConflict('NEWER')} className="rounded-full bg-white/70 px-2 py-0.5 underline">Bản mới hơn</button></span>}
         </div>
       )}
 

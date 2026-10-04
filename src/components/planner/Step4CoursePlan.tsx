@@ -37,21 +37,24 @@ export const Step4CoursePlan: React.FC = () => {
   const rawOfferings = courseOfferingsData as CourseOffering[];
 
   const university = selectedUniId ? rawUnis.find(u => u.id === selectedUniId) : undefined;
+  const profileProgram = profile.programType || profile.program;
 
   const studentRemaining = useMemo(() => profile.courses && profile.courses.length > 0
     ? profile.courses.filter(isAvailableForTransfer).map(c => ({
       code: c.courseCode,
       name: c.courseName,
       credits: c.credits,
-      program: c.program || profile.program,
-      cohort: profile.cohort
+      program: c.program || profileProgram,
+      cohort: profile.cohort,
+      programMappingSource: c.program ? undefined : profile.programMappingSource
     }))
     : (profile.manualCourseCodes || []).map(code => ({
       code,
       name: '',
       credits: 0,
-      program: profile.program,
-      cohort: profile.cohort
+      program: profileProgram,
+      cohort: profile.cohort,
+      programMappingSource: profile.programMappingSource
     })), [profile]);
 
   // Match all candidate pairs for this university
@@ -105,7 +108,7 @@ export const Step4CoursePlan: React.FC = () => {
       .filter((pair): pair is CourseMatchPair => Boolean(pair));
     setSelectedPairs(restoredPairs?.length
       ? restoredPairs
-      : candidatePairs.filter(p => p.status === 'APPROVED' && p.verificationStatus === 'VERIFIED').slice(0, S27_RULES.transferredCoursesMinimum));
+      : candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum));
     setInitializedEditorKey(editorKey);
   }, [candidatePairs, editorKey, initializedEditorKey, savedPlan, university]);
 
@@ -146,18 +149,20 @@ export const Step4CoursePlan: React.FC = () => {
   selectedPairs.forEach(pair => addHostIdentity(pair.hostCourseName, pair.hostCourseCode));
   const legacyAdditionalHostCourses = savedPlan?.hostAdditionalCourses || [];
   legacyAdditionalHostCourses.forEach(course => addHostIdentity(course.hostCourseName, course.hostCourseCode));
-  const approvedSelectedPairs = selectedPairs.filter(pair => pair.status === 'APPROVED' && pair.verificationStatus === 'VERIFIED');
+  const approvedSelectedPairs = selectedPairs.filter(pair => pair.status === 'APPROVED');
+  const verifiedSelectedPairs = approvedSelectedPairs.filter(pair => pair.verificationStatus === 'VERIFIED');
   const selectedTransferredCredits = approvedSelectedPairs.reduce((sum, pair) => sum + (pair.ftuCredits > 0 ? pair.ftuCredits : 0), 0);
   const satisfies3Transfers = approvedSelectedPairs.length >= S27_RULES.transferredCoursesMinimum;
   const satisfies5HostCourses = totalHostCoursesCount >= S27_RULES.hostCoursesMinimum;
   const additionalCoursesVerified = legacyAdditionalHostCourses.length === 0;
   const planStatus: SelectedStudyPlan['status'] = !satisfies3Transfers || !satisfies5HostCourses
     ? 'DRAFT_NOT_ELIGIBLE'
-    : !additionalCoursesVerified || simulation.thesisEligibilityStatus !== 'VERIFIED'
+    : verifiedSelectedPairs.length < approvedSelectedPairs.length || !additionalCoursesVerified || simulation.thesisEligibilityStatus !== 'VERIFIED'
       ? 'NEEDS_VERIFICATION'
       : 'VALID';
   const missingPlanRequirements = [
     !satisfies3Transfers ? `Cần tối thiểu ${S27_RULES.transferredCoursesMinimum} môn FTU có mapping APPROVED.` : null,
+    verifiedSelectedPairs.length < approvedSelectedPairs.length ? `${approvedSelectedPairs.length - verifiedSelectedPairs.length} mapping đã duyệt cần xác minh thêm trước khi công nhận chính thức.` : null,
     !satisfies5HostCourses ? `Cần tối thiểu ${S27_RULES.hostCoursesMinimum} học phần tại trường đối tác.` : null,
     !additionalCoursesVerified ? 'Môn host bổ sung do người dùng nhập cần được đối chiếu với tài liệu nguồn.' : null,
     savedPlan && savedPlan.transferredCourses.some(pair => !candidatePairs.some(candidate => candidate.equivalenceId === pair.equivalenceId))
@@ -262,6 +267,7 @@ export const Step4CoursePlan: React.FC = () => {
           <div>
             <span className="font-bold block">Quy đổi FTU: {approvedSelectedPairs.length}/{S27_RULES.transferredCoursesMinimum} môn đã duyệt</span>
             <span className="text-[11px] opacity-80">{selectedTransferredCredits} tín chỉ đã được công nhận</span>
+            {verifiedSelectedPairs.length < approvedSelectedPairs.length && <span className="text-[11px] text-amber-700">Đã xác minh: {verifiedSelectedPairs.length} môn · cần đối chiếu thêm</span>}
           </div>
         </div>
 

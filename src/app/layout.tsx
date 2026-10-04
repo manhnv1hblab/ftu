@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { StudentProvider } from '../context/StudentContext';
+import { AuthProvider } from '../context/AuthContext';
 import { Navbar } from '../components/layout/Navbar';
 import { Footer } from '../components/layout/Footer';
 
@@ -31,13 +32,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
       <body className="min-h-screen flex flex-col bg-background text-on-surface antialiased">
-        <StudentProvider>
-          <Navbar />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </StudentProvider>
+        <AuthProvider>
+          <StudentProvider>
+            <Navbar />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+          </StudentProvider>
+        </AuthProvider>
       </body>
     </html>
   );

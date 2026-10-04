@@ -2,6 +2,9 @@
   "name": "ftu-goglobal",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,10 +17,13 @@
     "audit:data": "node scripts/audit_equivalence_source.js",
     "test:e2e": "node scripts/test_e2e_smoke.js",
     "test:flow": "node scripts/test_planner_flow_contract.js",
+    "test:supabase": "node scripts/test_supabase_contract.js",
     "test:browser": "playwright test",
-    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:matcher && npm run test:data && npm run test:e2e && npm run test:flow && npm run build"
+    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:matcher && npm run test:data && npm run test:e2e && npm run test:flow && npm run test:supabase && npm run build"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.7",
+    "@supabase/supabase-js": "^2.117.2",
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
     "next": "^14.2.15",

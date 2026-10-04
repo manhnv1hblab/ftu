@@ -207,7 +207,7 @@ export const Step1Upload: React.FC = () => {
 
   const courseCount = profile.courses.length;
   const passedCredits = profile.courses.filter(c => c.isPassed).reduce((sum, c) => sum + c.credits, 0);
-  const remainingCredits = profile.courses.filter(c => !c.isPassed).reduce((sum, c) => sum + c.credits, 0);
+  const remainingCredits = profile.courses.filter(c => !c.isPassed && !c.isTaken).reduce((sum, c) => sum + c.credits, 0);
 
   return (
     <div className="max-w-3xl mx-auto flex flex-col gap-6 animate-fade-in py-4">

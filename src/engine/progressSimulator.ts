@@ -70,14 +70,16 @@ export function simulateStudentProgress(
     initialElectiveGroups
   );
 
-  // Calculate remaining courses after exchange
+  // For the post-exchange projection, courses already taken are treated as
+  // completed alongside passed courses. If a currently enrolled course later
+  // fails, the next upload/status update will put it back into the debt pool.
   const transferredCodesSet = new Set(successfulTransfers.map(p => p.ftuCourseCode.toUpperCase()));
   const remainingCoursesAfter = courses.filter(
-    c => !c.isPassed && !transferredCodesSet.has(c.courseCode.toUpperCase())
+    c => !c.isPassed && !c.isTaken && !transferredCodesSet.has(c.courseCode.toUpperCase())
   );
 
   const initialRemainingCredits = courses
-    .filter(c => !c.isPassed)
+    .filter(c => !c.isPassed && !c.isTaken)
     .reduce((sum, c) => sum + c.credits, 0);
 
   const remainingCreditsAfterExchange = Math.max(0, initialRemainingCredits - effectiveCreditsDeducted);
