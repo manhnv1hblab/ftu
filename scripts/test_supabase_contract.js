@@ -1,7 +1,25 @@
 const fs = require('fs');
 const path = require('path');
 const assert = require('assert/strict');
-const { isPlainRecord, isSafeLocalRedirect, isValidDataVersion, publicReview } = require('../src/lib/apiValidation.ts');
+const ts = require('typescript');
+
+function loadTypeScriptModule(relativePath) {
+  const filename = path.resolve(__dirname, '..', relativePath);
+  const source = fs.readFileSync(filename, 'utf8');
+  const output = ts.transpileModule(source, {
+    compilerOptions: {
+      module: ts.ModuleKind.CommonJS,
+      target: ts.ScriptTarget.ES2020,
+    },
+    fileName: filename,
+  }).outputText;
+  const module = { exports: {} };
+  const compile = new Function('module', 'exports', 'require', '__filename', '__dirname', output);
+  compile(module, module.exports, require, filename, path.dirname(filename));
+  return module.exports;
+}
+
+const { isPlainRecord, isSafeLocalRedirect, isValidDataVersion, publicReview } = loadTypeScriptModule('src/lib/apiValidation.ts');
 
 const root = path.resolve(__dirname, '..');
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
