@@ -328,7 +328,6 @@ export const Step3Matches: React.FC = () => {
             type="button"
             onClick={() => {
               setMin3Only(false);
-              setVerifiedOnly(false);
               setSelectedRegion('ALL');
               setSearchQuery('');
             }}

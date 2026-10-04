@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test';
+import { fillProfile, clcProgram } from './profile-helpers';
 
 test('Excel upload preserves course codes and passed status in course review', async ({ page }) => {
   test.setTimeout(60_000);
@@ -17,8 +18,7 @@ test('manual course codes stay unverified and saved plans survive profile edits 
   await page.getByPlaceholder(/VD: KTE402/).fill('TCH321, TIN313, TCH412');
   await page.getByRole('button', { name: /Xác nhận & Tiếp tục/ }).click();
 
-  await page.locator('#profile-cohort').selectOption('K62');
-  await page.locator('#profile-program').selectOption('Tiêu chuẩn');
+  await fillProfile(page);
   await page.getByRole('button', { name: /Tiếp tục khám phá trường/ }).click();
   await page.getByPlaceholder('Tìm theo tên trường, quốc gia...').fill('Millikin University');
   await page.getByRole('button', { name: 'Chọn & lập phương án' }).click();
@@ -35,7 +35,7 @@ test('manual course codes stay unverified and saved plans survive profile edits 
   await expect(page.getByRole('checkbox').first()).toBeChecked();
 
   await page.getByRole('button', { name: /Rà soát hồ sơ/ }).click();
-  await page.locator('#profile-program').selectOption('CLC');
+  await page.locator('#profile-program').selectOption(clcProgram.id);
   await page.getByRole('button', { name: /Gợi ý trường/ }).click();
   await expect(page.getByText('Millikin University').first()).toBeVisible();
   await page.getByRole('button', { name: /Lập phương án NV1/ }).click();

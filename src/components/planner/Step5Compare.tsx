@@ -3,13 +3,11 @@
 import React, { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useStudent } from '../../context/StudentContext';
-import costsData from '../../../data/costs_by_country.json';
 import universitiesData from '../../../data/universities_s27.json';
-import { CountryCost } from '../../types/cost';
 import { PartnerUniversity } from '../../types/university';
 import { PreferenceRank } from '../../types/preference';
 import { S27_RULES } from '../../config/s27Rules';
-import { findCountryCost } from '../../engine/costCalculator';
+import { UniversityMoreInfo, universityLivingCost } from './UniversityInfo';
 
 const ranks: PreferenceRank[] = ['nv1', 'nv2', 'nv3'];
 
@@ -27,7 +25,6 @@ export const Step5Compare: React.FC = () => {
     importDraftJson
   } = useStudent();
 
-  const rawCosts = costsData as Record<string, CountryCost>;
   const rawUnis = universitiesData as PartnerUniversity[];
   const [notification, setNotification] = useState<string | null>(null);
   const [pendingRemoval, setPendingRemoval] = useState<PreferenceRank | null>(null);
@@ -196,14 +193,16 @@ export const Step5Compare: React.FC = () => {
             const count = slot.plan.transferredCourses.length + (slot.plan.hostAdditionalCourses?.length || 0);
             return <><strong>{count} môn</strong><span className={count >= S27_RULES.hostCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{count >= S27_RULES.hostCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.hostCoursesMinimum} môn` : `Chưa đủ ${S27_RULES.hostCoursesMinimum} môn`}</span></>;
           }} />
-          <ComparisonRow title="3. Học phí / học bổng" slots={slots} render={(slot) => slot.uni?.scholarship || 'Chưa có dữ liệu đã audit'} />
+          <ComparisonRow title="Địa điểm" slots={slots} render={slot => slot.uni ? [slot.uni.city, slot.uni.country].filter(Boolean).join(', ') : '—'} />
+          <ComparisonRow title="Chỉ tiêu" slots={slots} render={slot => slot.uni ? slot.uni.quota || 'Chưa có thông tin' : '—'} />
+          <ComparisonRow title="Ngôn ngữ giảng dạy" slots={slots} render={slot => slot.uni ? slot.uni.languages || 'Chưa có thông tin' : '—'} />
+          <ComparisonRow title="Yêu cầu đầu vào" slots={slots} render={slot => slot.uni ? slot.uni.requirements || 'Chưa có thông tin' : '—'} />
+          <ComparisonRow title="3. Học phí / học bổng" slots={slots} render={(slot) => slot.uni?.scholarship || 'Chưa có thông tin'} />
           <ComparisonRow title="4. Chi phí sinh hoạt tham khảo" slots={slots} render={(slot) => {
             if (!slot.uni) return '—';
-            const cost = findCountryCost(slot.uni.country, rawCosts);
-            const min = cost?.livingCost?.min;
-            const max = cost?.livingCost?.max;
-            return min !== null && min !== undefined && max !== null && max !== undefined ? `~${min} – ${max} triệu VNĐ/tháng` : 'Chưa có dữ liệu đã audit';
+            return universityLivingCost(slot.uni);
           }} />
+          <ComparisonRow title="Thông tin chi tiết và nguồn" slots={slots} render={slot => slot.uni ? <UniversityMoreInfo university={slot.uni} /> : '—'} />
           <ComparisonRow title="5. Tiến độ tốt nghiệp / HPTN" slots={slots} render={(slot) => {
             if (!slot.plan?.graduationSimulation) return '—';
             return <><span>{slot.plan.graduationSimulation.canGraduateOnTime ? 'Có khả năng đúng hạn theo mô phỏng' : 'Có rủi ro cần xử lý'}</span><span className="text-amber-700">{slot.plan.status === 'VALID' ? 'Đã đủ dữ liệu theo rule hiện tại' : 'Cần xác minh'}</span></>;

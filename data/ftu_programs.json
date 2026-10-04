@@ -399,19 +399,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
     },
     {
-      "id": "k62-kinh-te-nganh-kinh-te",
-      "majorId": "kinh-te",
-      "majorName": "Kinh tế",
-      "name": "Ngành Kinh tế",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
-    },
-    {
       "id": "k62-kinh-te-chuong-trinh-tieu-chuan-kinh-te-oi-ngoai",
       "majorId": "kinh-te",
       "majorName": "Kinh tế",
@@ -462,19 +449,6 @@
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/chuong-trinh-thuong-mai-quoc-te-ap-dung-tu-k62-tro-di/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te/nganh-kinh-te-tu-k62-tro-di/"
-    },
-    {
-      "id": "k62-kinh-doanh-quoc-te-nganh-kinh-doanh-quoc-te",
-      "majorId": "kinh-doanh-quoc-te",
-      "majorName": "Kinh doanh quốc tế",
-      "name": "Ngành Kinh doanh quốc tế",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
     },
     {
       "id": "k62-kinh-doanh-quoc-te-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-kinh-doanh-so",
@@ -554,19 +528,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-doanh-quoc-te/nganh-kinh-doanh-quoc-te-ap-dung-tu-k62-tro-di/"
     },
     {
-      "id": "k62-kinh-te-quoc-te-nganh-kinh-te-quoc-te",
-      "majorId": "kinh-te-quoc-te",
-      "majorName": "Kinh tế quốc tế",
-      "name": "Ngành Kinh tế quốc tế",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
-    },
-    {
       "id": "k62-kinh-te-quoc-te-chuong-trinh-kinh-te-quoc-te",
       "majorId": "kinh-te-quoc-te",
       "majorName": "Kinh tế quốc tế",
@@ -604,19 +565,6 @@
       "matchingProgram": "",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/chuong-trinh-kinh-te-va-phat-trien-quoc-te-ap-dung-tu-k62-tro-di/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-kinh-te-quoc-te/nganh-kinh-te-quoc-te-ap-dung-tu-k62-tro-di/"
-    },
-    {
-      "id": "k62-quan-tri-kinh-doanh-nganh-quan-tri-kinh-doanh",
-      "majorId": "quan-tri-kinh-doanh",
-      "majorName": "Quản trị kinh doanh",
-      "name": "Ngành Quản trị kinh doanh",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
     },
     {
       "id": "k62-quan-tri-kinh-doanh-chuong-trinh-tien-tien-quan-tri-kinh-doanh-quoc-te",
@@ -658,19 +606,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-kinh-doanh/nganh-quan-tri-kinh-doanh-ap-dung-tu-k62-tro-di/"
     },
     {
-      "id": "k62-quan-tri-khach-san-nganh-quan-tri-khach-san",
-      "majorId": "quan-tri-khach-san",
-      "majorName": "Quản trị khách sạn",
-      "name": "Ngành Quản trị khách sạn",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/"
-    },
-    {
       "id": "k62-quan-tri-khach-san-chuong-trinh-chat-luong-cao-quan-tri-khach-san-ap-dung-tu-k62-tro-i",
       "majorId": "quan-tri-khach-san",
       "majorName": "Quản trị khách sạn",
@@ -682,19 +617,6 @@
       "matchingProgram": "CLC",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/chuong-trinh-chat-luong-cao-quan-tri-khach-san-ap-dung-tu-k62-tro-di/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-quan-tri-khach-san/nganh-quan-tri-khach-san-ap-dung-tu-k62-tro-di/"
-    },
-    {
-      "id": "k62-tai-chinh-ngan-hang-nganh-tai-chinh-ngan-hang",
-      "majorId": "tai-chinh-ngan-hang",
-      "majorName": "Tài chính-Ngân hàng",
-      "name": "Ngành Tài chính ngân hàng",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
     },
     {
       "id": "k62-tai-chinh-ngan-hang-chuong-trinh-tien-tien-tai-chinh-ngan-hang",
@@ -762,19 +684,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-tai-chinh-ngan-hang/nganh-tai-chinh-ngan-hang-ap-dung-tu-k62-tro-di/"
     },
     {
-      "id": "k62-luat-nganh-luat",
-      "majorId": "luat",
-      "majorName": "Luật",
-      "name": "Ngành Luật",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
-    },
-    {
       "id": "k62-luat-chuong-trinh-inh-huong-mo-hinh-thuc-hanh-nghe-nghiep-luat-kinh-doanh-quoc-te",
       "majorId": "luat",
       "majorName": "Luật",
@@ -799,19 +708,6 @@
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/chuong-trinh-tieu-chuan-luat-thuong-mai-quoc-te-ap-dung-tu-k62-tro-di/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-luat/nganh-luat-ap-dung-tu-k62-tro-di/"
-    },
-    {
-      "id": "k62-ke-toan-nganh-ke-toan",
-      "majorId": "ke-toan",
-      "majorName": "Kế toán",
-      "name": "Ngành Kế toán",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
     },
     {
       "id": "k62-ke-toan-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-acca-ke-toan-kiem-toan",
@@ -840,19 +736,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ke-toan-kiem-toan/62nket/"
     },
     {
-      "id": "k62-marketing-nganh-marketing",
-      "majorId": "marketing",
-      "majorName": "Marketing",
-      "name": "Ngành Marketing",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
-    },
-    {
       "id": "k62-marketing-chuong-trinh-inh-huong-nghe-nghiep-quoc-te-marketing-so",
       "majorId": "marketing",
       "majorName": "Marketing",
@@ -877,19 +760,6 @@
       "matchingProgram": "",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/62imc/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-marketing/62mar/"
-    },
-    {
-      "id": "k62-ngon-ngu-anh-nganh-ngon-ngu-anh",
-      "majorId": "ngon-ngu-anh",
-      "majorName": "Ngôn ngữ Anh",
-      "name": "Ngành Ngôn ngữ Anh",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
     },
     {
       "id": "k62-ngon-ngu-anh-chuong-trinh-chat-luong-cao-tieng-anh-thuong-mai",
@@ -918,19 +788,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-nna/62ta/"
     },
     {
-      "id": "k62-ngon-ngu-phap-nganh-ngon-ngu-phap",
-      "majorId": "ngon-ngu-phap",
-      "majorName": "Ngôn ngữ Pháp",
-      "name": "Ngành Ngôn ngữ Pháp",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
-    },
-    {
       "id": "k62-ngon-ngu-phap-chuong-trinh-chat-luong-cao-tieng-phap-thuong-mai",
       "majorId": "ngon-ngu-phap",
       "majorName": "Ngôn ngữ Pháp",
@@ -955,19 +812,6 @@
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/62tptm/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-phap/nganh-ngon-ngu-phap-ap-dung-tu-k62-tro-di/"
-    },
-    {
-      "id": "k62-ngon-ngu-trung-quoc-nganh-ngon-ngu-trung-quoc",
-      "majorId": "ngon-ngu-trung-quoc",
-      "majorName": "Ngôn ngữ Trung Quốc",
-      "name": "Ngành Ngôn ngữ Trung Quốc",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
     },
     {
       "id": "k62-ngon-ngu-trung-quoc-chuong-trinh-chat-luong-cao-tieng-trung-thuong-mai",
@@ -996,19 +840,6 @@
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-trung/nganh-ngon-ngu-trung-quoc-ap-dung-tu-k62-tro-di/"
     },
     {
-      "id": "k62-ngon-ngu-nhat-nganh-ngon-ngu-nhat",
-      "majorId": "ngon-ngu-nhat",
-      "majorName": "Ngôn ngữ Nhật",
-      "name": "Ngành Ngôn ngữ Nhật",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
-    },
-    {
       "id": "k62-ngon-ngu-nhat-chuong-trinh-chat-luong-cao-tieng-nhat-thuong-mai",
       "majorId": "ngon-ngu-nhat",
       "majorName": "Ngôn ngữ Nhật",
@@ -1033,19 +864,6 @@
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/62tntm/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nganh-ngon-ngu-nhat-ap-dung-tu-k62-tro-di/"
-    },
-    {
-      "id": "k62-kinh-te-chinh-tri-chuong-trinh-kinh-te-chinh-tri-quoc-te",
-      "majorId": "kinh-te-chinh-tri",
-      "majorName": "Kinh tế chính trị",
-      "name": "Chương trình Kinh tế chính trị quốc tế",
-      "cohorts": [
-        "K62",
-        "K63"
-      ],
-      "matchingProgram": "",
-      "sourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/cac-nganh-ngon-ngu/kt-ct-qt/",
-      "cohortSourceUrl": "https://qldt.ftu.edu.vn/chuongtrinhdaotaok64/"
     },
     {
       "id": "k62-kinh-te-chinh-tri-chuong-trinh-kinh-te-chinh-tri-quoc-te",
@@ -1479,6 +1297,18 @@
       "matchingProgram": "Tiêu chuẩn",
       "sourceUrl": "https://qldt.ftu.edu.vn/2021-chuong-trinh-dao-tao-nganh-ngon-ngu-nhat-ma-so-7220209-chuyen-nganh-tieng-nhat-thuong-mai/",
       "cohortSourceUrl": "https://qldt.ftu.edu.vn/category/thong-tin-dao-tao/chuong-trinh-dao-tao/chuong-trinh-dao-tao-qldt/nganh-ngon-ngu-nhat/nnn-chuong-trinh-dao-tao-tu-k60-tro-di/"
+    },
+    {
+      "id": "k63-khoa-hoc-may-tinh-va-du-lieu",
+      "majorId": "khoa-hoc-may-tinh",
+      "majorName": "Khoa học máy tính",
+      "name": "Khoa học máy tính và dữ liệu trong kinh tế và kinh doanh",
+      "cohorts": [
+        "K63"
+      ],
+      "matchingProgram": "",
+      "sourceUrl": "https://qldt.ftu.edu.vn/chuong-trinh-dao-tao-khoa-hoc-may-tinh-va-du-lieu-trong-kinh-te-va-kinh-doanh-nganh-khoa-hoc-may-tinh-ma-nganh-7480101/",
+      "cohortSourceUrl": "https://qldt.ftu.edu.vn/hdhpbhyt-k63-2/"
     }
   ]
 }

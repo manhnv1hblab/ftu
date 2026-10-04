@@ -26,6 +26,14 @@
 
 ## 🛠️ Cài Đặt & Chạy Cục Bộ
 
+### Hồ sơ và danh mục đào tạo
+
+Danh mục trong `data/ftu_programs.json` dùng tên ngành/chương trình và phạm vi khóa K61–K64 từ Phòng Quản lý Đào tạo FTU. Mỗi lựa chọn lưu URL nguồn chương trình và nguồn xác định khóa; các ID là khóa nội bộ, không phải mã ngành do Bộ GD&ĐT cấp. `matchingProgram` để trống khi nguồn chưa xác định rõ phạm vi Tiêu chuẩn/CLC/CTTT; không gán chương trình nghề nghiệp hoặc tích hợp sang một trong ba nhóm này.
+
+Bước 3–5 yêu cầu hồ sơ được trả lời đầy đủ. Việc hoàn thành hồ sơ không đồng nghĩa đủ điều kiện trao đổi: người chưa có chứng chỉ vẫn có thể xem trường và lưu bản nháp. Bản nháp phiên bản 3 được giữ lại khi chuyển sang phiên bản 4, các lựa chọn chương trình chưa xác nhận phải được chọn lại. Các ô số lưu riêng trạng thái đã nhập để phân biệt số 0 với ô trống.
+
+Học kỳ tốt nghiệp là dự kiến của sinh viên (I, II, Hè); danh sách năm học tính theo múi giờ Việt Nam và giữ nguyên lựa chọn đã lưu. Chạy `npm run test:browser -- --workers=1` để kiểm tra cả khôi phục hồ sơ cũ, điều hướng và giao diện di động.
+
 ### 1. Yêu Cầu Môi Trường
 - Node.js >= 18.17.0
 - npm hoặc yarn

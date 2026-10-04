@@ -30,6 +30,12 @@ function isValidProfile(value: unknown): value is StudentProfile {
   const courses = profile.courses;
   return typeof profile.cohort === 'string'
     && typeof profile.major === 'string'
+    && ['majorId', 'programId', 'programName', 'programSourceUrl'].every(key => {
+      const value = (profile as Record<string, unknown>)[key];
+      return value === undefined || typeof value === 'string';
+    })
+    && (profile.academicInputs === undefined || (!!profile.academicInputs && typeof profile.academicInputs === 'object'
+      && Object.values(profile.academicInputs).every(value => typeof value === 'boolean')))
     && ['', 'Tiêu chuẩn', 'CLC', 'CTTT'].includes(profile.program || '')
     && typeof profile.exchangeSemester === 'string'
     && typeof profile.targetGraduationSemester === 'string'
@@ -48,6 +54,8 @@ function isValidProfile(value: unknown): value is StudentProfile {
     && typeof language.score === 'string'
     && typeof language.level === 'string'
     && typeof language.isValid === 'boolean'
+    && (language.availability === undefined || ['', 'HAS_CERTIFICATE', 'NO_CERTIFICATE'].includes(language.availability))
+    && (language.validity === undefined || ['', 'VALID', 'EXPIRED', 'UNKNOWN'].includes(language.validity))
     && (language.expiryDate === undefined || typeof language.expiryDate === 'string')
     && typeof profile.monthlyBudgetVnd === 'number'
     && ['DORMITORY', 'RENT', 'ANY'].includes(profile.housingType || '')
@@ -250,7 +258,8 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [preferenceReplacementRank, setPreferenceReplacementRank] = useState<PreferenceRank | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
   const currentStep = allowedPlannerStep(requestedStep, profile, selectedUniId);
-  const setCurrentStep = (step: number) => setRequestedStep(allowedPlannerStep(step, profile, selectedUniId));
+  // Evaluate navigation after batched profile/selection updates, including manual upload.
+  const setCurrentStep = (step: number) => setRequestedStep(step);
   useEffect(() => {
     if (isHydrated && requestedStep !== currentStep) setRequestedStep(currentStep);
   }, [isHydrated, requestedStep, currentStep]);

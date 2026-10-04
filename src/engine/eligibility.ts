@@ -22,7 +22,8 @@ export interface ProgramEligibilityEvaluation {
 
 function isLanguageCertificateValid(profile: StudentProfile): boolean {
   const cert = profile.languageCertificate;
-  if (!cert || !cert.isValid) return false;
+  if (!cert || cert.availability === 'NO_CERTIFICATE' || !cert.isValid) return false;
+  if (cert.validity && cert.validity !== 'VALID') return false;
   if (!cert.expiryDate) return false;
   const expiry = new Date(`${cert.expiryDate}T23:59:59`);
   return !Number.isNaN(expiry.getTime()) && expiry.getTime() >= Date.now();
@@ -36,7 +37,7 @@ export function checkProgramEligibility(
   const unmetSummary: string[] = [];
 
   // 1. GPA Hệ 4 (source: Quy trình S27)
-  const gpa4Provided = Number.isFinite(profile.gpa4) && profile.gpa4 > 0;
+  const gpa4Provided = Number.isFinite(profile.gpa4) && (profile.academicInputs?.gpa4 ?? profile.gpa4 > 0);
   const gpa4Passed = gpa4Provided && profile.gpa4 >= S27_RULES.gpa4Minimum;
   criteria.push({
     code: 'GPA4',
@@ -52,7 +53,7 @@ export function checkProgramEligibility(
   if (!gpa4Passed) unmetSummary.push(gpa4Provided ? 'GPA thang 4 chưa đạt 2.80' : 'Chưa có dữ liệu GPA thang 4');
 
   // 2. GPA Hệ 10 (source: Quy trình S27)
-  const gpa10Provided = Number.isFinite(profile.gpa10) && profile.gpa10 > 0;
+  const gpa10Provided = Number.isFinite(profile.gpa10) && (profile.academicInputs?.gpa10 ?? profile.gpa10 > 0);
   const gpa10Passed = gpa10Provided && profile.gpa10 >= S27_RULES.gpa10Minimum;
   criteria.push({
     code: 'GPA10',
@@ -68,7 +69,7 @@ export function checkProgramEligibility(
   if (!gpa10Passed) unmetSummary.push(gpa10Provided ? 'GPA thang 10 chưa đạt 7.50' : 'Chưa có dữ liệu GPA thang 10');
 
   // 3. Số kỳ hoàn thành (>= 2 kỳ)
-  const semestersProvided = Number.isFinite(profile.completedSemesters) && profile.completedSemesters > 0;
+  const semestersProvided = Number.isFinite(profile.completedSemesters) && (profile.academicInputs?.completedSemesters ?? profile.completedSemesters > 0);
   const semestersPassed = semestersProvided && profile.completedSemesters >= S27_RULES.completedSemestersMinimum;
   criteria.push({
     code: 'SEMESTERS',

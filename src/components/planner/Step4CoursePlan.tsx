@@ -1,6 +1,7 @@
 'use client';
 
 import { isAvailableForTransfer } from '../../engine/transferEligibility';
+import { UniversityInfo } from './UniversityInfo';
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { useStudent } from '../../context/StudentContext';
@@ -246,6 +247,8 @@ export const Step4CoursePlan: React.FC = () => {
           <span>Chọn trường khác</span>
         </button>
       </div>
+
+      <UniversityInfo key={university.id} university={university} />
 
       {/* 2. S27 Compliance Checklist Bar */}
       <div className="bg-surface-container-lowest rounded-2xl p-4 shadow-sm border border-surface-container/80 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
