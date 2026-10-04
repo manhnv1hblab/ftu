@@ -11,6 +11,7 @@ require.extensions['.ts'] = (module, filename) => {
 };
 
 const { evaluateAllUniversities, matchCoursesForUniversity } = require('../src/engine/matcher.ts');
+const { findCountryCost } = require('../src/engine/costCalculator.ts');
 const university = { id: 'partner-1', name: 'Partner One' };
 const student = (code, program = 'Tiêu chuẩn', cohort = 'K62') => ({ code, name: `FTU ${code}`, credits: 3, program, cohort });
 const equivalence = (id, ftu, host, status = 'APPROVED', curriculum = 'Tiêu chuẩn, CLC, CTTT') => ({
@@ -52,6 +53,12 @@ const manualCourse = matchCoursesForUniversity(university, [{ code: 'A', name: '
 ]);
 assert.equal(manualCourse[0].verificationStatus, 'NEEDS_VERIFICATION', 'manual code without course name and credits needs profile verification');
 
+const defaultStandard = matchCoursesForUniversity(university, [{
+  code: 'A', name: 'FTU A', credits: 3, program: 'Tiêu chuẩn', cohort: 'K62', programMappingSource: 'DEFAULT_STANDARD'
+}], [equivalence('standard-default', 'A', 'H1', 'APPROVED', 'Tiêu chuẩn')]);
+assert.equal(defaultStandard.length, 1, 'default Standard mapping still exposes matching candidates');
+assert.equal(defaultStandard[0].verificationStatus, 'NEEDS_VERIFICATION', 'default Standard mapping carries a verification warning');
+
 const duplicateHost = matchCoursesForUniversity(university, [student('A'), student('B')], [
   equivalence('a-h1', 'A', 'H1'), equivalence('b-h1', 'B', 'H1')
 ]);
@@ -64,6 +71,8 @@ assert.deepEqual(reorderedResult.map(pair => [pair.ftuCourseCode, pair.equivalen
 const currentUniversities = require('../data/universities_s27.json');
 const currentEquivalences = require('../data/equivalences_s27.json');
 const currentCosts = require('../data/costs_by_country.json');
+assert.equal(findCountryCost('Korea', currentCosts)?.country, 'Hàn Quốc', 'known country aliases resolve to the audited cost record');
+assert.equal(findCountryCost('"HongKong, China"', currentCosts), undefined, 'Hong Kong is not assigned mainland China costs when no audited Hong Kong source exists');
 const currentOfferings = require('../data/course_offerings_2627.json');
 const currentCourses = require('../data/sample_curriculum.json');
 const currentProfile = {
@@ -114,6 +123,20 @@ const inProgressProjection = simulateStudentProgress([
 assert.equal(inProgressProjection.initialRemainingCredits, 3, 'in-progress credits are excluded from projected remaining credits');
 assert.equal(inProgressProjection.remainingDebtExcludingThesisAndExempt, 3, 'in-progress credits are excluded from HPTN debt');
 assert.equal(inProgressProjection.warnings.some(warning => warning.includes('12 tín chỉ')), false, 'in-progress credits do not trigger a debt warning');
+const explicitStatusProjection = simulateStudentProgress([
+  { courseCode: 'STALE', courseName: 'Explicitly in progress', credits: 12, isMandatory: true, isTaken: false, isPassed: false, status: 'IN_PROGRESS' },
+  { courseCode: 'OPEN', courseName: 'Not taken', credits: 3, isMandatory: true, isTaken: true, isPassed: true, status: 'NOT_TAKEN' }
+], [], [], '', true);
+assert.equal(explicitStatusProjection.initialRemainingCredits, 3, 'explicit status overrides stale imported boolean flags');
+
+const electiveProjection = simulateStudentProgress([
+  { courseCode: 'E1', courseName: 'Elective 1', credits: 3, isMandatory: false, isTaken: false, isPassed: true, electiveGroup: 'G', minCredits: 6 },
+  { courseCode: 'E2', courseName: 'Elective 2', credits: 3, isMandatory: false, isTaken: false, isPassed: false, electiveGroup: 'G', minCredits: 6 },
+  { courseCode: 'E3', courseName: 'Elective 3', credits: 3, isMandatory: false, isTaken: false, isPassed: false, electiveGroup: 'G', minCredits: 6 },
+  { courseCode: 'E4', courseName: 'Elective 4', credits: 3, isMandatory: false, isTaken: false, isPassed: false, electiveGroup: 'G', minCredits: 6 }
+], [], [], '', true);
+assert.equal(electiveProjection.initialRemainingCredits, 3, 'elective debt counts the group minimum instead of every available option');
+assert.equal(electiveProjection.remainingDebtExcludingThesisAndExempt, 3, 'HPTN debt also caps elective alternatives at the group requirement');
 courses[2].isPassed = true;
 assert.equal(evaluate().approvedPairsCount, 2, 'passed courses must remain excluded');
 courses[2].isPassed = false;

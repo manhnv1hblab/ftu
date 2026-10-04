@@ -1,4 +1,4 @@
-import { isAvailableForTransfer } from './transferEligibility';
+import { isAvailableForTransfer, isCourseInProgress, isCoursePassed } from './transferEligibility';
 import { normalizeCode } from '../lib/dataIntegrity';
 import { StudentCourse } from '../types/curriculum';
 import { CourseMatchPair } from '../types/studyPlan';
@@ -40,7 +40,13 @@ export function simulateStudentProgress(
   hasMidtermInternship: boolean | null,
   failedTransferCourseCodes: string[] = []
 ): ProgressSimulationResult {
-  const initialElectiveGroups = calculateElectiveGroups(courses);
+  // In-progress work is excluded from projected debt. Count it toward an
+  // elective requirement for the projection, without changing its actual
+  // passed status in the profile.
+  const projectedCourses = courses.map(course => isCourseInProgress(course)
+    ? { ...course, status: 'PASSED' as const, isPassed: true }
+    : course);
+  const initialElectiveGroups = calculateElectiveGroups(projectedCourses);
 
   const excludedCodes = new Set(courses.filter(c => !isAvailableForTransfer(c)).map(c => normalizeCode(c.courseCode)));
 
@@ -73,14 +79,23 @@ export function simulateStudentProgress(
   // For the post-exchange projection, courses already taken are treated as
   // completed alongside passed courses. If a currently enrolled course later
   // fails, the next upload/status update will put it back into the debt pool.
-  const transferredCodesSet = new Set(successfulTransfers.map(p => p.ftuCourseCode.toUpperCase()));
-  const remainingCoursesAfter = courses.filter(
-    c => !c.isPassed && !c.isTaken && !transferredCodesSet.has(c.courseCode.toUpperCase())
+  const transferredCodesSet = new Set(successfulTransfers.map(p => normalizeCode(p.ftuCourseCode)));
+  const remainingCoursesAfter = courses.filter(c =>
+    isAvailableForTransfer(c) && !transferredCodesSet.has(normalizeCode(c.courseCode))
   );
 
-  const initialRemainingCredits = courses
-    .filter(c => !c.isPassed && !c.isTaken)
-    .reduce((sum, c) => sum + c.credits, 0);
+  const requiredDebt = (remaining: StudentCourse[], groups: Record<string, ReturnType<typeof calculateElectiveGroups>[string]>) => {
+    const mandatoryDebt = remaining
+      .filter(course => !course.electiveGroup)
+      .reduce((sum, course) => sum + course.credits, 0);
+    const electiveDebt = Object.values(groups).reduce((sum, group) => sum + group.remainingCredits, 0);
+    return mandatoryDebt + electiveDebt;
+  };
+
+  const initialRemainingCredits = requiredDebt(
+    courses.filter(isAvailableForTransfer),
+    initialElectiveGroups
+  );
 
   const remainingCreditsAfterExchange = Math.max(0, initialRemainingCredits - effectiveCreditsDeducted);
 
@@ -98,7 +113,9 @@ export function simulateStudentProgress(
     return true;
   });
 
-  const remainingDebtExcludingThesisAndExempt = debtCourses.reduce((sum, c) => sum + c.credits, 0);
+  const debtGroupIds = new Set(debtCourses.map(course => course.electiveGroup).filter(Boolean));
+  const debtGroups = Object.fromEntries(Object.entries(updatedGroups).filter(([groupId]) => debtGroupIds.has(groupId)));
+  const remainingDebtExcludingThesisAndExempt = requiredDebt(debtCourses, debtGroups);
   const thesisEligible = remainingDebtExcludingThesisAndExempt <= 6;
   const canRegisterThesisImmediately = thesisEligible && hasMidtermInternship === true;
 

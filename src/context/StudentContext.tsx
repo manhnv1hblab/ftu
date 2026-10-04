@@ -6,7 +6,7 @@ import { StudentCourse } from '../types/curriculum';
 import { SelectedStudyPlan } from '../types/studyPlan';
 import { PreferredUniversities, PreferenceRank, PreferredUniversity } from '../types/preference';
 import sampleCurriculumData from '../../data/sample_curriculum.json';
-import { removeUnavailableTransfers } from '../engine/transferEligibility';
+import { isCoursePassed, removeUnavailableTransfers } from '../engine/transferEligibility';
 import { normalizeProfile, allowedPlannerStep } from '../lib/profileValidation';
 import { SOURCE_MANIFEST } from '../config/sourceManifest';
 import { useAuth } from './AuthContext';
@@ -86,7 +86,8 @@ function isValidProfile(value: unknown): value is StudentProfile {
       && typeof course.credits === 'number'
       && typeof course.isMandatory === 'boolean'
       && typeof course.isTaken === 'boolean'
-      && typeof course.isPassed === 'boolean')
+      && typeof course.isPassed === 'boolean'
+      && (course.status === undefined || ['PASSED', 'IN_PROGRESS', 'NOT_TAKEN'].includes(course.status)))
     && (profile.manualCourseCodes === undefined
       || (Array.isArray(profile.manualCourseCodes) && profile.manualCourseCodes.every(code => typeof code === 'string')))
     && typeof profile.isProfileComplete === 'boolean';
@@ -484,20 +485,21 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setProfile(prev => {
       const updatedCourses = prev.courses.map(c => {
         if (c.courseCode.toUpperCase() === courseCode.toUpperCase()) {
-          return { ...c, isPassed, isTaken };
+          const status: StudentCourse['status'] = isPassed ? 'PASSED' : isTaken ? 'IN_PROGRESS' : 'NOT_TAKEN';
+          return { ...c, isPassed, isTaken, status };
         }
         return c;
       });
 
       // Recalculate passed credits
       const passedCredits = updatedCourses
-        .filter(c => c.isPassed)
+        .filter(isCoursePassed)
         .reduce((sum, c) => sum + c.credits, 0);
 
       return {
         ...prev,
         courses: updatedCourses,
-        accumulatedCredits: passedCredits > 0 ? passedCredits : prev.accumulatedCredits
+        accumulatedCredits: passedCredits
       };
     });
     setCurrentPlan(prev => markPlanForRevalidation(prev) || null);
@@ -509,7 +511,7 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const loadSampleProfile = () => {
     const rawCourses = sampleCurriculumData as unknown as StudentCourse[];
     const passedCredits = rawCourses
-      .filter(c => c.isPassed)
+      .filter(isCoursePassed)
       .reduce((sum, c) => sum + c.credits, 0);
 
     setProfile({
@@ -739,9 +741,10 @@ export const StudentProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const openPlanForPreference = (rank: PreferenceRank): boolean => {
     const preference = preferredUniversities[rank];
     if (!preference) return false;
+    const savedPlan = rankedChoices[rank];
     setActivePreferenceRank(rank);
     setSelectedUniId(preference.universityId);
-    setCurrentPlan(rankedChoices[rank] || null);
+    setCurrentPlan(savedPlan?.universityId === preference.universityId ? savedPlan : null);
     setCurrentStep(4);
     return true;
   };

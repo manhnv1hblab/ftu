@@ -9,6 +9,7 @@ import { evaluateBudget } from './costCalculator';
 import { CountryCost } from '../types/cost';
 import { normalizeCode, normalizeName, sourceStatus } from '../lib/dataIntegrity';
 import { S27_RULES } from '../config/s27Rules';
+import { PROGRAM_TYPES } from '../types/studentProfile';
 
 export function matchCoursesForUniversity(
   university: PartnerUniversity,
@@ -198,7 +199,11 @@ export function evaluateAllUniversities(
 ): UniversityMatchResult[] {
   // Extract remaining courses for student
   const remainingCourses: { code: string; name: string; credits: number; program?: string; cohort?: string; programMappingSource?: StudentProfile['programMappingSource'] }[] = [];
-  const profileProgram = profile.programType || profile.program;
+  const hasExplicitProgram = Boolean(profile.programType || profile.program);
+  const profileProgram = profile.programType || profile.program || PROGRAM_TYPES[0];
+  const profileMappingSource = hasExplicitProgram
+    ? profile.programMappingSource
+    : 'DEFAULT_STANDARD' as const;
 
   if (profile.courses && profile.courses.length > 0) {
     for (const c of profile.courses) {
@@ -209,7 +214,7 @@ export function evaluateAllUniversities(
           credits: c.credits,
           program: c.program || profileProgram,
           cohort: profile.cohort,
-          programMappingSource: c.program ? undefined : profile.programMappingSource
+          programMappingSource: c.program ? undefined : profileMappingSource
         });
       }
     }
@@ -221,7 +226,7 @@ export function evaluateAllUniversities(
         credits: 0,
         program: profileProgram,
         cohort: profile.cohort,
-        programMappingSource: profile.programMappingSource
+        programMappingSource: profileMappingSource
       });
     }
   }

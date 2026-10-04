@@ -1,6 +1,7 @@
 import { StudentProfile } from '../types/studentProfile';
 import { PartnerUniversity } from '../types/university';
 import { S27_RULES } from '../config/s27Rules';
+import { isCoursePassed } from './transferEligibility';
 
 export interface EligibilityCriterionResult {
   code: string;
@@ -141,7 +142,7 @@ export function checkProgramEligibility(
   // 7. Còn ít nhất 4 học phần chưa tích lũy (bao gồm học phần tốt nghiệp)
   const hasRemainingCourseData = profile.courses.length > 0 || (profile.manualCourseCodes?.length ?? 0) > 0;
   const remainingCoursesCount = profile.courses && profile.courses.length > 0
-    ? profile.courses.filter(c => !c.isPassed).length
+    ? profile.courses.filter(c => !isCoursePassed(c)).length
     : (profile.manualCourseCodes ? profile.manualCourseCodes.length : 0);
   
   const min4CoursesPassed = hasRemainingCourseData && remainingCoursesCount >= S27_RULES.remainingCoursesMinimum;

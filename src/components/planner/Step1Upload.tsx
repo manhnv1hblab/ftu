@@ -5,6 +5,8 @@ import React, { useState } from 'react';
 import * as XLSX from 'xlsx';
 import { useStudent } from '../../context/StudentContext';
 import { StudentCourse } from '../../types/curriculum';
+import { parseCurriculumRows } from '../../lib/curriculumParser';
+import { isAvailableForTransfer, isCoursePassed } from '../../engine/transferEligibility';
 
 export const Step1Upload: React.FC = () => {
   const { profile, updateProfile, setCurrentStep, loadSampleProfile } = useStudent();
@@ -35,118 +37,16 @@ export const Step1Upload: React.FC = () => {
           throw new Error('File không có đủ dữ liệu.');
         }
 
-        let headerRowIndex = -1;
-        let colCode = -1;
-        let colName = -1;
-        let colCredits = -1;
-        let colMandatory = -1;
-        let colTaken = -1;
-        let colPassed = -1;
-        let colGroup = -1;
-        let colBranch = -1;
-        let colMinCr = -1;
-        let colMaxCr = -1;
-
-        for (let r = 0; r < Math.min(rawData.length, 5); r++) {
-          const row = rawData[r];
-          if (!row) continue;
-          row.forEach((cell: any, c: number) => {
-            const str = String(cell || '').toLowerCase().trim();
-            if (str === 'mã mh' || str === 'mã học phần' || str.includes('mã môn')) colCode = c;
-            if (str === 'tên môn học' || str === 'tên học phần') colName = c;
-            if (str === 'số tín chỉ' || str === 'số tc') colCredits = c;
-            if (str.includes('bắt buộc')) colMandatory = c;
-            if (str === 'đã học') colTaken = c;
-            if (str.includes('đã học và đạt') || str.includes('đã đạt')) colPassed = c;
-            if (str === 'nhóm') colGroup = c;
-            if (str === 'nhánh') colBranch = c;
-            if (str.includes('tối thiểu')) colMinCr = c;
-            if (str.includes('tối đa')) colMaxCr = c;
-          });
-
-          if (colCode !== -1) {
-            headerRowIndex = r;
-            break;
-          }
-        }
-
-        if (headerRowIndex === -1 || colCode === -1) {
-          throw new Error('Không tìm thấy cột "Mã MH" hoặc "Tên môn học". Vui lòng kiểm tra lại cấu trúc file CTĐT.');
-        }
-
-        const parsedCourses: StudentCourse[] = [];
-        let currentSemester = '';
-
-        for (let r = headerRowIndex + 1; r < rawData.length; r++) {
-          const row = rawData[r];
-          if (!row || !row.length) continue;
-
-          const firstCell = String(row[0] || '').trim();
-          const codeVal = colCode !== -1 && row[colCode] ? String(row[colCode]).trim() : '';
-
-          if (firstCell.toLowerCase().includes('học kỳ') || firstCell.toLowerCase().includes('năm học')) {
-            currentSemester = firstCell;
-            continue;
-          }
-          if (firstCell.toLowerCase().includes('tổng') || !codeVal) {
-            continue;
-          }
-
-          if (colName === -1 || !row[colName] || !String(row[colName]).trim()) {
-            throw new Error(`Thiếu tên học phần tại dòng ${r + 1}. Không được tự suy đoán dữ liệu môn học.`);
-          }
-          if (colCredits === -1 || row[colCredits] === undefined || row[colCredits] === null || row[colCredits] === '') {
-            throw new Error(`Thiếu số tín chỉ tại dòng ${r + 1}. Không được tự gán số tín chỉ mặc định.`);
-          }
-          const nameVal = String(row[colName]).trim();
-          const crVal = parseFloat(String(row[colCredits]).replace(',', '.'));
-          if (!Number.isFinite(crVal) || crVal <= 0) {
-            throw new Error(`Số tín chỉ không hợp lệ tại dòng ${r + 1}.`);
-          }
-          const isMand = colMandatory !== -1 && row[colMandatory] ? String(row[colMandatory]).trim().toLowerCase() === 'x' : false;
-          const isTak = colTaken !== -1 && row[colTaken] ? String(row[colTaken]).trim().toLowerCase() === 'x' : false;
-          const isPass = colPassed !== -1 && row[colPassed] ? String(row[colPassed]).trim().toLowerCase() === 'x' : false;
-
-          const grpVal = colGroup !== -1 && row[colGroup] ? String(row[colGroup]).trim() : undefined;
-          const brVal = colBranch !== -1 && row[colBranch] ? String(row[colBranch]).trim() : undefined;
-          const minCr = colMinCr !== -1 && row[colMinCr] ? parseFloat(String(row[colMinCr])) || 0 : 0;
-          const maxCr = colMaxCr !== -1 && row[colMaxCr] ? parseFloat(String(row[colMaxCr])) || 0 : 0;
-
-          parsedCourses.push({
-            courseCode: codeVal.toUpperCase(),
-            courseName: nameVal,
-            credits: crVal,
-            isMandatory: isMand,
-            isTaken: isTak,
-            isPassed: isPass,
-            electiveGroup: grpVal,
-            electiveBranch: brVal,
-            minCredits: minCr,
-            maxCredits: maxCr,
-            suggestedSemester: currentSemester
-            ,dataStatus: 'VERIFIED'
-          });
-        }
-
-        if (parsedCourses.length === 0) {
-          throw new Error('File không chứa danh sách môn học hợp lệ.');
-        }
-
-        const duplicateCodes = parsedCourses
-          .map(course => course.courseCode)
-          .filter((code, index, allCodes) => allCodes.indexOf(code) !== index);
-        if (duplicateCodes.length > 0) {
-          const uniqueDuplicateCodes = Array.from(new Set(duplicateCodes));
-          throw new Error(`Trùng mã học phần: ${uniqueDuplicateCodes.join(', ')}. Vui lòng kiểm tra lại file trước khi import.`);
-        }
+        const parsedCourses = parseCurriculumRows(rawData);
 
         const passedCredits = parsedCourses
-          .filter(c => c.isPassed)
+          .filter(isCoursePassed)
           .reduce((sum, c) => sum + c.credits, 0);
 
         updateProfile({
           courses: parsedCourses,
-          accumulatedCredits: passedCredits > 0 ? passedCredits : profile.accumulatedCredits,
+          accumulatedCredits: passedCredits,
+          manualCourseCodes: [],
           isProfileComplete: false
         });
 
@@ -156,6 +56,10 @@ export const Step1Upload: React.FC = () => {
         setIsProcessing(false);
         setErrorMessage(err.message || 'Lỗi đọc file Excel. Vui lòng thử lại.');
       }
+    };
+    reader.onerror = () => {
+      setIsProcessing(false);
+      setErrorMessage('Không đọc được file. Vui lòng chọn lại file CTĐT.');
     };
     reader.readAsBinaryString(file);
   };
@@ -188,12 +92,14 @@ export const Step1Upload: React.FC = () => {
       isMandatory: true,
       isTaken: false,
       isPassed: false,
+      status: 'NOT_TAKEN',
       dataStatus: 'NEEDS_VERIFICATION'
     }));
 
     updateProfile({
       courses: manualCourses,
       manualCourseCodes: cleanCodes,
+      accumulatedCredits: 0,
       isProfileComplete: false
     });
 
@@ -206,8 +112,8 @@ export const Step1Upload: React.FC = () => {
   };
 
   const courseCount = profile.courses.length;
-  const passedCredits = profile.courses.filter(c => c.isPassed).reduce((sum, c) => sum + c.credits, 0);
-  const remainingCredits = profile.courses.filter(c => !c.isPassed && !c.isTaken).reduce((sum, c) => sum + c.credits, 0);
+  const passedCredits = profile.courses.filter(isCoursePassed).reduce((sum, c) => sum + c.credits, 0);
+  const remainingCredits = profile.courses.filter(isAvailableForTransfer).reduce((sum, c) => sum + c.credits, 0);
 
   return (
     <div className="max-w-3xl mx-auto flex flex-col gap-6 animate-fade-in py-4">

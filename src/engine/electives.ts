@@ -1,4 +1,5 @@
 import { StudentCourse, ElectiveGroupProgress } from '../types/curriculum';
+import { isCoursePassed } from './transferEligibility';
 
 export function calculateElectiveGroups(courses: StudentCourse[]): Record<string, ElectiveGroupProgress> {
   const groups: Record<string, ElectiveGroupProgress> = {};
@@ -22,7 +23,7 @@ export function calculateElectiveGroups(courses: StudentCourse[]): Record<string
     groups[gId].totalAvailableCourses += 1;
 
     // Use isPassed to determine completed credit
-    if (c.isPassed) {
+    if (isCoursePassed(c)) {
       groups[gId].passedCredits += c.credits;
     } else {
       groups[gId].remainingCourses.push(c);

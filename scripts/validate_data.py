@@ -74,7 +74,8 @@ report = {
             "totalCourses": len(curriculum),
             "passedCourses": sum(1 for c in curriculum if c["isPassed"]),
             "takenButNotPassedCourses": sum(1 for c in curriculum if c["isTaken"] and not c["isPassed"]),
-            "remainingCourses": sum(1 for c in curriculum if not c["isPassed"])
+            "notPassedCourses": sum(1 for c in curriculum if not c["isPassed"]),
+            "notTakenCourses": sum(1 for c in curriculum if not c["isPassed"] and not c["isTaken"])
         }
     }
 }

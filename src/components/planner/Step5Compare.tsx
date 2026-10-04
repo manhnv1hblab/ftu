@@ -15,10 +15,31 @@ import { S27_RULES } from '../../config/s27Rules';
 import { UniversityMoreInfo, universityLivingCost } from './UniversityInfo';
 import { matchCoursesForUniversity } from '../../engine/matcher';
 import { isAvailableForTransfer } from '../../engine/transferEligibility';
+import { simulateStudentProgress } from '../../engine/progressSimulator';
 
 const ranks: PreferenceRank[] = ['nv1', 'nv2', 'nv3'];
 type ComparisonPlan = ReturnType<typeof useStudent>['rankedChoices']['nv1'];
-type ComparisonSlotData = { plan?: ComparisonPlan; previewPairs: CourseMatchPair[] };
+type ComparisonSlotData = {
+  plan?: ComparisonPlan;
+  previewPairs: CourseMatchPair[];
+  liveSimulation?: ReturnType<typeof simulateStudentProgress>;
+};
+
+function countDistinctHostCourses(pairs: CourseMatchPair[], additional: NonNullable<NonNullable<ComparisonPlan>['hostAdditionalCourses']> = []): number {
+  const identities = new Set<string>();
+  let count = 0;
+  const add = (name: string, code?: string) => {
+    const normalizedCode = code?.normalize('NFKC').replace(/\s+/g, '').toUpperCase();
+    const normalizedName = name.normalize('NFKC').replace(/\s+/g, ' ').trim().toLocaleLowerCase('vi-VN');
+    const keys = [normalizedCode ? `code:${normalizedCode}` : '', normalizedName ? `name:${normalizedName}` : ''].filter(Boolean);
+    if (!keys.length || keys.some(key => identities.has(key))) return;
+    keys.forEach(key => identities.add(key));
+    count += 1;
+  };
+  pairs.forEach(pair => add(pair.hostCourseName, pair.hostCourseCode));
+  additional.forEach(course => add(course.hostCourseName, course.hostCourseCode));
+  return count;
+}
 
 export const Step5Compare: React.FC = () => {
   const router = useRouter();
@@ -70,20 +91,28 @@ export const Step5Compare: React.FC = () => {
 
   const slots = useMemo(() => ranks.map(rank => {
     const preference = preferredUniversities[rank];
-    const plan = rankedChoices[rank];
+    const savedPlan = rankedChoices[rank];
+    const plan = preference && savedPlan?.universityId === preference.universityId ? savedPlan : undefined;
     const uni = preference ? rawUnis.find(item => item.id === preference.universityId) : undefined;
     const previewPairs = preference ? (previewPairsByUniversity.get(preference.universityId) || []) : [];
-    return { rank, preference, plan, uni, previewPairs };
-  }), [preferredUniversities, rankedChoices, previewPairsByUniversity, rawUnis]);
+    const liveSimulation = plan ? simulateStudentProgress(
+      profile.courses,
+      plan.transferredCourses,
+      rawOfferings,
+      profile.targetGraduationSemester,
+      profile.hasPassedMidtermInternship,
+      []
+    ) : undefined;
+    return { rank, preference, plan, uni, previewPairs, liveSimulation };
+  }), [preferredUniversities, rankedChoices, previewPairsByUniversity, profile, rawOfferings, rawUnis]);
 
   const selectedCount = slots.filter(slot => slot.preference).length;
   const draftedCount = slots.filter(slot => slot.plan?.transferredCourses?.length).length;
   const readyCount = slots.filter(slot => slot.plan?.status === 'VALID').length;
   const getComparisonPairs = (slot: ComparisonSlotData): CourseMatchPair[] => {
-    const savedPairs = slot.plan?.transferredCourses;
-    return savedPairs?.length ? savedPairs : slot.previewPairs;
+    return slot.plan ? slot.plan.transferredCourses : slot.previewPairs;
   };
-  const isPreviewOnly = (slot: ComparisonSlotData) => !slot.plan?.transferredCourses?.length && slot.previewPairs.length > 0;
+  const isPreviewOnly = (slot: ComparisonSlotData) => !slot.plan && slot.previewPairs.length > 0;
 
   const showNotification = (message: string) => {
     setNotification(message);
@@ -191,7 +220,7 @@ export const Step5Compare: React.FC = () => {
       <div className="bg-surface-container-lowest rounded-3xl shadow-sm border border-surface-container/80 overflow-hidden">
         <div className="p-5 border-b border-surface-container">
           <h2 className="text-sm font-extrabold text-on-surface">So sánh theo dữ liệu đã có</h2>
-          <p className="text-xs text-on-surface-variant mt-1">Ô chưa có kế hoạch hoặc chưa có dữ liệu sẽ hiển thị “—”, không suy diễn thành kết quả đạt.</p>
+          <p className="text-xs text-on-surface-variant mt-1">Trường đã chọn nhưng chưa lưu phương án hiển thị bản xem trước từ matching; kết quả vẫn cần được lưu và xác minh.</p>
         </div>
 
         <div className="divide-y divide-surface-container text-xs">
@@ -207,7 +236,7 @@ export const Step5Compare: React.FC = () => {
           <ComparisonRow title="2. Học phần tại trường đối tác" slots={slots} render={(slot) => {
             if (!slot.preference) return '—';
             const pairs = getComparisonPairs(slot);
-            const count = pairs.length + (slot.plan?.hostAdditionalCourses?.length || 0);
+            const count = countDistinctHostCourses(pairs, slot.plan?.hostAdditionalCourses);
             if (!count) return <span className="text-on-surface-variant">Chưa có dữ liệu học phần</span>;
             return <>{isPreviewOnly(slot) && <span className="text-sky-700">Theo matching hiện tại · chưa lưu phương án</span>}<strong>{count} môn</strong><span className={count >= S27_RULES.hostCoursesMinimum ? 'text-emerald-700' : 'text-amber-700'}>{count >= S27_RULES.hostCoursesMinimum ? `Đạt ngưỡng ${S27_RULES.hostCoursesMinimum} môn` : `Chưa đủ ${S27_RULES.hostCoursesMinimum} môn`}</span></>;
           }} />
@@ -223,13 +252,13 @@ export const Step5Compare: React.FC = () => {
           <ComparisonRow title="Thông tin chi tiết và nguồn" slots={slots} render={slot => slot.uni ? <UniversityMoreInfo university={slot.uni} /> : '—'} />
           <ComparisonRow title="5. Tiến độ tốt nghiệp / HPTN" slots={slots} render={(slot) => {
             if (!slot.preference) return '—';
-            if (!slot.plan?.graduationSimulation) return <span className="text-on-surface-variant">Chưa lập phương án để mô phỏng</span>;
-            return <><span>{slot.plan.graduationSimulation.canGraduateOnTime ? 'Có khả năng đúng hạn theo mô phỏng' : 'Có rủi ro cần xử lý'}</span><span className="text-amber-700">{slot.plan.status === 'VALID' ? 'Đã đủ dữ liệu theo rule hiện tại' : 'Cần xác minh'}</span></>;
+            if (!slot.liveSimulation) return <span className="text-on-surface-variant">Chưa lập phương án để mô phỏng</span>;
+            return <><span>{slot.liveSimulation.isLikelyOnTime ? 'Có khả năng đúng hạn theo mô phỏng' : 'Có rủi ro cần xử lý'}</span><span className="text-amber-700">{slot.plan?.status === 'VALID' ? 'Đã đủ dữ liệu theo rule hiện tại' : 'Cần xác minh'}</span></>;
           }} />
           <ComparisonRow title="6. Nguồn và rủi ro" slots={slots} render={(slot) => {
             if (!slot.preference) return '—';
             if (!slot.plan) return <span className="text-on-surface-variant">Chưa lập phương án; đang hiển thị dữ liệu matching</span>;
-            const warnings = slot.plan.graduationSimulation?.riskWarnings || [];
+            const warnings = slot.liveSimulation?.warnings || [];
             return <><span>{warnings.length ? `${warnings.length} cảnh báo mô phỏng` : 'Chưa ghi nhận cảnh báo mô phỏng'}</span><span className="text-on-surface-variant">{slot.plan.sources?.[0]?.file || 'Chưa có nguồn'}</span></>;
           }} />
         </div>
@@ -251,8 +280,8 @@ export const Step5Compare: React.FC = () => {
 
 function ComparisonRow({ title, slots, render }: {
   title: string;
-  slots: Array<{ rank: PreferenceRank; preference?: { universityId: string; universityName: string }; plan?: ComparisonPlan; uni?: PartnerUniversity; previewPairs: CourseMatchPair[] }>;
-  render: (slot: { rank: PreferenceRank; preference?: { universityId: string; universityName: string }; plan?: ComparisonPlan; uni?: PartnerUniversity; previewPairs: CourseMatchPair[] }) => React.ReactNode;
+  slots: Array<ComparisonSlotData & { rank: PreferenceRank; preference?: { universityId: string; universityName: string }; uni?: PartnerUniversity }>;
+  render: (slot: ComparisonSlotData & { rank: PreferenceRank; preference?: { universityId: string; universityName: string }; uni?: PartnerUniversity }) => React.ReactNode;
 }) {
   return (
     <div className="p-5 flex flex-col gap-2">

@@ -30,7 +30,6 @@ function normalizeAuthError(error: unknown): AuthResult {
       error: 'Supabase không gửi được email xác minh. Hãy kiểm tra SMTP, API key và domain của địa chỉ gửi trong Supabase/Resend.'
     };
   }
-  if (lower.includes('email not confirmed')) return { code: 'EMAIL_NOT_CONFIRMED', error: 'Email chưa được xác minh. Hãy mở email xác minh trước khi đăng nhập.' };
   return { code: candidate?.code, error: message };
 }
 
@@ -60,10 +59,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     },
     async signUp(email, password) {
       if (!supabase) return { error: 'Supabase chưa được cấu hình.' };
-      const redirectTo = `${window.location.origin}/auth/callback`;
-      const { data, error } = await supabase.auth.signUp({ email: email.trim(), password, options: { emailRedirectTo: redirectTo } });
+      const { error } = await supabase.auth.signUp({ email: email.trim(), password });
       if (error) return normalizeAuthError(error);
-      if (!data.session) return { code: 'EMAIL_CONFIRMATION_REQUIRED', error: 'Tài khoản chưa tạo được phiên đăng nhập. Hãy kiểm tra cấu hình tự xác nhận email trong Supabase.' };
       return { error: null };
     },
     async resetPassword(email) {

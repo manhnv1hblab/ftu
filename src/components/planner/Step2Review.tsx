@@ -6,6 +6,7 @@ import { checkProgramEligibility } from '../../engine/eligibility';
 import { calculateElectiveGroups } from '../../engine/electives';
 import { StudentCourse } from '../../types/curriculum';
 import { ProfileDetailsForm } from './ProfileDetailsForm';
+import { isAvailableForTransfer, isCourseInProgress, isCoursePassed } from '../../engine/transferEligibility';
 
 export const Step2Review: React.FC = () => {
   const { profile, updateProfile, setCurrentStep } = useStudent();
@@ -32,9 +33,9 @@ export const Step2Review: React.FC = () => {
   }, [profile.courses]);
 
   // Categorize courses
-  const passedCourses = useMemo(() => profile.courses.filter(c => c.isPassed), [profile.courses]);
-  const enrolledCourses = useMemo(() => profile.courses.filter(c => c.isTaken && !c.isPassed), [profile.courses]);
-  const remainingCourses = useMemo(() => profile.courses.filter(c => !c.isPassed && !c.isTaken), [profile.courses]);
+  const passedCourses = useMemo(() => profile.courses.filter(isCoursePassed), [profile.courses]);
+  const enrolledCourses = useMemo(() => profile.courses.filter(isCourseInProgress), [profile.courses]);
+  const remainingCourses = useMemo(() => profile.courses.filter(isAvailableForTransfer), [profile.courses]);
 
   const passedCredits = passedCourses.reduce((sum, c) => sum + c.credits, 0);
   const enrolledCredits = enrolledCourses.reduce((sum, c) => sum + c.credits, 0);
@@ -67,15 +68,15 @@ export const Step2Review: React.FC = () => {
     const updated = profile.courses.map(c => {
       if (c.courseCode !== courseCode) return c;
       if (newStatus === 'PASSED') {
-        return { ...c, isPassed: true, isTaken: true };
+        return { ...c, isPassed: true, isTaken: true, status: 'PASSED' as const };
       } else if (newStatus === 'ENROLLED') {
-        return { ...c, isPassed: false, isTaken: true };
+        return { ...c, isPassed: false, isTaken: true, status: 'IN_PROGRESS' as const };
       } else {
-        return { ...c, isPassed: false, isTaken: false };
+        return { ...c, isPassed: false, isTaken: false, status: 'NOT_TAKEN' as const };
       }
     });
 
-    const newPassedCr = updated.filter(c => c.isPassed).reduce((sum, c) => sum + c.credits, 0);
+    const newPassedCr = updated.filter(isCoursePassed).reduce((sum, c) => sum + c.credits, 0);
     updateProfile({
       courses: updated,
       accumulatedCredits: newPassedCr
@@ -85,7 +86,7 @@ export const Step2Review: React.FC = () => {
   // Remove Course Handler
   const handleRemoveCourse = (courseCode: string) => {
     const updated = profile.courses.filter(c => c.courseCode !== courseCode);
-    const newPassedCr = updated.filter(c => c.isPassed).reduce((sum, c) => sum + c.credits, 0);
+    const newPassedCr = updated.filter(isCoursePassed).reduce((sum, c) => sum + c.credits, 0);
     updateProfile({
       courses: updated,
       accumulatedCredits: newPassedCr
@@ -106,6 +107,7 @@ export const Step2Review: React.FC = () => {
       isMandatory: true,
       isTaken: false,
       isPassed: false,
+      status: 'NOT_TAKEN',
       electiveGroup: newBlock,
       dataStatus: 'NEEDS_VERIFICATION'
     };
@@ -354,12 +356,12 @@ export const Step2Review: React.FC = () => {
                     </td>
                     <td className="py-3 px-4 text-center">
                       <select
-                        value={c.isPassed ? 'PASSED' : c.isTaken ? 'ENROLLED' : 'REMAINING'}
+                        value={isCoursePassed(c) ? 'PASSED' : isCourseInProgress(c) ? 'ENROLLED' : 'REMAINING'}
                         onChange={(e) => handleStatusChange(c.courseCode, e.target.value as any)}
                         className={`text-xs font-semibold py-1 px-2.5 rounded-full border cursor-pointer focus:outline-none ${
-                          c.isPassed
+                          isCoursePassed(c)
                             ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
-                            : c.isTaken
+                            : isCourseInProgress(c)
                             ? 'bg-amber-50 text-amber-800 border-amber-200'
                             : 'bg-primary/10 text-primary border-primary/20'
                         }`}

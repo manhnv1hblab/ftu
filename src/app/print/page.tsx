@@ -14,7 +14,12 @@ export default function PrintPlanPage() {
   const rawUnis = universitiesData as PartnerUniversity[];
   const generatedAt = new Date().toLocaleString('vi-VN');
   const selectedCount = ranks.filter(rank => preferredUniversities[rank]).length;
-  const draftedCount = ranks.filter(rank => rankedChoices[rank]?.transferredCourses?.length).length;
+  const planForRank = (rank: PreferenceRank) => {
+    const preference = preferredUniversities[rank];
+    const plan = rankedChoices[rank];
+    return preference && plan?.universityId === preference.universityId ? plan : undefined;
+  };
+  const draftedCount = ranks.filter(rank => planForRank(rank)?.transferredCourses?.length).length;
   const languageSummary = profile.languageCertificate?.isValid && profile.languageCertificate.testName && profile.languageCertificate.score
     ? `${profile.languageCertificate.testName} ${profile.languageCertificate.score}`
     : 'Chưa có dữ liệu / cần xác minh';
@@ -79,7 +84,7 @@ export default function PrintPlanPage() {
           <tbody className="divide-y divide-black">
             {ranks.map(rank => {
               const preference = preferredUniversities[rank];
-              const plan = rankedChoices[rank];
+              const plan = planForRank(rank);
               const uni = preference ? rawUnis.find(item => item.id === preference.universityId) : undefined;
               const hostCount = plan ? plan.transferredCourses.length + (plan.hostAdditionalCourses?.length || 0) : null;
               return <tr key={rank}>
@@ -99,7 +104,7 @@ export default function PrintPlanPage() {
         <h2 className="font-bold uppercase text-gray-900 border-b border-gray-300 pb-1">III. CHI TIẾT KẾ HOẠCH MÔN HỌC DỰ KIẾN</h2>
         {ranks.map(rank => {
           const preference = preferredUniversities[rank];
-          const plan = rankedChoices[rank];
+          const plan = planForRank(rank);
           const uni = preference ? rawUnis.find(item => item.id === preference.universityId) : undefined;
           if (!preference) return <div key={rank} className="border border-dashed border-gray-400 p-3 rounded-xl italic text-gray-500">{rank.toUpperCase()}: Chưa chọn trường.</div>;
           if (!plan) return <div key={rank} className="border border-dashed border-amber-500 p-3 rounded-xl text-amber-800">{rank.toUpperCase()}: {uni?.name || preference.universityName} — Chưa lập phương án môn học.</div>;

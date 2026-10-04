@@ -47,34 +47,32 @@ export function findCountryCost(
   const aliasedCountry = countryAliases[normalized];
   let matchedCost: CountryCost | undefined;
   for (const cName in costsByCountry) {
-    if (cName.toLocaleLowerCase('vi-VN').trim() === normalized
-      || cName === aliasedCountry
-      || normalized.includes(cName.toLocaleLowerCase('vi-VN').trim())) {
+    if (cName.toLocaleLowerCase('vi-VN').trim() === normalized || cName === aliasedCountry) {
       matchedCost = costsByCountry[cName];
       break;
     }
   }
 
   if (!matchedCost) {
-    if (normalized.includes('korea') || normalized.includes('hàn quốc')) {
+    if (normalized === 'korea' || normalized === 'hàn quốc') {
       matchedCost = costsByCountry['Hàn Quốc'];
-    } else if (normalized.includes('japan') || normalized.includes('nhật bản')) {
+    } else if (normalized === 'japan' || normalized === 'nhật bản') {
       matchedCost = costsByCountry['Nhật Bản'];
-    } else if (normalized.includes('china') || normalized.includes('trung quốc')) {
+    } else if (normalized === 'china' || normalized === 'trung quốc') {
       matchedCost = costsByCountry['Trung Quốc'];
-    } else if (normalized.includes('taiwan') || normalized.includes('đài loan')) {
+    } else if (normalized === 'taiwan' || normalized === 'đài loan') {
       matchedCost = costsByCountry['Đài Loan'];
-    } else if (normalized.includes('france') || normalized.includes('pháp')) {
+    } else if (normalized === 'france' || normalized === 'pháp') {
       matchedCost = costsByCountry['Pháp'];
-    } else if (normalized.includes('germany') || normalized.includes('đức')) {
+    } else if (normalized === 'germany' || normalized === 'đức') {
       matchedCost = costsByCountry['Đức'];
-    } else if (normalized.includes('switzerland') || normalized.includes('thụy sĩ') || normalized.includes('thuỵ sỹ')) {
+    } else if (normalized === 'switzerland' || normalized === 'thụy sĩ' || normalized === 'thuỵ sỹ') {
       matchedCost = costsByCountry['Thụy Sĩ'] || costsByCountry['Thuỵ Sỹ'];
-    } else if (normalized.includes('usa') || normalized.includes('mỹ') || normalized.includes('united states')) {
+    } else if (normalized === 'usa' || normalized === 'mỹ' || normalized === 'united states') {
       matchedCost = costsByCountry['Mỹ'];
-    } else if (normalized.includes('canada')) {
+    } else if (normalized === 'canada') {
       matchedCost = costsByCountry['Canada'];
-    } else if (normalized.includes('australia') || normalized.includes('úc')) {
+    } else if (normalized === 'australia' || normalized === 'úc') {
       matchedCost = costsByCountry['Úc'];
     }
   }

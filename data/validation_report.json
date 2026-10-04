@@ -1907,7 +1907,8 @@
       "totalCourses": 75,
       "passedCourses": 32,
       "takenButNotPassedCourses": 9,
-      "remainingCourses": 43
+      "notPassedCourses": 43,
+      "notTakenCourses": 34
     },
     "recordsWithoutSource": [],
     "sourceFilesOutsideDocument": []

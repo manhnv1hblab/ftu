@@ -106,8 +106,10 @@ export const Step4CoursePlan: React.FC = () => {
     const restoredPairs = savedPlan?.transferredCourses
       .map(pair => currentByEquivalenceId.get(pair.equivalenceId))
       .filter((pair): pair is CourseMatchPair => Boolean(pair));
-    setSelectedPairs(restoredPairs?.length
-      ? restoredPairs
+    // A saved empty plan is intentional state. Seed suggestions only when this
+    // preference has never been saved.
+    setSelectedPairs(savedPlan
+      ? (restoredPairs || [])
       : candidatePairs.filter(p => p.status === 'APPROVED').slice(0, S27_RULES.transferredCoursesMinimum));
     setInitializedEditorKey(editorKey);
   }, [candidatePairs, editorKey, initializedEditorKey, savedPlan, university]);
