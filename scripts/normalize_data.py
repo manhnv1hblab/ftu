@@ -150,6 +150,33 @@ stats = {
     "matched_to_s27": 0
 }
 
+def normalize_equivalence_text(value):
+    text = unicodedata.normalize('NFKC', str(value or ''))
+    text = text.translate(str.maketrans({'\u0111': 'd', '\u0110': 'D'}))
+    text = ''.join(char for char in unicodedata.normalize('NFD', text) if unicodedata.category(char) != 'Mn')
+    return re.sub(r'\s+', ' ', text).strip().casefold()
+
+NEGATIVE_EQUIVALENCE_MARKERS = (
+    'khong co mon hoc',
+    'khong co hoc phan',
+    'khong tuong duong',
+    'khong uong duong',
+    'tu choi',
+    'ko tuong duong',
+)
+PENDING_EQUIVALENCE_MARKERS = ('dang xet', 'cho xet', 'dang xin y kien')
+UNCERTAIN_EQUIVALENCE_MARKERS = ('chua ro', 'xem lai', 'can ra soat', 'chua xac minh')
+
+def infer_equivalence_status(ftu_course_name, approver, approval_year):
+    normalized_name = normalize_equivalence_text(ftu_course_name)
+    if any(marker in normalized_name for marker in NEGATIVE_EQUIVALENCE_MARKERS):
+        return 'REJECTED'
+    if any(marker in normalized_name for marker in PENDING_EQUIVALENCE_MARKERS):
+        return 'PENDING'
+    if any(marker in normalized_name for marker in UNCERTAIN_EQUIVALENCE_MARKERS):
+        return 'UNCERTAIN'
+    return 'APPROVED' if approver or approval_year else 'UNCERTAIN'
+
 for idx, r in enumerate(s_eq.iter_rows(min_row=2, values_only=True), start=2):
     if not r or not any(r):
         continue
@@ -175,28 +202,9 @@ for idx, r in enumerate(s_eq.iter_rows(min_row=2, values_only=True), start=2):
     if not partner_uni or not host_course_name:
         continue
 
-    # Determine status
-    # 1. Check if rejected
-    name_lower = ftu_course_name_raw.lower()
-    if any(marker in name_lower for marker in [
-        "không tương đương", "không ương đương", "không có học phần", "từ chối", "ko tương đương"
-    ]):
-        status = "REJECTED"
-        stats["rejected"] += 1
-    # 2. Check if pending
-    elif "đang xét" in name_lower or "chờ xét" in name_lower or "đang xin ý kiến" in name_lower:
-        status = "PENDING"
-        stats["pending"] += 1
-    # 3. Check if approved (has valid approver or not marked rejected/pending and has FTU code/name)
-    elif any(kw in name_lower for kw in ["chưa rõ", "xem lại", "cần rà soát", "chưa xác minh"]):
-        status = "UNCERTAIN"
-        stats["uncertain"] += 1
-    elif approver or approval_year:
-        status = "APPROVED"
-        stats["approved"] += 1
-    else:
-        status = "UNCERTAIN"
-        stats["uncertain"] += 1
+    # Explicit source wording has precedence over approval metadata.
+    status = infer_equivalence_status(ftu_course_name_raw, approver, approval_year)
+    stats[status.lower()] += 1
 
     # Clean FTU course name
     clean_ftu_course_name = ftu_course_name_raw

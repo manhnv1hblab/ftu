@@ -13,6 +13,7 @@ require.extensions['.ts'] = (module, filename) => {
 const { evaluateAllUniversities, matchCoursesForUniversity } = require('../src/engine/matcher.ts');
 const { isExcludedFromTransfer, isTransferCandidate } = require('../src/engine/transferEligibility.ts');
 const { findCountryCost } = require('../src/engine/costCalculator.ts');
+const { inferEquivalenceStatus } = require('../scripts/equivalence_status');
 const university = { id: 'partner-1', name: 'Partner One' };
 const student = (code, program = 'Tiêu chuẩn', cohort = 'K62') => ({ code, name: `FTU ${code}`, credits: 3, program, cohort });
 const equivalence = (id, ftu, host, status = 'APPROVED', curriculum = 'Tiêu chuẩn, CLC, CTTT') => ({
@@ -94,6 +95,15 @@ assert.equal(isTransferCandidate({
   isPassed: false,
   status: 'NOT_TAKEN'
 }), true, 'an open ordinary course remains a transfer candidate');
+for (const text of [
+  'Kh\u00f4ng c\u00f3 m\u00f4n h\u1ecdc Managerial Economics',
+  'Kh\u00f4ng c\u00f3 h\u1ecdc ph\u1ea7n Ch\u00ednh s\u00e1ch c\u00f4ng',
+  'Kh\u00f4ng t\u01b0\u01a1ng \u0111\u01b0\u01a1ng v\u1edbi h\u1ecdc ph\u1ea7n',
+  'Kh\u00f4ng t\u01b0\u01a1ng d\u01b0\u01a1ng v\u1edbi h\u1ecdc ph\u1ea7n'
+]) {
+  assert.equal(inferEquivalenceStatus({ ftuCourseNameRaw: text, approvalYear: '2025' }), 'REJECTED', `negative source wording is rejected: ${text}`);
+}
+assert.equal(inferEquivalenceStatus({ ftuCourseNameRaw: 'Kinh te hoc quan ly (Managerial Economics)', approvalYear: '2025' }), 'APPROVED', 'valid source wording remains approved');
 const excludedCourses = matchCoursesForUniversity(university, [
   student('KTE504'),
   { ...student('KTE526'), name: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p' }
@@ -124,6 +134,13 @@ const currentCosts = require('../data/costs_by_country.json');
 assert.equal(findCountryCost('Korea', currentCosts)?.country, 'Hàn Quốc', 'known country aliases resolve to the audited cost record');
 assert.equal(findCountryCost('"HongKong, China"', currentCosts), undefined, 'Hong Kong is not assigned mainland China costs when no audited Hong Kong source exists');
 const currentOfferings = require('../data/course_offerings_2627.json');
+const sciencesPo = currentUniversities.find(university => university.id === 'sciences-po');
+const sciencesPoNegativeRecord = currentEquivalences.find(equivalence => equivalence.id === 'eq-3037');
+assert.ok(sciencesPo && sciencesPoNegativeRecord);
+assert.equal(sciencesPoNegativeRecord.status, 'REJECTED', 'Sciences Po row 3037 is not an approved equivalence');
+assert.equal(matchCoursesForUniversity(sciencesPo, [{
+  code: 'KTE428', name: 'Kinh te hoc quan ly', credits: 3, program: 'Tiêu chuẩn', cohort: 'K62'
+}], currentEquivalences).some(pair => pair.hostCourseCode === 'K7IM 2030A'), false, 'negative Sciences Po Managerial Economics row cannot create a match');
 const currentCourses = require('../data/sample_curriculum.json');
 const currentProfile = {
   cohort: 'K63', major: 'Kinh tế quốc tế', program: 'Tiêu chuẩn', programType: 'Tiêu chuẩn', programMappingSource: 'DEFAULT_STANDARD',

@@ -19,7 +19,7 @@
     "test:flow": "node scripts/test_planner_flow_contract.js",
     "test:supabase": "node scripts/test_supabase_contract.js",
     "test:browser": "playwright test",
-    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:matcher && npm run test:data && npm run test:e2e && npm run test:flow && npm run test:supabase && npm run build"
+    "verify": "npm run lint && npm run typecheck && npm run test:engine && npm run test:matcher && npm run test:data && npm run audit:data && npm run test:e2e && npm run test:flow && npm run test:supabase && npm run build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

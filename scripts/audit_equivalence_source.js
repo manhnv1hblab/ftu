@@ -2,6 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const XLSX = require('xlsx');
+const { inferEquivalenceStatus, isExplicitlyRejectedEquivalenceName } = require('./equivalence_status');
 
 const root = path.resolve(__dirname, '..');
 const workbookPath = path.join(root, 'document', 'Danh sách học phần tương đương (với các trường đối tác).xlsx');
@@ -21,17 +22,17 @@ for (let index = 1; index < rows.length; index += 1) {
 }
 const countByRow = new Map();
 const unlinked = {};
-const flags = { approvedWithoutApproverOrYear: [], approvedWithReviewMarker: [] };
+const flags = { approvedWithoutApproverOrYear: [], approvedWithReviewMarker: [], approvedWithRejectionMarker: [] };
 const sourceStatusDifferences = [];
 for (const record of records) {
   const row = record.source?.row;
   countByRow.set(row, (countByRow.get(row) || 0) + 1);
   const source = sourceRows.get(row) || [];
-  const rawName = String(source[5] || '').toLocaleLowerCase('vi-VN');
-  const sourceStatus = ['không tương đương', 'không ương đương', 'không có học phần', 'từ chối', 'ko tương đương'].some(marker => rawName.includes(marker)) ? 'REJECTED'
-    : ['đang xét', 'chờ xét', 'đang xin ý kiến'].some(marker => rawName.includes(marker)) ? 'PENDING'
-      : ['chưa rõ', 'xem lại', 'cần rà soát', 'chưa xác minh'].some(marker => rawName.includes(marker)) ? 'UNCERTAIN'
-        : source[9] || source[10] ? 'APPROVED' : 'UNCERTAIN';
+  const sourceStatus = inferEquivalenceStatus({
+    ftuCourseNameRaw: source[5],
+    approver: source[9],
+    approvalYear: source[10]
+  });
   if (sourceStatus !== record.status) sourceStatusDifferences.push({ id: record.id, row, sourceStatus, normalizedStatus: record.status });
   if (!record.partnerS27Id) {
     const name = record.partnerUni || '(trường trống)';
@@ -40,6 +41,7 @@ for (const record of records) {
   }
   if (record.status === 'APPROVED' && !record.approver && !record.approvalYear) flags.approvedWithoutApproverOrYear.push(record.id);
   if (record.status === 'APPROVED' && /chưa rõ|xem lại|cần rà soát|chưa xác minh/i.test(record.ftuCourseNameRaw || '')) flags.approvedWithReviewMarker.push(record.id);
+  if (record.status === 'APPROVED' && isExplicitlyRejectedEquivalenceName(record.ftuCourseNameRaw)) flags.approvedWithRejectionMarker.push(record.id);
 }
 const missing = [...sourceRows.keys()].filter(row => !countByRow.has(row));
 const rowsWithoutSource = [...countByRow.keys()].filter(row => !sourceRows.has(row));
@@ -53,3 +55,7 @@ console.log(JSON.stringify({
   approvedStatusReviewFlags: Object.fromEntries(Object.entries(flags).map(([key, values]) => [key, { count: values.length, sampleIds: values.slice(0, 30) }])),
   blankCurriculumRows: records.filter(record => !String(record.curriculum || '').trim()).length
 }, null, 2));
+
+if (sourceStatusDifferences.length > 0 || flags.approvedWithRejectionMarker.length > 0) {
+  process.exitCode = 1;
+}

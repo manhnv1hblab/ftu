@@ -33114,7 +33114,7 @@
     "faculty": "Tiếng Nhật",
     "approver": "Nguyễn Thị Bích Huệ",
     "approvalYear": "2024",
-    "status": "APPROVED",
+    "status": "REJECTED",
     "source": {
       "file": "Danh sách học phần tương đương (với các trường đối tác).xlsx",
       "sheet": "Tổng",
@@ -55115,7 +55115,7 @@
     "faculty": "QTKD",
     "approver": "Nguyễn Thị Khánh Chi",
     "approvalYear": "2025",
-    "status": "APPROVED",
+    "status": "REJECTED",
     "source": {
       "file": "Danh sách học phần tương đương (với các trường đối tác).xlsx",
       "sheet": "Tổng",
@@ -62418,7 +62418,7 @@
     "faculty": "Viện KT&KDQT",
     "approver": "Vũ Thành Toàn",
     "approvalYear": "2025",
-    "status": "APPROVED",
+    "status": "REJECTED",
     "source": {
       "file": "Danh sách học phần tương đương (với các trường đối tác).xlsx",
       "sheet": "Tổng",
@@ -78315,7 +78315,7 @@
     "faculty": "KTQT",
     "approver": "",
     "approvalYear": "2025",
-    "status": "APPROVED",
+    "status": "REJECTED",
     "source": {
       "file": "Danh sách học phần tương đương (với các trường đối tác).xlsx",
       "sheet": "Tổng",
