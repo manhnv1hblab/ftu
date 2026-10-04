@@ -1,4 +1,4 @@
-import { isAvailableForTransfer, isCourseInProgress, isCoursePassed } from './transferEligibility';
+import { isAvailableForTransfer, isCourseInProgress, isCoursePassed, isExcludedFromTransfer } from './transferEligibility';
 import { normalizeCode } from '../lib/dataIntegrity';
 import { StudentCourse } from '../types/curriculum';
 import { CourseMatchPair } from '../types/studyPlan';
@@ -48,11 +48,14 @@ export function simulateStudentProgress(
     : course);
   const initialElectiveGroups = calculateElectiveGroups(projectedCourses);
 
-  const excludedCodes = new Set(courses.filter(c => !isAvailableForTransfer(c)).map(c => normalizeCode(c.courseCode)));
+  const excludedCodes = new Set(courses
+    .filter(c => !isAvailableForTransfer(c) || isExcludedFromTransfer(c))
+    .map(c => normalizeCode(c.courseCode)));
 
   // Exclude enrolled/completed courses, including stale draft selections.
   const successfulTransfers = transferredPairs.filter(
     p => !excludedCodes.has(normalizeCode(p.ftuCourseCode))
+      && !isExcludedFromTransfer({ courseCode: p.ftuCourseCode, courseName: p.ftuCourseName })
       && p.status === 'APPROVED'
       && p.verificationStatus === 'VERIFIED'
       && !failedTransferCourseCodes.includes(p.ftuCourseCode.toUpperCase())

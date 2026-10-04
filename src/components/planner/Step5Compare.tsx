@@ -14,7 +14,7 @@ import { CourseMatchPair } from '../../types/studyPlan';
 import { S27_RULES } from '../../config/s27Rules';
 import { UniversityMoreInfo, universityLivingCost } from './UniversityInfo';
 import { matchCoursesForUniversity } from '../../engine/matcher';
-import { isAvailableForTransfer } from '../../engine/transferEligibility';
+import { isAvailableForTransfer, isExcludedFromTransfer } from '../../engine/transferEligibility';
 import { simulateStudentProgress } from '../../engine/progressSimulator';
 
 const ranks: PreferenceRank[] = ['nv1', 'nv2', 'nv3'];
@@ -65,7 +65,7 @@ export const Step5Compare: React.FC = () => {
   const previewPairsByUniversity = useMemo(() => {
     const profileProgram = profile.programType || profile.program;
     const studentRemaining = profile.courses.length > 0
-      ? profile.courses.filter(isAvailableForTransfer).map(course => ({
+      ? profile.courses.filter(course => isAvailableForTransfer(course) && !isExcludedFromTransfer(course)).map(course => ({
         code: course.courseCode,
         name: course.courseName,
         credits: course.credits,

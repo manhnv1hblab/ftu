@@ -1,4 +1,4 @@
-import { isAvailableForTransfer } from './transferEligibility';
+import { isAvailableForTransfer, isExcludedFromTransfer } from './transferEligibility';
 import { PartnerUniversity } from '../types/university';
 import { CourseEquivalence } from '../types/equivalence';
 import { CourseOffering } from '../types/courseOffering';
@@ -22,6 +22,7 @@ export function matchCoursesForUniversity(
     eq.partnerS27Id === uniId || (!eq.partnerS27Id && normalizeName(eq.partnerUni) === normalizeName(university.name))
   ).filter(eq => eq.status !== 'REJECTED').sort((a, b) => a.id.localeCompare(b.id));
   const courses = Array.from(new Map(studentCoursesNotPassed.map(course => [normalizeCode(course.code), course])).values())
+    .filter(course => !isExcludedFromTransfer({ courseCode: course.code, courseName: course.name }))
     .sort((a, b) => normalizeCode(a.code).localeCompare(normalizeCode(b.code)));
   const candidates: { courseIndex: number; hostKey: string; eq: CourseEquivalence; scopeVerified: boolean; verificationReason?: string }[] = [];
 

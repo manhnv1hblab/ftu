@@ -11,6 +11,7 @@ require.extensions['.ts'] = (module, filename) => {
 };
 
 const { evaluateAllUniversities, matchCoursesForUniversity } = require('../src/engine/matcher.ts');
+const { isExcludedFromTransfer } = require('../src/engine/transferEligibility.ts');
 const { findCountryCost } = require('../src/engine/costCalculator.ts');
 const university = { id: 'partner-1', name: 'Partner One' };
 const student = (code, program = 'Tiêu chuẩn', cohort = 'K62') => ({ code, name: `FTU ${code}`, credits: 3, program, cohort });
@@ -52,6 +53,17 @@ const manualCourse = matchCoursesForUniversity(university, [{ code: 'A', name: '
   equivalence('manual', 'A', 'H1')
 ]);
 assert.equal(manualCourse[0].verificationStatus, 'NEEDS_VERIFICATION', 'manual code without course name and credits needs profile verification');
+
+assert.equal(isExcludedFromTransfer({ courseCode: 'KTE504', courseName: '\u0054h\u1ef1c t\u1eadp gi\u1eefa kh\u00f3a' }), true, 'midterm internship is excluded from equivalence matching');
+assert.equal(isExcludedFromTransfer({ courseCode: 'KTE526', courseName: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p' }), true, 'graduation thesis is excluded from equivalence matching');
+const excludedCourses = matchCoursesForUniversity(university, [
+  student('KTE504'),
+  { ...student('KTE526'), name: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p' }
+], [
+  equivalence('ttgk', 'KTE504', 'TTGK'),
+  equivalence('thesis', 'KTE526', 'THESIS')
+]);
+assert.equal(excludedCourses.length, 0, 'thesis and midterm internship never become transfer pairs');
 
 const defaultStandard = matchCoursesForUniversity(university, [{
   code: 'A', name: 'FTU A', credits: 3, program: 'Tiêu chuẩn', cohort: 'K62', programMappingSource: 'DEFAULT_STANDARD'
@@ -116,6 +128,10 @@ assert.equal(cleaned.graduationSimulation, undefined);
 assert.equal(draft.transferredCourses.length, 3, 'draft sanitation must not mutate the original');
 const simulation = simulateStudentProgress(courses, before.matchedPairs, [], '', null);
 assert.equal(simulation.creditsTransferred, 6, 'stale enrolled selection cannot add transfer credits');
+const specialTransferPair = { ...before.matchedPairs[0], ftuCourseCode: 'KTE526', ftuCourseName: 'Kh\u00f3a lu\u1eadn t\u1ed1t nghi\u1ec7p' };
+assert.equal(simulateStudentProgress(courses, [specialTransferPair], [], '', null).creditsTransferred, 0, 'thesis pair cannot add transfer credits from a stale plan');
+const staleSpecialPlan = removeUnavailableTransfers({ ...draft, transferredCourses: [specialTransferPair] }, courses);
+assert.equal(staleSpecialPlan.transferredCourses.length, 0, 'stale thesis pair is removed from saved plans');
 const inProgressProjection = simulateStudentProgress([
   { courseCode: 'DONE-LATER', courseName: 'Đang học', credits: 12, isMandatory: true, isTaken: true, isPassed: false },
   { courseCode: 'NOT-TAKEN', courseName: 'Chưa học', credits: 3, isMandatory: true, isTaken: false, isPassed: false }

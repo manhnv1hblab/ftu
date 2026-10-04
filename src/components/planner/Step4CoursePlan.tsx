@@ -1,6 +1,6 @@
 'use client';
 
-import { isAvailableForTransfer } from '../../engine/transferEligibility';
+import { isAvailableForTransfer, isExcludedFromTransfer } from '../../engine/transferEligibility';
 import { UniversityInfo } from './UniversityInfo';
 
 import React, { useState, useMemo, useEffect } from 'react';
@@ -40,7 +40,7 @@ export const Step4CoursePlan: React.FC = () => {
   const profileProgram = profile.programType || profile.program;
 
   const studentRemaining = useMemo(() => profile.courses && profile.courses.length > 0
-    ? profile.courses.filter(isAvailableForTransfer).map(c => ({
+    ? profile.courses.filter(c => isAvailableForTransfer(c) && !isExcludedFromTransfer(c)).map(c => ({
       code: c.courseCode,
       name: c.courseName,
       credits: c.credits,
